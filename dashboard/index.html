@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Public Lemma subnet dashboard.">
+  <title>Lemma Dashboard</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/site.js" defer></script>
+</head>
+<body data-page="dashboard">
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Lemma home">Lemma</a>
+    <nav aria-label="Primary">
+      <a href="/dashboard/" aria-current="page">Dashboard</a>
+      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      <a href="https://github.com/spacetime-tao/lemma/tree/main/docs">Docs</a>
+    </nav>
+  </header>
+
+  <main class="dashboard-page">
+    <section class="dashboard-head">
+      <div>
+        <p class="eyebrow">Public subnet dashboard</p>
+        <h1>Lemma Dashboard</h1>
+        <p>Public theorem schedule and miner scores. The page reads only sanitized dashboard JSON.</p>
+      </div>
+      <p class="meta" data-dashboard-meta>Loading dashboard data...</p>
+    </section>
+
+    <section class="theorem-grid" data-theorem-grid></section>
+
+    <section class="rubric-grid">
+      <article>
+        <h2>Difficulty</h2>
+        <dl>
+          <dt>Easy</dt><dd>Short identities and direct facts.</dd>
+          <dt>Medium</dt><dd>Common algebra, logic, list, set, and finset lemmas.</dd>
+          <dt>Hard</dt><dd>Statements that usually need more structure or imported Mathlib facts.</dd>
+        </dl>
+      </article>
+      <article>
+        <h2>Problem Types</h2>
+        <dl>
+          <dt>Arithmetic</dt><dd>Natural numbers, integers, reals, powers, divisibility.</dd>
+          <dt>Logic</dt><dd>Implications, conjunctions, quantifiers, propositions.</dd>
+          <dt>Structures</dt><dd>Lists, sets, finsets, topology, metrics, and linear algebra.</dd>
+        </dl>
+      </article>
+    </section>
+
+    <section>
+      <div class="table-head">
+        <div>
+          <h2>Miners</h2>
+          <p>UIDs, coldkeys, and hotkeys can link to an explorer when mainnet URL templates are configured.</p>
+        </div>
+      </div>
+      <div class="table-shell">
+        <table class="miners-table" data-miners-table>
+          <thead>
+            <tr>
+              <th><button type="button" data-sort="number">UID</button></th>
+              <th><button type="button" data-sort="text">Coldkey</button></th>
+              <th><button type="button" data-sort="text">Hotkey</button></th>
+              <th><button type="button" data-sort="number">Miner Score</button></th>
+              <th><button type="button" data-sort="number">Correct Theorems 24h</button></th>
+            </tr>
+          </thead>
+          <tbody data-miners-body>
+            <tr><td colspan="5">Loading miners...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Original contributors: Spaceτime, Maciej Kula, and Infinitao.</p>
+    <p><a href="/">Lemma home</a></p>
+  </footer>
+</body>
+</html>

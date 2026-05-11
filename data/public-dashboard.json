@@ -1,0 +1,86 @@
+{
+  "chain_head_block": 7095821,
+  "correct_count_window_hours": 24,
+  "generated_at": "2026-05-11T22:10:00Z",
+  "miners": [
+    {
+      "coldkey": "5FakeColdkeyAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaA",
+      "coldkey_url": "",
+      "correct_theorems_24h": 14,
+      "hotkey": "5FakeHotkey111111111111111111111111111111111111",
+      "hotkey_url": "",
+      "score": 0.184231,
+      "uid": 18,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5FakeColdkeyBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbB",
+      "coldkey_url": "",
+      "correct_theorems_24h": 11,
+      "hotkey": "5FakeHotkey222222222222222222222222222222222222",
+      "hotkey_url": "",
+      "score": 0.142008,
+      "uid": 7,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5FakeColdkeyCcCcCcCcCcCcCcCcCcCcCcCcCcCcCcCcCcC",
+      "coldkey_url": "",
+      "correct_theorems_24h": 8,
+      "hotkey": "5FakeHotkey333333333333333333333333333333333333",
+      "hotkey_url": "",
+      "score": 0.097112,
+      "uid": 41,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5FakeColdkeyDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdD",
+      "coldkey_url": "",
+      "correct_theorems_24h": 3,
+      "hotkey": "5FakeHotkey444444444444444444444444444444444444",
+      "hotkey_url": "",
+      "score": 0.041883,
+      "uid": 3,
+      "uid_url": ""
+    }
+  ],
+  "netuid": 467,
+  "network": "test",
+  "problem_seed": 7095800,
+  "problem_seed_chain_head": 7095800,
+  "problem_seed_tag": "quantize",
+  "schema_version": 1,
+  "score_source": "metagraph_incentive",
+  "theorems": {
+    "current": {
+      "explanation": "An easy natural-number arithmetic statement: prove that for every natural number n, n times 1 equals n.",
+      "label": "current",
+      "name": "lemma_mul_one_nat",
+      "seed": 7095800,
+      "split": "easy",
+      "theorem_id": "gen/7095800",
+      "topic": "arithmetic.nat",
+      "type_expr": "forall n : Nat, n * 1 = n"
+    },
+    "next": {
+      "explanation": "A medium propositional logic statement: prove that for every proposition p and q, p and q implies q and p.",
+      "label": "next",
+      "name": "lemma_and_comm",
+      "seed": 7095900,
+      "split": "medium",
+      "theorem_id": "gen/7095900",
+      "topic": "logic.prop",
+      "type_expr": "forall p q : Prop, p \u2227 q \u2192 q \u2227 p"
+    },
+    "previous": {
+      "explanation": "An easy natural-number arithmetic statement: prove that for every natural number n, n plus 0 equals n.",
+      "label": "previous",
+      "name": "lemma_add_zero_nat",
+      "seed": 7095700,
+      "split": "easy",
+      "theorem_id": "gen/7095700",
+      "topic": "arithmetic.nat",
+      "type_expr": "forall n : Nat, n + 0 = n"
+    }
+  }
+}

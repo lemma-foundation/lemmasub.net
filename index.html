@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lemma is a Bittensor subnet for formal mathematical proof.">
+  <title>Lemma</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/site.js" defer></script>
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Lemma home">Lemma</a>
+    <nav aria-label="Primary">
+      <a href="/dashboard/">Dashboard</a>
+      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      <a href="https://github.com/spacetime-tao/lemma/tree/main/docs">Docs</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="proof-field" aria-hidden="true">
+        <div class="proof-strip proof-strip-one">
+          <span>theorem</span><span>proof_script</span><span>Lean OK</span><span>weights</span>
+        </div>
+        <div class="proof-strip proof-strip-two">
+          <span>gen/7095800</span><span>forall n : Nat</span><span>verified</span><span>uid 18</span>
+        </div>
+        <div class="hero-console">
+          <div class="console-top">
+            <span>current theorem</span>
+            <strong data-current-id>gen/7095800</strong>
+          </div>
+          <pre data-current-goal>forall n : Nat, n * 1 = n</pre>
+          <div class="console-grid">
+            <div class="stat"><span>miners online</span><strong data-miner-count>4</strong></div>
+            <div class="stat"><span>top score</span><strong data-top-score>0.184231</strong></div>
+            <div class="stat"><span>24h proofs</span><strong data-proof-count>36</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Bittensor subnet for formal proof</p>
+        <h1>Lemma</h1>
+        <p class="lede">
+          Miners submit Lean proof scripts for public theorem statements.
+          Validators run those submissions through the same pinned verifier.
+          Proof checks, or it does not.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="/dashboard/">View Dashboard</a>
+          <a class="button secondary" href="https://github.com/spacetime-tao/lemma">Run a Miner</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Formal verification is the scoreboard.</h2>
+      </div>
+      <div class="steps">
+        <article>
+          <span>01</span>
+          <h3>Publish</h3>
+          <p>The subnet maps the chain-aligned seed to a deterministic generated theorem.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Prove</h3>
+          <p>Miners return Lean proof scripts for the theorem currently in the window.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Verify</h3>
+          <p>Validators check each submission with the pinned Lean and Mathlib toolchain.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Weight</h3>
+          <p>Verified proofs enter scoring; failed proofs do not.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="split-band">
+      <div>
+        <p class="eyebrow">Live public view</p>
+        <h2>The dashboard shows the theorem flow and miner performance.</h2>
+        <p>
+          The public page is intentionally small: previous, current, and next theorem;
+          UID, coldkey, hotkey, score, and recent verified theorem count.
+        </p>
+        <a class="text-link" href="/dashboard/">Open the dashboard</a>
+      </div>
+      <div class="mini-dashboard" aria-label="Dashboard preview">
+        <div class="mini-row">
+          <span>Current</span>
+          <strong data-current-id>gen/7095800</strong>
+        </div>
+        <div class="mini-row">
+          <span>Top miner</span>
+          <strong data-top-miner>UID 18</strong>
+        </div>
+        <div class="mini-row">
+          <span>24h verified</span>
+          <strong data-proof-count>36</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="section-head">
+        <p class="eyebrow">Operate safely</p>
+        <h2>Keep coldkeys off servers.</h2>
+      </div>
+      <div class="safety">
+        <p>
+          Run miners and validators on VPS infrastructure with hotkeys only.
+          Keep coldkey seed phrases and private coldkey files local or offline.
+        </p>
+        <div class="link-grid">
+          <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/droplet-operations.md">Droplet runbook</a>
+          <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/vps-safety.md">VPS safety</a>
+          <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">Getting started</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Original contributors: Spaceτime, Maciej Kula, and Infinitao.</p>
+    <p><a href="https://github.com/spacetime-tao/lemma">spacetime-tao/lemma</a></p>
+  </footer>
+</body>
+</html>
