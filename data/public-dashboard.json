@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7107043,
+  "chain_head_block": 7107085,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T17:44:13Z",
+  "generated_at": "2026-05-12T17:52:36Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -10,6 +10,7 @@
       "correct_theorems_24h": 12,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
+      "passed_prior_round": true,
       "score": 0.6796368360519409,
       "uid": 2,
       "uid_url": ""
@@ -20,6 +21,7 @@
       "correct_theorems_24h": 11,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
+      "passed_prior_round": true,
       "score": 0.3203479051589966,
       "uid": 3,
       "uid_url": ""
@@ -30,6 +32,7 @@
       "correct_theorems_24h": 0,
       "hotkey": "5Ft8o9Xi5uN2Q7BvneDfH221F7SbNg9EtuCK4Vi3Ep8WgNb9",
       "hotkey_url": "",
+      "passed_prior_round": false,
       "score": 0.0,
       "uid": 0,
       "uid_url": ""
@@ -40,6 +43,7 @@
       "correct_theorems_24h": 0,
       "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
       "hotkey_url": "",
+      "passed_prior_round": false,
       "score": 0.0,
       "uid": 1,
       "uid_url": ""
@@ -50,6 +54,7 @@
       "correct_theorems_24h": 8,
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
+      "passed_prior_round": true,
       "score": 0.0,
       "uid": 4,
       "uid_url": ""
@@ -60,6 +65,7 @@
       "correct_theorems_24h": 7,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
+      "passed_prior_round": false,
       "score": 0.0,
       "uid": 5,
       "uid_url": ""
@@ -70,6 +76,7 @@
       "correct_theorems_24h": 3,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
+      "passed_prior_round": false,
       "score": 0.0,
       "uid": 6,
       "uid_url": ""
@@ -80,6 +87,7 @@
       "correct_theorems_24h": 9,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
+      "passed_prior_round": true,
       "score": 0.0,
       "uid": 7,
       "uid_url": ""
@@ -88,42 +96,46 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7107000,
-  "problem_seed_chain_head": 7107043,
+  "problem_seed_chain_head": 7107085,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "schema_version": 1,
+  "proofs_passed_prior_round": 4,
+  "schema_version": 2,
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A medium primitive roots light statement: prove that \u2200 A B : Set Nat, A \u2229 B is a subset of A.",
+      "explanation": "Prove that a natural number belongs to the finite range ending at its successor.",
       "label": "current",
-      "name": "t_985588",
+      "name": "t_2c2d47f",
+      "plain_english": "Prove that a natural number belongs to the finite range ending at its successor.",
       "seed": 7107000,
       "split": "medium",
       "theorem_id": "gen/7107000",
-      "topic": "number_theory.primitive_roots_light",
-      "type_expr": "\u2200 A B : Set Nat, A \u2229 B \u2286 A"
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "\u2200 n : Nat, n \u2208 Finset.range (n + 1)"
     },
     "next": {
-      "explanation": "An easy linear algebra statement: prove that (47 is a natural number) is at most 115.",
+      "explanation": "Prove that the displayed real-number addition equals its computed value.",
       "label": "next",
-      "name": "t_72f69a",
+      "name": "t_37ff8e",
+      "plain_english": "Prove that the displayed real-number addition equals its computed value.",
       "seed": 7107100,
       "split": "easy",
       "theorem_id": "gen/7107100",
-      "topic": "linear_algebra.matrix_light",
-      "type_expr": "(47 : Nat) \u2264 115"
+      "topic": "analysis.real_basic",
+      "type_expr": "(17 : \u211d) + (6 : \u211d) = (23 : \u211d)"
     },
     "previous": {
-      "explanation": "A medium finite set theory statement: prove that Continuous (fun x : \u211d => x).",
+      "explanation": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
       "label": "previous",
-      "name": "t_15d5c68",
+      "name": "t_3fff6e0",
+      "plain_english": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
       "seed": 7106900,
-      "split": "medium",
+      "split": "hard",
       "theorem_id": "gen/7106900",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "Continuous (fun x : \u211d => x)"
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 b * c + c * b"
     }
   }
 }
