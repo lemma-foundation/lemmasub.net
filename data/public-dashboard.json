@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7108083,
+  "chain_head_block": 7108100,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T21:12:12Z",
+  "generated_at": "2026-05-12T21:15:27Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7108000,
-  "problem_seed_chain_head": 7108083,
+  "problem_seed": 7108100,
+  "problem_seed_chain_head": 7108100,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,19 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that for every finite set of natural numbers A and B, A is a subset of B implies A.card is at most B.card.",
-      "label": "current",
-      "name": "t_27a7a89",
-      "plain_english": "Prove that for every finite set of natural numbers A and B, A is a subset of B implies A.card is at most B.card.",
-      "seed": 7108000,
-      "split": "hard",
-      "theorem_id": "gen/7108000",
-      "topic": "logic.propositional",
-      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
-    },
-    "next": {
       "explanation": "Prove that for every real number x and y and z, abs (x - z) is at most abs (x - y) plus abs (y - z).",
-      "label": "next",
+      "label": "current",
       "name": "t_14d9cfd",
       "plain_english": "Prove that for every real number x and y and z, abs (x - z) is at most abs (x - y) plus abs (y - z).",
       "seed": 7108100,
@@ -126,16 +115,27 @@
       "topic": "combinatorics.counting",
       "type_expr": "\u2200 x y z : \u211d, abs (x - z) \u2264 abs (x - y) + abs (y - z)"
     },
+    "next": {
+      "explanation": "Prove that for every real number x, x times x is at least 0.",
+      "label": "next",
+      "name": "t_1f78b79",
+      "plain_english": "Prove that for every real number x, x times x is at least 0.",
+      "seed": 7108200,
+      "split": "medium",
+      "theorem_id": "gen/7108200",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 x : \u211d, x * x \u2265 0"
+    },
     "previous": {
-      "explanation": "Prove that ([1, 2, 3] : List Nat).length equals 3.",
+      "explanation": "Prove that for every finite set of natural numbers A and B, A is a subset of B implies A.card is at most B.card.",
       "label": "previous",
-      "name": "t_517c30",
-      "plain_english": "Prove that ([1, 2, 3] : List Nat).length equals 3.",
-      "seed": 7107900,
-      "split": "easy",
-      "theorem_id": "gen/7107900",
-      "topic": "algebra.order",
-      "type_expr": "([1, 2, 3] : List Nat).length = 3"
+      "name": "t_27a7a89",
+      "plain_english": "Prove that for every finite set of natural numbers A and B, A is a subset of B implies A.card is at most B.card.",
+      "seed": 7108000,
+      "split": "hard",
+      "theorem_id": "gen/7108000",
+      "topic": "logic.propositional",
+      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
     }
   }
 }
