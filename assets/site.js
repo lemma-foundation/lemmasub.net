@@ -20,6 +20,7 @@ let controlsAttached = false;
 let displayedTheorems = {};
 let dashboardData = {};
 let dashboardDataLoaded = false;
+let optimisticRotationKey = "";
 
 document.addEventListener("DOMContentLoaded", async () => {
   initializeTheme();
@@ -131,6 +132,7 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
   dashboardData = data;
   dashboardDataLoaded = dataLoaded;
   displayedTheorems = { ...data.theorems };
+  optimisticRotationKey = "";
   const stats = dashboardStats(data);
 
   setText("[data-dashboard-state]", dashboardStateText(data, dataLoaded));
@@ -427,9 +429,9 @@ function secondsUntilNextTheorem(data) {
 function startScheduleTicker(data) {
   window.clearInterval(scheduleTimer);
   const initialCountdown = secondsUntilNextTheorem(data);
-  scheduleCanRotate = initialCountdown !== null && initialCountdown > 0;
-  tickSchedule(data);
+  scheduleCanRotate = initialCountdown !== null;
   scheduleTimer = window.setInterval(() => tickSchedule(data), 1000);
+  tickSchedule(data);
 }
 
 function tickSchedule(data) {
@@ -443,12 +445,44 @@ function tickSchedule(data) {
   }
   if (countdown === 0 && scheduleCanRotate && displayedTheorems.next) {
     scheduleCanRotate = false;
+    rotateTheoremPreview(data);
     refreshDashboardData();
     startCatchupPolling();
-    setText("[data-next-countdown]", "Waiting for public data");
     return;
   }
   setText("[data-next-countdown]", countdown === 0 ? "Waiting for public data" : formatDuration(countdown));
+}
+
+function rotateTheoremPreview(data) {
+  const current = displayedTheorems.current || data.theorems.current;
+  const next = displayedTheorems.next || data.theorems.next;
+  if (!next) {
+    setText("[data-next-countdown]", "Waiting for public data");
+    return;
+  }
+
+  const seed = numberOrNull(next.seed) ?? nextProblemSeed(data);
+  const rotated = { previous: current, current: next, next: null };
+  dashboardData = {
+    ...data,
+    generated_at: new Date().toISOString(),
+    chain_head_block: seed ?? data.chain_head_block,
+    problem_seed_chain_head: seed ?? data.problem_seed_chain_head,
+    problem_seed: seed ?? data.problem_seed,
+    theorems: rotated
+  };
+  displayedTheorems = rotated;
+  optimisticRotationKey = theoremKey(next);
+  renderTheorems(displayedTheorems);
+  animateTheoremGrid();
+  startScheduleTicker(dashboardData);
+  setText("[data-dashboard-state]", "Waiting for fresh public data for the new theorem.");
+}
+
+function nextProblemSeed(data) {
+  const currentSeed = numberOrNull(data.problem_seed);
+  const interval = numberOrNull(data.problem_seed_quantize_blocks);
+  return currentSeed === null || interval === null ? null : currentSeed + interval;
 }
 
 function animateTheoremGrid() {
@@ -476,10 +510,27 @@ async function refreshDashboardData() {
     return;
   }
   const data = normalizeDashboardData(result.data);
+  if (isStaleAfterPreviewRotation(data)) {
+    setText("[data-dashboard-state]", "Waiting for fresh public data for the new theorem.");
+    return;
+  }
   applyDashboardData(data, true);
   if (dashboardCatchupTimer && secondsUntilNextTheorem(data) > 0) {
     stopCatchupPolling();
   }
+}
+
+function isStaleAfterPreviewRotation(data) {
+  if (!optimisticRotationKey) {
+    return false;
+  }
+  const incomingSeed = numberOrNull(data.problem_seed);
+  const previewSeed = numberOrNull(dashboardData.problem_seed);
+  if (incomingSeed !== null && previewSeed !== null && incomingSeed < previewSeed) {
+    return true;
+  }
+  const incomingCurrent = theoremKey(data.theorems.current);
+  return incomingCurrent && incomingCurrent !== optimisticRotationKey;
 }
 
 function startCatchupPolling() {

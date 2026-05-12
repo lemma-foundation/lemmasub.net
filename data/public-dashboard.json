@@ -92,6 +92,7 @@
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
+  "proofs_passed_prior_round": 6,
   "schema_version": 1,
   "score_source": "metagraph_incentive",
   "theorems": {

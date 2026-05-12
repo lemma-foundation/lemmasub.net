@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Public Lemma subnet dashboard.">
   <title>Lemma Dashboard</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260512-refreshcopy">
-  <script src="../assets/site.js?v=20260512-refreshcopy" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260512-rollover">
+  <script src="../assets/site.js?v=20260512-rollover" defer></script>
 </head>
 <body data-page="dashboard">
   <header class="site-header">
@@ -65,7 +65,7 @@
       </article>
       <article>
         <span class="label-with-info">
-          <span>Proofs passed in prior round</span>
+          <span>Proofs passed in latest validator round</span>
           <span class="info-tip">
             <button class="info-button" type="button" aria-label="What proofs that passed means" aria-expanded="false">?</button>
             <span class="info-bubble" role="tooltip">Total proof attempts accepted by Lean in the most recent exported round. Proof files are not published.</span>
@@ -75,14 +75,13 @@
       </article>
       <article>
         <span class="label-with-info">
-          <span>Shared top chain score</span>
+          <span>Top chain score</span>
           <span class="info-tip">
             <button class="info-button" type="button" aria-label="What metagraph score means" aria-expanded="false">?</button>
             <span class="info-bubble align-right" role="tooltip">The chain's current incentive score. More than one UID can share the same top score.</span>
           </span>
         </span>
         <strong data-top-score>?</strong>
-        <em class="metric-sub" data-top-miner>No data</em>
       </article>
     </section>
 
