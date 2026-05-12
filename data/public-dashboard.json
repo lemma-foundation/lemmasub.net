@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7106996,
+  "chain_head_block": 7107013,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T17:34:43Z",
+  "generated_at": "2026-05-12T17:38:02Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7106900,
-  "problem_seed_chain_head": 7106996,
+  "problem_seed": 7107000,
+  "problem_seed_chain_head": 7107013,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A medium finite set theory statement: prove that Continuous (fun x : \u211d => x).",
-      "label": "current",
-      "name": "t_15d5c68",
-      "seed": 7106900,
-      "split": "medium",
-      "theorem_id": "gen/7106900",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "Continuous (fun x : \u211d => x)"
-    },
-    "next": {
       "explanation": "A medium primitive roots light statement: prove that \u2200 A B : Set Nat, A \u2229 B is a subset of A.",
-      "label": "next",
+      "label": "current",
       "name": "t_985588",
       "seed": 7107000,
       "split": "medium",
@@ -115,15 +105,25 @@
       "topic": "number_theory.primitive_roots_light",
       "type_expr": "\u2200 A B : Set Nat, A \u2229 B \u2286 A"
     },
-    "previous": {
-      "explanation": "An easy metric statement: prove that True.",
-      "label": "previous",
-      "name": "t_6c70f0",
-      "seed": 7106800,
+    "next": {
+      "explanation": "An easy linear algebra statement: prove that (47 is a natural number) is at most 115.",
+      "label": "next",
+      "name": "t_72f69a",
+      "seed": 7107100,
       "split": "easy",
-      "theorem_id": "gen/7106800",
-      "topic": "geometry.metric",
-      "type_expr": "True"
+      "theorem_id": "gen/7107100",
+      "topic": "linear_algebra.matrix_light",
+      "type_expr": "(47 : Nat) \u2264 115"
+    },
+    "previous": {
+      "explanation": "A medium finite set theory statement: prove that Continuous (fun x : \u211d => x).",
+      "label": "previous",
+      "name": "t_15d5c68",
+      "seed": 7106900,
+      "split": "medium",
+      "theorem_id": "gen/7106900",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "Continuous (fun x : \u211d => x)"
     }
   }
 }
