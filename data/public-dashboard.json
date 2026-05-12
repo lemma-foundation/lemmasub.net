@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7106086,
+  "chain_head_block": 7106102,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T14:32:43Z",
+  "generated_at": "2026-05-12T14:35:52Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7106000,
-  "problem_seed_chain_head": 7106086,
+  "problem_seed": 7106100,
+  "problem_seed_chain_head": 7106102,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "An easy basic light statement: prove that (68 is a natural number) plus 107 equals 175.",
-      "label": "current",
-      "name": "t_632f93",
-      "seed": 7106000,
-      "split": "easy",
-      "theorem_id": "gen/7106000",
-      "topic": "complex.basic_light",
-      "type_expr": "(68 : Nat) + 107 = 175"
-    },
-    "next": {
       "explanation": "A medium polynomial light statement: prove that \u2200 x y : \u2124, |x plus y| is at most |x| plus |y|.",
-      "label": "next",
+      "label": "current",
       "name": "t_1c75160",
       "seed": 7106100,
       "split": "medium",
@@ -115,15 +105,25 @@
       "topic": "algebra.polynomial_light",
       "type_expr": "\u2200 x y : \u2124, |x + y| \u2264 |x| + |y|"
     },
+    "next": {
+      "explanation": "An easy real-number analysis statement: prove that (16 : \u211d) plus (2 : \u211d) equals (18 : \u211d).",
+      "label": "next",
+      "name": "t_37e30a",
+      "seed": 7106200,
+      "split": "easy",
+      "theorem_id": "gen/7106200",
+      "topic": "analysis.real_basic",
+      "type_expr": "(16 : \u211d) + (2 : \u211d) = (18 : \u211d)"
+    },
     "previous": {
-      "explanation": "A hard ring statement: prove that \u2200 A B C : Set Nat, A \u2229 (B \u222a C) equals (A \u2229 B) \u222a (A \u2229 C).",
+      "explanation": "An easy basic light statement: prove that (68 is a natural number) plus 107 equals 175.",
       "label": "previous",
-      "name": "t_11115e7",
-      "seed": 7105900,
-      "split": "hard",
-      "theorem_id": "gen/7105900",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 A B C : Set Nat, A \u2229 (B \u222a C) = (A \u2229 B) \u222a (A \u2229 C)"
+      "name": "t_632f93",
+      "seed": 7106000,
+      "split": "easy",
+      "theorem_id": "gen/7106000",
+      "topic": "complex.basic_light",
+      "type_expr": "(68 : Nat) + 107 = 175"
     }
   }
 }
