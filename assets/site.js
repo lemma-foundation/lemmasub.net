@@ -2,7 +2,7 @@ const DATA_URL = new URL(
   document.body.dataset.page === "dashboard" ? "../data/public-dashboard.json" : "data/public-dashboard.json",
   document.baseURI,
 ).href;
-const DASHBOARD_REFRESH_MS = 15000;
+const DASHBOARD_REFRESH_MS = 10000;
 const DASHBOARD_CATCHUP_MS = 5000;
 const DASHBOARD_CATCHUP_ATTEMPTS = 24;
 
@@ -466,7 +466,11 @@ function humanSplit(split) {
 }
 
 function humanTopic(topic) {
-  const raw = String(topic || "").split(".").pop()?.replaceAll("_", " ") || "";
+  const raw = String(topic || "")
+    .split(".")
+    .pop()
+    ?.replace(/_(light|lite)$/i, "")
+    .replaceAll("_", " ") || "";
   return raw ? capitalize(raw) : "";
 }
 
@@ -517,24 +521,12 @@ function tickSchedule(data) {
   }
   if (countdown === 0 && scheduleCanRotate && displayedTheorems.next) {
     scheduleCanRotate = false;
-    rotateTheorems();
     refreshDashboardData();
     startCatchupPolling();
     setText("[data-next-countdown]", "Waiting for public data");
     return;
   }
   setText("[data-next-countdown]", countdown === 0 ? "Waiting for public data" : formatDuration(countdown));
-}
-
-function rotateTheorems() {
-  displayedTheorems = {
-    previous: displayedTheorems.current,
-    current: displayedTheorems.next,
-    next: null
-  };
-  dashboardData = { ...dashboardData, theorems: displayedTheorems };
-  renderTheorems(displayedTheorems);
-  animateTheoremGrid();
 }
 
 function animateTheoremGrid() {
@@ -562,15 +554,8 @@ async function refreshDashboardData() {
     return;
   }
   const data = normalizeDashboardData(result.data);
-  const displayedCurrent = theoremKey(displayedTheorems.current);
-  const incomingCurrent = theoremKey(data.theorems.current);
-  const incomingNext = theoremKey(data.theorems.next);
-  if (displayedCurrent && incomingCurrent && incomingCurrent !== displayedCurrent && incomingNext === displayedCurrent) {
-    setText("[data-dashboard-state]", "Waiting for the next public dashboard export.");
-    return;
-  }
   applyDashboardData(data, true);
-  if (dashboardCatchupTimer && incomingCurrent === displayedCurrent) {
+  if (dashboardCatchupTimer && secondsUntilNextTheorem(data) > 0) {
     stopCatchupPolling();
   }
 }

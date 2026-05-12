@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lemma is a Bittensor subnet for proving math with code. Miners send proof files, and validators check whether they pass.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260512-sn467">
-  <script src="assets/site.js?v=20260512-sn467" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260512-livefix">
+  <script src="assets/site.js?v=20260512-livefix" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header">
@@ -112,29 +112,29 @@
     <section class="band miner-solve-band">
       <div class="section-head">
         <p class="eyebrow">How do miners solve theorems?</p>
-        <h2>They run software that tries to write a proof Lean accepts.</h2>
+        <h2>In the first phase, miners use LLM-backed proving software.</h2>
         <p>
-          A miner does not just answer in plain English. It watches for the
-          current statement, asks its proving system to build a Lean proof file,
-          and sends that file back before the round moves on.
+          The reference miner sends the current Lean statement to a prover model
+          through an OpenAI-compatible API. The model tries to return a complete
+          <code>Submission.lean</code> proof file before the round moves on.
         </p>
       </div>
       <div class="value-grid">
         <article>
-          <h3>Read the statement</h3>
-          <p>The miner receives the exact Lean type for the current round.</p>
+          <h3>Receive the Lean goal</h3>
+          <p>The miner receives the exact theorem statement validators will check.</p>
         </article>
         <article>
-          <h3>Try proof strategies</h3>
-          <p>Its local prover can use search, templates, tactics, or an LLM-assisted workflow.</p>
+          <h3>Ask a prover model</h3>
+          <p>An LLM or other prover stack tries to write Lean code for that goal.</p>
         </article>
         <article>
-          <h3>Submit a proof file</h3>
-          <p>The result must be code Lean can check, not a written explanation.</p>
+          <h3>Return proof code</h3>
+          <p>The miner sends back a proof file, not a plain-English explanation.</p>
         </article>
         <article>
-          <h3>Pass or fail</h3>
-          <p>If Lean accepts the proof and the safety checks pass, it can count toward rewards.</p>
+          <h3>Later: manual lanes</h3>
+          <p>Future off-cadence bounty tasks can let people work manually and submit when ready.</p>
         </article>
       </div>
     </section>
