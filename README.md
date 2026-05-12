@@ -32,16 +32,24 @@ The source of truth for that JSON file is the Lemma repo exporter:
 
 ```bash
 cd LOCAL_WORKSPACE/lemma
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard \
-  --summary-jsonl /var/lib/lemma/public-summary.jsonl \
+NETUID=467 \
+SUBTENSOR_NETWORK=test \
+SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 \
+PYTHONDONTWRITEBYTECODE=1 \
+.venv/bin/python -m tools.public_dashboard \
+  --summary-jsonl /var/lib/lemma/training.jsonl \
   --json-out LOCAL_WORKSPACE/lemmasub.net/data/public-dashboard.json \
   --html-out /private/tmp/lemma-public-dashboard.html
 ```
 
 Run the exporter on a schedule from the operator environment, then publish only
 the refreshed `data/public-dashboard.json` file. Cron, launchd, GitHub Actions,
-or a static-host deploy job are all fine as long as the job has the same network
-and wallet/metagraph access that the exporter needs.
+or a static-host deploy job are all fine as long as the job has testnet access,
+the validator summary export, and Git push access.
+
+Set the network values explicitly. Without those environment variables, the
+exporter falls back to Finney/netuid 0. The public Lemma testnet dashboard should
+use `SUBTENSOR_NETWORK=test` and `NETUID=467`.
 
 For the live site, the recommended path is a validator-side cron or launchd job
 on one always-on machine. That can be your local machine if it stays online, or
@@ -57,8 +65,12 @@ separate tiny automation machine.
 
 ```bash
 cd LOCAL_WORKSPACE/lemma
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard \
-  --summary-jsonl /var/lib/lemma/public-summary.jsonl \
+NETUID=467 \
+SUBTENSOR_NETWORK=test \
+SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 \
+PYTHONDONTWRITEBYTECODE=1 \
+.venv/bin/python -m tools.public_dashboard \
+  --summary-jsonl /var/lib/lemma/training.jsonl \
   --json-out LOCAL_WORKSPACE/lemmasub.net/data/public-dashboard.json \
   --html-out /private/tmp/lemma-public-dashboard.html
 
@@ -77,7 +89,7 @@ access, and Git push access to `spacetime-tao/lemmasub.net`.
 Minimal cron shape:
 
 ```cron
-*/3 * * * * cd LOCAL_WORKSPACE/lemma && PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard --summary-jsonl /var/lib/lemma/public-summary.jsonl --json-out LOCAL_WORKSPACE/lemmasub.net/data/public-dashboard.json --html-out /private/tmp/lemma-public-dashboard.html && cd LOCAL_WORKSPACE/lemmasub.net && if ! git diff --quiet -- data/public-dashboard.json; then git add data/public-dashboard.json && git commit -m "Refresh public dashboard data" && git push origin main; fi
+*/3 * * * * cd LOCAL_WORKSPACE/lemma && NETUID=467 SUBTENSOR_NETWORK=test SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard --summary-jsonl /var/lib/lemma/training.jsonl --json-out LOCAL_WORKSPACE/lemmasub.net/data/public-dashboard.json --html-out /private/tmp/lemma-public-dashboard.html && cd LOCAL_WORKSPACE/lemmasub.net && if ! git diff --quiet -- data/public-dashboard.json; then git add data/public-dashboard.json && git commit -m "Refresh public dashboard data" && git push origin main; fi
 ```
 
 For launchd, use the same command with a `StartInterval` around `180` to `300`
