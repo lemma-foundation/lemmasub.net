@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7104498,
+  "chain_head_block": 7104516,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T09:15:12Z",
+  "generated_at": "2026-05-12T09:18:44Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,28 +87,17 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7104400,
-  "problem_seed_chain_head": 7104498,
+  "problem_seed": 7104500,
+  "problem_seed_chain_head": 7104516,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "proofs_passed_prior_round": 6,
   "schema_version": 1,
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A hard finite set theory statement: prove that \u2200 A B C : Set Nat, A \u2229 (B \u222a C) equals (A \u2229 B) \u222a (A \u2229 C).",
-      "label": "current",
-      "name": "t_1111f1b",
-      "seed": 7104400,
-      "split": "hard",
-      "theorem_id": "gen/7104400",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B C : Set Nat, A \u2229 (B \u222a C) = (A \u2229 B) \u222a (A \u2229 C)"
-    },
-    "next": {
       "explanation": "An easy series light statement: prove that True.",
-      "label": "next",
+      "label": "current",
       "name": "t_6c67f4",
       "seed": 7104500,
       "split": "easy",
@@ -116,15 +105,25 @@
       "topic": "analysis.series_light",
       "type_expr": "True"
     },
+    "next": {
+      "explanation": "A medium regular lite statement: prove that \u2200 a b c is a natural number, a \u2223 b implies b \u2223 c implies a \u2223 c.",
+      "label": "next",
+      "name": "t_8889b5",
+      "seed": 7104600,
+      "split": "medium",
+      "theorem_id": "gen/7104600",
+      "topic": "automata.regular_lite",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
+    },
     "previous": {
-      "explanation": "A hard series light statement: prove that \u2200 A B : Finset Nat, A is a subset of B implies A.card is at most B.card.",
+      "explanation": "A hard finite set theory statement: prove that \u2200 A B C : Set Nat, A \u2229 (B \u222a C) equals (A \u2229 B) \u222a (A \u2229 C).",
       "label": "previous",
-      "name": "t_27a6805",
-      "seed": 7104300,
+      "name": "t_1111f1b",
+      "seed": 7104400,
       "split": "hard",
-      "theorem_id": "gen/7104300",
-      "topic": "analysis.series_light",
-      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
+      "theorem_id": "gen/7104400",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set Nat, A \u2229 (B \u222a C) = (A \u2229 B) \u222a (A \u2229 C)"
     }
   }
 }
