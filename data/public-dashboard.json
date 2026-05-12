@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7103595,
+  "chain_head_block": 7103611,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T06:14:29Z",
+  "generated_at": "2026-05-12T06:17:42Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7103500,
-  "problem_seed_chain_head": 7103595,
+  "problem_seed": 7103600,
+  "problem_seed_chain_head": 7103611,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "An easy algebraic light statement: prove that True.",
-      "label": "current",
-      "name": "t_6c640c",
-      "seed": 7103500,
-      "split": "easy",
-      "theorem_id": "gen/7103500",
-      "topic": "geometry.algebraic_light",
-      "type_expr": "True"
-    },
-    "next": {
       "explanation": "A medium polynomial light statement: prove that \u2200 x : \u211d, x times x is at least 0.",
-      "label": "next",
+      "label": "current",
       "name": "t_1f79961",
       "seed": 7103600,
       "split": "medium",
@@ -115,15 +105,25 @@
       "topic": "algebra.polynomial_light",
       "type_expr": "\u2200 x : \u211d, x * x \u2265 0"
     },
+    "next": {
+      "explanation": "A medium basic statement: prove that \u2200 P Q is a proposition, P and Q \u2194 Q and P.",
+      "label": "next",
+      "name": "t_19bee77",
+      "seed": 7103700,
+      "split": "medium",
+      "theorem_id": "gen/7103700",
+      "topic": "algebra.basic",
+      "type_expr": "\u2200 P Q : Prop, P \u2227 Q \u2194 Q \u2227 P"
+    },
     "previous": {
-      "explanation": "A hard continuity light statement: prove that \u2200 m is a natural number, m to the power 2 times m equals m to the power (2 plus 1).",
+      "explanation": "An easy algebraic light statement: prove that True.",
       "label": "previous",
-      "name": "t_1b565b5",
-      "seed": 7103400,
-      "split": "hard",
-      "theorem_id": "gen/7103400",
-      "topic": "analysis.continuity_light",
-      "type_expr": "\u2200 m : Nat, m ^ 2 * m = m ^ (2 + 1)"
+      "name": "t_6c640c",
+      "seed": 7103500,
+      "split": "easy",
+      "theorem_id": "gen/7103500",
+      "topic": "geometry.algebraic_light",
+      "type_expr": "True"
     }
   }
 }
