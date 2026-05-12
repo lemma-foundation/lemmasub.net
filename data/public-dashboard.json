@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7108788,
+  "chain_head_block": 7108803,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T23:33:13Z",
+  "generated_at": "2026-05-12T23:36:07Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7108700,
-  "problem_seed_chain_head": 7108788,
+  "problem_seed": 7108800,
+  "problem_seed_chain_head": 7108803,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that every number of the form two times n plus one is odd.",
-      "label": "current",
-      "name": "t_b9e7f6",
-      "plain_english": "Prove that every number of the form two times n plus one is odd.",
-      "seed": 7108700,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7108700",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 n : Nat, Odd (2 * n + 1)"
-    },
-    "next": {
       "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
-      "label": "next",
+      "label": "current",
       "name": "curated_transitive_relation",
       "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
       "seed": 7108800,
@@ -128,17 +116,29 @@
       "topic": "graph_theory.discrete",
       "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
     },
+    "next": {
+      "explanation": "Prove the displayed concrete modular-arithmetic identity.",
+      "label": "next",
+      "name": "curated_mod_37_5",
+      "plain_english": "Prove the displayed concrete modular-arithmetic identity.",
+      "seed": 7108900,
+      "source_lane": "catalog",
+      "split": "easy",
+      "theorem_id": "curated/number_theory/mod_37_5",
+      "topic": "number_theory.mod_arith",
+      "type_expr": "(37 : Nat) % 5 = 2"
+    },
     "previous": {
-      "explanation": "Prove that adding zero to the displayed matrix gives the same matrix.",
+      "explanation": "Prove that every number of the form two times n plus one is odd.",
       "label": "previous",
-      "name": "t_461ee34",
-      "plain_english": "Prove that adding zero to the displayed matrix gives the same matrix.",
-      "seed": 7108600,
+      "name": "t_b9e7f6",
+      "plain_english": "Prove that every number of the form two times n plus one is odd.",
+      "seed": 7108700,
       "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7108600",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, A + 0 = A"
+      "split": "medium",
+      "theorem_id": "gen/7108700",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 n : Nat, Odd (2 * n + 1)"
     }
   }
 }
