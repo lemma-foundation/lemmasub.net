@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7105647,
+  "chain_head_block": 7105663,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T13:04:54Z",
+  "generated_at": "2026-05-12T13:08:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -88,7 +88,7 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7105600,
-  "problem_seed_chain_head": 7105647,
+  "problem_seed_chain_head": 7105663,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
