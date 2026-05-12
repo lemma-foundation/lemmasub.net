@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7105989,
+  "chain_head_block": 7106005,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T14:13:22Z",
+  "generated_at": "2026-05-12T14:16:27Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7105900,
-  "problem_seed_chain_head": 7105989,
+  "problem_seed": 7106000,
+  "problem_seed_chain_head": 7106005,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A hard ring statement: prove that \u2200 A B C : Set Nat, A \u2229 (B \u222a C) equals (A \u2229 B) \u222a (A \u2229 C).",
-      "label": "current",
-      "name": "t_11115e7",
-      "seed": 7105900,
-      "split": "hard",
-      "theorem_id": "gen/7105900",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 A B C : Set Nat, A \u2229 (B \u222a C) = (A \u2229 B) \u222a (A \u2229 C)"
-    },
-    "next": {
       "explanation": "An easy basic light statement: prove that (68 is a natural number) plus 107 equals 175.",
-      "label": "next",
+      "label": "current",
       "name": "t_632f93",
       "seed": 7106000,
       "split": "easy",
@@ -115,15 +105,25 @@
       "topic": "complex.basic_light",
       "type_expr": "(68 : Nat) + 107 = 175"
     },
+    "next": {
+      "explanation": "A medium polynomial light statement: prove that \u2200 x y : \u2124, |x plus y| is at most |x| plus |y|.",
+      "label": "next",
+      "name": "t_1c75160",
+      "seed": 7106100,
+      "split": "medium",
+      "theorem_id": "gen/7106100",
+      "topic": "algebra.polynomial_light",
+      "type_expr": "\u2200 x y : \u2124, |x + y| \u2264 |x| + |y|"
+    },
     "previous": {
-      "explanation": "A hard basic statement: prove that \u2200 A B : Finset Nat, A is a subset of B implies A.card is at most B.card.",
+      "explanation": "A hard ring statement: prove that \u2200 A B C : Set Nat, A \u2229 (B \u222a C) equals (A \u2229 B) \u222a (A \u2229 C).",
       "label": "previous",
-      "name": "t_27a6221",
-      "seed": 7105800,
+      "name": "t_11115e7",
+      "seed": 7105900,
       "split": "hard",
-      "theorem_id": "gen/7105800",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
+      "theorem_id": "gen/7105900",
+      "topic": "algebra.ring",
+      "type_expr": "\u2200 A B C : Set Nat, A \u2229 (B \u222a C) = (A \u2229 B) \u222a (A \u2229 C)"
     }
   }
 }
