@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7104192,
+  "chain_head_block": 7104208,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T08:13:53Z",
+  "generated_at": "2026-05-12T08:17:08Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7104100,
-  "problem_seed_chain_head": 7104192,
+  "problem_seed": 7104200,
+  "problem_seed_chain_head": 7104208,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "An easy algebraic light statement: prove that (Finset.range 1).card equals 1.",
-      "label": "current",
-      "name": "t_6a9b1",
-      "seed": 7104100,
-      "split": "easy",
-      "theorem_id": "gen/7104100",
-      "topic": "geometry.algebraic_light",
-      "type_expr": "(Finset.range 1).card = 1"
-    },
-    "next": {
       "explanation": "A medium propositional statement: prove that \u2200 x y : \u211d, (x plus y) to the power 2 equals x to the power 2 plus 2 times x times y plus y to the power 2.",
-      "label": "next",
+      "label": "current",
       "name": "t_db7dec",
       "seed": 7104200,
       "split": "medium",
@@ -115,15 +105,25 @@
       "topic": "logic.propositional",
       "type_expr": "\u2200 x y : \u211d, (x + y) ^ 2 = x ^ 2 + 2 * x * y + y ^ 2"
     },
+    "next": {
+      "explanation": "A hard series light statement: prove that \u2200 A B : Finset Nat, A is a subset of B implies A.card is at most B.card.",
+      "label": "next",
+      "name": "t_27a6805",
+      "seed": 7104300,
+      "split": "hard",
+      "theorem_id": "gen/7104300",
+      "topic": "analysis.series_light",
+      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
+    },
     "previous": {
-      "explanation": "A medium ring statement: prove that Continuous (fun x : \u211d => x).",
+      "explanation": "An easy algebraic light statement: prove that (Finset.range 1).card equals 1.",
       "label": "previous",
-      "name": "t_15d4b3c",
-      "seed": 7104000,
-      "split": "medium",
-      "theorem_id": "gen/7104000",
-      "topic": "algebra.ring",
-      "type_expr": "Continuous (fun x : \u211d => x)"
+      "name": "t_6a9b1",
+      "seed": 7104100,
+      "split": "easy",
+      "theorem_id": "gen/7104100",
+      "topic": "geometry.algebraic_light",
+      "type_expr": "(Finset.range 1).card = 1"
     }
   }
 }
