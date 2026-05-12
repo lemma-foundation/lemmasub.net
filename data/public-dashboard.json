@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7108488,
+  "chain_head_block": 7108503,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T22:33:09Z",
+  "generated_at": "2026-05-12T22:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7108400,
-  "problem_seed_chain_head": 7108488,
+  "problem_seed": 7108500,
+  "problem_seed_chain_head": 7108503,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,19 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that for every natural number a and b and c, a \u2223 b implies b \u2223 c implies a \u2223 c.",
-      "label": "current",
-      "name": "t_8896dd",
-      "plain_english": "Prove that for every natural number a and b and c, a \u2223 b implies b \u2223 c implies a \u2223 c.",
-      "seed": 7108400,
-      "split": "medium",
-      "theorem_id": "gen/7108400",
-      "topic": "geometry.metric",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
-    },
-    "next": {
       "explanation": "Prove that (Finset.range 1).card equals 1.",
-      "label": "next",
+      "label": "current",
       "name": "t_6b841",
       "plain_english": "Prove that (Finset.range 1).card equals 1.",
       "seed": 7108500,
@@ -126,16 +115,27 @@
       "topic": "analysis.series_light",
       "type_expr": "(Finset.range 1).card = 1"
     },
-    "previous": {
-      "explanation": "Prove that for every natural number n, Odd n implies Odd (n times n).",
-      "label": "previous",
-      "name": "t_b9e966",
-      "plain_english": "Prove that for every natural number n, Odd n implies Odd (n times n).",
-      "seed": 7108300,
+    "next": {
+      "explanation": "Prove that (8 plus 5) times 5 equals 8 times 5 plus 5 times 5.",
+      "label": "next",
+      "name": "t_1e0cd36",
+      "plain_english": "Prove that (8 plus 5) times 5 equals 8 times 5 plus 5 times 5.",
+      "seed": 7108600,
       "split": "medium",
-      "theorem_id": "gen/7108300",
+      "theorem_id": "gen/7108600",
       "topic": "abstract_algebra.group_laws",
-      "type_expr": "\u2200 n : Nat, Odd n \u2192 Odd (n * n)"
+      "type_expr": "(8 + 5) * 5 = 8 * 5 + 5 * 5"
+    },
+    "previous": {
+      "explanation": "Prove that for every natural number a and b and c, a \u2223 b implies b \u2223 c implies a \u2223 c.",
+      "label": "previous",
+      "name": "t_8896dd",
+      "plain_english": "Prove that for every natural number a and b and c, a \u2223 b implies b \u2223 c implies a \u2223 c.",
+      "seed": 7108400,
+      "split": "medium",
+      "theorem_id": "gen/7108400",
+      "topic": "geometry.metric",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
     }
   }
 }
