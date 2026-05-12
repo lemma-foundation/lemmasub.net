@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7104798,
+  "chain_head_block": 7104813,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T10:15:12Z",
+  "generated_at": "2026-05-12T10:18:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7104700,
-  "problem_seed_chain_head": 7104798,
+  "problem_seed": 7104800,
+  "problem_seed_chain_head": 7104813,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A medium ring statement: prove that \u2200 A B : Set Nat, A is a subset of A \u222a B.",
-      "label": "current",
-      "name": "t_22fbd4e",
-      "seed": 7104700,
-      "split": "medium",
-      "theorem_id": "gen/7104700",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 A B : Set Nat, A \u2286 A \u222a B"
-    },
-    "next": {
       "explanation": "An easy basic light statement: prove that (Finset.range 1).card equals 1.",
-      "label": "next",
+      "label": "current",
       "name": "t_6a6f5",
       "seed": 7104800,
       "split": "easy",
@@ -115,15 +105,25 @@
       "topic": "complex.basic_light",
       "type_expr": "(Finset.range 1).card = 1"
     },
-    "previous": {
-      "explanation": "A medium regular lite statement: prove that \u2200 a b c is a natural number, a \u2223 b implies b \u2223 c implies a \u2223 c.",
-      "label": "previous",
-      "name": "t_8889b5",
-      "seed": 7104600,
+    "next": {
+      "explanation": "A medium norm statement: prove that \u2200 n is a natural number, n is at most n.",
+      "label": "next",
+      "name": "t_167b9c",
+      "seed": 7104900,
       "split": "medium",
-      "theorem_id": "gen/7104600",
-      "topic": "automata.regular_lite",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
+      "theorem_id": "gen/7104900",
+      "topic": "analysis.norm",
+      "type_expr": "\u2200 n : Nat, n \u2264 n"
+    },
+    "previous": {
+      "explanation": "A medium ring statement: prove that \u2200 A B : Set Nat, A is a subset of A \u222a B.",
+      "label": "previous",
+      "name": "t_22fbd4e",
+      "seed": 7104700,
+      "split": "medium",
+      "theorem_id": "gen/7104700",
+      "topic": "algebra.ring",
+      "type_expr": "\u2200 A B : Set Nat, A \u2286 A \u222a B"
     }
   }
 }
