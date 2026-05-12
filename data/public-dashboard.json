@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7108698,
+  "chain_head_block": 7108713,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T23:15:12Z",
+  "generated_at": "2026-05-12T23:18:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7108600,
-  "problem_seed_chain_head": 7108698,
+  "problem_seed": 7108700,
+  "problem_seed_chain_head": 7108713,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that adding zero to the displayed matrix gives the same matrix.",
-      "label": "current",
-      "name": "t_461ee34",
-      "plain_english": "Prove that adding zero to the displayed matrix gives the same matrix.",
-      "seed": 7108600,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7108600",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, A + 0 = A"
-    },
-    "next": {
       "explanation": "Prove that every number of the form two times n plus one is odd.",
-      "label": "next",
+      "label": "current",
       "name": "t_b9e7f6",
       "plain_english": "Prove that every number of the form two times n plus one is odd.",
       "seed": 7108700,
@@ -128,17 +116,29 @@
       "topic": "number_theory.divisibility",
       "type_expr": "\u2200 n : Nat, Odd (2 * n + 1)"
     },
+    "next": {
+      "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
+      "label": "next",
+      "name": "curated_transitive_relation",
+      "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
+      "seed": 7108800,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/graph/transitive_relation",
+      "topic": "graph_theory.discrete",
+      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
+    },
     "previous": {
-      "explanation": "Prove set equality from mutual subset containment.",
+      "explanation": "Prove that adding zero to the displayed matrix gives the same matrix.",
       "label": "previous",
-      "name": "t_23f6fa1",
-      "plain_english": "Prove set equality from mutual subset containment.",
-      "seed": 7108500,
+      "name": "t_461ee34",
+      "plain_english": "Prove that adding zero to the displayed matrix gives the same matrix.",
+      "seed": 7108600,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7108500",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B : Set Nat, A \u2286 B \u2192 B \u2286 A \u2192 A = B"
+      "theorem_id": "gen/7108600",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, A + 0 = A"
     }
   }
 }
