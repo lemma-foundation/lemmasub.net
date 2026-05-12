@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7103398,
+  "chain_head_block": 7103413,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T05:35:08Z",
+  "generated_at": "2026-05-12T05:38:12Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7103300,
-  "problem_seed_chain_head": 7103398,
+  "problem_seed": 7103400,
+  "problem_seed_chain_head": 7103413,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A medium regular lite statement: prove that \u2200 P is a proposition, True implies P or True.",
-      "label": "current",
-      "name": "t_aa3e23",
-      "seed": 7103300,
-      "split": "medium",
-      "theorem_id": "gen/7103300",
-      "topic": "automata.regular_lite",
-      "type_expr": "\u2200 P : Prop, True \u2192 P \u2228 True"
-    },
-    "next": {
       "explanation": "A hard continuity light statement: prove that \u2200 m is a natural number, m to the power 2 times m equals m to the power (2 plus 1).",
-      "label": "next",
+      "label": "current",
       "name": "t_1b565b5",
       "seed": 7103400,
       "split": "hard",
@@ -115,15 +105,25 @@
       "topic": "analysis.continuity_light",
       "type_expr": "\u2200 m : Nat, m ^ 2 * m = m ^ (2 + 1)"
     },
+    "next": {
+      "explanation": "An easy algebraic light statement: prove that True.",
+      "label": "next",
+      "name": "t_6c640c",
+      "seed": 7103500,
+      "split": "easy",
+      "theorem_id": "gen/7103500",
+      "topic": "geometry.algebraic_light",
+      "type_expr": "True"
+    },
     "previous": {
-      "explanation": "A hard trivial statement: prove that not \u2203 q : \u211a, q times q equals (2 : \u211a).",
+      "explanation": "A medium regular lite statement: prove that \u2200 P is a proposition, True implies P or True.",
       "label": "previous",
-      "name": "t_13296e5",
-      "seed": 7103200,
-      "split": "hard",
-      "theorem_id": "gen/7103200",
-      "topic": "category_theory.trivial",
-      "type_expr": "\u00ac \u2203 q : \u211a, q * q = (2 : \u211a)"
+      "name": "t_aa3e23",
+      "seed": 7103300,
+      "split": "medium",
+      "theorem_id": "gen/7103300",
+      "topic": "automata.regular_lite",
+      "type_expr": "\u2200 P : Prop, True \u2192 P \u2228 True"
     }
   }
 }
