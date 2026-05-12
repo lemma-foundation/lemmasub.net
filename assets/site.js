@@ -8,7 +8,7 @@ const DASHBOARD_CATCHUP_ATTEMPTS = 24;
 
 let miners = [];
 let minerFilter = "";
-let minerRowsOnly = true;
+let showAllUids = false;
 let sortState = { key: "score", direction: "desc", type: "number" };
 let scheduleTimer = 0;
 let dashboardRefreshTimer = 0;
@@ -88,7 +88,7 @@ function hydrateHome(data, dataLoaded) {
   const stats = dashboardStats(data);
   const current = data.theorems.current;
 
-  setAll("[data-current-id]", current ? theoremTitle(current) : (dataLoaded ? "No current theorem" : "Data unavailable"));
+  setAll("[data-current-id]", current ? plainTheorem(current) : (dataLoaded ? "No current theorem" : "Data unavailable"));
   setAll("[data-current-goal]", current?.type_expr || "Public dashboard JSON is not available.");
   setAll("[data-network-label]", networkLabel(data));
   setAll("[data-top-score]", formatScore(stats.topMiner?.score));
@@ -175,10 +175,9 @@ function theoremCard(label, theorem, isMain) {
         <p class="label">${escapeHtml(title)}</p>
         <p class="theorem-name">${badge(humanSplit(theorem.split))} ${badge(humanTopic(theorem.topic))}</p>
       </div>
-      <${heading}>${escapeHtml(theoremTitle(theorem))}</${heading}>
-      <p class="statement-label">Lean type</p>
+      <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
+      <p class="statement-label">Formal statement to solve</p>
       <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
-      <p class="plain-type"><span>Plain English</span>${escapeHtml(plainTheorem(theorem))}</p>
       <details class="technical-details">
         <summary>Details</summary>
         <dl>
@@ -199,10 +198,9 @@ function theoremCard(label, theorem, isMain) {
         <span>Time left: <strong data-next-countdown>${escapeHtml(nextCountdownLabel(dashboardData))}</strong></span>
       </div>
     </div>
-    <${heading}>${escapeHtml(theoremTitle(theorem))}</${heading}>
-    <p class="statement-label">Lean type</p>
+    <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
+    <p class="statement-label">Formal statement to solve</p>
     <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
-    <p class="plain-type"><span>Plain English</span>${escapeHtml(plainTheorem(theorem))}</p>
     <details class="technical-details">
       <summary>Details</summary>
       <dl>
@@ -220,9 +218,9 @@ function attachMinerControls() {
   }
   controlsAttached = true;
 
-  const activeInput = document.querySelector("[data-active-only]");
-  if (activeInput) {
-    activeInput.checked = minerRowsOnly;
+  const showAllInput = document.querySelector("[data-show-all-uids]");
+  if (showAllInput) {
+    showAllInput.checked = showAllUids;
   }
 
   document.querySelector("[data-miner-search]")?.addEventListener("input", (event) => {
@@ -230,8 +228,8 @@ function attachMinerControls() {
     renderMiners();
   });
 
-  document.querySelector("[data-active-only]")?.addEventListener("change", (event) => {
-    minerRowsOnly = event.target.checked;
+  document.querySelector("[data-show-all-uids]")?.addEventListener("change", (event) => {
+    showAllUids = event.target.checked;
     renderMiners();
   });
 
@@ -265,7 +263,7 @@ function emptyMinerText() {
   if (!dashboardDataLoaded) {
     return "Public dashboard JSON is unavailable.";
   }
-  if (minerFilter || minerRowsOnly) {
+  if (minerFilter || !showAllUids) {
     return "No miners match this view.";
   }
   return "No public miner rows in this export.";
@@ -273,7 +271,7 @@ function emptyMinerText() {
 
 function filteredMiners() {
   return miners.filter((miner) => {
-    if (minerRowsOnly && !isMinerRow(miner, dashboardData)) {
+    if (!showAllUids && !isMinerRow(miner, dashboardData)) {
       return false;
     }
     if (!minerFilter) {
@@ -344,20 +342,6 @@ function plainTheorem(theorem) {
   return fromExplanation?.[1] ? englishishLean(fromExplanation[1]) : "Unknown theorem.";
 }
 
-function theoremTitle(theorem) {
-  const type = String(theorem?.type_expr || "");
-  if (type.includes("⊆") && type.includes(".card")) {
-    return "Subset size";
-  }
-  if (type.includes("Nat.Prime") && type.includes("∣")) {
-    return "Prime divisor";
-  }
-  if (type.includes("Matrix.det")) {
-    return "Matrix determinant";
-  }
-  return humanTopic(theorem?.topic) ? `${humanTopic(theorem.topic)} theorem` : "Generated theorem";
-}
-
 function englishishLean(typeExpr) {
   const text = String(typeExpr || "").trim().replace(/^∀\s+/, "forall ").replace(/^∃\s+/, "exists ");
   const notExists = text.match(/^¬\s*∃\s+(.+?)\s+:\s+(.+?),\s*(.+)$/);
@@ -377,6 +361,10 @@ function englishishLean(typeExpr) {
   const implication = splitOnce(text, " → ") || splitOnce(text, " -> ");
   if (implication) {
     return sentenceCase(`if ${clauseText(englishishLean(implication[0]))}, then ${clauseText(englishishLean(implication[1]))}`);
+  }
+  const equivalence = splitOnce(text, " ↔ ");
+  if (equivalence) {
+    return sentenceCase(`${clauseText(englishishLean(equivalence[0]))} is equivalent to ${clauseText(englishishLean(equivalence[1]))}`);
   }
   const conjunction = splitOnce(text, " ∧ ");
   if (conjunction) {
@@ -405,6 +393,7 @@ function humanizeExpression(text) {
     .replaceAll(" -> ", " implies ")
     .replaceAll(" ∧ ", " and ")
     .replaceAll(" ∨ ", " or ")
+    .replaceAll(" ↔ ", " is equivalent to ")
     .replaceAll(" = ", " equals ")
     .replaceAll(" + ", " plus ")
     .replaceAll(" * ", " times ")
@@ -454,7 +443,7 @@ function stripPeriod(value) {
 
 function clauseText(value) {
   const text = stripPeriod(value);
-  if (/^[A-Z]\b(?= (is|is not|or|and|equals|divides|cardinality)\b)/.test(text)) {
+  if (/^[A-Z](?:$| (?:and|or|is|is not|is equivalent|equals|divides|cardinality)\b)/.test(text)) {
     return text;
   }
   return text ? `${text.charAt(0).toLowerCase()}${text.slice(1)}` : "";
