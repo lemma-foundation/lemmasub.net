@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7105498,
+  "chain_head_block": 7105513,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T12:35:03Z",
+  "generated_at": "2026-05-12T12:38:14Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7105400,
-  "problem_seed_chain_head": 7105498,
+  "problem_seed": 7105500,
+  "problem_seed_chain_head": 7105513,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A hard counting statement: prove that not \u2203 q : \u211a, q times q equals (2 : \u211a).",
-      "label": "current",
-      "name": "t_1329f7d",
-      "seed": 7105400,
-      "split": "hard",
-      "theorem_id": "gen/7105400",
-      "topic": "combinatorics.counting",
-      "type_expr": "\u00ac \u2203 q : \u211a, q * q = (2 : \u211a)"
-    },
-    "next": {
       "explanation": "A hard modular statement: prove that \u2200 A B : Finset Nat, A is a subset of B implies A.card is at most B.card.",
-      "label": "next",
+      "label": "current",
       "name": "t_27a64f5",
       "seed": 7105500,
       "split": "hard",
@@ -115,15 +105,25 @@
       "topic": "cryptography.modular",
       "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
     },
-    "previous": {
-      "explanation": "An easy discrete statement: prove that (true && false) equals false.",
-      "label": "previous",
-      "name": "t_41addd",
-      "seed": 7105300,
+    "next": {
+      "explanation": "An easy linear algebra statement: prove that ([19, 8, 27] : List Nat).reverse.length equals 3.",
+      "label": "next",
+      "name": "t_20270f",
+      "seed": 7105600,
       "split": "easy",
-      "theorem_id": "gen/7105300",
-      "topic": "graph_theory.discrete",
-      "type_expr": "(true && false) = false"
+      "theorem_id": "gen/7105600",
+      "topic": "linear_algebra.matrix_light",
+      "type_expr": "([19, 8, 27] : List Nat).reverse.length = 3"
+    },
+    "previous": {
+      "explanation": "A hard counting statement: prove that not \u2203 q : \u211a, q times q equals (2 : \u211a).",
+      "label": "previous",
+      "name": "t_1329f7d",
+      "seed": 7105400,
+      "split": "hard",
+      "theorem_id": "gen/7105400",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u00ac \u2203 q : \u211a, q * q = (2 : \u211a)"
     }
   }
 }
