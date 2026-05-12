@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7105353,
+  "chain_head_block": 7105368,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T12:06:13Z",
+  "generated_at": "2026-05-12T12:09:14Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -10,7 +10,6 @@
       "correct_theorems_24h": 10,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.6820477843284607,
       "uid": 2,
       "uid_url": ""
@@ -21,7 +20,6 @@
       "correct_theorems_24h": 9,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.3179369866847992,
       "uid": 3,
       "uid_url": ""
@@ -32,7 +30,6 @@
       "correct_theorems_24h": 0,
       "hotkey": "5Ft8o9Xi5uN2Q7BvneDfH221F7SbNg9EtuCK4Vi3Ep8WgNb9",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.0,
       "uid": 0,
       "uid_url": ""
@@ -43,7 +40,6 @@
       "correct_theorems_24h": 0,
       "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.0,
       "uid": 1,
       "uid_url": ""
@@ -54,7 +50,6 @@
       "correct_theorems_24h": 7,
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.0,
       "uid": 4,
       "uid_url": ""
@@ -65,7 +60,6 @@
       "correct_theorems_24h": 7,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.0,
       "uid": 5,
       "uid_url": ""
@@ -76,7 +70,6 @@
       "correct_theorems_24h": 3,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.0,
       "uid": 6,
       "uid_url": ""
@@ -87,7 +80,6 @@
       "correct_theorems_24h": 8,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
-      "passed_prior_round": null,
       "score": 0.0,
       "uid": 7,
       "uid_url": ""
@@ -96,46 +88,42 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7105300,
-  "problem_seed_chain_head": 7105353,
+  "problem_seed_chain_head": 7105368,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "proofs_passed_prior_round": null,
-  "schema_version": 2,
+  "schema_version": 1,
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that the displayed finite range has the stated cardinality.",
+      "explanation": "An easy discrete statement: prove that (true && false) equals false.",
       "label": "current",
-      "name": "t_6a4c1",
-      "plain_english": "Prove that the displayed finite range has the stated cardinality.",
+      "name": "t_41addd",
       "seed": 7105300,
       "split": "easy",
       "theorem_id": "gen/7105300",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "(Finset.range 1).card = 1"
+      "topic": "graph_theory.discrete",
+      "type_expr": "(true && false) = false"
     },
     "next": {
-      "explanation": "Prove the displayed identity for set difference over a union.",
+      "explanation": "A hard counting statement: prove that not \u2203 q : \u211a, q times q equals (2 : \u211a).",
       "label": "next",
-      "name": "t_32b571d",
-      "plain_english": "Prove the displayed identity for set difference over a union.",
+      "name": "t_1329f7d",
       "seed": 7105400,
       "split": "hard",
       "theorem_id": "gen/7105400",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B C : Set Nat, A \\ (B \u222a C) = (A \\ B) \\ C"
+      "topic": "combinatorics.counting",
+      "type_expr": "\u00ac \u2203 q : \u211a, q * q = (2 : \u211a)"
     },
     "previous": {
-      "explanation": "Prove that reversing the displayed list preserves its length.",
+      "explanation": "An easy finite set theory statement: prove that ([1, 2, 3] : List Nat).length equals 3.",
       "label": "previous",
-      "name": "t_2021ff",
-      "plain_english": "Prove that reversing the displayed list preserves its length.",
+      "name": "t_5163bc",
       "seed": 7105200,
       "split": "easy",
       "theorem_id": "gen/7105200",
-      "topic": "combinatorics.counting",
-      "type_expr": "([17, 3, 34] : List Nat).reverse.length = 3"
+      "topic": "set_theory.finite_sets",
+      "type_expr": "([1, 2, 3] : List Nat).length = 3"
     }
   }
 }
