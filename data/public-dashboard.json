@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7106589,
+  "chain_head_block": 7106605,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T16:13:26Z",
+  "generated_at": "2026-05-12T16:16:31Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7106500,
-  "problem_seed_chain_head": 7106589,
+  "problem_seed": 7106600,
+  "problem_seed_chain_head": 7106605,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A medium ring statement: prove that \u2200 a b c is a natural number, a \u2223 b implies b \u2223 c implies a \u2223 c.",
-      "label": "current",
-      "name": "t_888e29",
-      "seed": 7106500,
-      "split": "medium",
-      "theorem_id": "gen/7106500",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
-    },
-    "next": {
       "explanation": "A hard discrete statement: prove that \u2203 p is a natural number, Nat.Prime p and p \u2223 2.",
-      "label": "next",
+      "label": "current",
       "name": "t_12c1f57",
       "seed": 7106600,
       "split": "hard",
@@ -115,15 +105,25 @@
       "topic": "graph_theory.discrete",
       "type_expr": "\u2203 p : Nat, Nat.Prime p \u2227 p \u2223 2"
     },
+    "next": {
+      "explanation": "A hard modular statement: prove that \u2200 N is a natural number, \u2203 p is a natural number, p is greater than N and Nat.Prime p.",
+      "label": "next",
+      "name": "t_123c14e",
+      "seed": 7106700,
+      "split": "hard",
+      "theorem_id": "gen/7106700",
+      "topic": "cryptography.modular",
+      "type_expr": "\u2200 N : Nat, \u2203 p : Nat, p > N \u2227 Nat.Prime p"
+    },
     "previous": {
-      "explanation": "A medium basic statement: prove that \u2200 xs ys : List Nat, (xs ++ ys).length equals xs.length plus ys.length.",
+      "explanation": "A medium ring statement: prove that \u2200 a b c is a natural number, a \u2223 b implies b \u2223 c implies a \u2223 c.",
       "label": "previous",
-      "name": "t_258fccf",
-      "seed": 7106400,
+      "name": "t_888e29",
+      "seed": 7106500,
       "split": "medium",
-      "theorem_id": "gen/7106400",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 xs ys : List Nat, (xs ++ ys).length = xs.length + ys.length"
+      "theorem_id": "gen/7106500",
+      "topic": "algebra.ring",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
     }
   }
 }
