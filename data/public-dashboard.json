@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7106898,
+  "chain_head_block": 7106913,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T17:15:11Z",
+  "generated_at": "2026-05-12T17:18:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7106800,
-  "problem_seed_chain_head": 7106898,
+  "problem_seed": 7106900,
+  "problem_seed_chain_head": 7106913,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "An easy metric statement: prove that True.",
-      "label": "current",
-      "name": "t_6c70f0",
-      "seed": 7106800,
-      "split": "easy",
-      "theorem_id": "gen/7106800",
-      "topic": "geometry.metric",
-      "type_expr": "True"
-    },
-    "next": {
       "explanation": "A medium finite set theory statement: prove that Continuous (fun x : \u211d => x).",
-      "label": "next",
+      "label": "current",
       "name": "t_15d5c68",
       "seed": 7106900,
       "split": "medium",
@@ -115,15 +105,25 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "Continuous (fun x : \u211d => x)"
     },
+    "next": {
+      "explanation": "A medium primitive roots light statement: prove that \u2200 A B : Set Nat, A \u2229 B is a subset of A.",
+      "label": "next",
+      "name": "t_985588",
+      "seed": 7107000,
+      "split": "medium",
+      "theorem_id": "gen/7107000",
+      "topic": "number_theory.primitive_roots_light",
+      "type_expr": "\u2200 A B : Set Nat, A \u2229 B \u2286 A"
+    },
     "previous": {
-      "explanation": "A hard modular statement: prove that \u2200 N is a natural number, \u2203 p is a natural number, p is greater than N and Nat.Prime p.",
+      "explanation": "An easy metric statement: prove that True.",
       "label": "previous",
-      "name": "t_123c14e",
-      "seed": 7106700,
-      "split": "hard",
-      "theorem_id": "gen/7106700",
-      "topic": "cryptography.modular",
-      "type_expr": "\u2200 N : Nat, \u2203 p : Nat, p > N \u2227 Nat.Prime p"
+      "name": "t_6c70f0",
+      "seed": 7106800,
+      "split": "easy",
+      "theorem_id": "gen/7106800",
+      "topic": "geometry.metric",
+      "type_expr": "True"
     }
   }
 }
