@@ -382,13 +382,8 @@ function proofCountLabel(value) {
 }
 
 function plainTheorem(theorem) {
-  return cleanPlainTheorem(theorem?.plain_english || theorem?.plainEnglish || plainTheoremFallback(theorem?.type_expr))
+  return cleanPlainTheorem(theorem?.plain_english || theorem?.plainEnglish || theorem?.explanation)
     || "Generated Lean theorem.";
-}
-
-function plainTheoremFallback(typeExpr) {
-  const text = stringOrEmpty(typeExpr).trim();
-  return text ? `Prove that ${text}` : "";
 }
 
 function cleanPlainTheorem(value) {
