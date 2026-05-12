@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7107684,
+  "chain_head_block": 7107734,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T19:52:21Z",
+  "generated_at": "2026-05-12T20:02:20Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7107600,
-  "problem_seed_chain_head": 7107684,
+  "problem_seed": 7107700,
+  "problem_seed_chain_head": 7107734,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,37 +105,37 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove the displayed identity for set difference over a union.",
+      "explanation": "Prove that for every natural number a and b and c, a times (b times c) equals (a times b) times c.",
       "label": "current",
-      "name": "t_32b4875",
-      "plain_english": "Prove the displayed identity for set difference over a union.",
-      "seed": 7107600,
-      "split": "hard",
-      "theorem_id": "gen/7107600",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B C : Set Nat, A \\ (B \u222a C) = (A \\ B) \\ C"
-    },
-    "next": {
-      "explanation": "Prove the displayed identity for sums over finite ranges.",
-      "label": "next",
-      "name": "t_1a5b7ae",
-      "plain_english": "Prove the displayed identity for sums over finite ranges.",
+      "name": "t_cbac95",
+      "plain_english": "Prove that for every natural number a and b and c, a times (b times c) equals (a times b) times c.",
       "seed": 7107700,
       "split": "medium",
       "theorem_id": "gen/7107700",
-      "topic": "combinatorics.counting",
-      "type_expr": "(\u2211 i \u2208 Finset.range (11 + 1), (i : Nat)) = (\u2211 i \u2208 Finset.range 11, (i : Nat)) + (11 : Nat)"
+      "topic": "geometry.metric",
+      "type_expr": "\u2200 a b c : Nat, a * (b * c) = (a * b) * c"
+    },
+    "next": {
+      "explanation": "Prove that (169 is a natural number) plus 71 equals 240.",
+      "label": "next",
+      "name": "t_63369b",
+      "plain_english": "Prove that (169 is a natural number) plus 71 equals 240.",
+      "seed": 7107800,
+      "split": "easy",
+      "theorem_id": "gen/7107800",
+      "topic": "automata.regular_lite",
+      "type_expr": "(169 : Nat) + 71 = 240"
     },
     "previous": {
-      "explanation": "Prove the displayed square expansion for natural numbers.",
+      "explanation": "Prove that for every natural number a and b and c, a \u2223 b implies b \u2223 c implies a \u2223 c.",
       "label": "previous",
-      "name": "t_29682ba",
-      "plain_english": "Prove the displayed square expansion for natural numbers.",
-      "seed": 7107500,
-      "split": "hard",
-      "theorem_id": "gen/7107500",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 a b : Nat, (a + b) ^ 2 = a ^ 2 + 2 * a * b + b ^ 2"
+      "name": "t_8895fd",
+      "plain_english": "Prove that for every natural number a and b and c, a \u2223 b implies b \u2223 c implies a \u2223 c.",
+      "seed": 7107600,
+      "split": "medium",
+      "theorem_id": "gen/7107600",
+      "topic": "complex.basic_light",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
     }
   }
 }
