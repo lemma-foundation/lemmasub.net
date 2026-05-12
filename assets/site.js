@@ -8,7 +8,7 @@ const DASHBOARD_CATCHUP_ATTEMPTS = 24;
 
 let miners = [];
 let minerFilter = "";
-let activeOnly = true;
+let minerRowsOnly = true;
 let sortState = { key: "score", direction: "desc", type: "number" };
 let scheduleTimer = 0;
 let dashboardRefreshTimer = 0;
@@ -134,7 +134,7 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
 }
 
 function dashboardStats(data) {
-  const validMiners = data.miners.filter(isActiveMiner);
+  const validMiners = data.miners.filter((miner) => isMinerRow(miner, data));
   const topMiner = validMiners.sort((a, b) => {
     return b.score - a.score || Number(a.uid) - Number(b.uid);
   })[0];
@@ -222,7 +222,7 @@ function attachMinerControls() {
 
   const activeInput = document.querySelector("[data-active-only]");
   if (activeInput) {
-    activeInput.checked = activeOnly;
+    activeInput.checked = minerRowsOnly;
   }
 
   document.querySelector("[data-miner-search]")?.addEventListener("input", (event) => {
@@ -231,7 +231,7 @@ function attachMinerControls() {
   });
 
   document.querySelector("[data-active-only]")?.addEventListener("change", (event) => {
-    activeOnly = event.target.checked;
+    minerRowsOnly = event.target.checked;
     renderMiners();
   });
 
@@ -265,7 +265,7 @@ function emptyMinerText() {
   if (!dashboardDataLoaded) {
     return "Public dashboard JSON is unavailable.";
   }
-  if (minerFilter || activeOnly) {
+  if (minerFilter || minerRowsOnly) {
     return "No miners match this view.";
   }
   return "No public miner rows in this export.";
@@ -273,7 +273,7 @@ function emptyMinerText() {
 
 function filteredMiners() {
   return miners.filter((miner) => {
-    if (activeOnly && !isActiveMiner(miner)) {
+    if (minerRowsOnly && !isMinerRow(miner, dashboardData)) {
       return false;
     }
     if (!minerFilter) {
@@ -283,8 +283,15 @@ function filteredMiners() {
   });
 }
 
-function isActiveMiner(miner) {
-  return miner.uid !== null && Number(miner.score || 0) > 0;
+function isMinerRow(miner, data = dashboardData) {
+  const uid = numberOrNull(miner?.uid);
+  if (uid === null) {
+    return false;
+  }
+  if (data.network === "test" && Number(data.netuid) === 467) {
+    return uid > 1;
+  }
+  return true;
 }
 
 function compareMiners(a, b) {

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Public Lemma subnet dashboard.">
   <title>Lemma Dashboard</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260512-livefix">
-  <script src="../assets/site.js?v=20260512-livefix" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260512-minerrows">
+  <script src="../assets/site.js?v=20260512-minerrows" defer></script>
 </head>
 <body data-page="dashboard">
   <header class="site-header">
@@ -23,7 +23,7 @@
       <div>
         <p class="eyebrow">Public subnet dashboard</p>
         <h1>Lemma Dashboard</h1>
-        <p>Live testnet theorem, active miners, and public chain scores.</p>
+        <p>Live testnet theorem, miner UIDs, and public chain scores.</p>
       </div>
       <p class="meta" data-dashboard-state>Loading dashboard data...</p>
     </section>
@@ -55,10 +55,10 @@
     <section class="scoreboard-grid" aria-label="Scoreboard metrics">
       <article>
         <span class="label-with-info">
-          <span>Active miners</span>
+          <span>Miner UIDs</span>
           <span class="info-tip">
-            <button class="info-button" type="button" aria-label="What active miners means" aria-expanded="false">?</button>
-            <span class="info-bubble" role="tooltip">UIDs with a nonzero chain score. Owner, validator, and idle rows are hidden by default.</span>
+            <button class="info-button" type="button" aria-label="What miner UIDs means" aria-expanded="false">?</button>
+            <span class="info-bubble" role="tooltip">Public miner rows shown by default. Known owner and validator rows are hidden.</span>
           </span>
         </span>
         <strong data-miner-count>0</strong>
@@ -97,7 +97,7 @@
       <div class="table-head">
         <div>
           <h2>Miners</h2>
-          <p>Active miner UIDs by default. Chain scores come from the testnet metagraph; proofs passed are 24h counts from this validator export.</p>
+          <p>Miner UIDs are shown by default. Known owner and validator rows are hidden; chain scores still come from the testnet metagraph.</p>
         </div>
         <div class="table-tools">
           <label class="search-field">
@@ -106,7 +106,7 @@
           </label>
           <label class="check-label">
             <input type="checkbox" data-active-only checked>
-            <span>Active only</span>
+            <span>Hide owner/validator</span>
           </label>
         </div>
       </div>

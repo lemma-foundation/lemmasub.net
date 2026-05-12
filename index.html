@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lemma is a Bittensor subnet for proving math with code. Miners send proof files, and validators check whether they pass.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260512-livefix">
-  <script src="assets/site.js?v=20260512-livefix" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260512-minerrows">
+  <script src="assets/site.js?v=20260512-minerrows" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header">
@@ -112,11 +112,11 @@
     <section class="band miner-solve-band">
       <div class="section-head">
         <p class="eyebrow">How do miners solve theorems?</p>
-        <h2>In the first phase, miners use LLM-backed proving software.</h2>
+        <h2>In the first phase, miners use LLMs to write Lean proofs.</h2>
         <p>
-          The reference miner sends the current Lean statement to a prover model
-          through an OpenAI-compatible API. The model tries to return a complete
-          <code>Submission.lean</code> proof file before the round moves on.
+          A miner receives the current Lean statement, sends it to an LLM, and
+          asks the LLM to produce a complete <code>Submission.lean</code> file.
+          The miner returns that file before the round moves on.
         </p>
       </div>
       <div class="value-grid">
@@ -125,8 +125,8 @@
           <p>The miner receives the exact theorem statement validators will check.</p>
         </article>
         <article>
-          <h3>Ask a prover model</h3>
-          <p>An LLM or other prover stack tries to write Lean code for that goal.</p>
+          <h3>Ask an LLM</h3>
+          <p>The miner asks an LLM to write Lean code for that exact statement.</p>
         </article>
         <article>
           <h3>Return proof code</h3>
@@ -134,7 +134,7 @@
         </article>
         <article>
           <h3>Later: manual lanes</h3>
-          <p>Future off-cadence bounty tasks can let people work manually and submit when ready.</p>
+          <p>Future off-cadence bounty tasks can let people work by hand and submit a proof when ready.</p>
         </article>
       </div>
     </section>
