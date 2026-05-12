@@ -320,7 +320,7 @@ function networkLabel(data) {
   const network = data.network || "unknown";
   const netuid = data.netuid === undefined || data.netuid === null ? "?" : data.netuid;
   if (network === "test" && Number(netuid) === 467) {
-    return "Testnet Subnet 467";
+    return "Testnet SN467";
   }
   return `${network} / netuid ${netuid}`;
 }
