@@ -46,10 +46,11 @@ PYTHONDONTWRITEBYTECODE=1 \
   --html-out /private/tmp/lemma-public-dashboard.html
 ```
 
-Run the exporter on a schedule from the operator environment, then publish only
-the refreshed `data/public-dashboard.json` file. Cron, launchd, GitHub Actions,
-or a static-host deploy job are all fine as long as the job has testnet access,
-the validator summary export, and Git push access.
+Run the exporter from the operator environment after each validator round, then
+publish only the refreshed `data/public-dashboard.json` file. A cron, launchd,
+GitHub Actions, or static-host deploy job is fine as a fallback, but the clean
+live path is round-aligned: when the validator appends the latest summary rows,
+refresh and push the public JSON.
 
 Set the network values explicitly. Without those environment variables, the
 exporter falls back to Finney/netuid 0. The public Lemma testnet dashboard should
@@ -62,9 +63,9 @@ and `miners[].passed_prior_round`. If the validator summary JSONL is stale or
 missing, the exporter should publish unavailable round data rather than inventing
 a count from the rolling 24-hour totals.
 
-For the live site, the recommended path is a validator-side cron or launchd job
-on one always-on machine. That can be your local machine if it stays online, or
-a VPS (Virtual Private Server) if you want steadier uptime.
+For the live site, the recommended path is a validator-side post-round publish
+step on one always-on machine. That can be your local machine if it stays online,
+or a VPS (Virtual Private Server) if you want steadier uptime.
 
 Use the machine that already has the validator summary export when possible.
 That is usually the validator/operator host, not a Lean-worker-only host. A
@@ -97,11 +98,17 @@ if ! git diff --quiet -- data/public-dashboard.json; then
 fi
 ```
 
-A 2-5 minute cadence is reasonable for the public site. The machine running this
-needs the Lemma repo, this site repo, network access, validator summary export
-access, and Git push access to `spacetime-tao/lemmasub.net`.
+A round-aligned refresh is preferred: run the command below after the validator
+finishes a round and appends the summary export. The machine running this needs
+the Lemma repo, this site repo, network access, validator summary export access,
+and Git push access to `spacetime-tao/lemmasub.net`.
 
-Minimal cron shape:
+The Lemma repo includes systemd templates for this path:
+`deploy/systemd/lemma-public-dashboard.path` watches the validator summary JSONL,
+and `deploy/systemd/lemma-public-dashboard.service` regenerates and pushes this
+site's `data/public-dashboard.json`.
+
+Minimal fallback cron shape if there is not yet a post-round hook:
 
 ```cron
 */3 * * * * cd /opt/lemma && NETUID=467 SUBTENSOR_NETWORK=test SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard --summary-jsonl /var/lib/lemma/public-summary.jsonl --json-out /srv/lemmasub.net/data/public-dashboard.json --html-out /private/tmp/lemma-public-dashboard.html && cd /srv/lemmasub.net && if ! git diff --quiet -- data/public-dashboard.json; then git add data/public-dashboard.json && git commit -m "Refresh public dashboard data" && git push origin main; fi

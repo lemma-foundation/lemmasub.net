@@ -420,8 +420,12 @@ function nextCountdownLabel(data) {
   return formatDuration(seconds);
 }
 
+function scheduleTimestamp(data) {
+  return data.schedule_generated_at || data.generated_at;
+}
+
 function secondsUntilNextTheorem(data) {
-  const generatedAt = Date.parse(data.generated_at);
+  const generatedAt = Date.parse(scheduleTimestamp(data));
   const blockTime = numberOrNull(data.block_time_sec_estimate);
   const interval = numberOrNull(data.problem_seed_quantize_blocks);
   const currentSeed = numberOrNull(data.problem_seed);
@@ -474,7 +478,7 @@ function rotateTheoremPreview(data) {
   const rotated = { previous: current, current: next, next: null };
   dashboardData = {
     ...data,
-    generated_at: new Date().toISOString(),
+    schedule_generated_at: new Date().toISOString(),
     chain_head_block: seed ?? data.chain_head_block,
     problem_seed_chain_head: seed ?? data.problem_seed_chain_head,
     problem_seed: seed ?? data.problem_seed,
@@ -685,7 +689,7 @@ function blockNumberLabel(data) {
 function estimatedBlockNumber(data) {
   const chainHead = numberOrNull(data.chain_head_block);
   const blockTime = numberOrNull(data.block_time_sec_estimate);
-  const generatedAt = Date.parse(data.generated_at);
+  const generatedAt = Date.parse(scheduleTimestamp(data));
   if (chainHead === null) {
     return null;
   }
