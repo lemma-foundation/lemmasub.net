@@ -3,130 +3,196 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a Bittensor subnet for formal mathematical proof.">
+  <meta name="description" content="Lemma is a Bittensor subnet for proving math with code. Miners send proof files, and validators check whether they pass.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="/assets/styles.css">
-  <script src="/assets/site.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header">
-    <a class="brand" href="/" aria-label="Lemma home">Lemma</a>
+    <a class="brand" href="./" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
-      <a href="/dashboard/">Dashboard</a>
+      <a href="dashboard/index.html">Dashboard</a>
       <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
       <a href="https://github.com/spacetime-tao/lemma/tree/main/docs">Docs</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark</button>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <div class="proof-field" aria-hidden="true">
-        <div class="proof-strip proof-strip-one">
-          <span>theorem</span><span>proof_script</span><span>Lean OK</span><span>weights</span>
-        </div>
-        <div class="proof-strip proof-strip-two">
-          <span>gen/7095800</span><span>forall n : Nat</span><span>verified</span><span>uid 18</span>
-        </div>
-        <div class="hero-console">
-          <div class="console-top">
-            <span>current theorem</span>
-            <strong data-current-id>gen/7095800</strong>
-          </div>
-          <pre data-current-goal>forall n : Nat, n * 1 = n</pre>
-          <div class="console-grid">
-            <div class="stat"><span>miners online</span><strong data-miner-count>4</strong></div>
-            <div class="stat"><span>top score</span><strong data-top-score>0.184231</strong></div>
-            <div class="stat"><span>24h proofs</span><strong data-proof-count>36</strong></div>
-          </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Bittensor testnet subnet 467</p>
+        <h1>Lemma</h1>
+        <p class="lede">
+          Lemma is a Bittensor subnet for proving math with code. Each round posts
+          a math statement. Miners send back a proof file. Validators run it
+          through Lean, a proof checker, and the proof either passes or fails.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="dashboard/index.html">View Dashboard</a>
+          <a class="button secondary" href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">Run a Miner</a>
+          <a class="button secondary" href="https://github.com/spacetime-tao/lemma/blob/main/docs/litepaper.md">Read Litepaper</a>
         </div>
       </div>
 
-      <div class="hero-copy">
-        <p class="eyebrow">Bittensor subnet for formal proof</p>
-        <h1>Lemma</h1>
-        <p class="lede">
-          Miners submit Lean proof scripts for public theorem statements.
-          Validators run those submissions through the same pinned verifier.
-          Proof checks, or it does not.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="/dashboard/">View Dashboard</a>
-          <a class="button secondary" href="https://github.com/spacetime-tao/lemma">Run a Miner</a>
+      <aside class="hero-panel" aria-label="Live Lemma snapshot">
+        <div class="status-card">
+          <span>Current theorem</span>
+          <strong data-current-id>Unavailable</strong>
+          <code data-current-goal>Waiting for public dashboard data.</code>
         </div>
-      </div>
+        <div class="metric-grid">
+          <div>
+            <span>Network</span>
+            <strong data-network-label>test / 467</strong>
+          </div>
+          <div>
+            <span>Top miner</span>
+            <strong data-top-miner>No data</strong>
+          </div>
+          <div>
+            <span class="label-with-info">
+              <span>Top metagraph score</span>
+              <span class="info-tip">
+                <button class="info-button" type="button" aria-label="What metagraph score means" aria-expanded="false">?</button>
+                <span class="info-bubble align-right" role="tooltip">A public aggregate score from the chain. It is not a per-theorem validator grade.</span>
+              </span>
+            </span>
+            <strong data-top-score>?</strong>
+          </div>
+          <div>
+            <span class="label-with-info">
+              <span>Proofs that passed</span>
+              <span class="info-tip">
+                <button class="info-button" type="button" aria-label="What proofs that passed means" aria-expanded="false">?</button>
+                <span class="info-bubble" role="tooltip">Unique theorem IDs per UID that passed Lean in this public export's lookback window. Counted from one canonical validator summary. Proof files are not published.</span>
+              </span>
+            </span>
+            <strong data-proof-count>0</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="notice-band" aria-label="Network status">
+      <strong>Testnet guardrail.</strong>
+      Lemma currently runs on Bittensor testnet. Mainnet, also called Finney, is separate;
+      only treat mainnet rewards as relevant when the deployment is live on the matching network and netuid.
     </section>
 
     <section class="band">
       <div class="section-head">
-        <p class="eyebrow">How it works</p>
-        <h2>Formal verification is the scoreboard.</h2>
+        <p class="eyebrow">How a round works</p>
+        <h2>A proof is accepted, or it is not.</h2>
       </div>
       <div class="steps">
         <article>
           <span>01</span>
-          <h3>Publish</h3>
-          <p>The subnet maps the chain-aligned seed to a deterministic generated theorem.</p>
+          <h3>Problem</h3>
+          <p>The subnet posts a precise math statement written for Lean.</p>
         </article>
         <article>
           <span>02</span>
-          <h3>Prove</h3>
-          <p>Miners return Lean proof scripts for the theorem currently in the window.</p>
+          <h3>Attempt</h3>
+          <p>Miners send back a proof file that tries to solve that exact statement.</p>
         </article>
         <article>
           <span>03</span>
-          <h3>Verify</h3>
-          <p>Validators check each submission with the pinned Lean and Mathlib toolchain.</p>
+          <h3>Check</h3>
+          <p>Validators run Lean, reject obvious shortcuts like <code>sorry</code> or new <code>axiom</code>s, and check whether the proof passes.</p>
         </article>
         <article>
           <span>04</span>
-          <h3>Weight</h3>
-          <p>Verified proofs enter scoring; failed proofs do not.</p>
+          <h3>Count</h3>
+          <p>Proofs that pass can count toward rewards. Proofs that fail do not.</p>
         </article>
-      </div>
-    </section>
-
-    <section class="split-band">
-      <div>
-        <p class="eyebrow">Live public view</p>
-        <h2>The dashboard shows the theorem flow and miner performance.</h2>
-        <p>
-          The public page is intentionally small: previous, current, and next theorem;
-          UID, coldkey, hotkey, score, and recent verified theorem count.
-        </p>
-        <a class="text-link" href="/dashboard/">Open the dashboard</a>
-      </div>
-      <div class="mini-dashboard" aria-label="Dashboard preview">
-        <div class="mini-row">
-          <span>Current</span>
-          <strong data-current-id>gen/7095800</strong>
-        </div>
-        <div class="mini-row">
-          <span>Top miner</span>
-          <strong data-top-miner>UID 18</strong>
-        </div>
-        <div class="mini-row">
-          <span>24h verified</span>
-          <strong data-proof-count>36</strong>
-        </div>
       </div>
     </section>
 
     <section class="band">
       <div class="section-head">
-        <p class="eyebrow">Operate safely</p>
-        <h2>Keep coldkeys off servers.</h2>
+        <p class="eyebrow">How Lemma is useful</p>
+        <h2>Clear math tasks with a check everyone can rerun.</h2>
       </div>
-      <div class="safety">
+      <div class="value-grid">
+        <article>
+          <h3>Measurable work</h3>
+          <p>The output is not a chat answer. It is a proof file that either checks against the posted math statement or fails.</p>
+        </article>
+        <article>
+          <h3>A live proving benchmark</h3>
+          <p>Recurring tasks show which miners can reliably produce correct formal proofs under the same public rules.</p>
+        </article>
+        <article>
+          <h3>Better proving tools</h3>
+          <p>Rewards push miners toward systems that actually solve formal math problems, not systems that only write convincing text.</p>
+        </article>
+        <article>
+          <h3>A path to useful math</h3>
+          <p>Once the steady lane is healthy, the same checker can support curated tasks, Mathlib-style gaps, and higher-reward bounties.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="operator-band">
+      <div>
+        <p class="eyebrow">Run a miner</p>
+        <h2>Solve theorems to earn alpha.</h2>
         <p>
-          Run miners and validators on VPS infrastructure with hotkeys only.
-          Keep coldkey seed phrases and private coldkey files local or offline.
+          Miners watch the subnet for posted math statements, try to produce
+          proof files that pass Lean, and compete under the subnet reward rules.
         </p>
-        <div class="link-grid">
-          <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/droplet-operations.md">Droplet runbook</a>
-          <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/vps-safety.md">VPS safety</a>
-          <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">Getting started</a>
-        </div>
+        <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/miner.md">Miner docs</a>
       </div>
+      <div>
+        <p class="eyebrow">Validate</p>
+        <h2>Check submissions and set weights.</h2>
+        <p>
+          Validators collect miner replies, run the pinned Lean checker, reject
+          shortcut proofs, update weights, and publish only safe summary data.
+        </p>
+        <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/validator.md">Validator docs</a>
+      </div>
+    </section>
+
+    <section class="band roadmap-band">
+      <div class="section-head">
+        <p class="eyebrow">Roadmap</p>
+        <h2>Simple task-lane progression.</h2>
+        <p>No fixed dates or promises. The path is to grow from regular tasks into harder optional lanes.</p>
+      </div>
+      <div class="roadmap-list">
+        <article>
+          <span>01</span>
+          <h3>100-block cadence</h3>
+          <p>Keep the regular lane simple: every 100 blocks, post a generated statement and check submitted proofs.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>More generated tasks</h3>
+          <p>Add broader topics and difficulty levels while keeping verify time predictable for miners and validators.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Harder curated tasks</h3>
+          <p>Introduce reviewed public problem sets when they are ready, with clear difficulty labels and expected verification time.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Off-cadence bounties</h3>
+          <p>Let miners work longer on high-difficulty statements and submit when ready for higher possible rewards.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="footnote-band">
+      <p>
+        You can run Lemma locally. A VPS (Virtual Private Server) is optional when
+        you want steadier uptime.
+        Keep coldkeys local or offline either way.
+      </p>
+      <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/vps-safety.md">Key and hosting safety</a>
     </section>
   </main>
 
