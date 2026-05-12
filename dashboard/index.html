@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Public Lemma subnet dashboard.">
   <title>Lemma Dashboard</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260512-rollover">
-  <script src="../assets/site.js?v=20260512-rollover" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260512-public-data">
+  <script src="../assets/site.js?v=20260512-public-data" defer></script>
 </head>
 <body data-page="dashboard">
   <header class="site-header">
@@ -71,7 +71,7 @@
             <span class="info-bubble" role="tooltip">Total proof attempts accepted by Lean in the most recent exported round. Proof files are not published.</span>
           </span>
         </span>
-        <strong data-proof-count>Awaiting data</strong>
+        <strong data-proof-count>Loading...</strong>
       </article>
       <article>
         <span class="label-with-info">
@@ -127,6 +127,15 @@
               </th>
               <th>
                 <span class="table-label">
+                  <button type="button" data-sort-key="passedPriorRound" data-sort-type="number">Passed previous round</button>
+                  <span class="info-tip">
+                    <button class="info-button" type="button" aria-label="What previous round pass means" aria-expanded="false">?</button>
+                    <span class="info-bubble align-right" role="tooltip">Whether this UID had a proof accepted by Lean in the latest exported validator round.</span>
+                  </span>
+                </span>
+              </th>
+              <th>
+                <span class="table-label">
                   <button type="button" data-sort-key="correct" data-sort-type="number">Proofs passed (24h)</button>
                   <span class="info-tip">
                     <button class="info-button" type="button" aria-label="What proofs that passed means" aria-expanded="false">?</button>
@@ -137,7 +146,7 @@
             </tr>
           </thead>
           <tbody data-miners-body>
-            <tr><td colspan="5">Loading miners...</td></tr>
+            <tr><td colspan="6">Loading miners...</td></tr>
           </tbody>
         </table>
       </div>

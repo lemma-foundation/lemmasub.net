@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lemma is a Bittensor subnet for proving math with code. Miners send proof files, and validators check whether they pass.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260512-rollover">
-  <script src="assets/site.js?v=20260512-rollover" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260512-public-data">
+  <script src="assets/site.js?v=20260512-public-data" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header">
@@ -25,8 +25,9 @@
         <h1>Lemma</h1>
         <p class="lede">
           Lemma is a Bittensor subnet for proving math with code. Each round posts
-          a math statement. Miners send back a proof file. Validators run it
-          through Lean, a proof checker, and the proof either passes or fails.
+          a math statement in Lean, a language for formal proofs and the checker
+          that verifies them. Miners send back a proof file. Validators run Lean,
+          and the proof either passes or fails.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="dashboard/index.html">View Dashboard</a>
@@ -69,7 +70,7 @@
                 <span class="info-bubble" role="tooltip">Total proof attempts accepted by Lean in the most recent exported round. Proof files are not published.</span>
               </span>
             </span>
-            <strong data-proof-count>Awaiting data</strong>
+            <strong data-proof-count>Loading...</strong>
           </div>
         </div>
       </aside>
@@ -90,7 +91,7 @@
         <article>
           <span>01</span>
           <h3>Problem</h3>
-          <p>The subnet posts a precise math statement written for Lean.</p>
+          <p>The subnet posts a precise math statement written in Lean.</p>
         </article>
         <article>
           <span>02</span>
@@ -113,7 +114,7 @@
     <section class="band miner-solve-band">
       <div class="section-head">
         <p class="eyebrow">How do miners solve theorems?</p>
-        <h2>In the first phase, miners use LLMs to write Lean proofs.</h2>
+        <h2>Miners use LLMs to write proofs in a language known as Lean.</h2>
         <p>
           A miner receives the current Lean statement, sends it to an LLM, and
           asks the LLM to produce a complete <code>Submission.lean</code> file.
@@ -222,16 +223,11 @@ end Submission</code></pre>
         </article>
         <article>
           <span>02</span>
-          <h3>More generated tasks</h3>
-          <p>Add new theorem recipes with different shapes, such as arithmetic, algebra, sets, and logic, so miners face more than one narrow pattern.</p>
+          <h3>Broader problem supply</h3>
+          <p>Add more generated theorem recipes and reviewed public problem sets, so miners face varied proof shapes beyond one narrow pattern.</p>
         </article>
         <article>
           <span>03</span>
-          <h3>Harder curated tasks</h3>
-          <p>Add reviewed public problem sets once they are ready, including harder statements chosen because they are useful tests of real proving ability.</p>
-        </article>
-        <article>
-          <span>04</span>
           <h3>Off-cadence bounties</h3>
           <p>Later, open winner-take-all bounty tasks outside the 100-block rhythm, where the first valid proof earns the bounty.</p>
         </article>

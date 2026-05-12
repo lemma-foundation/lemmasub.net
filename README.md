@@ -121,7 +121,8 @@ deduplicates within one summary file by UID and theorem ID.
 The top dashboard metric should show proofs passed in the most recent exported
 round. The miner table should keep the rolling 24-hour count so operators can
 compare recent miner activity without pretending it is the current round's
-score.
+score. The miner table also marks whether each UID passed that latest exported
+round when the summary export is available.
 
 If multiple validators later publish summaries, do not concatenate those files
 and call the result global. Add an aggregator that unions by network, netuid,

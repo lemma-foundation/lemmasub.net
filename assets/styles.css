@@ -843,7 +843,7 @@ h3 {
 
 table {
   width: 100%;
-  min-width: 860px;
+  min-width: 980px;
   border-collapse: collapse;
 }
 
@@ -853,6 +853,28 @@ td {
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
+}
+
+.pass-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.pass-yes {
+  color: var(--green);
+}
+
+.pass-no {
+  color: var(--rust);
+}
+
+.pass-unknown {
+  color: var(--muted);
 }
 
 th {

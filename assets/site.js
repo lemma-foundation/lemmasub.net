@@ -5,6 +5,7 @@ const DATA_URL = new URL(
 const DASHBOARD_REFRESH_MS = 10000;
 const DASHBOARD_CATCHUP_MS = 5000;
 const DASHBOARD_CATCHUP_ATTEMPTS = 24;
+const TOP_UID_LIST_LIMIT = 6;
 
 let miners = [];
 let minerFilter = "";
@@ -77,6 +78,7 @@ function normalizeMiner(miner) {
     hotkey: stringOrEmpty(miner?.hotkey),
     score: numberOrNull(miner?.score),
     correct: Number(miner?.correct_theorems_24h || 0),
+    passedPriorRound: boolOrNull(miner?.passed_prior_round),
     uid_url: stringOrEmpty(miner?.uid_url),
     coldkey_url: stringOrEmpty(miner?.coldkey_url),
     hotkey_url: stringOrEmpty(miner?.hotkey_url)
@@ -286,7 +288,7 @@ function renderMiners() {
   const rows = filteredMiners().sort(compareMiners);
   tbody.innerHTML = rows.length
     ? rows.map(minerRow).join("")
-    : `<tr><td colspan="5">${escapeHtml(emptyMinerText())}</td></tr>`;
+    : `<tr><td colspan="6">${escapeHtml(emptyMinerText())}</td></tr>`;
 }
 
 function emptyMinerText() {
@@ -338,6 +340,9 @@ function minerSortValue(miner, key) {
   if (key === "correct") {
     return miner.correct;
   }
+  if (key === "passedPriorRound") {
+    return miner.passedPriorRound === null ? null : Number(miner.passedPriorRound);
+  }
   return miner[key];
 }
 
@@ -347,6 +352,7 @@ function minerRow(miner) {
     <td class="addr">${linkOrText(miner.coldkey, miner.coldkey_url)}</td>
     <td class="addr">${linkOrText(miner.hotkey, miner.hotkey_url)}</td>
     <td>${formatScore(miner.score)}</td>
+    <td>${passMark(miner.passedPriorRound)}</td>
     <td>${miner.correct}</td>
   </tr>`;
 }
@@ -364,17 +370,25 @@ function topMinersLabel(topMiners) {
   if (!topMiners.length) {
     return "No data";
   }
+  if (topMiners.length > TOP_UID_LIST_LIMIT) {
+    return `${topMiners.length} UIDs tied`;
+  }
   const uids = topMiners.map((miner) => miner.uid).join(", ");
   return topMiners.length === 1 ? `UID ${uids}` : `Tied UIDs ${uids}`;
 }
 
 function proofCountLabel(value) {
-  return value === null ? "Awaiting data" : String(value);
+  return value === null ? "No round data" : String(value);
 }
 
 function plainTheorem(theorem) {
-  return cleanPlainTheorem(theorem?.plain_english || theorem?.plainEnglish || theorem?.explanation)
+  return cleanPlainTheorem(theorem?.plain_english || theorem?.plainEnglish || plainTheoremFallback(theorem?.type_expr))
     || "Generated Lean theorem.";
+}
+
+function plainTheoremFallback(typeExpr) {
+  const text = stringOrEmpty(typeExpr).trim();
+  return text ? `Prove that ${text}` : "";
 }
 
 function cleanPlainTheorem(value) {
@@ -653,6 +667,16 @@ function formatScore(value) {
   return Number(value).toFixed(6);
 }
 
+function passMark(value) {
+  if (value === true) {
+    return '<span class="pass-mark pass-yes" title="Passed previous round" aria-label="Passed previous round">&#10003;</span>';
+  }
+  if (value === false) {
+    return '<span class="pass-mark pass-no" title="Did not pass previous round" aria-label="Did not pass previous round">&times;</span>';
+  }
+  return '<span class="pass-mark pass-unknown" title="Previous round data unavailable" aria-label="Previous round data unavailable">?</span>';
+}
+
 function formatInteger(value) {
   const number = numberOrNull(value);
   return number === null ? "unknown" : new Intl.NumberFormat("en-US").format(number);
@@ -749,6 +773,10 @@ function numberOrNull(value) {
   }
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
+}
+
+function boolOrNull(value) {
+  return typeof value === "boolean" ? value : null;
 }
 
 function escapeHtml(value) {
