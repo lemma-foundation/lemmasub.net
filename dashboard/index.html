@@ -83,6 +83,7 @@
           </span>
         </span>
         <strong data-top-score>?</strong>
+        <em class="metric-sub" data-top-miner>No data</em>
       </article>
     </section>
 
@@ -100,17 +101,13 @@
           <p>Active miner UIDs by default. Chain scores come from the testnet metagraph; proofs passed are 24h counts from this validator export.</p>
         </div>
         <div class="table-tools">
-          <label>
-            <span>Search</span>
+          <label class="search-field">
+            <span>Search miners</span>
             <input type="search" data-miner-search placeholder="UID, coldkey, hotkey">
           </label>
           <label class="check-label">
             <input type="checkbox" data-active-only checked>
             <span>Active only</span>
-          </label>
-          <label class="check-label">
-            <input type="checkbox" data-verified-only>
-            <span>Proofs &gt; 0</span>
           </label>
         </div>
       </div>

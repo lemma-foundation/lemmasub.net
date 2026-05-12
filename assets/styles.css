@@ -377,6 +377,13 @@ h3 {
   font-size: 22px;
 }
 
+.metric-sub {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 750;
+}
+
 .notice-band,
 .operator-band,
 .footnote-band,
@@ -465,6 +472,10 @@ h3 {
 }
 
 .roadmap-band {
+  border-top: 1px solid var(--line);
+}
+
+.miner-solve-band {
   border-top: 1px solid var(--line);
 }
 
@@ -723,20 +734,25 @@ h3 {
   padding-bottom: 28px;
 }
 
+.miners-section {
+  margin-top: 26px;
+}
+
 .table-head {
   display: flex;
   justify-content: space-between;
-  gap: 18px;
-  align-items: end;
-  margin-bottom: 12px;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 16px;
 }
 
 .table-tools {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px 12px;
   justify-content: flex-end;
   align-items: end;
+  max-width: 520px;
 }
 
 .table-tools label {
@@ -749,7 +765,7 @@ h3 {
 }
 
 .table-tools input[type="search"] {
-  width: min(320px, 60vw);
+  width: min(360px, 60vw);
   min-height: 38px;
   padding: 0 10px;
   border: 1px solid var(--line);
@@ -757,6 +773,10 @@ h3 {
   background: var(--panel);
   color: var(--ink);
   font: inherit;
+}
+
+.search-field {
+  min-width: min(360px, 100%);
 }
 
 .check-label {

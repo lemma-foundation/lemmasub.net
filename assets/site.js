@@ -2,15 +2,18 @@ const DATA_URL = new URL(
   document.body.dataset.page === "dashboard" ? "../data/public-dashboard.json" : "data/public-dashboard.json",
   document.baseURI,
 ).href;
-const DASHBOARD_REFRESH_MS = 30000;
+const DASHBOARD_REFRESH_MS = 15000;
+const DASHBOARD_CATCHUP_MS = 5000;
+const DASHBOARD_CATCHUP_ATTEMPTS = 24;
 
 let miners = [];
 let minerFilter = "";
 let activeOnly = true;
-let verifiedOnly = false;
 let sortState = { key: "score", direction: "desc", type: "number" };
 let scheduleTimer = 0;
 let dashboardRefreshTimer = 0;
+let dashboardCatchupTimer = 0;
+let dashboardCatchupAttempts = 0;
 let scheduleCanRotate = false;
 let controlsAttached = false;
 let displayedTheorems = {};
@@ -28,7 +31,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadDashboardData() {
   try {
-    const response = await fetch(DATA_URL, { cache: "no-store" });
+    const url = new URL(DATA_URL);
+    url.searchParams.set("t", String(Date.now()));
+    const response = await fetch(url.href, {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache" }
+    });
     if (!response.ok) {
       return { ok: false, data: {} };
     }
@@ -84,7 +92,7 @@ function hydrateHome(data, dataLoaded) {
   setAll("[data-current-goal]", current?.type_expr || "Public dashboard JSON is not available.");
   setAll("[data-network-label]", networkLabel(data));
   setAll("[data-top-score]", formatScore(stats.topMiner?.score));
-  setAll("[data-top-miner]", stats.topMiner ? `UID ${stats.topMiner.uid}` : "No data");
+  setAll("[data-top-miner]", topMinerLabel(stats.topMiner));
   setAll("[data-proof-count]", String(stats.proofCount));
 }
 
@@ -112,7 +120,7 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
   setText("[data-status-chain-head]", blockNumberLabel(data));
   setAll("[data-miner-count]", String(stats.minerCount));
   setAll("[data-top-score]", formatScore(stats.topMiner?.score));
-  setAll("[data-top-miner]", stats.topMiner ? `UID ${stats.topMiner.uid}` : "No data");
+  setAll("[data-top-miner]", topMinerLabel(stats.topMiner));
   setAll("[data-proof-count]", String(stats.proofCount));
 
   const theoremChanged = previousCurrent && previousCurrent !== theoremKey(displayedTheorems.current);
@@ -227,11 +235,6 @@ function attachMinerControls() {
     renderMiners();
   });
 
-  document.querySelector("[data-verified-only]")?.addEventListener("change", (event) => {
-    verifiedOnly = event.target.checked;
-    renderMiners();
-  });
-
   document.querySelectorAll("[data-sort-key]").forEach((button) => {
     button.addEventListener("click", () => {
       const key = button.dataset.sortKey;
@@ -262,7 +265,7 @@ function emptyMinerText() {
   if (!dashboardDataLoaded) {
     return "Public dashboard JSON is unavailable.";
   }
-  if (minerFilter || verifiedOnly || activeOnly) {
+  if (minerFilter || activeOnly) {
     return "No miners match this view.";
   }
   return "No public miner rows in this export.";
@@ -271,9 +274,6 @@ function emptyMinerText() {
 function filteredMiners() {
   return miners.filter((miner) => {
     if (activeOnly && !isActiveMiner(miner)) {
-      return false;
-    }
-    if (verifiedOnly && miner.correct <= 0) {
       return false;
     }
     if (!minerFilter) {
@@ -319,7 +319,14 @@ function minerRow(miner) {
 function networkLabel(data) {
   const network = data.network || "unknown";
   const netuid = data.netuid === undefined || data.netuid === null ? "?" : data.netuid;
+  if (network === "test" && Number(netuid) === 467) {
+    return "Testnet Subnet 467";
+  }
   return `${network} / netuid ${netuid}`;
+}
+
+function topMinerLabel(miner) {
+  return miner ? `UID ${miner.uid}` : "No data";
 }
 
 function plainTheorem(theorem) {
@@ -512,6 +519,7 @@ function tickSchedule(data) {
     scheduleCanRotate = false;
     rotateTheorems();
     refreshDashboardData();
+    startCatchupPolling();
     setText("[data-next-countdown]", "Waiting for public data");
     return;
   }
@@ -553,7 +561,35 @@ async function refreshDashboardData() {
     setText("[data-dashboard-state]", "Unable to refresh public data. Showing the last loaded snapshot.");
     return;
   }
-  applyDashboardData(normalizeDashboardData(result.data), true);
+  const data = normalizeDashboardData(result.data);
+  const displayedCurrent = theoremKey(displayedTheorems.current);
+  const incomingCurrent = theoremKey(data.theorems.current);
+  const incomingNext = theoremKey(data.theorems.next);
+  if (displayedCurrent && incomingCurrent && incomingCurrent !== displayedCurrent && incomingNext === displayedCurrent) {
+    setText("[data-dashboard-state]", "Waiting for the next public dashboard export.");
+    return;
+  }
+  applyDashboardData(data, true);
+  if (dashboardCatchupTimer && incomingCurrent === displayedCurrent) {
+    stopCatchupPolling();
+  }
+}
+
+function startCatchupPolling() {
+  stopCatchupPolling();
+  dashboardCatchupAttempts = 0;
+  dashboardCatchupTimer = window.setInterval(async () => {
+    dashboardCatchupAttempts += 1;
+    await refreshDashboardData();
+    if (dashboardCatchupAttempts >= DASHBOARD_CATCHUP_ATTEMPTS) {
+      stopCatchupPolling();
+    }
+  }, DASHBOARD_CATCHUP_MS);
+}
+
+function stopCatchupPolling() {
+  window.clearInterval(dashboardCatchupTimer);
+  dashboardCatchupTimer = 0;
 }
 
 function formatDuration(totalSeconds) {
