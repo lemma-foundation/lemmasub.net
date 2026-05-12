@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7107890,
+  "chain_head_block": 7107903,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T20:33:27Z",
+  "generated_at": "2026-05-12T20:36:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7107800,
-  "problem_seed_chain_head": 7107890,
+  "problem_seed": 7107900,
+  "problem_seed_chain_head": 7107903,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,19 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that (169 is a natural number) plus 71 equals 240.",
-      "label": "current",
-      "name": "t_63369b",
-      "plain_english": "Prove that (169 is a natural number) plus 71 equals 240.",
-      "seed": 7107800,
-      "split": "easy",
-      "theorem_id": "gen/7107800",
-      "topic": "automata.regular_lite",
-      "type_expr": "(169 : Nat) + 71 = 240"
-    },
-    "next": {
       "explanation": "Prove that ([1, 2, 3] : List Nat).length equals 3.",
-      "label": "next",
+      "label": "current",
       "name": "t_517c30",
       "plain_english": "Prove that ([1, 2, 3] : List Nat).length equals 3.",
       "seed": 7107900,
@@ -126,16 +115,27 @@
       "topic": "algebra.order",
       "type_expr": "([1, 2, 3] : List Nat).length = 3"
     },
+    "next": {
+      "explanation": "Prove that for every finite set of natural numbers A and B, A is a subset of B implies A.card is at most B.card.",
+      "label": "next",
+      "name": "t_27a7a89",
+      "plain_english": "Prove that for every finite set of natural numbers A and B, A is a subset of B implies A.card is at most B.card.",
+      "seed": 7108000,
+      "split": "hard",
+      "theorem_id": "gen/7108000",
+      "topic": "logic.propositional",
+      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
+    },
     "previous": {
-      "explanation": "Prove that for every natural number a and b and c, a times (b times c) equals (a times b) times c.",
+      "explanation": "Prove that (169 is a natural number) plus 71 equals 240.",
       "label": "previous",
-      "name": "t_cbac95",
-      "plain_english": "Prove that for every natural number a and b and c, a times (b times c) equals (a times b) times c.",
-      "seed": 7107700,
-      "split": "medium",
-      "theorem_id": "gen/7107700",
-      "topic": "geometry.metric",
-      "type_expr": "\u2200 a b c : Nat, a * (b * c) = (a * b) * c"
+      "name": "t_63369b",
+      "plain_english": "Prove that (169 is a natural number) plus 71 equals 240.",
+      "seed": 7107800,
+      "split": "easy",
+      "theorem_id": "gen/7107800",
+      "topic": "automata.regular_lite",
+      "type_expr": "(169 : Nat) + 71 = 240"
     }
   }
 }
