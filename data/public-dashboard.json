@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7105286,
+  "chain_head_block": 7105303,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T11:52:43Z",
+  "generated_at": "2026-05-12T11:56:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7105200,
-  "problem_seed_chain_head": 7105286,
+  "problem_seed": 7105300,
+  "problem_seed_chain_head": 7105303,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "An easy finite set theory statement: prove that ([1, 2, 3] : List Nat).length equals 3.",
-      "label": "current",
-      "name": "t_5163bc",
-      "seed": 7105200,
-      "split": "easy",
-      "theorem_id": "gen/7105200",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "([1, 2, 3] : List Nat).length = 3"
-    },
-    "next": {
       "explanation": "An easy discrete statement: prove that (true && false) equals false.",
-      "label": "next",
+      "label": "current",
       "name": "t_41addd",
       "seed": 7105300,
       "split": "easy",
@@ -115,15 +105,25 @@
       "topic": "graph_theory.discrete",
       "type_expr": "(true && false) = false"
     },
+    "next": {
+      "explanation": "A hard counting statement: prove that not \u2203 q : \u211a, q times q equals (2 : \u211a).",
+      "label": "next",
+      "name": "t_1329f7d",
+      "seed": 7105400,
+      "split": "hard",
+      "theorem_id": "gen/7105400",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u00ac \u2203 q : \u211a, q * q = (2 : \u211a)"
+    },
     "previous": {
-      "explanation": "An easy recursion statement: prove that (insert 1 (\u2205 : Finset Nat)).card equals 1.",
+      "explanation": "An easy finite set theory statement: prove that ([1, 2, 3] : List Nat).length equals 3.",
       "label": "previous",
-      "name": "t_184222c",
-      "seed": 7105100,
+      "name": "t_5163bc",
+      "seed": 7105200,
       "split": "easy",
-      "theorem_id": "gen/7105100",
-      "topic": "foundations.recursion",
-      "type_expr": "(insert 1 (\u2205 : Finset Nat)).card = 1"
+      "theorem_id": "gen/7105200",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "([1, 2, 3] : List Nat).length = 3"
     }
   }
 }
