@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7103887,
+  "chain_head_block": 7103903,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T07:13:02Z",
+  "generated_at": "2026-05-12T07:16:03Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7103800,
-  "problem_seed_chain_head": 7103887,
+  "problem_seed": 7103900,
+  "problem_seed_chain_head": 7103903,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A hard predicates statement: prove that \u2200 m is a natural number, m to the power 7 times m equals m to the power (7 plus 1).",
-      "label": "current",
-      "name": "t_1b56325",
-      "seed": 7103800,
-      "split": "hard",
-      "theorem_id": "gen/7103800",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 m : Nat, m ^ 7 * m = m ^ (7 + 1)"
-    },
-    "next": {
       "explanation": "An easy expectation light statement: prove that (Finset.range 21).card equals 21.",
-      "label": "next",
+      "label": "current",
       "name": "t_24934f0",
       "seed": 7103900,
       "split": "easy",
@@ -115,15 +105,25 @@
       "topic": "probability.expectation_light",
       "type_expr": "(Finset.range 21).card = 21"
     },
-    "previous": {
-      "explanation": "A medium basic statement: prove that \u2200 P Q is a proposition, P and Q \u2194 Q and P.",
-      "label": "previous",
-      "name": "t_19bee77",
-      "seed": 7103700,
+    "next": {
+      "explanation": "A medium ring statement: prove that Continuous (fun x : \u211d => x).",
+      "label": "next",
+      "name": "t_15d4b3c",
+      "seed": 7104000,
       "split": "medium",
-      "theorem_id": "gen/7103700",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 P Q : Prop, P \u2227 Q \u2194 Q \u2227 P"
+      "theorem_id": "gen/7104000",
+      "topic": "algebra.ring",
+      "type_expr": "Continuous (fun x : \u211d => x)"
+    },
+    "previous": {
+      "explanation": "A hard predicates statement: prove that \u2200 m is a natural number, m to the power 7 times m equals m to the power (7 plus 1).",
+      "label": "previous",
+      "name": "t_1b56325",
+      "seed": 7103800,
+      "split": "hard",
+      "theorem_id": "gen/7103800",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 m : Nat, m ^ 7 * m = m ^ (7 + 1)"
     }
   }
 }
