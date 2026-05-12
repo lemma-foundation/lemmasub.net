@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7108758,
+  "chain_head_block": 7108773,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T23:27:13Z",
+  "generated_at": "2026-05-12T23:30:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -10,7 +10,7 @@
       "correct_theorems_24h": 11,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.5062638521194458,
       "uid": 2,
       "uid_url": ""
@@ -21,7 +21,7 @@
       "correct_theorems_24h": 10,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.24084840714931488,
       "uid": 3,
       "uid_url": ""
@@ -32,7 +32,7 @@
       "correct_theorems_24h": 8,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.17189288139343262,
       "uid": 7,
       "uid_url": ""
@@ -43,7 +43,7 @@
       "correct_theorems_24h": 8,
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.05050736293196678,
       "uid": 4,
       "uid_url": ""
@@ -54,7 +54,7 @@
       "correct_theorems_24h": 6,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.02240024507045746,
       "uid": 5,
       "uid_url": ""
@@ -65,7 +65,7 @@
       "correct_theorems_24h": 4,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.00804150477051735,
       "uid": 6,
       "uid_url": ""
@@ -96,11 +96,11 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7108700,
-  "problem_seed_chain_head": 7108758,
+  "problem_seed_chain_head": 7108773,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "proofs_passed_prior_round": 6,
+  "proofs_passed_prior_round": 0,
   "schema_version": 3,
   "score_source": "metagraph_incentive",
   "theorems": {
