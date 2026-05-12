@@ -118,6 +118,11 @@ The current public site uses one canonical validator-side summary export. A
 by Lean in that export's configured lookback window. The Lemma exporter
 deduplicates within one summary file by UID and theorem ID.
 
+The top dashboard metric should show proofs passed in the most recent exported
+round. The miner table should keep the rolling 24-hour count so operators can
+compare recent miner activity without pretending it is the current round's
+score.
+
 If multiple validators later publish summaries, do not concatenate those files
 and call the result global. Add an aggregator that unions by network, netuid,
 lookback, UID, and theorem ID, then label the dashboard as a merged network view.

@@ -48,28 +48,28 @@
             <strong data-network-label>Testnet SN467</strong>
           </div>
           <div>
-            <span>Top miner</span>
+            <span>Top UID(s)</span>
             <strong data-top-miner>No data</strong>
           </div>
           <div>
             <span class="label-with-info">
-              <span>Top chain score</span>
+              <span>Shared top chain score</span>
               <span class="info-tip">
                 <button class="info-button" type="button" aria-label="What metagraph score means" aria-expanded="false">?</button>
-                <span class="info-bubble align-right" role="tooltip">The chain's current incentive score for a UID. It is not a grade for one theorem.</span>
+                <span class="info-bubble align-right" role="tooltip">The chain's current incentive score. More than one UID can share the same top score.</span>
               </span>
             </span>
             <strong data-top-score>?</strong>
           </div>
           <div>
             <span class="label-with-info">
-              <span>Proofs passed (24h)</span>
+              <span>Proofs passed in prior round</span>
               <span class="info-tip">
                 <button class="info-button" type="button" aria-label="What proofs that passed means" aria-expanded="false">?</button>
-                <span class="info-bubble" role="tooltip">Proof attempts accepted by Lean in the last 24 hours, deduplicated by UID and theorem in this validator export. Proof files are not published.</span>
+                <span class="info-bubble" role="tooltip">Total proof attempts accepted by Lean in the most recent exported round. Proof files are not published.</span>
               </span>
             </span>
-            <strong data-proof-count>0</strong>
+            <strong data-proof-count>Awaiting data</strong>
           </div>
         </div>
       </aside>
@@ -147,6 +147,17 @@
             file. A passing answer can import Mathlib and use a Lean tactic to
             prove the posted statement.
           </p>
+          <h4>Line by line</h4>
+          <ol class="line-notes">
+            <li><code>import Mathlib</code> loads Lean's standard math library, so the proof can use facts and tactics that already exist.</li>
+            <li><code>namespace Submission</code> puts the miner's answer in the exact named box validators expect.</li>
+            <li><code>theorem seven_add_zero</code> gives this proof a name, like a label on a saved document.</li>
+            <li><code>: 7 + 0 = 7</code> is the statement being proved: adding zero to seven still gives seven.</li>
+            <li><code>:= by</code> means "here is the proof."</li>
+            <li><code>norm_num</code> asks Lean to check the arithmetic. If the arithmetic is true, Lean accepts it.</li>
+            <li><code>end Submission</code> closes the named box, so the file is complete.</li>
+          </ol>
+          <p class="line-note-foot">The blank lines are only for readability; Lean ignores them.</p>
         </div>
         <pre class="lean-statement"><code>import Mathlib
 

@@ -505,6 +505,33 @@ h3 {
   color: var(--muted);
 }
 
+.proof-example h4 {
+  margin: 18px 0 10px;
+  font-size: 16px;
+}
+
+.line-notes {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.line-notes li {
+  padding-left: 4px;
+}
+
+.line-notes code {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.line-note-foot {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
 .roadmap-band {
   border-top: 1px solid var(--line);
 }

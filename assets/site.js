@@ -63,6 +63,7 @@ function normalizeDashboardData(raw) {
     block_time_sec_estimate: data.block_time_sec_estimate,
     score_source: stringOrEmpty(data.score_source),
     correct_count_window_hours: Number(data.correct_count_window_hours || 24),
+    proofs_passed_prior_round: numberOrNull(data.proofs_passed_prior_round),
     theorems: data.theorems && typeof data.theorems === "object" ? data.theorems : {},
     miners: Array.isArray(data.miners) ? data.miners.map(normalizeMiner) : []
   };
@@ -97,9 +98,9 @@ function applyHomeData(data, dataLoaded) {
   setAll("[data-current-id]", current ? plainTheorem(current) : (dataLoaded ? "No current theorem" : "Data unavailable"));
   setAll("[data-current-goal]", current?.type_expr || "Public dashboard JSON is not available.");
   setAll("[data-network-label]", networkLabel(data));
-  setAll("[data-top-score]", formatScore(stats.topMiner?.score));
-  setAll("[data-top-miner]", topMinerLabel(stats.topMiner));
-  setAll("[data-proof-count]", String(stats.proofCount));
+  setAll("[data-top-score]", formatScore(stats.topScore));
+  setAll("[data-top-miner]", topMinersLabel(stats.topMiners));
+  setAll("[data-proof-count]", proofCountLabel(stats.priorRoundProofCount));
 }
 
 function startHomePolling() {
@@ -137,9 +138,9 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
   setText("[data-status-age]", dataAgeLabel(data.generated_at));
   setText("[data-status-chain-head]", blockNumberLabel(data));
   setAll("[data-miner-count]", String(stats.minerCount));
-  setAll("[data-top-score]", formatScore(stats.topMiner?.score));
-  setAll("[data-top-miner]", topMinerLabel(stats.topMiner));
-  setAll("[data-proof-count]", String(stats.proofCount));
+  setAll("[data-top-score]", formatScore(stats.topScore));
+  setAll("[data-top-miner]", topMinersLabel(stats.topMiners));
+  setAll("[data-proof-count]", proofCountLabel(stats.priorRoundProofCount));
 
   const theoremChanged = previousCurrent && previousCurrent !== theoremKey(displayedTheorems.current);
   renderTheorems(displayedTheorems);
@@ -153,14 +154,23 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
 
 function dashboardStats(data) {
   const validMiners = data.miners.filter((miner) => isMinerRow(miner, data));
-  const topMiner = validMiners.sort((a, b) => {
-    return b.score - a.score || Number(a.uid) - Number(b.uid);
-  })[0];
+  const topScore = validMiners.reduce((best, miner) => {
+    if (miner.score === null) {
+      return best;
+    }
+    return best === null || miner.score > best ? miner.score : best;
+  }, null);
+  const topMiners = topScore === null
+    ? []
+    : validMiners
+      .filter((miner) => miner.score === topScore)
+      .sort((a, b) => Number(a.uid) - Number(b.uid));
 
   return {
     minerCount: validMiners.length,
-    proofCount: validMiners.reduce((sum, miner) => sum + miner.correct, 0),
-    topMiner
+    priorRoundProofCount: data.proofs_passed_prior_round,
+    topScore,
+    topMiners
   };
 }
 
@@ -348,151 +358,27 @@ function networkLabel(data) {
   return `${network} / netuid ${netuid}`;
 }
 
-function topMinerLabel(miner) {
-  return miner ? `UID ${miner.uid}` : "No data";
+function topMinersLabel(topMiners) {
+  if (!topMiners.length) {
+    return "No data";
+  }
+  const uids = topMiners.map((miner) => miner.uid).join(", ");
+  return topMiners.length === 1 ? `UID ${uids}` : `Tied UIDs ${uids}`;
+}
+
+function proofCountLabel(value) {
+  return value === null ? "Awaiting data" : String(value);
 }
 
 function plainTheorem(theorem) {
-  const explicit = cleanPlainTheorem(theorem?.plain_english || theorem?.plainEnglish);
-  if (explicit) {
-    return explicit;
-  }
-  if (theorem?.type_expr) {
-    return englishishLean(theorem.type_expr);
-  }
-  const fromExplanation = theorem?.explanation?.match(/prove that (.+)\.?$/i);
-  return fromExplanation?.[1] ? englishishLean(fromExplanation[1]) : "Unknown theorem.";
+  return cleanPlainTheorem(theorem?.plain_english || theorem?.plainEnglish || theorem?.explanation)
+    || "Generated Lean theorem.";
 }
 
 function cleanPlainTheorem(value) {
-  const text = String(value || "").trim();
-  if (!text) {
-    return "";
-  }
-  return sentenceCase(text.replace(/^prove that\s+/i, ""));
-}
-
-function englishishLean(typeExpr) {
-  const text = String(typeExpr || "").trim().replace(/^∀\s+/, "forall ").replace(/^∃\s+/, "exists ");
-  const notExists = text.match(/^¬\s*∃\s+(.+?)\s+:\s+(.+?),\s*(.+)$/);
-  if (notExists) {
-    const noun = leanTypeNoun(notExists[2]);
-    return sentenceCase(`there is no ${noun} ${notExists[1].trim()} such that ${clauseText(englishishLean(notExists[3]))}`);
-  }
-  const exists = text.match(/^exists\s+(.+?)\s+:\s+(.+?),\s+(.+)$/);
-  if (exists) {
-    const noun = leanTypeNoun(exists[2]);
-    return sentenceCase(`there exists ${articleFor(noun)} ${noun} ${exists[1].trim()} such that ${clauseText(englishishLean(exists[3]))}`);
-  }
-  const forall = text.match(/^forall\s+(.+?)\s+:\s+(.+?),\s+(.+)$/);
-  if (forall) {
-    return sentenceCase(`for every ${leanTypeNoun(forall[2])} ${joinNames(forall[1])}, ${clauseText(englishishLean(forall[3]))}`);
-  }
-  const implication = splitOnce(text, " → ") || splitOnce(text, " -> ");
-  if (implication) {
-    return sentenceCase(`if ${clauseText(englishishLean(implication[0]))}, then ${clauseText(englishishLean(implication[1]))}`);
-  }
-  const equivalence = splitOnce(text, " ↔ ");
-  if (equivalence) {
-    return sentenceCase(`${clauseText(englishishLean(equivalence[0]))} means the same thing as ${clauseText(englishishLean(equivalence[1]))}`);
-  }
-  const conjunction = splitOnce(text, " ∧ ");
-  if (conjunction) {
-    return sentenceCase(`${clauseText(englishishLean(conjunction[0]))} and ${clauseText(englishishLean(conjunction[1]))}`);
-  }
-  return sentenceCase(humanizeExpression(text));
-}
-
-function humanizeExpression(text) {
-  const raw = String(text || "");
-  const determinant = raw.match(/^Matrix\.det\s+\(.+\)\s+=\s+(.+)$/);
-  if (determinant) {
-    return `the determinant of the displayed matrix equals ${determinant[1]}`;
-  }
-  const finsetRange = raw.match(/^\(Finset\.range\s+(\d+)\)\.card\s*=\s*(\d+)$/);
-  if (finsetRange) {
-    return `the list of natural numbers from 0 up to ${Number(finsetRange[1]) - 1} has ${finsetRange[2]} entries`;
-  }
-  if (raw === "Continuous (fun x : ℝ => x)") {
-    return "the function that sends each real number to itself is continuous";
-  }
-  return raw
-    .replace(/\(([^()]+)\s*:\s*ℚ\)/g, "$1")
-    .replace(/Nat\.Prime\s+([A-Za-z0-9_]+)/g, "$1 is prime")
-    .replace(/([A-Za-z0-9_]+)\.card\s*≤\s*([A-Za-z0-9_]+)\.card/g, "the number of elements in $1 is at most the number of elements in $2")
-    .replace(/([A-Za-z0-9_]+)\s*∈\s*([A-Za-z0-9_]+)/g, "$1 is in $2")
-    .replace(/([A-Za-z0-9_]+)\s*∉\s*([A-Za-z0-9_]+)/g, "$1 is not in $2")
-    .replaceAll("¬", "not ")
-    .replaceAll("⊆", "is a subset of")
-    .replaceAll(".card", " cardinality")
-    .replaceAll(" ∣ ", " divides ")
-    .replaceAll(" → ", " implies ")
-    .replaceAll(" -> ", " implies ")
-    .replaceAll(" ∧ ", " and ")
-    .replaceAll(" ∨ ", " or ")
-    .replaceAll(" ↔ ", " means the same thing as ")
-    .replaceAll(" = ", " equals ")
-    .replaceAll(" + ", " plus ")
-    .replaceAll(" * ", " times ")
-    .replaceAll(" ^ ", " to the power ")
-    .replaceAll(" ≤ ", " is at most ")
-    .replaceAll(" ≥ ", " is at least ");
-}
-
-function leanTypeNoun(typeName) {
-  return {
-    Nat: "natural number",
-    Int: "integer",
-    "ℕ": "natural number",
-    Real: "real number",
-    "ℝ": "real number",
-    "ℤ": "integer",
-    "ℚ": "rational number",
-    Prop: "proposition",
-    Type: "type",
-    "Finset Nat": "finite set of natural numbers"
-  }[typeName] || typeName;
-}
-
-function joinNames(names) {
-  const parts = String(names || "").trim().split(/\s+/).filter(Boolean);
-  if (parts.length < 2) {
-    return parts[0] || "";
-  }
-  return `${parts.slice(0, -1).join(", ")} and ${parts.at(-1)}`;
-}
-
-function splitOnce(text, token) {
-  const index = text.indexOf(token);
-  if (index < 0) {
-    return null;
-  }
-  return [text.slice(0, index), text.slice(index + token.length)];
-}
-
-function articleFor(noun) {
-  return /^[aeiou]/i.test(noun) ? "an" : "a";
-}
-
-function stripPeriod(value) {
-  return String(value || "").trim().replace(/\.$/, "");
-}
-
-function clauseText(value) {
-  const text = stripPeriod(value);
-  if (/^[A-Z]$/.test(text)) {
-    return text;
-  }
-  if (/^[A-Z]\b (?:(?:and|or)\b|means the same thing as)/.test(text)) {
-    return text;
-  }
-  return text ? `${text.charAt(0).toLowerCase()}${text.slice(1)}` : "";
-}
-
-function sentenceCase(value) {
   const text = String(value || "").trim().replace(/\.$/, "");
   if (!text) {
-    return "Unknown theorem.";
+    return "";
   }
   return `${text.charAt(0).toUpperCase()}${text.slice(1)}.`;
 }
