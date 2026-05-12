@@ -1,29 +1,51 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7107085,
+  "chain_head_block": 7107684,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T17:52:36Z",
+  "generated_at": "2026-05-12T19:52:21Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 12,
+      "correct_theorems_24h": 13,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.6796368360519409,
+      "score": 0.5286335349082947,
       "uid": 2,
       "uid_url": ""
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 11,
+      "correct_theorems_24h": 12,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.3203479051589966,
+      "score": 0.2503852844238281,
       "uid": 3,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
+      "coldkey_url": "",
+      "correct_theorems_24h": 10,
+      "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.16935987770557404,
+      "uid": 7,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 9,
+      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.051590751856565475,
+      "uid": 4,
       "uid_url": ""
     },
     {
@@ -52,20 +74,9 @@
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
       "correct_theorems_24h": 8,
-      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
-      "hotkey_url": "",
-      "passed_prior_round": true,
-      "score": 0.0,
-      "uid": 4,
-      "uid_url": ""
-    },
-    {
-      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
-      "coldkey_url": "",
-      "correct_theorems_24h": 7,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.0,
       "uid": 5,
       "uid_url": ""
@@ -73,69 +84,58 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 3,
+      "correct_theorems_24h": 4,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
-      "hotkey_url": "",
-      "passed_prior_round": false,
-      "score": 0.0,
-      "uid": 6,
-      "uid_url": ""
-    },
-    {
-      "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
-      "coldkey_url": "",
-      "correct_theorems_24h": 9,
-      "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
       "score": 0.0,
-      "uid": 7,
+      "uid": 6,
       "uid_url": ""
     }
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7107000,
-  "problem_seed_chain_head": 7107085,
+  "problem_seed": 7107600,
+  "problem_seed_chain_head": 7107684,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "proofs_passed_prior_round": 4,
+  "proofs_passed_prior_round": 6,
   "schema_version": 2,
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a natural number belongs to the finite range ending at its successor.",
+      "explanation": "Prove the displayed identity for set difference over a union.",
       "label": "current",
-      "name": "t_2c2d47f",
-      "plain_english": "Prove that a natural number belongs to the finite range ending at its successor.",
-      "seed": 7107000,
-      "split": "medium",
-      "theorem_id": "gen/7107000",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 n : Nat, n \u2208 Finset.range (n + 1)"
+      "name": "t_32b4875",
+      "plain_english": "Prove the displayed identity for set difference over a union.",
+      "seed": 7107600,
+      "split": "hard",
+      "theorem_id": "gen/7107600",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set Nat, A \\ (B \u222a C) = (A \\ B) \\ C"
     },
     "next": {
-      "explanation": "Prove that the displayed real-number addition equals its computed value.",
+      "explanation": "Prove the displayed identity for sums over finite ranges.",
       "label": "next",
-      "name": "t_37ff8e",
-      "plain_english": "Prove that the displayed real-number addition equals its computed value.",
-      "seed": 7107100,
-      "split": "easy",
-      "theorem_id": "gen/7107100",
-      "topic": "analysis.real_basic",
-      "type_expr": "(17 : \u211d) + (6 : \u211d) = (23 : \u211d)"
+      "name": "t_1a5b7ae",
+      "plain_english": "Prove the displayed identity for sums over finite ranges.",
+      "seed": 7107700,
+      "split": "medium",
+      "theorem_id": "gen/7107700",
+      "topic": "combinatorics.counting",
+      "type_expr": "(\u2211 i \u2208 Finset.range (11 + 1), (i : Nat)) = (\u2211 i \u2208 Finset.range 11, (i : Nat)) + (11 : Nat)"
     },
     "previous": {
-      "explanation": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
+      "explanation": "Prove the displayed square expansion for natural numbers.",
       "label": "previous",
-      "name": "t_3fff6e0",
-      "plain_english": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
-      "seed": 7106900,
+      "name": "t_29682ba",
+      "plain_english": "Prove the displayed square expansion for natural numbers.",
+      "seed": 7107500,
       "split": "hard",
-      "theorem_id": "gen/7106900",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 b * c + c * b"
+      "theorem_id": "gen/7107500",
+      "topic": "algebra.ring",
+      "type_expr": "\u2200 a b : Nat, (a + b) ^ 2 = a ^ 2 + 2 * a * b + b ^ 2"
     }
   }
 }
