@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lemma is a Bittensor subnet for proving math with code. Miners send proof files, and validators check whether they pass.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260512-theoremtitles">
-  <script src="assets/site.js?v=20260512-theoremtitles" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260512-refreshcopy">
+  <script src="assets/site.js?v=20260512-refreshcopy" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header">
@@ -39,7 +39,7 @@
         <div class="status-card">
           <span>Current theorem</span>
           <strong data-current-id>Unavailable</strong>
-          <p class="statement-label">Formal statement to solve</p>
+          <p class="statement-label">Formal theorem to prove</p>
           <code data-current-goal>Waiting for public dashboard data.</code>
         </div>
         <div class="metric-grid">
@@ -135,7 +135,7 @@
         </article>
         <article>
           <h3>Later: manual lanes</h3>
-          <p>Future off-cadence bounty tasks can let people work by hand and submit a proof when ready.</p>
+          <p>Future bounty tasks can give people longer to work by hand, with the reward going to the first valid proof.</p>
         </article>
       </div>
       <article class="proof-example">
@@ -144,29 +144,33 @@
           <h3>Subnet posts: prove that 7 + 0 = 7.</h3>
           <p>
             The miner can ask an LLM for a complete <code>Submission.lean</code>
-            file. A passing answer might use Lean's standard fact that adding
-            zero on the right does not change a natural number.
+            file. A passing answer can import Mathlib and use a Lean tactic to
+            prove the posted statement.
           </p>
         </div>
-        <pre class="lean-statement"><code>lemma add_right_zero (n : Nat) : n + 0 = n :=
-  Nat.add_zero n
+        <pre class="lean-statement"><code>import Mathlib
+
+namespace Submission
 
 theorem seven_add_zero : 7 + 0 = 7 :=
-  add_right_zero 7</code></pre>
+  by
+    norm_num
+
+end Submission</code></pre>
       </article>
     </section>
 
     <section class="band">
       <div class="section-head useful-copy">
         <p class="eyebrow">How Lemma is useful</p>
-        <h2>A public test for software that can prove math.</h2>
+        <h2>A public test for AI that can prove theorems.</h2>
         <p>
           Lemma gives miners the same math statement and asks for proof code, not
           a persuasive explanation. Validators run the submitted file through
           Lean, so the result is simple to understand: the proof passed or it did
-          not. That creates a public scoreboard for LLMs and tools that can turn
-          math statements into machine-checkable proofs, with a path toward harder
-          public problem sets and higher-reward theorem work later.
+          not. That creates a public scoreboard for AI systems that can write
+          proof files Lean accepts, with a path toward harder public problem sets
+          and higher-reward theorem work later.
         </p>
       </div>
     </section>
@@ -174,7 +178,7 @@ theorem seven_add_zero : 7 + 0 = 7 :=
     <section class="operator-band">
       <div>
         <p class="eyebrow">Run a miner</p>
-        <h2>Solve theorems to earn alpha.</h2>
+        <h2>Prove theorems to earn alpha.</h2>
         <p>
           Miners watch the subnet for posted math statements, try to produce
           proof files that pass Lean, and compete under the subnet reward rules.
@@ -218,7 +222,7 @@ theorem seven_add_zero : 7 + 0 = 7 :=
         <article>
           <span>04</span>
           <h3>Off-cadence bounties</h3>
-          <p>Open longer-running high-difficulty tasks where miners or teams can work outside the 100-block rhythm and submit a proof when ready.</p>
+          <p>Later, open winner-take-all bounty tasks outside the 100-block rhythm, where the first valid proof earns the bounty.</p>
         </article>
       </div>
     </section>

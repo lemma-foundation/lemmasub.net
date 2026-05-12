@@ -411,9 +411,14 @@ h3 {
   margin-bottom: 0;
 }
 
+.useful-copy h2 {
+  font-size: 32px;
+}
+
 .useful-copy p:last-child {
   color: var(--muted);
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1.55;
 }
 
 .steps {
@@ -512,7 +517,7 @@ h3 {
   display: block;
   margin-bottom: 34px;
   color: var(--gold);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .footnote-band {

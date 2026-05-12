@@ -11,6 +11,7 @@ let minerFilter = "";
 let showAllUids = false;
 let sortState = { key: "score", direction: "desc", type: "number" };
 let scheduleTimer = 0;
+let homeRefreshTimer = 0;
 let dashboardRefreshTimer = 0;
 let dashboardCatchupTimer = 0;
 let dashboardCatchupAttempts = 0;
@@ -85,6 +86,11 @@ function hydrateHome(data, dataLoaded) {
     return;
   }
 
+  applyHomeData(data, dataLoaded);
+  startHomePolling();
+}
+
+function applyHomeData(data, dataLoaded) {
   const stats = dashboardStats(data);
   const current = data.theorems.current;
 
@@ -94,6 +100,18 @@ function hydrateHome(data, dataLoaded) {
   setAll("[data-top-score]", formatScore(stats.topMiner?.score));
   setAll("[data-top-miner]", topMinerLabel(stats.topMiner));
   setAll("[data-proof-count]", String(stats.proofCount));
+}
+
+function startHomePolling() {
+  window.clearInterval(homeRefreshTimer);
+  homeRefreshTimer = window.setInterval(refreshHomeData, DASHBOARD_REFRESH_MS);
+}
+
+async function refreshHomeData() {
+  const result = await loadDashboardData();
+  if (result.ok) {
+    applyHomeData(normalizeDashboardData(result.data), true);
+  }
 }
 
 function hydrateDashboard(data, dataLoaded) {
@@ -176,7 +194,7 @@ function theoremCard(label, theorem, isMain) {
         <p class="theorem-name">${badge(humanSplit(theorem.split))} ${badge(humanTopic(theorem.topic))}</p>
       </div>
       <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
-      <p class="statement-label">Formal statement to solve</p>
+      <p class="statement-label">Formal theorem to prove</p>
       <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
       <details class="technical-details">
         <summary>Details</summary>
@@ -199,7 +217,7 @@ function theoremCard(label, theorem, isMain) {
       </div>
     </div>
     <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
-    <p class="statement-label">Formal statement to solve</p>
+    <p class="statement-label">Formal theorem to prove</p>
     <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
     <details class="technical-details">
       <summary>Details</summary>
@@ -335,11 +353,23 @@ function topMinerLabel(miner) {
 }
 
 function plainTheorem(theorem) {
+  const explicit = cleanPlainTheorem(theorem?.plain_english || theorem?.plainEnglish);
+  if (explicit) {
+    return explicit;
+  }
   if (theorem?.type_expr) {
     return englishishLean(theorem.type_expr);
   }
   const fromExplanation = theorem?.explanation?.match(/prove that (.+)\.?$/i);
   return fromExplanation?.[1] ? englishishLean(fromExplanation[1]) : "Unknown theorem.";
+}
+
+function cleanPlainTheorem(value) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "";
+  }
+  return sentenceCase(text.replace(/^prove that\s+/i, ""));
 }
 
 function englishishLean(typeExpr) {
@@ -364,7 +394,7 @@ function englishishLean(typeExpr) {
   }
   const equivalence = splitOnce(text, " ↔ ");
   if (equivalence) {
-    return sentenceCase(`${clauseText(englishishLean(equivalence[0]))} is equivalent to ${clauseText(englishishLean(equivalence[1]))}`);
+    return sentenceCase(`${clauseText(englishishLean(equivalence[0]))} means the same thing as ${clauseText(englishishLean(equivalence[1]))}`);
   }
   const conjunction = splitOnce(text, " ∧ ");
   if (conjunction) {
@@ -378,6 +408,13 @@ function humanizeExpression(text) {
   const determinant = raw.match(/^Matrix\.det\s+\(.+\)\s+=\s+(.+)$/);
   if (determinant) {
     return `the determinant of the displayed matrix equals ${determinant[1]}`;
+  }
+  const finsetRange = raw.match(/^\(Finset\.range\s+(\d+)\)\.card\s*=\s*(\d+)$/);
+  if (finsetRange) {
+    return `the list of natural numbers from 0 up to ${Number(finsetRange[1]) - 1} has ${finsetRange[2]} entries`;
+  }
+  if (raw === "Continuous (fun x : ℝ => x)") {
+    return "the function that sends each real number to itself is continuous";
   }
   return raw
     .replace(/\(([^()]+)\s*:\s*ℚ\)/g, "$1")
@@ -393,7 +430,7 @@ function humanizeExpression(text) {
     .replaceAll(" -> ", " implies ")
     .replaceAll(" ∧ ", " and ")
     .replaceAll(" ∨ ", " or ")
-    .replaceAll(" ↔ ", " is equivalent to ")
+    .replaceAll(" ↔ ", " means the same thing as ")
     .replaceAll(" = ", " equals ")
     .replaceAll(" + ", " plus ")
     .replaceAll(" * ", " times ")
@@ -443,7 +480,10 @@ function stripPeriod(value) {
 
 function clauseText(value) {
   const text = stripPeriod(value);
-  if (/^[A-Z](?:$| (?:and|or|is|is not|is equivalent|equals|divides|cardinality)\b)/.test(text)) {
+  if (/^[A-Z]$/.test(text)) {
+    return text;
+  }
+  if (/^[A-Z]\b (?:(?:and|or)\b|means the same thing as)/.test(text)) {
     return text;
   }
   return text ? `${text.charAt(0).toLowerCase()}${text.slice(1)}` : "";

@@ -31,14 +31,18 @@ machine refreshes that file, the dashboard will be real but stale.
 The source of truth for that JSON file is the Lemma repo exporter:
 
 ```bash
-cd LOCAL_WORKSPACE/lemma
+LEMMA_REPO=/opt/lemma
+SITE_REPO=/srv/lemmasub.net
+SUMMARY_JSONL=/var/lib/lemma/public-summary.jsonl
+
+cd "$LEMMA_REPO"
 NETUID=467 \
 SUBTENSOR_NETWORK=test \
 SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 \
 PYTHONDONTWRITEBYTECODE=1 \
 .venv/bin/python -m tools.public_dashboard \
-  --summary-jsonl /var/lib/lemma/training.jsonl \
-  --json-out LOCAL_WORKSPACE/lemmasub.net/data/public-dashboard.json \
+  --summary-jsonl "$SUMMARY_JSONL" \
+  --json-out "$SITE_REPO/data/public-dashboard.json" \
   --html-out /private/tmp/lemma-public-dashboard.html
 ```
 
@@ -64,17 +68,21 @@ verify box, keep it that way and run the exporter from the validator host or a
 separate tiny automation machine.
 
 ```bash
-cd LOCAL_WORKSPACE/lemma
+LEMMA_REPO=/opt/lemma
+SITE_REPO=/srv/lemmasub.net
+SUMMARY_JSONL=/var/lib/lemma/public-summary.jsonl
+
+cd "$LEMMA_REPO"
 NETUID=467 \
 SUBTENSOR_NETWORK=test \
 SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 \
 PYTHONDONTWRITEBYTECODE=1 \
 .venv/bin/python -m tools.public_dashboard \
-  --summary-jsonl /var/lib/lemma/training.jsonl \
-  --json-out LOCAL_WORKSPACE/lemmasub.net/data/public-dashboard.json \
+  --summary-jsonl "$SUMMARY_JSONL" \
+  --json-out "$SITE_REPO/data/public-dashboard.json" \
   --html-out /private/tmp/lemma-public-dashboard.html
 
-cd LOCAL_WORKSPACE/lemmasub.net
+cd "$SITE_REPO"
 if ! git diff --quiet -- data/public-dashboard.json; then
   git add data/public-dashboard.json
   git commit -m "Refresh public dashboard data"
@@ -89,7 +97,7 @@ access, and Git push access to `spacetime-tao/lemmasub.net`.
 Minimal cron shape:
 
 ```cron
-*/3 * * * * cd LOCAL_WORKSPACE/lemma && NETUID=467 SUBTENSOR_NETWORK=test SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard --summary-jsonl /var/lib/lemma/training.jsonl --json-out LOCAL_WORKSPACE/lemmasub.net/data/public-dashboard.json --html-out /private/tmp/lemma-public-dashboard.html && cd LOCAL_WORKSPACE/lemmasub.net && if ! git diff --quiet -- data/public-dashboard.json; then git add data/public-dashboard.json && git commit -m "Refresh public dashboard data" && git push origin main; fi
+*/3 * * * * cd /opt/lemma && NETUID=467 SUBTENSOR_NETWORK=test SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard --summary-jsonl /var/lib/lemma/public-summary.jsonl --json-out /srv/lemmasub.net/data/public-dashboard.json --html-out /private/tmp/lemma-public-dashboard.html && cd /srv/lemmasub.net && if ! git diff --quiet -- data/public-dashboard.json; then git add data/public-dashboard.json && git commit -m "Refresh public dashboard data" && git push origin main; fi
 ```
 
 For launchd, use the same command with a `StartInterval` around `180` to `300`
