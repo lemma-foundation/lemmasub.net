@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7106393,
+  "chain_head_block": 7106411,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-12T15:34:12Z",
+  "generated_at": "2026-05-12T15:37:43Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -87,8 +87,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7106300,
-  "problem_seed_chain_head": 7106393,
+  "problem_seed": 7106400,
+  "problem_seed_chain_head": 7106411,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -96,18 +96,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "A hard modular arithmetic statement: prove that \u2200 A B : Finset Nat, A is a subset of B implies A.card is at most B.card.",
-      "label": "current",
-      "name": "t_27a61d5",
-      "seed": 7106300,
-      "split": "hard",
-      "theorem_id": "gen/7106300",
-      "topic": "number_theory.mod_arith",
-      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
-    },
-    "next": {
       "explanation": "A medium basic statement: prove that \u2200 xs ys : List Nat, (xs ++ ys).length equals xs.length plus ys.length.",
-      "label": "next",
+      "label": "current",
       "name": "t_258fccf",
       "seed": 7106400,
       "split": "medium",
@@ -115,15 +105,25 @@
       "topic": "algebra.basic",
       "type_expr": "\u2200 xs ys : List Nat, (xs ++ ys).length = xs.length + ys.length"
     },
+    "next": {
+      "explanation": "A medium ring statement: prove that \u2200 a b c is a natural number, a \u2223 b implies b \u2223 c implies a \u2223 c.",
+      "label": "next",
+      "name": "t_888e29",
+      "seed": 7106500,
+      "split": "medium",
+      "theorem_id": "gen/7106500",
+      "topic": "algebra.ring",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
+    },
     "previous": {
-      "explanation": "An easy real-number analysis statement: prove that (16 : \u211d) plus (2 : \u211d) equals (18 : \u211d).",
+      "explanation": "A hard modular arithmetic statement: prove that \u2200 A B : Finset Nat, A is a subset of B implies A.card is at most B.card.",
       "label": "previous",
-      "name": "t_37e30a",
-      "seed": 7106200,
-      "split": "easy",
-      "theorem_id": "gen/7106200",
-      "topic": "analysis.real_basic",
-      "type_expr": "(16 : \u211d) + (2 : \u211d) = (18 : \u211d)"
+      "name": "t_27a61d5",
+      "seed": 7106300,
+      "split": "hard",
+      "theorem_id": "gen/7106300",
+      "topic": "number_theory.mod_arith",
+      "type_expr": "\u2200 A B : Finset Nat, A \u2286 B \u2192 A.card \u2264 B.card"
     }
   }
 }
