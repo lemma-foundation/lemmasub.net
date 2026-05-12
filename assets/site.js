@@ -2,13 +2,17 @@ const DATA_URL = new URL(
   document.body.dataset.page === "dashboard" ? "../data/public-dashboard.json" : "data/public-dashboard.json",
   document.baseURI,
 ).href;
+const DASHBOARD_REFRESH_MS = 30000;
 
 let miners = [];
 let minerFilter = "";
+let activeOnly = true;
 let verifiedOnly = false;
 let sortState = { key: "score", direction: "desc", type: "number" };
 let scheduleTimer = 0;
+let dashboardRefreshTimer = 0;
 let scheduleCanRotate = false;
+let controlsAttached = false;
 let displayedTheorems = {};
 let dashboardData = {};
 let dashboardDataLoaded = false;
@@ -89,6 +93,13 @@ function hydrateDashboard(data, dataLoaded) {
     return;
   }
 
+  attachMinerControls();
+  applyDashboardData(data, dataLoaded, { animate: false });
+  startDashboardPolling();
+}
+
+function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
+  const previousCurrent = theoremKey(displayedTheorems.current);
   miners = data.miners;
   dashboardData = data;
   dashboardDataLoaded = dataLoaded;
@@ -98,22 +109,25 @@ function hydrateDashboard(data, dataLoaded) {
   setText("[data-dashboard-state]", dashboardStateText(data, dataLoaded));
   setText("[data-status-network]", networkLabel(data));
   setText("[data-status-age]", dataAgeLabel(data.generated_at));
-  setText("[data-status-chain-head]", formatInteger(data.chain_head_block));
+  setText("[data-status-chain-head]", blockNumberLabel(data));
   setAll("[data-miner-count]", String(stats.minerCount));
   setAll("[data-top-score]", formatScore(stats.topMiner?.score));
   setAll("[data-top-miner]", stats.topMiner ? `UID ${stats.topMiner.uid}` : "No data");
   setAll("[data-proof-count]", String(stats.proofCount));
 
+  const theoremChanged = previousCurrent && previousCurrent !== theoremKey(displayedTheorems.current);
   renderTheorems(displayedTheorems);
+  if (animate && theoremChanged) {
+    animateTheoremGrid();
+  }
   startScheduleTicker(data);
   setHidden("[data-empty-miners]", stats.minerCount > 0);
-  attachMinerControls();
   renderMiners();
 }
 
 function dashboardStats(data) {
-  const validMiners = data.miners.filter((miner) => miner.uid !== null);
-  const topMiner = validMiners.filter((miner) => miner.score !== null).sort((a, b) => {
+  const validMiners = data.miners.filter(isActiveMiner);
+  const topMiner = validMiners.sort((a, b) => {
     return b.score - a.score || Number(a.uid) - Number(b.uid);
   })[0];
 
@@ -156,7 +170,7 @@ function theoremCard(label, theorem, isMain) {
       <${heading}>${escapeHtml(theoremTitle(theorem))}</${heading}>
       <p class="statement-label">Lean type</p>
       <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
-      <p class="theorem-explain">${escapeHtml(glossTheorem(theorem))}</p>
+      <p class="plain-type"><span>Plain English</span>${escapeHtml(plainTheorem(theorem))}</p>
       <details class="technical-details">
         <summary>Details</summary>
         <dl>
@@ -180,7 +194,6 @@ function theoremCard(label, theorem, isMain) {
     <${heading}>${escapeHtml(theoremTitle(theorem))}</${heading}>
     <p class="statement-label">Lean type</p>
     <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
-    <p class="theorem-explain">${escapeHtml(glossTheorem(theorem))}</p>
     <p class="plain-type"><span>Plain English</span>${escapeHtml(plainTheorem(theorem))}</p>
     <details class="technical-details">
       <summary>Details</summary>
@@ -194,8 +207,23 @@ function theoremCard(label, theorem, isMain) {
 }
 
 function attachMinerControls() {
+  if (controlsAttached) {
+    return;
+  }
+  controlsAttached = true;
+
+  const activeInput = document.querySelector("[data-active-only]");
+  if (activeInput) {
+    activeInput.checked = activeOnly;
+  }
+
   document.querySelector("[data-miner-search]")?.addEventListener("input", (event) => {
     minerFilter = event.target.value.trim().toLowerCase();
+    renderMiners();
+  });
+
+  document.querySelector("[data-active-only]")?.addEventListener("change", (event) => {
+    activeOnly = event.target.checked;
     renderMiners();
   });
 
@@ -234,7 +262,7 @@ function emptyMinerText() {
   if (!dashboardDataLoaded) {
     return "Public dashboard JSON is unavailable.";
   }
-  if (minerFilter || verifiedOnly) {
+  if (minerFilter || verifiedOnly || activeOnly) {
     return "No miners match this view.";
   }
   return "No public miner rows in this export.";
@@ -242,6 +270,9 @@ function emptyMinerText() {
 
 function filteredMiners() {
   return miners.filter((miner) => {
+    if (activeOnly && !isActiveMiner(miner)) {
+      return false;
+    }
     if (verifiedOnly && miner.correct <= 0) {
       return false;
     }
@@ -250,6 +281,10 @@ function filteredMiners() {
     }
     return [miner.uid, miner.coldkey, miner.hotkey].join(" ").toLowerCase().includes(minerFilter);
   });
+}
+
+function isActiveMiner(miner) {
+  return miner.uid !== null && Number(miner.score || 0) > 0;
 }
 
 function compareMiners(a, b) {
@@ -309,22 +344,13 @@ function theoremTitle(theorem) {
   return humanTopic(theorem?.topic) ? `${humanTopic(theorem.topic)} theorem` : "Generated theorem";
 }
 
-function glossTheorem(theorem) {
-  const type = String(theorem?.type_expr || "");
-  if (type.includes("⊆") && type.includes(".card")) {
-    return "If every element of A is also in B, then A cannot have more elements than B.";
-  }
-  if (type.includes("Nat.Prime") && type.includes("∣")) {
-    return "Find a natural number that is prime and divides 2.";
-  }
-  if (type.includes("Matrix.det")) {
-    return "Compute the determinant of the displayed matrix.";
-  }
-  return cleanExplanation(theorem?.explanation);
-}
-
 function englishishLean(typeExpr) {
   const text = String(typeExpr || "").trim().replace(/^∀\s+/, "forall ").replace(/^∃\s+/, "exists ");
+  const notExists = text.match(/^¬\s*∃\s+(.+?)\s+:\s+(.+?),\s*(.+)$/);
+  if (notExists) {
+    const noun = leanTypeNoun(notExists[2]);
+    return sentenceCase(`there is no ${noun} ${notExists[1].trim()} such that ${clauseText(englishishLean(notExists[3]))}`);
+  }
   const exists = text.match(/^exists\s+(.+?)\s+:\s+(.+?),\s+(.+)$/);
   if (exists) {
     const noun = leanTypeNoun(exists[2]);
@@ -352,6 +378,7 @@ function humanizeExpression(text) {
     return `the determinant of the displayed matrix equals ${determinant[1]}`;
   }
   return raw
+    .replace(/\(([^()]+)\s*:\s*ℚ\)/g, "$1")
     .replace(/Nat\.Prime\s+([A-Za-z0-9_]+)/g, "$1 is prime")
     .replace(/([A-Za-z0-9_]+)\.card\s*≤\s*([A-Za-z0-9_]+)\.card/g, "the number of elements in $1 is at most the number of elements in $2")
     .replace(/([A-Za-z0-9_]+)\s*∈\s*([A-Za-z0-9_]+)/g, "$1 is in $2")
@@ -367,6 +394,7 @@ function humanizeExpression(text) {
     .replaceAll(" = ", " equals ")
     .replaceAll(" + ", " plus ")
     .replaceAll(" * ", " times ")
+    .replaceAll(" ^ ", " to the power ")
     .replaceAll(" ≤ ", " is at most ")
     .replaceAll(" ≥ ", " is at least ");
 }
@@ -379,18 +407,11 @@ function leanTypeNoun(typeName) {
     Real: "real number",
     "ℝ": "real number",
     "ℤ": "integer",
+    "ℚ": "rational number",
     Prop: "proposition",
     Type: "type",
     "Finset Nat": "finite set of natural numbers"
   }[typeName] || typeName;
-}
-
-function cleanExplanation(explanation) {
-  const text = String(explanation || "").trim();
-  if (!text) {
-    return "No public explanation available.";
-  }
-  return text.replace(/prove that .+\.?$/i, `prove the statement above.`);
 }
 
 function joinNames(names) {
@@ -480,6 +501,9 @@ function startScheduleTicker(data) {
 
 function tickSchedule(data) {
   const countdown = secondsUntilNextTheorem(data);
+  setText("[data-status-age]", dataAgeLabel(data.generated_at));
+  setText("[data-status-chain-head]", blockNumberLabel(data));
+  setText("[data-dashboard-state]", dashboardStateText(data, dashboardDataLoaded));
   if (countdown === null) {
     setText("[data-next-countdown]", "unknown");
     return;
@@ -487,10 +511,11 @@ function tickSchedule(data) {
   if (countdown === 0 && scheduleCanRotate && displayedTheorems.next) {
     scheduleCanRotate = false;
     rotateTheorems();
-    setText("[data-next-countdown]", "Refresh for latest theorem");
+    refreshDashboardData();
+    setText("[data-next-countdown]", "Waiting for public data");
     return;
   }
-  setText("[data-next-countdown]", countdown === 0 ? "Refresh for latest theorem" : formatDuration(countdown));
+  setText("[data-next-countdown]", countdown === 0 ? "Waiting for public data" : formatDuration(countdown));
 }
 
 function rotateTheorems() {
@@ -500,10 +525,35 @@ function rotateTheorems() {
     next: null
   };
   dashboardData = { ...dashboardData, theorems: displayedTheorems };
+  renderTheorems(displayedTheorems);
+  animateTheoremGrid();
+}
+
+function animateTheoremGrid() {
   const grid = document.querySelector("[data-theorem-grid]");
   grid?.classList.add("is-rotating");
-  renderTheorems(displayedTheorems);
   window.setTimeout(() => grid?.classList.remove("is-rotating"), 450);
+}
+
+function theoremKey(theorem) {
+  if (!theorem) {
+    return "";
+  }
+  return String(theorem.theorem_id || theorem.seed || theorem.type_expr || "");
+}
+
+function startDashboardPolling() {
+  window.clearInterval(dashboardRefreshTimer);
+  dashboardRefreshTimer = window.setInterval(refreshDashboardData, DASHBOARD_REFRESH_MS);
+}
+
+async function refreshDashboardData() {
+  const result = await loadDashboardData();
+  if (!result.ok) {
+    setText("[data-dashboard-state]", "Unable to refresh public data. Showing the last loaded snapshot.");
+    return;
+  }
+  applyDashboardData(normalizeDashboardData(result.data), true);
 }
 
 function formatDuration(totalSeconds) {
@@ -612,6 +662,24 @@ function formatScore(value) {
 function formatInteger(value) {
   const number = numberOrNull(value);
   return number === null ? "unknown" : new Intl.NumberFormat("en-US").format(number);
+}
+
+function blockNumberLabel(data) {
+  const number = estimatedBlockNumber(data);
+  return number === null ? "unknown" : formatInteger(number);
+}
+
+function estimatedBlockNumber(data) {
+  const chainHead = numberOrNull(data.chain_head_block);
+  const blockTime = numberOrNull(data.block_time_sec_estimate);
+  const generatedAt = Date.parse(data.generated_at);
+  if (chainHead === null) {
+    return null;
+  }
+  if (blockTime === null || blockTime <= 0 || Number.isNaN(generatedAt)) {
+    return chainHead;
+  }
+  return Math.floor(chainHead + Math.max(0, Date.now() - generatedAt) / 1000 / blockTime);
 }
 
 function formatAge(value) {
