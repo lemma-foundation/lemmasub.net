@@ -55,6 +55,13 @@ Set the network values explicitly. Without those environment variables, the
 exporter falls back to Finney/netuid 0. The public Lemma testnet dashboard should
 use `SUBTENSOR_NETWORK=test` and `NETUID=467`.
 
+Keep the Lemma checkout on the refresh machine current before publishing dashboard
+JSON. In particular, the site expects the exporter contract that writes
+`schema_version: 2`, `theorems.*.plain_english`, `proofs_passed_prior_round`,
+and `miners[].passed_prior_round`. If the validator summary JSONL is stale or
+missing, the exporter should publish unavailable round data rather than inventing
+a count from the rolling 24-hour totals.
+
 For the live site, the recommended path is a validator-side cron or launchd job
 on one always-on machine. That can be your local machine if it stays online, or
 a VPS (Virtual Private Server) if you want steadier uptime.
