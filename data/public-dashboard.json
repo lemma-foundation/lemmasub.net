@@ -1,13 +1,13 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7112840,
+  "chain_head_block": 7112853,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T13:03:29Z",
+  "generated_at": "2026-05-13T13:06:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 21,
+      "correct_theorems_24h": 22,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -21,7 +21,7 @@
       "correct_theorems_24h": 10,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.2576180696487427,
       "uid": 6,
       "uid_url": ""
@@ -51,7 +51,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 20,
+      "correct_theorems_24h": 21,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -62,7 +62,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 13,
+      "correct_theorems_24h": 14,
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -73,7 +73,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 12,
+      "correct_theorems_24h": 13,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -84,7 +84,7 @@
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
       "coldkey_url": "",
-      "correct_theorems_24h": 14,
+      "correct_theorems_24h": 15,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -96,11 +96,11 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7112800,
-  "problem_seed_chain_head": 7112840,
+  "problem_seed_chain_head": 7112853,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "proofs_passed_prior_round": 6,
+  "proofs_passed_prior_round": 5,
   "schema_version": 3,
   "score_source": "metagraph_incentive",
   "theorems": {
