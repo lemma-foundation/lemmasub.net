@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7113993,
+  "chain_head_block": 7114008,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T16:54:12Z",
+  "generated_at": "2026-05-13T16:57:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7113900,
-  "problem_seed_chain_head": 7113993,
+  "problem_seed": 7114000,
+  "problem_seed_chain_head": 7114008,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that appending two lists adds their lengths.",
-      "label": "current",
-      "name": "t_2581f03",
-      "plain_english": "Prove that appending two lists adds their lengths.",
-      "seed": 7113900,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7113900",
-      "topic": "combinatorics.counting",
-      "type_expr": "\u2200 xs ys : List Nat, (xs ++ ys).length = xs.length + ys.length"
-    },
-    "next": {
       "explanation": "Prove that a symmetric relation can be used in the reversed direction.",
-      "label": "next",
+      "label": "current",
       "name": "curated_symmetric_relation",
       "plain_english": "Prove that a symmetric relation can be used in the reversed direction.",
       "seed": 7114000,
@@ -128,17 +116,29 @@
       "topic": "graph_theory.discrete",
       "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b : Nat, R a b \u2192 R b a) \u2192 \u2200 a b : Nat, R a b \u2192 R b a"
     },
-    "previous": {
-      "explanation": "Prove that the square root of two is irrational.",
-      "label": "previous",
-      "name": "t_132784d",
-      "plain_english": "Prove that the square root of two is irrational.",
-      "seed": 7113800,
+    "next": {
+      "explanation": "Prove that the displayed polynomial function over real numbers is continuous.",
+      "label": "next",
+      "name": "t_4409326",
+      "plain_english": "Prove that the displayed polynomial function over real numbers is continuous.",
+      "seed": 7114100,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7113800",
-      "topic": "number_theory.primes",
-      "type_expr": "Irrational (Real.sqrt 2)"
+      "theorem_id": "gen/7114100",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => (x + 7) ^ 2 + x)"
+    },
+    "previous": {
+      "explanation": "Prove that appending two lists adds their lengths.",
+      "label": "previous",
+      "name": "t_2581f03",
+      "plain_english": "Prove that appending two lists adds their lengths.",
+      "seed": 7113900,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7113900",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u2200 xs ys : List Nat, (xs ++ ys).length = xs.length + ys.length"
     }
   }
 }
