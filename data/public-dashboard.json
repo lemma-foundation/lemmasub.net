@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7111398,
+  "chain_head_block": 7111413,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T08:15:13Z",
+  "generated_at": "2026-05-13T08:18:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7111300,
-  "problem_seed_chain_head": 7111398,
+  "problem_seed": 7111400,
+  "problem_seed_chain_head": 7111413,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove set equality from mutual subset containment.",
-      "label": "current",
-      "name": "t_23f9ab1",
-      "plain_english": "Prove set equality from mutual subset containment.",
-      "seed": 7111300,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7111300",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B : Set Nat, A \u2286 B \u2192 B \u2286 A \u2192 A = B"
-    },
-    "next": {
       "explanation": "Prove that adding the same integer to both sides preserves order.",
-      "label": "next",
+      "label": "current",
       "name": "t_21d1e53",
       "plain_english": "Prove that adding the same integer to both sides preserves order.",
       "seed": 7111400,
@@ -128,17 +116,29 @@
       "topic": "algebra.order",
       "type_expr": "\u2200 x y : \u2124, x \u2264 y \u2192 x + 35 \u2264 y + 35"
     },
+    "next": {
+      "explanation": "Prove the displayed length identity for appended replicated lists.",
+      "label": "next",
+      "name": "t_3bc138c",
+      "plain_english": "Prove the displayed length identity for appended replicated lists.",
+      "seed": 7111500,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7111500",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u2200 n m : Nat, (List.replicate n 1 ++ List.replicate m 1).length = n + m"
+    },
     "previous": {
-      "explanation": "Prove the displayed modular reduction used in a toy arithmetic setting.",
+      "explanation": "Prove set equality from mutual subset containment.",
       "label": "previous",
-      "name": "curated_mod_12345_97",
-      "plain_english": "Prove the displayed modular reduction used in a toy arithmetic setting.",
-      "seed": 7111200,
-      "source_lane": "catalog",
-      "split": "easy",
-      "theorem_id": "curated/crypto/mod_12345_97",
-      "topic": "cryptography.modular",
-      "type_expr": "(12345 : Nat) % 97 = 26"
+      "name": "t_23f9ab1",
+      "plain_english": "Prove set equality from mutual subset containment.",
+      "seed": 7111300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7111300",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B : Set Nat, A \u2286 B \u2192 B \u2286 A \u2192 A = B"
     }
   }
 }
