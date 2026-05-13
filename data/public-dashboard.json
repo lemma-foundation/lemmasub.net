@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7114593,
+  "chain_head_block": 7114608,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T18:54:12Z",
+  "generated_at": "2026-05-13T18:57:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7114500,
-  "problem_seed_chain_head": 7114593,
+  "problem_seed": 7114600,
+  "problem_seed_chain_head": 7114608,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that the displayed identity matrix has determinant one.",
-      "label": "current",
-      "name": "t_17e27b2",
-      "plain_english": "Prove that the displayed identity matrix has determinant one.",
-      "seed": 7114500,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7114500",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u2124) = 1"
-    },
-    "next": {
       "explanation": "Prove the displayed modular reduction used in a toy arithmetic setting.",
-      "label": "next",
+      "label": "current",
       "name": "curated_mod_12345_97",
       "plain_english": "Prove the displayed modular reduction used in a toy arithmetic setting.",
       "seed": 7114600,
@@ -128,17 +116,29 @@
       "topic": "cryptography.modular",
       "type_expr": "(12345 : Nat) % 97 = 26"
     },
-    "previous": {
-      "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "previous",
-      "name": "curated_continuous_shift",
-      "plain_english": "Prove that shifting a real number by one is a continuous function.",
-      "seed": 7114400,
-      "source_lane": "catalog",
+    "next": {
+      "explanation": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
+      "label": "next",
+      "name": "t_3ff0878",
+      "plain_english": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
+      "seed": 7114700,
+      "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "curated/analysis/continuous_shift",
-      "topic": "analysis.continuity",
-      "type_expr": "Continuous (fun x : \u211d => x + 1)"
+      "theorem_id": "gen/7114700",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 b * c + c * b"
+    },
+    "previous": {
+      "explanation": "Prove that the displayed identity matrix has determinant one.",
+      "label": "previous",
+      "name": "t_17e27b2",
+      "plain_english": "Prove that the displayed identity matrix has determinant one.",
+      "seed": 7114500,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7114500",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u2124) = 1"
     }
   }
 }
