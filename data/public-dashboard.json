@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7115388,
+  "chain_head_block": 7115403,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T21:33:12Z",
+  "generated_at": "2026-05-13T21:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7115300,
-  "problem_seed_chain_head": 7115388,
+  "problem_seed": 7115400,
+  "problem_seed_chain_head": 7115403,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "current",
-      "name": "curated_continuous_shift",
-      "plain_english": "Prove that shifting a real number by one is a continuous function.",
-      "seed": 7115300,
-      "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/analysis/continuous_shift",
-      "topic": "analysis.continuity",
-      "type_expr": "Continuous (fun x : \u211d => x + 1)"
-    },
-    "next": {
       "explanation": "Prove that inserting one natural number into the empty finite set gives cardinality one.",
-      "label": "next",
+      "label": "current",
       "name": "t_184dae8",
       "plain_english": "Prove that inserting one natural number into the empty finite set gives cardinality one.",
       "seed": 7115400,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.finite_sets",
       "type_expr": "(insert 5 (\u2205 : Finset Nat)).card = 1"
     },
+    "next": {
+      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
+      "label": "next",
+      "name": "curated_predicate_exists",
+      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
+      "seed": 7115500,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/logic/predicate_exists",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
+    },
     "previous": {
-      "explanation": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
+      "explanation": "Prove that shifting a real number by one is a continuous function.",
       "label": "previous",
-      "name": "curated_matrix_zero_add",
-      "plain_english": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
-      "seed": 7115200,
+      "name": "curated_continuous_shift",
+      "plain_english": "Prove that shifting a real number by one is a continuous function.",
+      "seed": 7115300,
       "source_lane": "catalog",
       "split": "hard",
-      "theorem_id": "curated/matrix/zero_add",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, 0 + A = A"
+      "theorem_id": "curated/analysis/continuous_shift",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => x + 1)"
     }
   }
 }
