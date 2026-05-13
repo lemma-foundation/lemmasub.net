@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7110888,
+  "chain_head_block": 7110903,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T06:33:13Z",
+  "generated_at": "2026-05-13T06:36:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7110800,
-  "problem_seed_chain_head": 7110888,
+  "problem_seed": 7110900,
+  "problem_seed_chain_head": 7110903,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove the displayed triangle inequality for absolute value.",
-      "label": "current",
-      "name": "t_14d6a69",
-      "plain_english": "Prove the displayed triangle inequality for absolute value.",
-      "seed": 7110800,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7110800",
-      "topic": "geometry.metric",
-      "type_expr": "\u2200 x y z : \u211d, |x - z| \u2264 |x - y| + |y - z|"
-    },
-    "next": {
       "explanation": "Prove that the displayed identity matrix has determinant one.",
-      "label": "next",
+      "label": "current",
       "name": "t_17e2842",
       "plain_english": "Prove that the displayed identity matrix has determinant one.",
       "seed": 7110900,
@@ -128,17 +116,29 @@
       "topic": "linear_algebra.matrix",
       "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u2124) = 1"
     },
+    "next": {
+      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "label": "next",
+      "name": "curated_list_append_nil_induction",
+      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "seed": 7111000,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/foundations/list_append_nil_induction",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
+    },
     "previous": {
-      "explanation": "Prove the displayed difference-of-squares identity over the integers.",
+      "explanation": "Prove the displayed triangle inequality for absolute value.",
       "label": "previous",
-      "name": "t_2872eff",
-      "plain_english": "Prove the displayed difference-of-squares identity over the integers.",
-      "seed": 7110700,
+      "name": "t_14d6a69",
+      "plain_english": "Prove the displayed triangle inequality for absolute value.",
+      "seed": 7110800,
       "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7110700",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 a b : \u2124, (a + b) ^ 2 - (a - b) ^ 2 = 4 * a * b"
+      "split": "medium",
+      "theorem_id": "gen/7110800",
+      "topic": "geometry.metric",
+      "type_expr": "\u2200 x y z : \u211d, |x - z| \u2264 |x - y| + |y - z|"
     }
   }
 }
