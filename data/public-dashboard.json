@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7115598,
+  "chain_head_block": 7115613,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T22:15:12Z",
+  "generated_at": "2026-05-13T22:18:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7115500,
-  "problem_seed_chain_head": 7115598,
+  "problem_seed": 7115600,
+  "problem_seed_chain_head": 7115613,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "current",
-      "name": "curated_predicate_exists",
-      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
-      "seed": 7115500,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/logic/predicate_exists",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
-    },
-    "next": {
       "explanation": "Prove that divisibility is transitive for natural numbers.",
-      "label": "next",
+      "label": "current",
       "name": "t_8872bd",
       "plain_english": "Prove that divisibility is transitive for natural numbers.",
       "seed": 7115600,
@@ -128,17 +116,29 @@
       "topic": "number_theory.divisibility",
       "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
     },
-    "previous": {
-      "explanation": "Prove that inserting one natural number into the empty finite set gives cardinality one.",
-      "label": "previous",
-      "name": "t_184dae8",
-      "plain_english": "Prove that inserting one natural number into the empty finite set gives cardinality one.",
-      "seed": 7115400,
+    "next": {
+      "explanation": "Prove that image preserves a two-step subset chain under a function.",
+      "label": "next",
+      "name": "t_48faac2",
+      "plain_english": "Prove that image preserves a two-step subset chain under a function.",
+      "seed": 7115700,
       "source_lane": "generated",
-      "split": "easy",
-      "theorem_id": "gen/7115400",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "(insert 5 (\u2205 : Finset Nat)).card = 1"
+      "split": "extreme",
+      "theorem_id": "gen/7115700",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B C : Set Nat), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
+    },
+    "previous": {
+      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
+      "label": "previous",
+      "name": "curated_predicate_exists",
+      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
+      "seed": 7115500,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/logic/predicate_exists",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
     }
   }
 }
