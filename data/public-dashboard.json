@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7112028,
+  "chain_head_block": 7112043,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T10:21:13Z",
+  "generated_at": "2026-05-13T10:24:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -32,7 +32,7 @@
       "correct_theorems_24h": 10,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.10621805489063263,
       "uid": 5,
       "uid_url": ""
@@ -43,7 +43,7 @@
       "correct_theorems_24h": 7,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.04888990521430969,
       "uid": 6,
       "uid_url": ""
@@ -96,7 +96,7 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7112000,
-  "problem_seed_chain_head": 7112028,
+  "problem_seed_chain_head": 7112043,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
