@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7109088,
+  "chain_head_block": 7109103,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T00:33:14Z",
+  "generated_at": "2026-05-13T00:36:14Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7109000,
-  "problem_seed_chain_head": 7109088,
+  "problem_seed": 7109100,
+  "problem_seed_chain_head": 7109103,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a proposition and an implication from it are enough to prove the conclusion.",
-      "label": "current",
-      "name": "curated_and_imp_elim",
-      "plain_english": "Prove that a proposition and an implication from it are enough to prove the conclusion.",
-      "seed": 7109000,
-      "source_lane": "catalog",
-      "split": "easy",
-      "theorem_id": "curated/logic/and_imp_elim",
-      "topic": "logic.propositional",
-      "type_expr": "\u2200 P Q : Prop, P \u2227 (P \u2192 Q) \u2192 Q"
-    },
-    "next": {
       "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "label": "next",
+      "label": "current",
       "name": "curated_list_append_nil_induction",
       "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
       "seed": 7109100,
@@ -128,17 +116,29 @@
       "topic": "foundations.recursion",
       "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
     },
+    "next": {
+      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
+      "label": "next",
+      "name": "t_41413f1",
+      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
+      "seed": 7109200,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7109200",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
+    },
     "previous": {
-      "explanation": "Prove the displayed concrete modular-arithmetic identity.",
+      "explanation": "Prove that a proposition and an implication from it are enough to prove the conclusion.",
       "label": "previous",
-      "name": "curated_mod_37_5",
-      "plain_english": "Prove the displayed concrete modular-arithmetic identity.",
-      "seed": 7108900,
+      "name": "curated_and_imp_elim",
+      "plain_english": "Prove that a proposition and an implication from it are enough to prove the conclusion.",
+      "seed": 7109000,
       "source_lane": "catalog",
       "split": "easy",
-      "theorem_id": "curated/number_theory/mod_37_5",
-      "topic": "number_theory.mod_arith",
-      "type_expr": "(37 : Nat) % 5 = 2"
+      "theorem_id": "curated/logic/and_imp_elim",
+      "topic": "logic.propositional",
+      "type_expr": "\u2200 P Q : Prop, P \u2227 (P \u2192 Q) \u2192 Q"
     }
   }
 }
