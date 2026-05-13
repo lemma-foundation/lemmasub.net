@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7109193,
+  "chain_head_block": 7109208,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T00:54:13Z",
+  "generated_at": "2026-05-13T00:57:08Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7109100,
-  "problem_seed_chain_head": 7109193,
+  "problem_seed": 7109200,
+  "problem_seed_chain_head": 7109208,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "label": "current",
-      "name": "curated_list_append_nil_induction",
-      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "seed": 7109100,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/foundations/list_append_nil_induction",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
-    },
-    "next": {
       "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "next",
+      "label": "current",
       "name": "t_41413f1",
       "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
       "seed": 7109200,
@@ -128,17 +116,29 @@
       "topic": "logic.predicates",
       "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
     },
+    "next": {
+      "explanation": "Prove that the displayed identity matrix has determinant one.",
+      "label": "next",
+      "name": "t_17ed202",
+      "plain_english": "Prove that the displayed identity matrix has determinant one.",
+      "seed": 7109300,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7109300",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u2124) = 1"
+    },
     "previous": {
-      "explanation": "Prove that a proposition and an implication from it are enough to prove the conclusion.",
+      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
       "label": "previous",
-      "name": "curated_and_imp_elim",
-      "plain_english": "Prove that a proposition and an implication from it are enough to prove the conclusion.",
-      "seed": 7109000,
+      "name": "curated_list_append_nil_induction",
+      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "seed": 7109100,
       "source_lane": "catalog",
-      "split": "easy",
-      "theorem_id": "curated/logic/and_imp_elim",
-      "topic": "logic.propositional",
-      "type_expr": "\u2200 P Q : Prop, P \u2227 (P \u2192 Q) \u2192 Q"
+      "split": "medium",
+      "theorem_id": "curated/foundations/list_append_nil_induction",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
     }
   }
 }
