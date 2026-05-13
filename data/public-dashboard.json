@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7113693,
+  "chain_head_block": 7113708,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T15:54:13Z",
+  "generated_at": "2026-05-13T15:57:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7113600,
-  "problem_seed_chain_head": 7113693,
+  "problem_seed": 7113700,
+  "problem_seed_chain_head": 7113708,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "current",
-      "name": "curated_continuous_shift",
-      "plain_english": "Prove that shifting a real number by one is a continuous function.",
-      "seed": 7113600,
-      "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/analysis/continuous_shift",
-      "topic": "analysis.continuity",
-      "type_expr": "Continuous (fun x : \u211d => x + 1)"
-    },
-    "next": {
       "explanation": "Prove that a natural number dividing two values also divides their sum.",
-      "label": "next",
+      "label": "current",
       "name": "curated_dvd_add",
       "plain_english": "Prove that a natural number dividing two values also divides their sum.",
       "seed": 7113700,
@@ -128,17 +116,29 @@
       "topic": "number_theory.divisibility",
       "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b + c"
     },
+    "next": {
+      "explanation": "Prove that the square root of two is irrational.",
+      "label": "next",
+      "name": "t_132784d",
+      "plain_english": "Prove that the square root of two is irrational.",
+      "seed": 7113800,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7113800",
+      "topic": "number_theory.primes",
+      "type_expr": "Irrational (Real.sqrt 2)"
+    },
     "previous": {
-      "explanation": "Prove that concatenating two Boolean words adds their lengths.",
+      "explanation": "Prove that shifting a real number by one is a continuous function.",
       "label": "previous",
-      "name": "curated_bool_word_append_length",
-      "plain_english": "Prove that concatenating two Boolean words adds their lengths.",
-      "seed": 7113500,
+      "name": "curated_continuous_shift",
+      "plain_english": "Prove that shifting a real number by one is a continuous function.",
+      "seed": 7113600,
       "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/automata/list_bool_append_length",
-      "topic": "automata.regular_lite",
-      "type_expr": "\u2200 xs ys : List Bool, (xs ++ ys).length = xs.length + ys.length"
+      "split": "hard",
+      "theorem_id": "curated/analysis/continuous_shift",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => x + 1)"
     }
   }
 }
