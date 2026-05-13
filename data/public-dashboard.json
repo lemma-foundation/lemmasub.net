@@ -1,13 +1,13 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7114953,
+  "chain_head_block": 7114970,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T20:06:14Z",
+  "generated_at": "2026-05-13T20:09:28Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 33,
+      "correct_theorems_24h": 34,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -18,7 +18,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 32,
+      "correct_theorems_24h": 33,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -32,7 +32,7 @@
       "correct_theorems_24h": 22,
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.09950408339500427,
       "uid": 4,
       "uid_url": ""
@@ -62,10 +62,10 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 14,
+      "correct_theorems_24h": 15,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.007492179982364178,
       "uid": 6,
       "uid_url": ""
@@ -96,7 +96,7 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7114900,
-  "problem_seed_chain_head": 7114953,
+  "problem_seed_chain_head": 7114970,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
