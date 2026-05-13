@@ -1,5 +1,6 @@
+const PAGE = document.body.dataset.page;
 const DATA_URL = new URL(
-  document.body.dataset.page === "dashboard" ? "../data/public-dashboard.json" : "data/public-dashboard.json",
+  PAGE === "dashboard" ? "../data/public-dashboard.json" : "data/public-dashboard.json",
   document.baseURI,
 ).href;
 const DASHBOARD_REFRESH_MS = 10000;
@@ -26,6 +27,9 @@ let optimisticRotationKey = "";
 document.addEventListener("DOMContentLoaded", async () => {
   initializeTheme();
   initializeInfoTips();
+  if (PAGE !== "home" && PAGE !== "dashboard") {
+    return;
+  }
   const result = await loadDashboardData();
   const data = normalizeDashboardData(result.data);
   hydrateHome(data, result.ok);
