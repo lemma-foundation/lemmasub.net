@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7112148,
+  "chain_head_block": 7112163,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T10:45:13Z",
+  "generated_at": "2026-05-13T10:48:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -96,7 +96,7 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7112100,
-  "problem_seed_chain_head": 7112148,
+  "problem_seed_chain_head": 7112163,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,40 +105,40 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that the displayed natural-number addition equals its computed value.",
+      "explanation": "Prove that addition of natural numbers commutes.",
       "label": "current",
-      "name": "t_63c7e7",
-      "plain_english": "Prove that the displayed natural-number addition equals its computed value.",
+      "name": "t_f4133a",
+      "plain_english": "Prove that addition of natural numbers commutes.",
       "seed": 7112100,
       "source_lane": "generated",
-      "split": "easy",
+      "split": "medium",
       "theorem_id": "gen/7112100",
       "topic": "algebra.basic",
-      "type_expr": "(58 : Nat) + 183 = 241"
+      "type_expr": "\u2200 a b : Nat, a + b = b + a"
     },
     "next": {
-      "explanation": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
+      "explanation": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
       "label": "next",
-      "name": "curated_matrix_zero_add",
-      "plain_english": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
+      "name": "t_56d3bf4",
+      "plain_english": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
       "seed": 7112200,
-      "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/matrix/zero_add",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, 0 + A = A"
+      "source_lane": "generated",
+      "split": "extreme",
+      "theorem_id": "gen/7112200",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "(\u2211 i \u2208 Finset.range (9 + 2), (i : Nat)) = (\u2211 i \u2208 Finset.range 9, (i : Nat)) + (9 : Nat) + (9 + 1 : Nat)"
     },
     "previous": {
-      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "explanation": "Prove that the displayed sum of real squares is nonnegative.",
       "label": "previous",
-      "name": "curated_list_append_nil_induction",
-      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "name": "t_375f0dc",
+      "plain_english": "Prove that the displayed sum of real squares is nonnegative.",
       "seed": 7112000,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/foundations/list_append_nil_induction",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7112000",
+      "topic": "optimization.inequalities",
+      "type_expr": "\u2200 x y z : \u211d, 0 \u2264 x * x + y * y + z * z"
     }
   }
 }
