@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7113798,
+  "chain_head_block": 7113813,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T16:15:12Z",
+  "generated_at": "2026-05-13T16:18:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7113700,
-  "problem_seed_chain_head": 7113798,
+  "problem_seed": 7113800,
+  "problem_seed_chain_head": 7113813,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a natural number dividing two values also divides their sum.",
-      "label": "current",
-      "name": "curated_dvd_add",
-      "plain_english": "Prove that a natural number dividing two values also divides their sum.",
-      "seed": 7113700,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/divisibility/add",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b + c"
-    },
-    "next": {
       "explanation": "Prove that the square root of two is irrational.",
-      "label": "next",
+      "label": "current",
       "name": "t_132784d",
       "plain_english": "Prove that the square root of two is irrational.",
       "seed": 7113800,
@@ -128,17 +116,29 @@
       "topic": "number_theory.primes",
       "type_expr": "Irrational (Real.sqrt 2)"
     },
+    "next": {
+      "explanation": "Prove that appending two lists adds their lengths.",
+      "label": "next",
+      "name": "t_2581f03",
+      "plain_english": "Prove that appending two lists adds their lengths.",
+      "seed": 7113900,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7113900",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u2200 xs ys : List Nat, (xs ++ ys).length = xs.length + ys.length"
+    },
     "previous": {
-      "explanation": "Prove that shifting a real number by one is a continuous function.",
+      "explanation": "Prove that a natural number dividing two values also divides their sum.",
       "label": "previous",
-      "name": "curated_continuous_shift",
-      "plain_english": "Prove that shifting a real number by one is a continuous function.",
-      "seed": 7113600,
+      "name": "curated_dvd_add",
+      "plain_english": "Prove that a natural number dividing two values also divides their sum.",
+      "seed": 7113700,
       "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/analysis/continuous_shift",
-      "topic": "analysis.continuity",
-      "type_expr": "Continuous (fun x : \u211d => x + 1)"
+      "split": "medium",
+      "theorem_id": "curated/divisibility/add",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b + c"
     }
   }
 }
