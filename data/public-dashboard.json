@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7114998,
+  "chain_head_block": 7115013,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T20:15:08Z",
+  "generated_at": "2026-05-13T20:18:14Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7114900,
-  "problem_seed_chain_head": 7114998,
+  "problem_seed": 7115000,
+  "problem_seed_chain_head": 7115013,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove the displayed associativity identity for natural-number multiplication.",
-      "label": "current",
-      "name": "t_cb4875",
-      "plain_english": "Prove the displayed associativity identity for natural-number multiplication.",
-      "seed": 7114900,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7114900",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 a b c : Nat, a * (b * c) = (a * b) * c"
-    },
-    "next": {
       "explanation": "Prove the displayed Boolean identity.",
-      "label": "next",
+      "label": "current",
       "name": "t_415631",
       "plain_english": "Prove the displayed Boolean identity.",
       "seed": 7115000,
@@ -128,17 +116,29 @@
       "topic": "logic.propositional",
       "type_expr": "(true && false) = false"
     },
-    "previous": {
-      "explanation": "Prove that filtering a finite range cannot increase its cardinality.",
-      "label": "previous",
-      "name": "t_1d611a7",
-      "plain_english": "Prove that filtering a finite range cannot increase its cardinality.",
-      "seed": 7114800,
+    "next": {
+      "explanation": "Prove the displayed subset fact for sets of natural numbers.",
+      "label": "next",
+      "name": "t_98b56c",
+      "plain_english": "Prove the displayed subset fact for sets of natural numbers.",
+      "seed": 7115100,
       "source_lane": "generated",
       "split": "medium",
-      "theorem_id": "gen/7114800",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 (P : Nat \u2192 Prop) [DecidablePred P], (Finset.filter P (Finset.range 21)).card \u2264 (Finset.range 21).card"
+      "theorem_id": "gen/7115100",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B : Set Nat, A \u2229 B \u2286 A"
+    },
+    "previous": {
+      "explanation": "Prove the displayed associativity identity for natural-number multiplication.",
+      "label": "previous",
+      "name": "t_cb4875",
+      "plain_english": "Prove the displayed associativity identity for natural-number multiplication.",
+      "seed": 7114900,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7114900",
+      "topic": "algebra.basic",
+      "type_expr": "\u2200 a b c : Nat, a * (b * c) = (a * b) * c"
     }
   }
 }
