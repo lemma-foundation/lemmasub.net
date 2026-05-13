@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7114398,
+  "chain_head_block": 7114413,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T18:15:11Z",
+  "generated_at": "2026-05-13T18:18:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7114300,
-  "problem_seed_chain_head": 7114398,
+  "problem_seed": 7114400,
+  "problem_seed_chain_head": 7114413,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a smaller finite range is contained in a larger finite range.",
-      "label": "current",
-      "name": "t_3b35d3f",
-      "plain_english": "Prove that a smaller finite range is contained in a larger finite range.",
-      "seed": 7114300,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7114300",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 n m : Nat, n \u2264 m \u2192 Finset.range n \u2286 Finset.range m"
-    },
-    "next": {
       "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "next",
+      "label": "current",
       "name": "curated_continuous_shift",
       "plain_english": "Prove that shifting a real number by one is a continuous function.",
       "seed": 7114400,
@@ -128,17 +116,29 @@
       "topic": "analysis.continuity",
       "type_expr": "Continuous (fun x : \u211d => x + 1)"
     },
+    "next": {
+      "explanation": "Prove that the displayed identity matrix has determinant one.",
+      "label": "next",
+      "name": "t_17e27b2",
+      "plain_english": "Prove that the displayed identity matrix has determinant one.",
+      "seed": 7114500,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7114500",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u2124) = 1"
+    },
     "previous": {
-      "explanation": "Prove the displayed concrete modular-arithmetic identity.",
+      "explanation": "Prove that a smaller finite range is contained in a larger finite range.",
       "label": "previous",
-      "name": "curated_mod_37_5",
-      "plain_english": "Prove the displayed concrete modular-arithmetic identity.",
-      "seed": 7114200,
-      "source_lane": "catalog",
-      "split": "easy",
-      "theorem_id": "curated/number_theory/mod_37_5",
-      "topic": "number_theory.mod_arith",
-      "type_expr": "(37 : Nat) % 5 = 2"
+      "name": "t_3b35d3f",
+      "plain_english": "Prove that a smaller finite range is contained in a larger finite range.",
+      "seed": 7114300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7114300",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "\u2200 n m : Nat, n \u2264 m \u2192 Finset.range n \u2286 Finset.range m"
     }
   }
 }
