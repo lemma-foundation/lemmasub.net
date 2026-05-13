@@ -205,7 +205,6 @@ function theoremCard(label, theorem, isMain) {
     return `<article class="theorem-card compact">
       <div class="theorem-topline">
         <p class="label">${escapeHtml(title)}</p>
-        <p class="theorem-name">${theoremBadges(theorem)}</p>
       </div>
       <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
       <p class="statement-label">Formal theorem to prove</p>
@@ -213,9 +212,7 @@ function theoremCard(label, theorem, isMain) {
       <details class="technical-details">
         <summary>Details</summary>
         <dl>
-          <dt>Theorem id</dt><dd>${escapeHtml(theorem.theorem_id || "unknown")}</dd>
-          <dt>Name</dt><dd>${escapeHtml(theorem.name || "unknown")}</dd>
-          <dt>Seed</dt><dd>${escapeHtml(theorem.seed ?? "unknown")}</dd>
+          ${theoremDetails(theorem)}
         </dl>
       </details>
     </article>`;
@@ -225,7 +222,6 @@ function theoremCard(label, theorem, isMain) {
     <div class="theorem-topline">
       <p class="label">${escapeHtml(title)}</p>
       <div class="theorem-meta">
-        ${theoremMetaSpans(theorem)}
         <span>Time left: <strong data-next-countdown>${escapeHtml(nextCountdownLabel(dashboardData))}</strong></span>
       </div>
     </div>
@@ -235,9 +231,7 @@ function theoremCard(label, theorem, isMain) {
     <details class="technical-details">
       <summary>Details</summary>
       <dl>
-        <dt>Theorem id</dt><dd>${escapeHtml(theorem.theorem_id || "unknown")}</dd>
-        <dt>Name</dt><dd>${escapeHtml(theorem.name || "unknown")}</dd>
-        <dt>Seed</dt><dd>${escapeHtml(theorem.seed ?? "unknown")}</dd>
+        ${theoremDetails(theorem)}
       </dl>
     </details>
   </article>`;
@@ -409,31 +403,32 @@ function cleanPlainTheorem(value) {
   return `${text.charAt(0).toUpperCase()}${text.slice(1)}.`;
 }
 
-function humanSplit(split) {
-  return split ? `${capitalize(split)} difficulty` : "";
-}
-
-function humanLane(lane) {
-  const text = String(lane || "").replaceAll("_", " ").trim();
-  return text ? `${capitalize(text)} lane` : "";
-}
-
-function theoremMetaValues(theorem) {
+function theoremDetails(theorem) {
   return [
-    humanSplit(theorem.split),
-    humanTopic(theorem.topic),
-    humanLane(theorem.source_lane)
-  ].filter(Boolean);
-}
-
-function theoremBadges(theorem) {
-  return theoremMetaValues(theorem).map(badge).join(" ");
-}
-
-function theoremMetaSpans(theorem) {
-  return theoremMetaValues(theorem)
-    .map((value) => `<span>${escapeHtml(value)}</span>`)
+    ["Theorem id", theorem.theorem_id || "unknown"],
+    ["Name", theorem.name || "unknown"],
+    ["Seed", theorem.seed ?? "unknown"],
+    ["Difficulty", humanDifficulty(theorem.split) || "unknown"],
+    ["Set", humanTopic(theorem.topic) || "unknown"],
+    ["Source", humanSource(theorem.source_lane) || "unknown"]
+  ]
+    .map(([label, value]) => `<dt>${label}</dt><dd>${escapeHtml(value)}</dd>`)
     .join("");
+}
+
+function humanDifficulty(split) {
+  return split ? capitalize(split) : "";
+}
+
+function humanSource(lane) {
+  const text = String(lane || "").replaceAll("_", " ").trim().toLowerCase();
+  if (text === "catalog") {
+    return "Curated";
+  }
+  if (text === "generated") {
+    return "Synthesized";
+  }
+  return text ? capitalize(text) : "";
 }
 
 function humanTopic(topic) {
@@ -680,13 +675,6 @@ function closeInfoTips() {
     tip.classList.remove("is-open");
     tip.querySelector(".info-button")?.setAttribute("aria-expanded", "false");
   });
-}
-
-function badge(value) {
-  if (!value) {
-    return "";
-  }
-  return `<span class="badge">${escapeHtml(value)}</span>`;
 }
 
 function linkOrText(text, url) {

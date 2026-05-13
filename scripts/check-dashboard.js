@@ -53,6 +53,12 @@ const data = context.normalizeDashboardData({
       split: "hard",
       topic: "set_theory.finite_sets",
       source_lane: "catalog"
+    },
+    previous: {
+      plain_english: "prove another useful lemma",
+      split: "medium",
+      topic: "logic.propositions",
+      source_lane: "generated"
     }
   }
 });
@@ -61,7 +67,8 @@ assert(data.correct_count_window_hours === 24, "invalid lookback should default 
 assert(data.proofs_passed_prior_round === 0, "zero prior-round proof count should survive normalization");
 assert(data.miners[0].correct === 3, "numeric miner counts should normalize");
 assert(data.miners[1].correct === 0, "invalid miner counts should default to zero");
-assert(context.theoremBadges(data.theorems.current).includes("Catalog lane"), "source lane badge should render");
+assert(context.theoremDetails(data.theorems.current).includes("<dt>Source</dt><dd>Curated</dd>"), "catalog source should render as curated");
+assert(context.theoremDetails(data.theorems.previous).includes("<dt>Source</dt><dd>Synthesized</dd>"), "generated source should render as synthesized");
 assert(context.dataAgeLabel("1970-01-01T00:00:00Z") !== "unknown", "Unix epoch timestamp should be valid");
 
 const sorted = [...data.miners].sort(context.compareMiners);
