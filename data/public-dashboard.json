@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7113498,
+  "chain_head_block": 7113513,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T15:15:12Z",
+  "generated_at": "2026-05-13T15:18:09Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7113400,
-  "problem_seed_chain_head": 7113498,
+  "problem_seed": 7113500,
+  "problem_seed_chain_head": 7113513,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
-      "label": "current",
-      "name": "t_56d3744",
-      "plain_english": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
-      "seed": 7113400,
-      "source_lane": "generated",
-      "split": "extreme",
-      "theorem_id": "gen/7113400",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "(\u2211 i \u2208 Finset.range (10 + 2), (i : Nat)) = (\u2211 i \u2208 Finset.range 10, (i : Nat)) + (10 : Nat) + (10 + 1 : Nat)"
-    },
-    "next": {
       "explanation": "Prove that concatenating two Boolean words adds their lengths.",
-      "label": "next",
+      "label": "current",
       "name": "curated_bool_word_append_length",
       "plain_english": "Prove that concatenating two Boolean words adds their lengths.",
       "seed": 7113500,
@@ -128,17 +116,29 @@
       "topic": "automata.regular_lite",
       "type_expr": "\u2200 xs ys : List Bool, (xs ++ ys).length = xs.length + ys.length"
     },
+    "next": {
+      "explanation": "Prove that shifting a real number by one is a continuous function.",
+      "label": "next",
+      "name": "curated_continuous_shift",
+      "plain_english": "Prove that shifting a real number by one is a continuous function.",
+      "seed": 7113600,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/analysis/continuous_shift",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => x + 1)"
+    },
     "previous": {
-      "explanation": "Prove that addition of natural numbers commutes.",
+      "explanation": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
       "label": "previous",
-      "name": "t_f41cca",
-      "plain_english": "Prove that addition of natural numbers commutes.",
-      "seed": 7113300,
+      "name": "t_56d3744",
+      "plain_english": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
+      "seed": 7113400,
       "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7113300",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 a b : Nat, a + b = b + a"
+      "split": "extreme",
+      "theorem_id": "gen/7113400",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "(\u2211 i \u2208 Finset.range (10 + 2), (i : Nat)) = (\u2211 i \u2208 Finset.range 10, (i : Nat)) + (10 : Nat) + (10 + 1 : Nat)"
     }
   }
 }
