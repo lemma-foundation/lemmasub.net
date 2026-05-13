@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7115568,
+  "chain_head_block": 7115583,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T22:09:14Z",
+  "generated_at": "2026-05-13T22:12:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -43,7 +43,7 @@
       "correct_theorems_24h": 23,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.07798886299133301,
       "uid": 7,
       "uid_url": ""
@@ -54,7 +54,7 @@
       "correct_theorems_24h": 23,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.01899748295545578,
       "uid": 5,
       "uid_url": ""
@@ -87,7 +87,7 @@
       "correct_theorems_24h": 17,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.0,
       "uid": 6,
       "uid_url": ""
@@ -96,11 +96,11 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7115500,
-  "problem_seed_chain_head": 7115568,
+  "problem_seed_chain_head": 7115583,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "proofs_passed_prior_round": 3,
+  "proofs_passed_prior_round": 6,
   "schema_version": 3,
   "score_source": "metagraph_incentive",
   "theorems": {
