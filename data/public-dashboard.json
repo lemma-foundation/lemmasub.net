@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7111790,
+  "chain_head_block": 7111803,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T09:33:27Z",
+  "generated_at": "2026-05-13T09:36:12Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7111700,
-  "problem_seed_chain_head": 7111790,
+  "problem_seed": 7111800,
+  "problem_seed_chain_head": 7111803,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove associativity of function composition on natural-number functions.",
-      "label": "current",
-      "name": "t_2f3e790",
-      "plain_english": "Prove associativity of function composition on natural-number functions.",
-      "seed": 7111700,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7111700",
-      "topic": "category_theory.trivial",
-      "type_expr": "\u2200 f g h : Nat \u2192 Nat, \u2200 x : Nat, ((f \u2218 g) \u2218 h) x = (f \u2218 (g \u2218 h)) x"
-    },
-    "next": {
       "explanation": "Prove that image preserves subset containment under a function.",
-      "label": "next",
+      "label": "current",
       "name": "curated_set_image_mono",
       "plain_english": "Prove that image preserves subset containment under a function.",
       "seed": 7111800,
@@ -128,17 +116,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
     },
-    "previous": {
-      "explanation": "Prove that adding zero to a complex number leaves it unchanged.",
-      "label": "previous",
-      "name": "curated_complex_add_zero",
-      "plain_english": "Prove that adding zero to a complex number leaves it unchanged.",
-      "seed": 7111600,
+    "next": {
+      "explanation": "Prove the displayed quadratic identity over the real numbers.",
+      "label": "next",
+      "name": "curated_real_quadratic",
+      "plain_english": "Prove the displayed quadratic identity over the real numbers.",
+      "seed": 7111900,
       "source_lane": "catalog",
-      "split": "easy",
-      "theorem_id": "curated/complex/add_zero",
-      "topic": "complex.basic_light",
-      "type_expr": "\u2200 z : \u2102, z + 0 = z"
+      "split": "hard",
+      "theorem_id": "curated/algebra/real_quadratic",
+      "topic": "algebra.polynomial_light",
+      "type_expr": "\u2200 x : \u211d, (x + 2) * (x + 5) = x ^ 2 + (7 : \u211d) * x + (10 : \u211d)"
+    },
+    "previous": {
+      "explanation": "Prove associativity of function composition on natural-number functions.",
+      "label": "previous",
+      "name": "t_2f3e790",
+      "plain_english": "Prove associativity of function composition on natural-number functions.",
+      "seed": 7111700,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7111700",
+      "topic": "category_theory.trivial",
+      "type_expr": "\u2200 f g h : Nat \u2192 Nat, \u2200 x : Nat, ((f \u2218 g) \u2218 h) x = (f \u2218 (g \u2218 h)) x"
     }
   }
 }
