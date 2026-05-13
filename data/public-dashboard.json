@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7112990,
+  "chain_head_block": 7113003,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T13:33:27Z",
+  "generated_at": "2026-05-13T13:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7112900,
-  "problem_seed_chain_head": 7112990,
+  "problem_seed": 7113000,
+  "problem_seed_chain_head": 7113003,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "current",
-      "name": "curated_predicate_exists",
-      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
-      "seed": 7112900,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/logic/predicate_exists",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
-    },
-    "next": {
       "explanation": "Prove that image preserves a two-step subset chain under a function.",
-      "label": "next",
+      "label": "current",
       "name": "t_48fb05e",
       "plain_english": "Prove that image preserves a two-step subset chain under a function.",
       "seed": 7113000,
@@ -128,17 +116,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B C : Set Nat), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
     },
-    "previous": {
-      "explanation": "Prove the displayed currying equivalence for propositions.",
-      "label": "previous",
-      "name": "t_309488b",
-      "plain_english": "Prove the displayed currying equivalence for propositions.",
-      "seed": 7112800,
+    "next": {
+      "explanation": "Prove that a set is contained in the preimage of its image under a function.",
+      "label": "next",
+      "name": "t_33af724",
+      "plain_english": "Prove that a set is contained in the preimage of its image under a function.",
+      "seed": 7113100,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7112800",
-      "topic": "logic.propositional",
-      "type_expr": "\u2200 P Q R : Prop, (P \u2192 Q \u2192 R) \u2194 (P \u2227 Q \u2192 R)"
+      "theorem_id": "gen/7113100",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Nat \u2192 Nat) (S : Set Nat), S \u2286 f \u207b\u00b9' (f '' S)"
+    },
+    "previous": {
+      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
+      "label": "previous",
+      "name": "curated_predicate_exists",
+      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
+      "seed": 7112900,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/logic/predicate_exists",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
     }
   }
 }
