@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7115793,
+  "chain_head_block": 7115808,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T22:54:12Z",
+  "generated_at": "2026-05-13T22:57:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7115700,
-  "problem_seed_chain_head": 7115793,
+  "problem_seed": 7115800,
+  "problem_seed_chain_head": 7115808,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that image preserves a two-step subset chain under a function.",
-      "label": "current",
-      "name": "t_48faac2",
-      "plain_english": "Prove that image preserves a two-step subset chain under a function.",
-      "seed": 7115700,
-      "source_lane": "generated",
-      "split": "extreme",
-      "theorem_id": "gen/7115700",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B C : Set Nat), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
-    },
-    "next": {
       "explanation": "Prove that concatenating two Boolean words adds their lengths.",
-      "label": "next",
+      "label": "current",
       "name": "curated_bool_word_append_length",
       "plain_english": "Prove that concatenating two Boolean words adds their lengths.",
       "seed": 7115800,
@@ -128,17 +116,29 @@
       "topic": "automata.regular_lite",
       "type_expr": "\u2200 xs ys : List Bool, (xs ++ ys).length = xs.length + ys.length"
     },
-    "previous": {
-      "explanation": "Prove that divisibility is transitive for natural numbers.",
-      "label": "previous",
-      "name": "t_8872bd",
-      "plain_english": "Prove that divisibility is transitive for natural numbers.",
-      "seed": 7115600,
+    "next": {
+      "explanation": "Prove that for every bound there is a prime number at least that large.",
+      "label": "next",
+      "name": "t_12325be",
+      "plain_english": "Prove that for every bound there is a prime number at least that large.",
+      "seed": 7115900,
       "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7115600",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 b \u2223 c \u2192 a \u2223 c"
+      "split": "hard",
+      "theorem_id": "gen/7115900",
+      "topic": "number_theory.primes",
+      "type_expr": "\u2200 N : Nat, \u2203 p : Nat, N \u2264 p \u2227 Nat.Prime p"
+    },
+    "previous": {
+      "explanation": "Prove that image preserves a two-step subset chain under a function.",
+      "label": "previous",
+      "name": "t_48faac2",
+      "plain_english": "Prove that image preserves a two-step subset chain under a function.",
+      "seed": 7115700,
+      "source_lane": "generated",
+      "split": "extreme",
+      "theorem_id": "gen/7115700",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B C : Set Nat), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
     }
   }
 }
