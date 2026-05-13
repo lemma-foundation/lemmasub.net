@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7111188,
+  "chain_head_block": 7111203,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T07:33:13Z",
+  "generated_at": "2026-05-13T07:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7111100,
-  "problem_seed_chain_head": 7111188,
+  "problem_seed": 7111200,
+  "problem_seed_chain_head": 7111203,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "label": "current",
-      "name": "curated_list_append_nil_induction",
-      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "seed": 7111100,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/foundations/list_append_nil_induction",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
-    },
-    "next": {
       "explanation": "Prove the displayed modular reduction used in a toy arithmetic setting.",
-      "label": "next",
+      "label": "current",
       "name": "curated_mod_12345_97",
       "plain_english": "Prove the displayed modular reduction used in a toy arithmetic setting.",
       "seed": 7111200,
@@ -128,12 +116,24 @@
       "topic": "cryptography.modular",
       "type_expr": "(12345 : Nat) % 97 = 26"
     },
+    "next": {
+      "explanation": "Prove set equality from mutual subset containment.",
+      "label": "next",
+      "name": "t_23f9ab1",
+      "plain_english": "Prove set equality from mutual subset containment.",
+      "seed": 7111300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7111300",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B : Set Nat, A \u2286 B \u2192 B \u2286 A \u2192 A = B"
+    },
     "previous": {
       "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
       "label": "previous",
       "name": "curated_list_append_nil_induction",
       "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "seed": 7111000,
+      "seed": 7111100,
       "source_lane": "catalog",
       "split": "medium",
       "theorem_id": "curated/foundations/list_append_nil_induction",
