@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7115193,
+  "chain_head_block": 7115208,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T20:54:12Z",
+  "generated_at": "2026-05-13T20:57:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -11,7 +11,7 @@
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.5311360359191895,
+      "score": 0.5071793794631958,
       "uid": 2,
       "uid_url": ""
     },
@@ -22,19 +22,8 @@
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.26037994027137756,
+      "score": 0.2501869201660156,
       "uid": 3,
-      "uid_url": ""
-    },
-    {
-      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
-      "coldkey_url": "",
-      "correct_theorems_24h": 24,
-      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
-      "hotkey_url": "",
-      "passed_prior_round": true,
-      "score": 0.09950408339500427,
-      "uid": 4,
       "uid_url": ""
     },
     {
@@ -44,8 +33,19 @@
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.08226138353347778,
+      "score": 0.16752880811691284,
       "uid": 7,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 24,
+      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0473334863781929,
+      "uid": 4,
       "uid_url": ""
     },
     {
@@ -55,7 +55,7 @@
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.01918059028685093,
+      "score": 0.020126650109887123,
       "uid": 5,
       "uid_url": ""
     },
@@ -66,7 +66,7 @@
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
       "passed_prior_round": false,
-      "score": 0.007492179982364178,
+      "score": 0.00759899290278554,
       "uid": 6,
       "uid_url": ""
     },
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7115100,
-  "problem_seed_chain_head": 7115193,
+  "problem_seed": 7115200,
+  "problem_seed_chain_head": 7115208,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove the displayed subset fact for sets of natural numbers.",
-      "label": "current",
-      "name": "t_98b56c",
-      "plain_english": "Prove the displayed subset fact for sets of natural numbers.",
-      "seed": 7115100,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7115100",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B : Set Nat, A \u2229 B \u2286 A"
-    },
-    "next": {
       "explanation": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
-      "label": "next",
+      "label": "current",
       "name": "curated_matrix_zero_add",
       "plain_english": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
       "seed": 7115200,
@@ -128,17 +116,29 @@
       "topic": "linear_algebra.matrix",
       "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, 0 + A = A"
     },
+    "next": {
+      "explanation": "Prove that shifting a real number by one is a continuous function.",
+      "label": "next",
+      "name": "curated_continuous_shift",
+      "plain_english": "Prove that shifting a real number by one is a continuous function.",
+      "seed": 7115300,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/analysis/continuous_shift",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => x + 1)"
+    },
     "previous": {
-      "explanation": "Prove the displayed Boolean identity.",
+      "explanation": "Prove the displayed subset fact for sets of natural numbers.",
       "label": "previous",
-      "name": "t_415631",
-      "plain_english": "Prove the displayed Boolean identity.",
-      "seed": 7115000,
+      "name": "t_98b56c",
+      "plain_english": "Prove the displayed subset fact for sets of natural numbers.",
+      "seed": 7115100,
       "source_lane": "generated",
-      "split": "easy",
-      "theorem_id": "gen/7115000",
-      "topic": "logic.propositional",
-      "type_expr": "(true && false) = false"
+      "split": "medium",
+      "theorem_id": "gen/7115100",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B : Set Nat, A \u2229 B \u2286 A"
     }
   }
 }
