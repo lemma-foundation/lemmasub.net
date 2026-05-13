@@ -68,7 +68,7 @@
 
       <article>
         <h2>What is formal mathematics?</h2>
-        <p>Formal mathematics is mathematics written in a fully specified logical language. The definitions, axioms, and allowed inference steps are fixed in advance. Because the rules are explicit, software can check a proof line by line.</p>
+        <p>Formal mathematics is mathematics written in a fully specified logical language. The definitions, axioms, and allowed inference steps are fixed in advance. Because the rules are explicit, software can check a proof step by step.</p>
       </article>
 
       <article>
@@ -92,6 +92,12 @@
       </article>
 
       <article>
+        <h2>What do sorry and new axioms mean?</h2>
+        <p>In Lean, <code>sorry</code> is a temporary placeholder for an unfinished proof. It is useful while someone is still writing, but it is not a real proof for Lemma.</p>
+        <p>A new axiom is an extra assumption added by the submitted file. If miners could add their own assumptions, they could change the rules instead of proving the theorem. Lemma rejects both shortcuts.</p>
+      </article>
+
+      <article>
         <h2>What does a miner do?</h2>
         <p>A miner runs automated prover software. Validators send it theorem challenges; the miner calls an AI proving model, a proof-search loop, or a repair loop, and returns a Lean proof file when it finds one.</p>
       </article>
@@ -103,7 +109,7 @@
 
       <article>
         <h2>Do miners earn alpha?</h2>
-        <p>Yes. Alpha is the subnet reward token. Miners can earn alpha when their submissions receive score under Lemma's rules. The first gate is Lean verification: if a proof does not pass Lean, it is not eligible for proof score.</p>
+        <p>Yes. Alpha is the subnet reward token. Miners can earn alpha when their submissions pass Lean and receive weight under Lemma's rules. The first gate is Lean verification: if a proof does not pass Lean, it is not eligible for miner rewards.</p>
       </article>
 
       <article>
