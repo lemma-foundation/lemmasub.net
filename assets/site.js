@@ -64,7 +64,7 @@ function normalizeDashboardData(raw) {
     problem_seed_quantize_blocks: data.problem_seed_quantize_blocks,
     block_time_sec_estimate: data.block_time_sec_estimate,
     score_source: stringOrEmpty(data.score_source),
-    correct_count_window_hours: Number(data.correct_count_window_hours || 24),
+    correct_count_window_hours: numberOrNull(data.correct_count_window_hours) ?? 24,
     proofs_passed_prior_round: numberOrNull(data.proofs_passed_prior_round),
     theorems: data.theorems && typeof data.theorems === "object" ? data.theorems : {},
     miners: Array.isArray(data.miners) ? data.miners.map(normalizeMiner) : []
@@ -77,7 +77,7 @@ function normalizeMiner(miner) {
     coldkey: stringOrEmpty(miner?.coldkey),
     hotkey: stringOrEmpty(miner?.hotkey),
     score: numberOrNull(miner?.score),
-    correct: Number(miner?.correct_theorems_24h || 0),
+    correct: numberOrNull(miner?.correct_theorems_24h) ?? 0,
     passedPriorRound: boolOrNull(miner?.passed_prior_round),
     uid_url: stringOrEmpty(miner?.uid_url),
     coldkey_url: stringOrEmpty(miner?.coldkey_url),
@@ -205,7 +205,7 @@ function theoremCard(label, theorem, isMain) {
     return `<article class="theorem-card compact">
       <div class="theorem-topline">
         <p class="label">${escapeHtml(title)}</p>
-        <p class="theorem-name">${badge(humanSplit(theorem.split))} ${badge(humanTopic(theorem.topic))}</p>
+        <p class="theorem-name">${theoremBadges(theorem)}</p>
       </div>
       <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
       <p class="statement-label">Formal theorem to prove</p>
@@ -225,8 +225,7 @@ function theoremCard(label, theorem, isMain) {
     <div class="theorem-topline">
       <p class="label">${escapeHtml(title)}</p>
       <div class="theorem-meta">
-        <span>${escapeHtml(humanSplit(theorem.split))}</span>
-        <span>${escapeHtml(humanTopic(theorem.topic))}</span>
+        ${theoremMetaSpans(theorem)}
         <span>Time left: <strong data-next-countdown>${escapeHtml(nextCountdownLabel(dashboardData))}</strong></span>
       </div>
     </div>
@@ -329,11 +328,27 @@ function compareMiners(a, b) {
   const av = minerSortValue(a, sortState.key);
   const bv = minerSortValue(b, sortState.key);
   if (sortState.type === "number") {
-    const an = av === null || av === undefined ? -Infinity : Number(av);
-    const bn = bv === null || bv === undefined ? -Infinity : Number(bv);
-    return dir * (an - bn || Number(a.uid) - Number(b.uid));
+    const an = numberOrNull(av);
+    const bn = numberOrNull(bv);
+    if (an === null || bn === null) {
+      return an === bn ? compareUid(a, b) : (an === null ? 1 : -1);
+    }
+    const byValue = an - bn;
+    return byValue === 0 ? compareUid(a, b) : dir * byValue;
   }
-  return dir * String(av || "").localeCompare(String(bv || ""));
+  const at = String(av || "");
+  const bt = String(bv || "");
+  if (!at || !bt) {
+    return at === bt ? compareUid(a, b) : (!at ? 1 : -1);
+  }
+  const byText = at.localeCompare(bt);
+  return byText === 0 ? compareUid(a, b) : dir * byText;
+}
+
+function compareUid(a, b) {
+  const auid = numberOrNull(a.uid) ?? Number.MAX_SAFE_INTEGER;
+  const buid = numberOrNull(b.uid) ?? Number.MAX_SAFE_INTEGER;
+  return auid - buid;
 }
 
 function minerSortValue(miner, key) {
@@ -396,6 +411,29 @@ function cleanPlainTheorem(value) {
 
 function humanSplit(split) {
   return split ? `${capitalize(split)} difficulty` : "";
+}
+
+function humanLane(lane) {
+  const text = String(lane || "").replaceAll("_", " ").trim();
+  return text ? `${capitalize(text)} lane` : "";
+}
+
+function theoremMetaValues(theorem) {
+  return [
+    humanSplit(theorem.split),
+    humanTopic(theorem.topic),
+    humanLane(theorem.source_lane)
+  ].filter(Boolean);
+}
+
+function theoremBadges(theorem) {
+  return theoremMetaValues(theorem).map(badge).join(" ");
+}
+
+function theoremMetaSpans(theorem) {
+  return theoremMetaValues(theorem)
+    .map((value) => `<span>${escapeHtml(value)}</span>`)
+    .join("");
 }
 
 function humanTopic(topic) {
@@ -720,7 +758,7 @@ function formatAge(value) {
 }
 
 function dataAgeLabel(value) {
-  return Date.parse(value) ? `${formatAge(value)} ago` : "unknown";
+  return Number.isNaN(Date.parse(value)) ? "unknown" : `${formatAge(value)} ago`;
 }
 
 function dashboardStateText(data, dataLoaded) {

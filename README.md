@@ -21,6 +21,14 @@ Opening `index.html` or `dashboard/index.html` directly from Finder should load
 the shared CSS and JavaScript, but some browsers block `file://` JSON fetches.
 Use the local preview server when checking live dashboard data.
 
+Quick local checks:
+
+```bash
+node scripts/check-dashboard.js
+node --check assets/site.js
+python3 -m json.tool data/public-dashboard.json >/dev/null
+```
+
 ## Public Dashboard Data
 
 The dashboard reads `data/public-dashboard.json`. Pushing HTML, CSS, or JS
@@ -28,29 +36,11 @@ changes does not make the dashboard live by itself. The live site is static:
 browsers fetch whatever JSON file is currently committed in this repo. If no
 machine refreshes that file, the dashboard will be real but stale.
 
-The source of truth for that JSON file is the Lemma repo exporter:
-
-```bash
-LEMMA_REPO=/opt/lemma
-SITE_REPO=/srv/lemmasub.net
-SUMMARY_JSONL=/var/lib/lemma/public-summary.jsonl
-
-cd "$LEMMA_REPO"
-NETUID=467 \
-SUBTENSOR_NETWORK=test \
-SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 \
-PYTHONDONTWRITEBYTECODE=1 \
-.venv/bin/python -m tools.public_dashboard \
-  --summary-jsonl "$SUMMARY_JSONL" \
-  --json-out "$SITE_REPO/data/public-dashboard.json" \
-  --html-out /private/tmp/lemma-public-dashboard.html
-```
-
-Run the exporter from the operator environment after each validator round, then
-publish only the refreshed `data/public-dashboard.json` file. A cron, launchd,
-GitHub Actions, or static-host deploy job is fine as a fallback, but the clean
-live path is round-aligned: when the validator appends the latest summary rows,
-refresh and push the public JSON.
+The source of truth for that JSON file is the Lemma repo exporter,
+`tools/public_dashboard.py`. Run it from the operator environment after validator
+rounds, then publish only the refreshed `data/public-dashboard.json` file. The
+clean live path is round-aligned: when the validator appends summary rows, a
+small publisher regenerates and pushes this JSON.
 
 Set the network values explicitly. Without those environment variables, the
 exporter falls back to Finney/netuid 0. The public Lemma testnet dashboard should
@@ -58,10 +48,10 @@ use `SUBTENSOR_NETWORK=test` and `NETUID=467`.
 
 Keep the Lemma checkout on the refresh machine current before publishing dashboard
 JSON. In particular, the site expects the exporter contract that writes
-`schema_version: 2`, `theorems.*.plain_english`, `proofs_passed_prior_round`,
-and `miners[].passed_prior_round`. If the validator summary JSONL is stale or
-missing, the exporter should publish unavailable round data rather than inventing
-a count from the rolling 24-hour totals.
+`schema_version: 3`, `theorems.*.plain_english`, `theorems.*.source_lane`,
+`proofs_passed_prior_round`, and `miners[].passed_prior_round`. If the validator
+summary JSONL is stale or missing, the exporter should publish unavailable round
+data rather than inventing a count from the rolling 24-hour totals.
 
 For the live site, the recommended path is a validator-side post-round publish
 step on one always-on machine. That can be your local machine if it stays online,
@@ -75,47 +65,19 @@ scoped Git deploy key for pushing this repo. If the Lean worker is just a privat
 verify box, keep it that way and run the exporter from the validator host or a
 separate tiny automation machine.
 
-```bash
-LEMMA_REPO=/opt/lemma
-SITE_REPO=/srv/lemmasub.net
-SUMMARY_JSONL=/var/lib/lemma/public-summary.jsonl
+The Lemma repo includes the preferred publisher:
+`deploy/scripts/lemma-refresh-public-dashboard`. Its default site checkout is
+`/opt/lemmasub.net`, and it regenerates the JSON through a temporary file,
+validates it, installs it, commits only `data/public-dashboard.json`, and pushes
+`main` when the file changed. The matching systemd units are
+`deploy/systemd/lemma-public-dashboard.service`,
+`deploy/systemd/lemma-public-dashboard.path`, and
+`deploy/systemd/lemma-public-dashboard.timer`.
 
-cd "$LEMMA_REPO"
-NETUID=467 \
-SUBTENSOR_NETWORK=test \
-SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 \
-PYTHONDONTWRITEBYTECODE=1 \
-.venv/bin/python -m tools.public_dashboard \
-  --summary-jsonl "$SUMMARY_JSONL" \
-  --json-out "$SITE_REPO/data/public-dashboard.json" \
-  --html-out /private/tmp/lemma-public-dashboard.html
-
-cd "$SITE_REPO"
-if ! git diff --quiet -- data/public-dashboard.json; then
-  git add data/public-dashboard.json
-  git commit -m "Refresh public dashboard data"
-  git push origin main
-fi
-```
-
-A round-aligned refresh is preferred: run the command below after the validator
-finishes a round and appends the summary export. The machine running this needs
-the Lemma repo, this site repo, network access, validator summary export access,
-and Git push access to `spacetime-tao/lemmasub.net`.
-
-The Lemma repo includes systemd templates for this path:
-`deploy/systemd/lemma-public-dashboard.path` watches the validator summary JSONL,
-and `deploy/systemd/lemma-public-dashboard.service` regenerates and pushes this
-site's `data/public-dashboard.json`.
-
-Minimal fallback cron shape if there is not yet a post-round hook:
-
-```cron
-*/3 * * * * cd /opt/lemma && NETUID=467 SUBTENSOR_NETWORK=test SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m tools.public_dashboard --summary-jsonl /var/lib/lemma/public-summary.jsonl --json-out /srv/lemmasub.net/data/public-dashboard.json --html-out /private/tmp/lemma-public-dashboard.html && cd /srv/lemmasub.net && if ! git diff --quiet -- data/public-dashboard.json; then git add data/public-dashboard.json && git commit -m "Refresh public dashboard data" && git push origin main; fi
-```
-
-For launchd, use the same command with a `StartInterval` around `180` to `300`
-seconds.
+Run the publisher on the machine that has the validator summary export, network
+access, and a tightly scoped deploy key for this repo. The path unit is the
+round-aligned trigger; the timer is a three-minute fallback if one trigger is
+missed.
 
 In plain English: a validator/operator machine runs the Lemma exporter every few
 minutes. The exporter asks the chain for public metagraph data, reads that
