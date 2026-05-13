@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7112388,
+  "chain_head_block": 7112403,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T11:33:12Z",
+  "generated_at": "2026-05-13T11:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7112300,
-  "problem_seed_chain_head": 7112388,
+  "problem_seed": 7112400,
+  "problem_seed_chain_head": 7112403,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that divisibility is preserved by the displayed sum of squares.",
-      "label": "current",
-      "name": "t_3e8c31d",
-      "plain_english": "Prove that divisibility is preserved by the displayed sum of squares.",
-      "seed": 7112300,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7112300",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b * b + c * c"
-    },
-    "next": {
       "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "next",
+      "label": "current",
       "name": "curated_continuous_shift",
       "plain_english": "Prove that shifting a real number by one is a continuous function.",
       "seed": 7112400,
@@ -128,17 +116,29 @@
       "topic": "analysis.continuity",
       "type_expr": "Continuous (fun x : \u211d => x + 1)"
     },
-    "previous": {
-      "explanation": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
-      "label": "previous",
-      "name": "t_56d3bf4",
-      "plain_english": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
-      "seed": 7112200,
+    "next": {
+      "explanation": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
+      "label": "next",
+      "name": "t_3ff0080",
+      "plain_english": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
+      "seed": 7112500,
       "source_lane": "generated",
-      "split": "extreme",
-      "theorem_id": "gen/7112200",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "(\u2211 i \u2208 Finset.range (9 + 2), (i : Nat)) = (\u2211 i \u2208 Finset.range 9, (i : Nat)) + (9 : Nat) + (9 + 1 : Nat)"
+      "split": "hard",
+      "theorem_id": "gen/7112500",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 b * c + c * b"
+    },
+    "previous": {
+      "explanation": "Prove that divisibility is preserved by the displayed sum of squares.",
+      "label": "previous",
+      "name": "t_3e8c31d",
+      "plain_english": "Prove that divisibility is preserved by the displayed sum of squares.",
+      "seed": 7112300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7112300",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b * b + c * c"
     }
   }
 }
