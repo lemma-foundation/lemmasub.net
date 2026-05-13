@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7113393,
+  "chain_head_block": 7113408,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T14:54:12Z",
+  "generated_at": "2026-05-13T14:57:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -11,7 +11,7 @@
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.5418173670768738,
+      "score": 0.5335164666175842,
       "uid": 2,
       "uid_url": ""
     },
@@ -22,7 +22,7 @@
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.24852368235588074,
+      "score": 0.2513008415699005,
       "uid": 3,
       "uid_url": ""
     },
@@ -33,7 +33,7 @@
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.16563668847084045,
+      "score": 0.15230029821395874,
       "uid": 7,
       "uid_url": ""
     },
@@ -44,8 +44,19 @@
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.04399175941944122,
+      "score": 0.04591439664363861,
       "uid": 4,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 16,
+      "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.016922255977988243,
+      "uid": 5,
       "uid_url": ""
     },
     {
@@ -73,17 +84,6 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 16,
-      "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
-      "hotkey_url": "",
-      "passed_prior_round": true,
-      "score": 0.0,
-      "uid": 5,
-      "uid_url": ""
-    },
-    {
-      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
-      "coldkey_url": "",
       "correct_theorems_24h": 12,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7113300,
-  "problem_seed_chain_head": 7113393,
+  "problem_seed": 7113400,
+  "problem_seed_chain_head": 7113408,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that addition of natural numbers commutes.",
-      "label": "current",
-      "name": "t_f41cca",
-      "plain_english": "Prove that addition of natural numbers commutes.",
-      "seed": 7113300,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7113300",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 a b : Nat, a + b = b + a"
-    },
-    "next": {
       "explanation": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
-      "label": "next",
+      "label": "current",
       "name": "t_56d3744",
       "plain_english": "Prove the displayed finite-sum identity by adding two successive range endpoints.",
       "seed": 7113400,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.finite_sets",
       "type_expr": "(\u2211 i \u2208 Finset.range (10 + 2), (i : Nat)) = (\u2211 i \u2208 Finset.range 10, (i : Nat)) + (10 : Nat) + (10 + 1 : Nat)"
     },
+    "next": {
+      "explanation": "Prove that concatenating two Boolean words adds their lengths.",
+      "label": "next",
+      "name": "curated_bool_word_append_length",
+      "plain_english": "Prove that concatenating two Boolean words adds their lengths.",
+      "seed": 7113500,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/automata/list_bool_append_length",
+      "topic": "automata.regular_lite",
+      "type_expr": "\u2200 xs ys : List Bool, (xs ++ ys).length = xs.length + ys.length"
+    },
     "previous": {
-      "explanation": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
+      "explanation": "Prove that addition of natural numbers commutes.",
       "label": "previous",
-      "name": "t_3ff0e44",
-      "plain_english": "Prove that divisibility is preserved by the displayed symmetric linear combination.",
-      "seed": 7113200,
+      "name": "t_f41cca",
+      "plain_english": "Prove that addition of natural numbers commutes.",
+      "seed": 7113300,
       "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7113200",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 b * c + c * b"
+      "split": "medium",
+      "theorem_id": "gen/7113300",
+      "topic": "algebra.basic",
+      "type_expr": "\u2200 a b : Nat, a + b = b + a"
     }
   }
 }
