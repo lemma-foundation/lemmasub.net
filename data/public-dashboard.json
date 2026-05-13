@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7109390,
+  "chain_head_block": 7109404,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T01:33:32Z",
+  "generated_at": "2026-05-13T01:36:18Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7109300,
-  "problem_seed_chain_head": 7109390,
+  "problem_seed": 7109400,
+  "problem_seed_chain_head": 7109404,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that the displayed identity matrix has determinant one.",
-      "label": "current",
-      "name": "t_17ed202",
-      "plain_english": "Prove that the displayed identity matrix has determinant one.",
-      "seed": 7109300,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7109300",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u2124) = 1"
-    },
-    "next": {
       "explanation": "Prove that filtering a finite range cannot increase its cardinality.",
-      "label": "next",
+      "label": "current",
       "name": "t_1d6fa8f",
       "plain_english": "Prove that filtering a finite range cannot increase its cardinality.",
       "seed": 7109400,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.finite_sets",
       "type_expr": "\u2200 (P : Nat \u2192 Prop) [DecidablePred P], (Finset.filter P (Finset.range 8)).card \u2264 (Finset.range 8).card"
     },
+    "next": {
+      "explanation": "Prove that the displayed natural-number addition equals its computed value.",
+      "label": "next",
+      "name": "t_63393f",
+      "plain_english": "Prove that the displayed natural-number addition equals its computed value.",
+      "seed": 7109500,
+      "source_lane": "generated",
+      "split": "easy",
+      "theorem_id": "gen/7109500",
+      "topic": "algebra.basic",
+      "type_expr": "(89 : Nat) + 81 = 170"
+    },
     "previous": {
-      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
+      "explanation": "Prove that the displayed identity matrix has determinant one.",
       "label": "previous",
-      "name": "t_41413f1",
-      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
-      "seed": 7109200,
+      "name": "t_17ed202",
+      "plain_english": "Prove that the displayed identity matrix has determinant one.",
+      "seed": 7109300,
       "source_lane": "generated",
       "split": "medium",
-      "theorem_id": "gen/7109200",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
+      "theorem_id": "gen/7109300",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u2124) = 1"
     }
   }
 }
