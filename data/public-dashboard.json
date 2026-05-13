@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7111893,
+  "chain_head_block": 7111908,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T09:54:08Z",
+  "generated_at": "2026-05-13T09:57:11Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7111800,
-  "problem_seed_chain_head": 7111893,
+  "problem_seed": 7111900,
+  "problem_seed_chain_head": 7111908,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that image preserves subset containment under a function.",
-      "label": "current",
-      "name": "curated_set_image_mono",
-      "plain_english": "Prove that image preserves subset containment under a function.",
-      "seed": 7111800,
-      "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/set/image_monotone",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
-    },
-    "next": {
       "explanation": "Prove the displayed quadratic identity over the real numbers.",
-      "label": "next",
+      "label": "current",
       "name": "curated_real_quadratic",
       "plain_english": "Prove the displayed quadratic identity over the real numbers.",
       "seed": 7111900,
@@ -128,17 +116,29 @@
       "topic": "algebra.polynomial_light",
       "type_expr": "\u2200 x : \u211d, (x + 2) * (x + 5) = x ^ 2 + (7 : \u211d) * x + (10 : \u211d)"
     },
-    "previous": {
-      "explanation": "Prove associativity of function composition on natural-number functions.",
-      "label": "previous",
-      "name": "t_2f3e790",
-      "plain_english": "Prove associativity of function composition on natural-number functions.",
-      "seed": 7111700,
-      "source_lane": "generated",
+    "next": {
+      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "label": "next",
+      "name": "curated_list_append_nil_induction",
+      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "seed": 7112000,
+      "source_lane": "catalog",
       "split": "medium",
-      "theorem_id": "gen/7111700",
-      "topic": "category_theory.trivial",
-      "type_expr": "\u2200 f g h : Nat \u2192 Nat, \u2200 x : Nat, ((f \u2218 g) \u2218 h) x = (f \u2218 (g \u2218 h)) x"
+      "theorem_id": "curated/foundations/list_append_nil_induction",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
+    },
+    "previous": {
+      "explanation": "Prove that image preserves subset containment under a function.",
+      "label": "previous",
+      "name": "curated_set_image_mono",
+      "plain_english": "Prove that image preserves subset containment under a function.",
+      "seed": 7111800,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/set/image_monotone",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
     }
   }
 }
