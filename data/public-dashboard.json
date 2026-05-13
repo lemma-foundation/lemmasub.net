@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7114098,
+  "chain_head_block": 7114113,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-13T17:15:12Z",
+  "generated_at": "2026-05-13T17:18:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7114000,
-  "problem_seed_chain_head": 7114098,
+  "problem_seed": 7114100,
+  "problem_seed_chain_head": 7114113,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a symmetric relation can be used in the reversed direction.",
-      "label": "current",
-      "name": "curated_symmetric_relation",
-      "plain_english": "Prove that a symmetric relation can be used in the reversed direction.",
-      "seed": 7114000,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/graph/symmetric_relation",
-      "topic": "graph_theory.discrete",
-      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b : Nat, R a b \u2192 R b a) \u2192 \u2200 a b : Nat, R a b \u2192 R b a"
-    },
-    "next": {
       "explanation": "Prove that the displayed polynomial function over real numbers is continuous.",
-      "label": "next",
+      "label": "current",
       "name": "t_4409326",
       "plain_english": "Prove that the displayed polynomial function over real numbers is continuous.",
       "seed": 7114100,
@@ -128,17 +116,29 @@
       "topic": "analysis.continuity",
       "type_expr": "Continuous (fun x : \u211d => (x + 7) ^ 2 + x)"
     },
+    "next": {
+      "explanation": "Prove the displayed concrete modular-arithmetic identity.",
+      "label": "next",
+      "name": "curated_mod_37_5",
+      "plain_english": "Prove the displayed concrete modular-arithmetic identity.",
+      "seed": 7114200,
+      "source_lane": "catalog",
+      "split": "easy",
+      "theorem_id": "curated/number_theory/mod_37_5",
+      "topic": "number_theory.mod_arith",
+      "type_expr": "(37 : Nat) % 5 = 2"
+    },
     "previous": {
-      "explanation": "Prove that appending two lists adds their lengths.",
+      "explanation": "Prove that a symmetric relation can be used in the reversed direction.",
       "label": "previous",
-      "name": "t_2581f03",
-      "plain_english": "Prove that appending two lists adds their lengths.",
-      "seed": 7113900,
-      "source_lane": "generated",
+      "name": "curated_symmetric_relation",
+      "plain_english": "Prove that a symmetric relation can be used in the reversed direction.",
+      "seed": 7114000,
+      "source_lane": "catalog",
       "split": "medium",
-      "theorem_id": "gen/7113900",
-      "topic": "combinatorics.counting",
-      "type_expr": "\u2200 xs ys : List Nat, (xs ++ ys).length = xs.length + ys.length"
+      "theorem_id": "curated/graph/symmetric_relation",
+      "topic": "graph_theory.discrete",
+      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b : Nat, R a b \u2192 R b a) \u2192 \u2200 a b : Nat, R a b \u2192 R b a"
     }
   }
 }
