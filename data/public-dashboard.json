@@ -1,0 +1,144 @@
+{
+  "block_time_sec_estimate": 12.0,
+  "chain_head_block": 7119633,
+  "correct_count_window_hours": 24.0,
+  "generated_at": "2026-05-14T11:42:13Z",
+  "miners": [
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 44,
+      "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.5558251142501831,
+      "uid": 2,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 44,
+      "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.27766841650009155,
+      "uid": 3,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
+      "coldkey_url": "",
+      "correct_theorems_24h": 30,
+      "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.16649118065834045,
+      "uid": 7,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5FNuyRXqdv1uqrmtPQwAPYxmhrGkK1J3TGQkTeJEEzJcZKaP",
+      "coldkey_url": "",
+      "correct_theorems_24h": 0,
+      "hotkey": "5Ft8o9Xi5uN2Q7BvneDfH221F7SbNg9EtuCK4Vi3Ep8WgNb9",
+      "hotkey_url": "",
+      "passed_prior_round": false,
+      "score": 0.0,
+      "uid": 0,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 0,
+      "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+      "hotkey_url": "",
+      "passed_prior_round": false,
+      "score": 0.0,
+      "uid": 1,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 31,
+      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0,
+      "uid": 4,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 25,
+      "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0,
+      "uid": 5,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 17,
+      "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0,
+      "uid": 6,
+      "uid_url": ""
+    }
+  ],
+  "netuid": 467,
+  "network": "test",
+  "problem_seed": 7119600,
+  "problem_seed_chain_head": 7119633,
+  "problem_seed_mode": "quantize",
+  "problem_seed_quantize_blocks": 100,
+  "problem_seed_tag": "quantize",
+  "proofs_passed_prior_round": 6,
+  "schema_version": 3,
+  "score_source": "metagraph_incentive",
+  "theorems": {
+    "current": {
+      "explanation": "Prove the set-difference identity for sets over Fin 9.",
+      "label": "current",
+      "name": "t_32b9e95",
+      "plain_english": "Prove the set-difference identity for sets over Fin 9.",
+      "seed": 7119600,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7119600",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 9), A \\ (B \u222a C) = (A \\ B) \\ C"
+    },
+    "next": {
+      "explanation": "Prove the natural-number multiplication 84 * 85 = 7140.",
+      "label": "next",
+      "name": "t_63e117",
+      "plain_english": "Prove the natural-number multiplication 84 * 85 = 7140.",
+      "seed": 7119700,
+      "source_lane": "generated",
+      "split": "easy",
+      "theorem_id": "gen/7119700",
+      "topic": "algebra.basic",
+      "type_expr": "(84 : Nat) * 85 = 7140"
+    },
+    "previous": {
+      "explanation": "Prove that adding 2 to every list entry preserves length.",
+      "label": "previous",
+      "name": "t_e5f6d7",
+      "plain_english": "Prove that adding 2 to every list entry preserves length.",
+      "seed": 7119500,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7119500",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u2200 xs : List Nat, (xs.map (fun n => n + 2)).length = xs.length"
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "active_target": {
+    "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: two plus two is four. -/\ntheorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by\n  sorry\n\nend Submission\n",
+    "difficulty": "smoke",
+    "id": "known/smoke/nat_two_plus_two_eq_four",
+    "imports": [
+      "Mathlib"
+    ],
+    "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+    "mathlib_rev": "5450b53e5ddc",
+    "order": 1,
+    "status": "active",
+    "theorem_name": "nat_two_plus_two_eq_four",
+    "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
+    "title": "Two plus two is four"
+  },
+  "counts": {
+    "current_solver_count": 0,
+    "remaining_targets": 5,
+    "solved_targets": 0,
+    "total_targets": 5
+  },
+  "current_solver_set": null,
+  "generated_unix": 1778783499,
+  "lemma_version": "0.1.0",
+  "manifest_sha256": "721d7aeaa8030bd54cf129fef6774b131cac42363efc20dfff2783580164601a",
+  "problem_source": "known_theorems",
+  "reward": {
+    "mode": "binary_lean_verify",
+    "rule": "Lean accepts the proof or it does not.",
+    "tie_policy": "same_batch_equal_split"
+  },
+  "schema_version": 1,
+  "solved_ledger": [],
+  "targets": [
+    {
+      "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: two plus two is four. -/\ntheorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by\n  sorry\n\nend Submission\n",
+      "difficulty": "smoke",
+      "id": "known/smoke/nat_two_plus_two_eq_four",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 1,
+      "status": "active",
+      "theorem_name": "nat_two_plus_two_eq_four",
+      "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
+      "title": "Two plus two is four"
+    },
+    {
+      "difficulty": "smoke",
+      "id": "known/smoke/prop_and_comm",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 2,
+      "status": "queued",
+      "theorem_name": "prop_and_comm",
+      "theorem_statement_sha256": "2877b67095cbdc5ee4d6aa91c0c153892d41f15f9a8e09504f58071c2dece35c",
+      "title": "Conjunction is commutative"
+    },
+    {
+      "difficulty": "smoke",
+      "id": "known/smoke/nat_add_zero_right",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 3,
+      "status": "queued",
+      "theorem_name": "nat_add_zero_right",
+      "theorem_statement_sha256": "9f9c96e99caf9c6d5bc52b2f9736d292571e565e04e6fbaabc40c918f169d558",
+      "title": "Adding zero on the right"
+    },
+    {
+      "difficulty": "smoke",
+      "id": "known/smoke/nat_add_commute",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 4,
+      "status": "queued",
+      "theorem_name": "nat_add_commute",
+      "theorem_statement_sha256": "8d26531918939933ff67c8a107196a0b34c1b6eea1a57d1dc630fe9ac6cf8405",
+      "title": "Addition of natural numbers is commutative"
+    },
+    {
+      "difficulty": "smoke",
+      "id": "known/smoke/nat_mul_one_right",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 5,
+      "status": "queued",
+      "theorem_name": "nat_mul_one_right",
+      "theorem_statement_sha256": "f6e60f5c8f4eb9909ad30fd85659bc3c4a1736aef0c6e64c97810f6f07a23662",
+      "title": "Multiplying by one on the right"
+    }
+  ]
+}
