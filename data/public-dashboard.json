@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7118990,
+  "chain_head_block": 7119003,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T09:33:27Z",
+  "generated_at": "2026-05-14T09:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7118900,
-  "problem_seed_chain_head": 7118990,
+  "problem_seed": 7119000,
+  "problem_seed_chain_head": 7119003,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a recursive counter starting at zero returns the input natural number.",
-      "label": "current",
-      "name": "curated_nat_rec_counter",
-      "plain_english": "Prove that a recursive counter starting at zero returns the input natural number.",
-      "seed": 7118900,
-      "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/recursion/nat_rec_counter",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 n : Nat, Nat.rec 0 (fun _ acc => acc + 1) n = n"
-    },
-    "next": {
       "explanation": "Prove that a natural number dividing two values also divides their sum.",
-      "label": "next",
+      "label": "current",
       "name": "curated_dvd_add",
       "plain_english": "Prove that a natural number dividing two values also divides their sum.",
       "seed": 7119000,
@@ -128,17 +116,29 @@
       "topic": "number_theory.divisibility",
       "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b + c"
     },
-    "previous": {
-      "explanation": "Prove that a set over Fin 8 is contained in another set's union with it.",
-      "label": "previous",
-      "name": "t_22f4a22",
-      "plain_english": "Prove that a set over Fin 8 is contained in another set's union with it.",
-      "seed": 7118800,
+    "next": {
+      "explanation": "Prove divisibility is preserved by a sum of squares scaled by 11.",
+      "label": "next",
+      "name": "t_3e8e58d",
+      "plain_english": "Prove divisibility is preserved by a sum of squares scaled by 11.",
+      "seed": 7119100,
       "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7118800",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B : Set (Fin 8), B \u2286 A \u222a B"
+      "split": "hard",
+      "theorem_id": "gen/7119100",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b * b * 11 + c * c * 11"
+    },
+    "previous": {
+      "explanation": "Prove that a recursive counter starting at zero returns the input natural number.",
+      "label": "previous",
+      "name": "curated_nat_rec_counter",
+      "plain_english": "Prove that a recursive counter starting at zero returns the input natural number.",
+      "seed": 7118900,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/recursion/nat_rec_counter",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 n : Nat, Nat.rec 0 (fun _ acc => acc + 1) n = n"
     }
   }
 }
