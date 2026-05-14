@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7116693,
+  "chain_head_block": 7116708,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T01:54:14Z",
+  "generated_at": "2026-05-14T01:57:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7116600,
-  "problem_seed_chain_head": 7116693,
+  "problem_seed": 7116700,
+  "problem_seed_chain_head": 7116708,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that divisibility is preserved by the displayed three-square sum.",
-      "label": "current",
-      "name": "t_4bf600b",
-      "plain_english": "Prove that divisibility is preserved by the displayed three-square sum.",
-      "seed": 7116600,
-      "source_lane": "generated",
-      "split": "extreme",
-      "theorem_id": "gen/7116600",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c d : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 d \u2192 a \u2223 b * b + c * c + d * d"
-    },
-    "next": {
       "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "next",
+      "label": "current",
       "name": "curated_continuous_shift",
       "plain_english": "Prove that shifting a real number by one is a continuous function.",
       "seed": 7116700,
@@ -128,17 +116,29 @@
       "topic": "analysis.continuity",
       "type_expr": "Continuous (fun x : \u211d => x + 1)"
     },
-    "previous": {
-      "explanation": "Prove that True holds.",
-      "label": "previous",
-      "name": "t_6c96d4",
-      "plain_english": "Prove that True holds.",
-      "seed": 7116500,
+    "next": {
+      "explanation": "Prove the displayed difference-of-squares identity over the integers.",
+      "label": "next",
+      "name": "t_28736d3",
+      "plain_english": "Prove the displayed difference-of-squares identity over the integers.",
+      "seed": 7116800,
       "source_lane": "generated",
-      "split": "easy",
-      "theorem_id": "gen/7116500",
-      "topic": "logic.propositional",
-      "type_expr": "True"
+      "split": "hard",
+      "theorem_id": "gen/7116800",
+      "topic": "algebra.ring",
+      "type_expr": "\u2200 a b : \u2124, (a + b) ^ 2 - (a - b) ^ 2 = 4 * a * b"
+    },
+    "previous": {
+      "explanation": "Prove that divisibility is preserved by the displayed three-square sum.",
+      "label": "previous",
+      "name": "t_4bf600b",
+      "plain_english": "Prove that divisibility is preserved by the displayed three-square sum.",
+      "seed": 7116600,
+      "source_lane": "generated",
+      "split": "extreme",
+      "theorem_id": "gen/7116600",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c d : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 d \u2192 a \u2223 b * b + c * c + d * d"
     }
   }
 }
