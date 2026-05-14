@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7117790,
+  "chain_head_block": 7117803,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T05:33:27Z",
+  "generated_at": "2026-05-14T05:36:12Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7117700,
-  "problem_seed_chain_head": 7117790,
+  "problem_seed": 7117800,
+  "problem_seed_chain_head": 7117803,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that filtering the finite range below 8 cannot increase its size.",
-      "label": "current",
-      "name": "t_1d61a13",
-      "plain_english": "Prove that filtering the finite range below 8 cannot increase its size.",
-      "seed": 7117700,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7117700",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 (P : Nat \u2192 Prop) [DecidablePred P], (Finset.filter P (Finset.range 8)).card \u2264 (Finset.range 8).card"
-    },
-    "next": {
       "explanation": "Prove that n belongs to the finite range ending after n plus 21.",
-      "label": "next",
+      "label": "current",
       "name": "t_2c23e2f",
       "plain_english": "Prove that n belongs to the finite range ending after n plus 21.",
       "seed": 7117800,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.finite_sets",
       "type_expr": "\u2200 n : Nat, n \u2208 Finset.range (n + 21 + 1)"
     },
+    "next": {
+      "explanation": "Prove divisibility is preserved by two scaled squares and one scaled term using 6.",
+      "label": "next",
+      "name": "t_4bf6b7f",
+      "plain_english": "Prove divisibility is preserved by two scaled squares and one scaled term using 6.",
+      "seed": 7117900,
+      "source_lane": "generated",
+      "split": "extreme",
+      "theorem_id": "gen/7117900",
+      "topic": "number_theory.divisibility",
+      "type_expr": "\u2200 a b c d : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 d \u2192 a \u2223 b * b * 6 + c * c * 6 + d * 6"
+    },
     "previous": {
-      "explanation": "Prove that image preserves subset containment under a function.",
+      "explanation": "Prove that filtering the finite range below 8 cannot increase its size.",
       "label": "previous",
-      "name": "curated_set_image_mono",
-      "plain_english": "Prove that image preserves subset containment under a function.",
-      "seed": 7117600,
-      "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/set/image_monotone",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
+      "name": "t_1d61a13",
+      "plain_english": "Prove that filtering the finite range below 8 cannot increase its size.",
+      "seed": 7117700,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7117700",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "\u2200 (P : Nat \u2192 Prop) [DecidablePred P], (Finset.filter P (Finset.range 8)).card \u2264 (Finset.range 8).card"
     }
   }
 }
