@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7116993,
+  "chain_head_block": 7117008,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T02:54:11Z",
+  "generated_at": "2026-05-14T02:57:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -11,7 +11,7 @@
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.5103837847709656,
+      "score": 0.5019760727882385,
       "uid": 2,
       "uid_url": ""
     },
@@ -22,7 +22,7 @@
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.2542000412940979,
+      "score": 0.2503089904785156,
       "uid": 3,
       "uid_url": ""
     },
@@ -33,7 +33,7 @@
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.1604943871498108,
+      "score": 0.1728542000055313,
       "uid": 7,
       "uid_url": ""
     },
@@ -44,7 +44,7 @@
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.048371098935604095,
+      "score": 0.0472419336438179,
       "uid": 4,
       "uid_url": ""
     },
@@ -55,7 +55,7 @@
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.02035553567111492,
+      "score": 0.020981155335903168,
       "uid": 5,
       "uid_url": ""
     },
@@ -66,7 +66,7 @@
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.006164644844830036,
+      "score": 0.006607156712561846,
       "uid": 6,
       "uid_url": ""
     },
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7116900,
-  "problem_seed_chain_head": 7116993,
+  "problem_seed": 7117000,
+  "problem_seed_chain_head": 7117008,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that True holds.",
-      "label": "current",
-      "name": "t_6c9864",
-      "plain_english": "Prove that True holds.",
-      "seed": 7116900,
-      "source_lane": "generated",
-      "split": "easy",
-      "theorem_id": "gen/7116900",
-      "topic": "logic.propositional",
-      "type_expr": "True"
-    },
-    "next": {
       "explanation": "Prove the displayed modular reduction used in a toy arithmetic setting.",
-      "label": "next",
+      "label": "current",
       "name": "curated_mod_12345_97",
       "plain_english": "Prove the displayed modular reduction used in a toy arithmetic setting.",
       "seed": 7117000,
@@ -128,17 +116,29 @@
       "topic": "cryptography.modular",
       "type_expr": "(12345 : Nat) % 97 = 26"
     },
-    "previous": {
-      "explanation": "Prove the displayed difference-of-squares identity over the integers.",
-      "label": "previous",
-      "name": "t_28736d3",
-      "plain_english": "Prove the displayed difference-of-squares identity over the integers.",
-      "seed": 7116800,
+    "next": {
+      "explanation": "Prove that transposing a matrix twice gives the original matrix.",
+      "label": "next",
+      "name": "t_392cea5",
+      "plain_english": "Prove that transposing a matrix twice gives the original matrix.",
+      "seed": 7117100,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7116800",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 a b : \u2124, (a + b) ^ 2 - (a - b) ^ 2 = 4 * a * b"
+      "theorem_id": "gen/7117100",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, A.transpose.transpose = A"
+    },
+    "previous": {
+      "explanation": "Prove that True holds.",
+      "label": "previous",
+      "name": "t_6c9864",
+      "plain_english": "Prove that True holds.",
+      "seed": 7116900,
+      "source_lane": "generated",
+      "split": "easy",
+      "theorem_id": "gen/7116900",
+      "topic": "logic.propositional",
+      "type_expr": "True"
     }
   }
 }
