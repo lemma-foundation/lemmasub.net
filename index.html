@@ -3,122 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a Lean proof protocol for Bittensor. Miners submit proofs, validators check them, and rewards follow verified proof results.">
+  <meta name="description" content="Lemma is a Lean proof protocol for Bittensor. Miners submit proofs; validators check them.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260514-proof">
-  <script src="assets/site.js?v=20260514-proof" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260514-min">
 </head>
-<body data-page="home">
-  <header class="site-header">
-    <a class="brand" href="./" aria-label="Lemma home">Lemma</a>
+<body>
+  <header>
+    <a class="brand" href="./">Lemma</a>
     <nav aria-label="Primary">
-      <a href="#protocol">Protocol</a>
       <a href="faq/index.html">FAQ</a>
       <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark</button>
     </nav>
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-scene" aria-hidden="true">
-        <div class="scene-grid"></div>
-        <div class="proof-node target-node">
-          <span>Target</span>
-          <strong>known/target/...</strong>
-        </div>
-        <div class="proof-node miner-node">
-          <span>Miner proof</span>
-          <strong>Submission.lean</strong>
-        </div>
-        <div class="proof-node verifier-node">
-          <span>Lean verifier</span>
-          <strong>passed=true</strong>
-        </div>
-        <div class="proof-node reward-node">
-          <span>Reward</span>
-          <strong>split on batch tie</strong>
-        </div>
-        <pre class="scene-code"><code>theorem target : P := by
-  exact proof</code></pre>
-      </div>
-
-      <div class="hero-copy">
-        <p class="eyebrow">Lean proofs on Bittensor</p>
-        <h1 id="hero-title">Lemma</h1>
-        <p class="lede">
-          A proof either checks or it does not. Miners submit Lean files,
-          validators run the pinned checker, and rewards follow verified
-          results. If multiple miners verify in the same validator batch, the
-          batch reward is split equally.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">Run Lemma</a>
-          <a class="button secondary" href="https://github.com/spacetime-tao/lemma/blob/main/docs/wta.md">Read Protocol</a>
-        </div>
-      </div>
+    <section class="intro">
+      <p class="eyebrow">Lean proofs on Bittensor</p>
+      <h1>Lemma</h1>
+      <p>
+        A proof either checks or it does not. Miners submit Lean files.
+        Validators run the pinned checker. Rewards follow verified proofs.
+      </p>
     </section>
 
-    <section class="summary-strip" aria-label="Protocol summary">
-      <div>
-        <span>Reward axis</span>
-        <strong>verified Lean proof</strong>
-      </div>
-      <div>
-        <span>Live judgment</span>
-        <strong>pass or fail</strong>
-      </div>
-      <div>
-        <span>Rare batch tie</span>
-        <strong>equal split</strong>
-      </div>
+    <section>
+      <h2>Protocol</h2>
+      <ul>
+        <li>One target theorem.</li>
+        <li>One submitted Lean proof file.</li>
+        <li>Pass or fail verification.</li>
+        <li>Same-batch ties split equally.</li>
+      </ul>
     </section>
 
-    <section class="band" id="protocol">
-      <div class="section-head">
-        <p class="eyebrow">Protocol</p>
-        <h2>Small surface. Hard problem.</h2>
-        <p>
-          Lemma keeps the live protocol narrow so miners can focus on the real
-          work: turning theorem targets into Lean-verified proofs.
-        </p>
-      </div>
-      <div class="steps">
-        <article>
-          <span>01</span>
-          <h3>Read the target</h3>
-          <p>Everyone works against the same theorem statement, imports, and pinned Mathlib revision.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Produce a proof</h3>
-          <p>Use any out-of-band method: a proving model, local search, manual work, or a mix.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Submit and serve</h3>
-          <p>The CLI verifies the Lean file, stores it locally, and can serve it to validators.</p>
-        </article>
-        <article>
-          <span>04</span>
-          <h3>Verify and reward</h3>
-          <p>Validators run Lean. Passing proofs receive the WTA signal, with same-batch ties split equally.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="proof-band">
-      <div class="proof-copy">
-        <p class="eyebrow">Proof object</p>
-        <h2>The submitted file is the work.</h2>
-        <p>
-          Informal reasoning can help people understand a proof, but it is not
-          the reward object. The live system checks the formal Lean file against
-          the target theorem. No prose score, no reasoning score, no proof
-          efficiency bonus.
-        </p>
-      </div>
-      <pre class="lean-statement"><code>import Mathlib
+    <section>
+      <h2>Proof object</h2>
+      <p>The submitted file is the work. Informal reasoning can help humans, but Lean decides the live reward path.</p>
+      <pre><code>import Mathlib
 
 namespace Submission
 
@@ -128,64 +49,24 @@ theorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by
 end Submission</code></pre>
     </section>
 
-    <section class="operator-band">
-      <div>
-        <p class="eyebrow">Miners</p>
-        <h2>Generate proofs your way.</h2>
-        <p>
-          The subnet does not prescribe how a proof is found. It only asks for
-          the finished Lean file and a proof-serving miner when you want to
-          participate live.
-        </p>
-        <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/miner.md">Miner guide</a>
-      </div>
-      <div>
-        <p class="eyebrow">Validators</p>
-        <h2>Run the checker, publish the signal.</h2>
-        <p>
-          Validators poll miners, reject unfinished or unsafe proof files, and
-          write weights from objective verification results.
-        </p>
-        <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/validator.md">Validator notes</a>
-      </div>
+    <section>
+      <h2>Start</h2>
+      <p>
+        Read the
+        <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">getting started guide</a>
+        or the
+        <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/wta.md">protocol notes</a>.
+      </p>
     </section>
 
-    <section class="band direction-band">
-      <div class="section-head">
-        <p class="eyebrow">Direction</p>
-        <h2>Grow proof capacity.</h2>
-        <p>
-          The public protocol stays simple while the target supply and miner
-          tooling improve. The useful frontier is not prettier explanations; it
-          is more reliable Lean proof production.
-        </p>
-      </div>
-      <div class="rules-list">
-        <article>
-          <h3>Binary checking</h3>
-          <p>Lean accepts the proof or it does not. Shortcuts like <code>sorry</code> and new axioms are rejected.</p>
-        </article>
-        <article>
-          <h3>Equal tie split</h3>
-          <p>When multiple valid proofs land in the same validator batch, the reward is split evenly among them.</p>
-        </article>
-        <article>
-          <h3>Retired dashboard</h3>
-          <p>The old JSON refresh loop is off. Current protocol state lives in the CLI and repository docs.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="notice-band" aria-label="Dashboard status">
-      <strong>Dashboard retired.</strong>
-      The public dashboard refresh is no longer part of Lemma. Use the CLI and
-      GitHub docs for the current protocol.
+    <section>
+      <h2>Status</h2>
+      <p>The old public dashboard refresh is retired. Use the CLI and repository docs for current protocol state.</p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>Original contributors: Spacetime, Maciej Kula, and Infinitao.</p>
-    <p><a href="https://github.com/spacetime-tao/lemma">spacetime-tao/lemma</a></p>
+  <footer>
+    <span>Original contributors: Spacetime, Maciej Kula, and Infinitao.</span>
   </footer>
 </body>
 </html>

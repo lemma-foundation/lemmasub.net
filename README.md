@@ -3,8 +3,7 @@
 Static public website for Lemma.
 
 This repo hosts the small public landing page and FAQ. Keep it boring: static
-HTML, shared CSS, a tiny theme script, and links back to the Lemma protocol
-repo.
+HTML, shared CSS, and links back to the Lemma protocol repo.
 
 ## Local Preview
 
@@ -18,11 +17,7 @@ Then open:
 - `http://127.0.0.1:8877/faq/index.html`
 - `http://127.0.0.1:8877/dashboard/index.html`
 
-Quick local checks:
-
-```bash
-node --check assets/site.js
-```
+There is no build step.
 
 ## Dashboard Status
 
