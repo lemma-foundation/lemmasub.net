@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7117293,
+  "chain_head_block": 7117308,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T03:54:12Z",
+  "generated_at": "2026-05-14T03:57:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7117200,
-  "problem_seed_chain_head": 7117293,
+  "problem_seed": 7117300,
+  "problem_seed_chain_head": 7117308,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that the 2 by 2 rational identity matrix has determinant one.",
-      "label": "current",
-      "name": "t_17e3126",
-      "plain_english": "Prove that the 2 by 2 rational identity matrix has determinant one.",
-      "seed": 7117200,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7117200",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u211a) = 1"
-    },
-    "next": {
       "explanation": "Prove that image preserves subset containment under a function.",
-      "label": "next",
+      "label": "current",
       "name": "curated_set_image_mono",
       "plain_english": "Prove that image preserves subset containment under a function.",
       "seed": 7117300,
@@ -128,17 +116,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
     },
-    "previous": {
-      "explanation": "Prove that transposing a 4 by 4 integer matrix twice gives the original matrix.",
-      "label": "previous",
-      "name": "t_392cea5",
-      "plain_english": "Prove that transposing a 4 by 4 integer matrix twice gives the original matrix.",
-      "seed": 7117100,
+    "next": {
+      "explanation": "Prove set union distributes over intersection for sets over Fin 3.",
+      "label": "next",
+      "name": "t_35b607a",
+      "plain_english": "Prove set union distributes over intersection for sets over Fin 3.",
+      "seed": 7117400,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7117100",
+      "theorem_id": "gen/7117400",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 3), A \u222a (B \u2229 C) = (A \u222a B) \u2229 (A \u222a C)"
+    },
+    "previous": {
+      "explanation": "Prove that the 2 by 2 rational identity matrix has determinant one.",
+      "label": "previous",
+      "name": "t_17e3126",
+      "plain_english": "Prove that the 2 by 2 rational identity matrix has determinant one.",
+      "seed": 7117200,
+      "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7117200",
       "topic": "linear_algebra.matrix",
-      "type_expr": "\u2200 A : Matrix (Fin 4) (Fin 4) \u2124, A.transpose.transpose = A"
+      "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u211a) = 1"
     }
   }
 }
