@@ -1,9 +1,31 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7118450,
+  "chain_head_block": 7118463,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T07:45:27Z",
+  "generated_at": "2026-05-14T07:48:12Z",
   "miners": [
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 54,
+      "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.5558251142501831,
+      "uid": 2,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 53,
+      "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.27766841650009155,
+      "uid": 3,
+      "uid_url": ""
+    },
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
       "coldkey_url": "",
@@ -11,19 +33,8 @@
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.6936904191970825,
+      "score": 0.16649118065834045,
       "uid": 7,
-      "uid_url": ""
-    },
-    {
-      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
-      "coldkey_url": "",
-      "correct_theorems_24h": 35,
-      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
-      "hotkey_url": "",
-      "passed_prior_round": true,
-      "score": 0.30629435181617737,
-      "uid": 4,
       "uid_url": ""
     },
     {
@@ -51,23 +62,12 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 54,
-      "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "correct_theorems_24h": 35,
+      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
       "passed_prior_round": true,
       "score": 0.0,
-      "uid": 2,
-      "uid_url": ""
-    },
-    {
-      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
-      "coldkey_url": "",
-      "correct_theorems_24h": 53,
-      "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
-      "hotkey_url": "",
-      "passed_prior_round": true,
-      "score": 0.0,
-      "uid": 3,
+      "uid": 4,
       "uid_url": ""
     },
     {
@@ -96,7 +96,7 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7118400,
-  "problem_seed_chain_head": 7118450,
+  "problem_seed_chain_head": 7118463,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
