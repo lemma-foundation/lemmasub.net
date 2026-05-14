@@ -1,6 +1,6 @@
 # lemmasub.net
 
-Static public website for Lemma.
+Static public website for Lemma, Bittensor Testnet Subnet 467.
 
 This repo hosts the small public landing page and FAQ. Keep it boring: static
 HTML, shared CSS, and links back to the Lemma protocol repo.
@@ -15,23 +15,15 @@ Then open:
 
 - `http://127.0.0.1:8877/`
 - `http://127.0.0.1:8877/faq/index.html`
-- `http://127.0.0.1:8877/dashboard/index.html`
 
 There is no build step.
 
-## Dashboard Status
-
-The old public dashboard refresh is retired. This repo no longer tracks
-`data/public-dashboard.json`, and `.gitignore` blocks it from being re-added by
-ordinary `git add` commands. Keep the old validator-side
-`lemma-public-dashboard.timer` disabled so refresh commits do not return.
-
 ## Site Rules
 
-- Keep the public story aligned with the current WTA protocol: verified Lean
+- Keep the public story aligned with the current proof protocol: verified Lean
   proofs decide rewards, and same-batch ties split equally.
 - Do not bring prose judging, reasoning scores, proof-efficiency scoring, or the
-  old generated-dashboard framing back into this site.
+  generated-status framing back into this site.
 - Do not publish proof scripts, raw validator logs, wallet material, deploy
   keys, bearer tokens, SSH usernames, Droplet inventory, or Lean worker
   endpoints.

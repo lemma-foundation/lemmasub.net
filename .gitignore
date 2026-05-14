@@ -5,5 +5,5 @@ dist/
 .env
 .env.*
 !.env.example
-data/public-dashboard.json
+data/
 AGENT_STATE.md

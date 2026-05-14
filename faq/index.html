@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>FAQ | Lemma</title>
-    <meta name="description" content="Questions and answers about Lemma, a Lean proof subnet.">
+    <meta name="description" content="Questions and answers about Lemma, formal mathematics, and Lean proof mining.">
     <link rel="stylesheet" href="/assets/styles.css">
   </head>
   <body>
@@ -20,25 +20,60 @@
     <main>
       <section class="page-head">
         <p class="eyebrow">FAQ</p>
-        <h1>Questions worth answering directly.</h1>
+        <h1>The basics, stated directly.</h1>
       </section>
 
       <section class="qa-list" aria-label="Frequently asked questions">
         <article>
           <h2>What is Lemma?</h2>
           <p>
-            Lemma is a Bittensor subnet for formal proof work. Miners submit Lean proof
-            files for theorem targets, and validators run Lean to determine whether each
-            submission proves the target.
+            Lemma is Bittensor Testnet Subnet 467 for formal proof work. Miners submit
+            Lean proof files for theorem targets, and validators run Lean to determine
+            whether each submission proves the target.
+          </p>
+        </article>
+
+        <article>
+          <h2>Is Lemma on mainnet?</h2>
+          <p>
+            No. Lemma is currently on Bittensor testnet as Subnet 467.
+          </p>
+        </article>
+
+        <article>
+          <h2>What is formal mathematics?</h2>
+          <p>
+            Formal mathematics is mathematics written with enough precision for a proof
+            assistant to check it. Definitions, theorem statements, and proofs are expressed
+            in a language with exact rules, so verification does not depend on interpretation
+            or trust in the author.
           </p>
         </article>
 
         <article>
           <h2>What is a formal proof?</h2>
           <p>
-            It is a proof written in a language a computer can check. Instead of relying on
-            a human reader to decide whether an argument is convincing, the proof checker
-            verifies that every step is justified.
+            It is the proof object for a formal theorem. A traditional proof may omit steps
+            that a trained reader can fill in. A formal proof must provide enough structure
+            for the checker to confirm that the theorem follows from the stated assumptions.
+          </p>
+        </article>
+
+        <article>
+          <h2>What is a theorem target?</h2>
+          <p>
+            A target is the exact problem miners work on: a Lean theorem statement, the
+            imports it may use, and the environment in which the proof must check. The target
+            is the prompt, and a verifying Lean file is the answer.
+          </p>
+        </article>
+
+        <article>
+          <h2>Which problems do miners work on?</h2>
+          <p>
+            Miners work on Lean theorem targets from the Lemma protocol. These are formal
+            mathematics problems, not essay prompts or numerical quizzes. A miner's job is
+            to produce a proof file that Lean accepts for the assigned theorem.
           </p>
         </article>
 
@@ -60,6 +95,14 @@
         </article>
 
         <article>
+          <h2>Do miners need to submit explanations?</h2>
+          <p>
+            No. Explanations can be useful for people, research notes, or debugging, but
+            they are not the scoring object. The live protocol rewards verified Lean proofs.
+          </p>
+        </article>
+
+        <article>
           <h2>What do validators do?</h2>
           <p>
             Validators fetch submissions, run Lean verification, and convert verified proof
@@ -74,15 +117,6 @@
             If several miners verify in the same validator batch, that batch's reward is
             split equally. The protocol should not prefer a lower UID just because two valid
             proofs landed together.
-          </p>
-        </article>
-
-        <article>
-          <h2>Where did the dashboard go?</h2>
-          <p>
-            The old public dashboard belonged to an earlier version of the site. Lemma is
-            now centered on the repository, CLI, theorem targets, and verified proof
-            submissions.
           </p>
         </article>
       </section>
