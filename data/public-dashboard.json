@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7117490,
+  "chain_head_block": 7117503,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T04:33:27Z",
+  "generated_at": "2026-05-14T04:36:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7117400,
-  "problem_seed_chain_head": 7117490,
+  "problem_seed": 7117500,
+  "problem_seed_chain_head": 7117503,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove set union distributes over intersection for sets over Fin 3.",
-      "label": "current",
-      "name": "t_35b607a",
-      "plain_english": "Prove set union distributes over intersection for sets over Fin 3.",
-      "seed": 7117400,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7117400",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B C : Set (Fin 3), A \u222a (B \u2229 C) = (A \u222a B) \u2229 (A \u222a C)"
-    },
-    "next": {
       "explanation": "Prove that prepending 41 to a list increases its length by one.",
-      "label": "next",
+      "label": "current",
       "name": "t_5431e79",
       "plain_english": "Prove that prepending 41 to a list increases its length by one.",
       "seed": 7117500,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.counting",
       "type_expr": "\u2200 xs : List Nat, (41 :: xs).length = xs.length + 1"
     },
-    "previous": {
+    "next": {
       "explanation": "Prove that image preserves subset containment under a function.",
-      "label": "previous",
+      "label": "next",
       "name": "curated_set_image_mono",
       "plain_english": "Prove that image preserves subset containment under a function.",
-      "seed": 7117300,
+      "seed": 7117600,
       "source_lane": "catalog",
       "split": "hard",
       "theorem_id": "curated/set/image_monotone",
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
+    },
+    "previous": {
+      "explanation": "Prove set union distributes over intersection for sets over Fin 3.",
+      "label": "previous",
+      "name": "t_35b607a",
+      "plain_english": "Prove set union distributes over intersection for sets over Fin 3.",
+      "seed": 7117400,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7117400",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 3), A \u222a (B \u2229 C) = (A \u222a B) \u2229 (A \u222a C)"
     }
   }
 }
