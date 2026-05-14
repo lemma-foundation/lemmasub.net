@@ -1,13 +1,13 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7119199,
+  "chain_head_block": 7119213,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T10:15:23Z",
+  "generated_at": "2026-05-14T10:18:13Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 48,
+      "correct_theorems_24h": 47,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -18,7 +18,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 47,
+      "correct_theorems_24h": 46,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -29,7 +29,7 @@
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
       "coldkey_url": "",
-      "correct_theorems_24h": 32,
+      "correct_theorems_24h": 31,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -84,7 +84,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 20,
+      "correct_theorems_24h": 19,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7119100,
-  "problem_seed_chain_head": 7119199,
+  "problem_seed": 7119200,
+  "problem_seed_chain_head": 7119213,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove divisibility is preserved by a sum of squares scaled by 11.",
-      "label": "current",
-      "name": "t_3e8e58d",
-      "plain_english": "Prove divisibility is preserved by a sum of squares scaled by 11.",
-      "seed": 7119100,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7119100",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b * b * 11 + c * c * 11"
-    },
-    "next": {
       "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "next",
+      "label": "current",
       "name": "curated_predicate_exists",
       "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
       "seed": 7119200,
@@ -128,17 +116,29 @@
       "topic": "logic.predicates",
       "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
     },
+    "next": {
+      "explanation": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
+      "label": "next",
+      "name": "t_102978c",
+      "plain_english": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
+      "seed": 7119300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7119300",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "\u2200 (A B : Finset (Fin 5)), A.card \u2264 (A \u222a B).card"
+    },
     "previous": {
-      "explanation": "Prove that a natural number dividing two values also divides their sum.",
+      "explanation": "Prove divisibility is preserved by a sum of squares scaled by 11.",
       "label": "previous",
-      "name": "curated_dvd_add",
-      "plain_english": "Prove that a natural number dividing two values also divides their sum.",
-      "seed": 7119000,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/divisibility/add",
+      "name": "t_3e8e58d",
+      "plain_english": "Prove divisibility is preserved by a sum of squares scaled by 11.",
+      "seed": 7119100,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7119100",
       "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b + c"
+      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b * b * 11 + c * c * 11"
     }
   }
 }
