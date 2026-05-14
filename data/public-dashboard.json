@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7119393,
+  "chain_head_block": 7119408,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T10:54:14Z",
+  "generated_at": "2026-05-14T10:57:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7119300,
-  "problem_seed_chain_head": 7119393,
+  "problem_seed": 7119400,
+  "problem_seed_chain_head": 7119408,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
-      "label": "current",
-      "name": "t_102978c",
-      "plain_english": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
-      "seed": 7119300,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7119300",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 (A B : Finset (Fin 5)), A.card \u2264 (A \u222a B).card"
-    },
-    "next": {
       "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
-      "label": "next",
+      "label": "current",
       "name": "curated_transitive_relation",
       "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
       "seed": 7119400,
@@ -128,17 +116,29 @@
       "topic": "graph_theory.discrete",
       "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
     },
-    "previous": {
-      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "previous",
-      "name": "curated_predicate_exists",
-      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
-      "seed": 7119200,
-      "source_lane": "catalog",
+    "next": {
+      "explanation": "Prove that adding 2 to every list entry preserves length.",
+      "label": "next",
+      "name": "t_e5f6d7",
+      "plain_english": "Prove that adding 2 to every list entry preserves length.",
+      "seed": 7119500,
+      "source_lane": "generated",
       "split": "medium",
-      "theorem_id": "curated/logic/predicate_exists",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
+      "theorem_id": "gen/7119500",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u2200 xs : List Nat, (xs.map (fun n => n + 2)).length = xs.length"
+    },
+    "previous": {
+      "explanation": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
+      "label": "previous",
+      "name": "t_102978c",
+      "plain_english": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
+      "seed": 7119300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7119300",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "\u2200 (A B : Finset (Fin 5)), A.card \u2264 (A \u222a B).card"
     }
   }
 }
