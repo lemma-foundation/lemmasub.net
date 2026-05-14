@@ -1,13 +1,13 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7119498,
+  "chain_head_block": 7119513,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T11:15:12Z",
+  "generated_at": "2026-05-14T11:18:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 45,
+      "correct_theorems_24h": 44,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -18,7 +18,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 45,
+      "correct_theorems_24h": 44,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7119400,
-  "problem_seed_chain_head": 7119498,
+  "problem_seed": 7119500,
+  "problem_seed_chain_head": 7119513,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
-      "label": "current",
-      "name": "curated_transitive_relation",
-      "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
-      "seed": 7119400,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/graph/transitive_relation",
-      "topic": "graph_theory.discrete",
-      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
-    },
-    "next": {
       "explanation": "Prove that adding 2 to every list entry preserves length.",
-      "label": "next",
+      "label": "current",
       "name": "t_e5f6d7",
       "plain_english": "Prove that adding 2 to every list entry preserves length.",
       "seed": 7119500,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.counting",
       "type_expr": "\u2200 xs : List Nat, (xs.map (fun n => n + 2)).length = xs.length"
     },
-    "previous": {
-      "explanation": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
-      "label": "previous",
-      "name": "t_102978c",
-      "plain_english": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
-      "seed": 7119300,
+    "next": {
+      "explanation": "Prove the set-difference identity for sets over Fin 9.",
+      "label": "next",
+      "name": "t_32b9e95",
+      "plain_english": "Prove the set-difference identity for sets over Fin 9.",
+      "seed": 7119600,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7119300",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 (A B : Finset (Fin 5)), A.card \u2264 (A \u222a B).card"
+      "theorem_id": "gen/7119600",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 9), A \\ (B \u222a C) = (A \\ B) \\ C"
+    },
+    "previous": {
+      "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
+      "label": "previous",
+      "name": "curated_transitive_relation",
+      "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
+      "seed": 7119400,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/graph/transitive_relation",
+      "topic": "graph_theory.discrete",
+      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
     }
   }
 }
