@@ -109,6 +109,34 @@ nav a[aria-current="page"] {
   color: var(--ink);
 }
 
+body[data-page="placeholder"] main > :not(.placeholder-notice) {
+  display: none;
+}
+
+.placeholder-notice {
+  display: grid;
+  min-height: calc(100svh - 144px);
+  padding: clamp(56px, 12vw, 150px) clamp(20px, 5vw, 72px);
+  place-items: center;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.placeholder-notice > div {
+  max-width: 760px;
+}
+
+.placeholder-notice h1 {
+  max-width: 720px;
+}
+
+.placeholder-notice .lede {
+  max-width: 620px;
+}
+
 .theme-toggle {
   min-height: 32px;
   padding: 0 11px;
