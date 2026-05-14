@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7116588,
+  "chain_head_block": 7116603,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T01:33:11Z",
+  "generated_at": "2026-05-14T01:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7116500,
-  "problem_seed_chain_head": 7116588,
+  "problem_seed": 7116600,
+  "problem_seed_chain_head": 7116603,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that True holds.",
-      "label": "current",
-      "name": "t_6c96d4",
-      "plain_english": "Prove that True holds.",
-      "seed": 7116500,
-      "source_lane": "generated",
-      "split": "easy",
-      "theorem_id": "gen/7116500",
-      "topic": "logic.propositional",
-      "type_expr": "True"
-    },
-    "next": {
       "explanation": "Prove that divisibility is preserved by the displayed three-square sum.",
-      "label": "next",
+      "label": "current",
       "name": "t_4bf600b",
       "plain_english": "Prove that divisibility is preserved by the displayed three-square sum.",
       "seed": 7116600,
@@ -128,17 +116,29 @@
       "topic": "number_theory.divisibility",
       "type_expr": "\u2200 a b c d : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 d \u2192 a \u2223 b * b + c * c + d * d"
     },
+    "next": {
+      "explanation": "Prove that shifting a real number by one is a continuous function.",
+      "label": "next",
+      "name": "curated_continuous_shift",
+      "plain_english": "Prove that shifting a real number by one is a continuous function.",
+      "seed": 7116700,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/analysis/continuous_shift",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => x + 1)"
+    },
     "previous": {
-      "explanation": "Prove distributivity of multiplication over addition for natural numbers.",
+      "explanation": "Prove that True holds.",
       "label": "previous",
-      "name": "t_2ec488e",
-      "plain_english": "Prove distributivity of multiplication over addition for natural numbers.",
-      "seed": 7116400,
+      "name": "t_6c96d4",
+      "plain_english": "Prove that True holds.",
+      "seed": 7116500,
       "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7116400",
-      "topic": "algebra.ring",
-      "type_expr": "\u2200 a b c : Nat, (a + b) * c = a * c + b * c"
+      "split": "easy",
+      "theorem_id": "gen/7116500",
+      "topic": "logic.propositional",
+      "type_expr": "True"
     }
   }
 }
