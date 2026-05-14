@@ -1,6 +1,6 @@
 # lemmasub.net
 
-Static public website for Lemma, Bittensor Testnet Subnet 467.
+Static public website for Lemma.
 
 This repo hosts the small public landing page and FAQ. Keep it boring: static
 HTML, shared CSS, and links back to the Lemma protocol repo.
