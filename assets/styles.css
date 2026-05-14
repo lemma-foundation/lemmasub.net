@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --bg: #fbfaf6;
   --ink: #171814;
   --muted: #62665f;
@@ -10,17 +10,16 @@
   --code-ink: #f3f0e8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #11120f;
-    --ink: #f4f1e8;
-    --muted: #b5b0a4;
-    --line: #34352f;
-    --soft: #1a1b17;
-    --accent: #9fd1b8;
-    --code-bg: #050605;
-    --code-ink: #f4f1e8;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #171813;
+  --ink: #f4f1e8;
+  --muted: #beb8aa;
+  --line: #3d3e36;
+  --soft: #22231d;
+  --accent: #9fd1b8;
+  --code-bg: #0d0e0b;
+  --code-ink: #f4f1e8;
 }
 
 * {
@@ -85,6 +84,53 @@ nav a {
 
 nav a[aria-current="page"] {
   color: var(--ink);
+}
+
+.theme-toggle {
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  align-items: center;
+  width: 58px;
+  height: 30px;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.theme-toggle span {
+  display: grid;
+  place-items: center;
+  height: 24px;
+  border-radius: 999px;
+}
+
+.theme-toggle svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-sun,
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.12);
 }
 
 main {
@@ -387,7 +433,17 @@ footer a {
 
   .site-header {
     align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
     padding-top: 20px;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  .theme-toggle {
+    width: 52px;
   }
 
   main {
