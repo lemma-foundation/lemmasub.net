@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Lemma Miners</title>
+    <meta name="description" content="Current Lemma proof targets and solved ledger state for miners.">
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/" target="_blank" rel="noopener noreferrer">Lemma</a>
+      <nav aria-label="Primary">
+        <a href="/miners/" aria-current="page">Miners</a>
+        <a href="/faq/" target="_blank" rel="noopener noreferrer">FAQ</a>
+        <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-head" aria-labelledby="title">
+        <p class="eyebrow">Miner target board</p>
+        <h1 id="title">Proof targets miners can work from.</h1>
+        <p class="lead">
+          The board is a static snapshot from the known-theorem manifest and solved-target
+          ledger. Rewards follow the same rule as the protocol: Lean accepts the proof or it
+          does not.
+        </p>
+      </section>
+
+      <section id="miner-dashboard" class="dashboard-shell" aria-live="polite">
+        <p class="muted">Loading target board...</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Lemma</span>
+      <span>Bittensor subnet</span>
+    </footer>
+
+    <script src="/assets/miners.js"></script>
+  </body>
+</html>

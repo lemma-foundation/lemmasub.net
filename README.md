@@ -7,6 +7,12 @@ HTML, shared CSS, and links back to the Lemma protocol repo.
 
 ## Local Preview
 
+From the Lemma checkout, generate the dashboard JSON:
+
+```bash
+uv run lemma dashboard export --output ../lemmasub.net/data/miner-dashboard.json
+```
+
 ```bash
 python3 -m http.server 8877 --bind 127.0.0.1
 ```
@@ -14,6 +20,7 @@ python3 -m http.server 8877 --bind 127.0.0.1
 Then open:
 
 - `http://127.0.0.1:8877/`
+- `http://127.0.0.1:8877/miners/index.html`
 - `http://127.0.0.1:8877/faq/index.html`
 
 There is no build step.
@@ -22,6 +29,8 @@ There is no build step.
 
 - Keep the public story aligned with the current proof protocol: verified Lean
   proofs decide rewards, and same-batch ties split equally.
+- `data/miner-dashboard.json` is a static public export from the Lemma manifest
+  and solved ledger.
 - Do not bring prose judging, reasoning scores, proof-efficiency scoring, or the
   generated-status framing back into this site.
 - Do not publish proof scripts, raw validator logs, wallet material, deploy

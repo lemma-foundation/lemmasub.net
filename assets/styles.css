@@ -156,6 +156,10 @@ h2 {
   margin-bottom: 0;
 }
 
+.muted {
+  color: var(--muted);
+}
+
 .section-grid,
 .proof-layout {
   display: grid;
@@ -237,6 +241,95 @@ code {
 .link-list a::after {
   content: "->";
   color: var(--accent);
+}
+
+.dashboard-shell {
+  padding: 38px 0 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--line);
+}
+
+.stat {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 18px;
+  background: var(--bg);
+}
+
+.stat span,
+.dashboard-meta,
+.target-row small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stat strong {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.dashboard-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.dashboard-section h2 {
+  max-width: 760px;
+}
+
+.dashboard-meta {
+  margin-bottom: 18px;
+}
+
+.solver-list,
+.target-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.solver-list li,
+.target-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) minmax(180px, 0.5fr) minmax(120px, 0.3fr);
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.target-row {
+  grid-template-columns: 86px minmax(0, 1fr) minmax(180px, 0.6fr) minmax(150px, 0.5fr);
+}
+
+.target-row > span {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.target-row.is-solved > span {
+  color: var(--muted);
+}
+
+.target-row code,
+.solver-list code {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .link-list.compact {
@@ -330,6 +423,16 @@ footer a {
     grid-template-columns: 1fr;
     gap: 6px;
     padding: 18px 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .solver-list li,
+  .target-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 
   pre {
