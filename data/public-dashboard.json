@@ -1,13 +1,13 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7117893,
+  "chain_head_block": 7117908,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T05:54:12Z",
+  "generated_at": "2026-05-14T05:57:09Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
       "coldkey_url": "",
-      "correct_theorems_24h": 36,
+      "correct_theorems_24h": 35,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": false,
@@ -51,7 +51,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 54,
+      "correct_theorems_24h": 53,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -62,7 +62,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 53,
+      "correct_theorems_24h": 52,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -73,7 +73,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 33,
+      "correct_theorems_24h": 32,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
       "passed_prior_round": false,
@@ -84,7 +84,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 23,
+      "correct_theorems_24h": 22,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
       "passed_prior_round": false,
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7117800,
-  "problem_seed_chain_head": 7117893,
+  "problem_seed": 7117900,
+  "problem_seed_chain_head": 7117908,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that n belongs to the finite range ending after n plus 21.",
-      "label": "current",
-      "name": "t_2c23e2f",
-      "plain_english": "Prove that n belongs to the finite range ending after n plus 21.",
-      "seed": 7117800,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7117800",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 n : Nat, n \u2208 Finset.range (n + 21 + 1)"
-    },
-    "next": {
       "explanation": "Prove divisibility is preserved by two scaled squares and one scaled term using 6.",
-      "label": "next",
+      "label": "current",
       "name": "t_4bf6b7f",
       "plain_english": "Prove divisibility is preserved by two scaled squares and one scaled term using 6.",
       "seed": 7117900,
@@ -128,17 +116,29 @@
       "topic": "number_theory.divisibility",
       "type_expr": "\u2200 a b c d : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 d \u2192 a \u2223 b * b * 6 + c * c * 6 + d * 6"
     },
+    "next": {
+      "explanation": "Prove reversed union-over-intersection distributivity for sets over Fin 5.",
+      "label": "next",
+      "name": "t_35b6692",
+      "plain_english": "Prove reversed union-over-intersection distributivity for sets over Fin 5.",
+      "seed": 7118000,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7118000",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 5), (B \u2229 C) \u222a A = (B \u222a A) \u2229 (C \u222a A)"
+    },
     "previous": {
-      "explanation": "Prove that filtering the finite range below 8 cannot increase its size.",
+      "explanation": "Prove that n belongs to the finite range ending after n plus 21.",
       "label": "previous",
-      "name": "t_1d61a13",
-      "plain_english": "Prove that filtering the finite range below 8 cannot increase its size.",
-      "seed": 7117700,
+      "name": "t_2c23e2f",
+      "plain_english": "Prove that n belongs to the finite range ending after n plus 21.",
+      "seed": 7117800,
       "source_lane": "generated",
       "split": "medium",
-      "theorem_id": "gen/7117700",
+      "theorem_id": "gen/7117800",
       "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 (P : Nat \u2192 Prop) [DecidablePred P], (Finset.filter P (Finset.range 8)).card \u2264 (Finset.range 8).card"
+      "type_expr": "\u2200 n : Nat, n \u2208 Finset.range (n + 21 + 1)"
     }
   }
 }
