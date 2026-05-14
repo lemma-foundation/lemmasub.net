@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7119290,
+  "chain_head_block": 7119303,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T10:33:27Z",
+  "generated_at": "2026-05-14T10:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -73,7 +73,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 26,
+      "correct_theorems_24h": 25,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7119200,
-  "problem_seed_chain_head": 7119290,
+  "problem_seed": 7119300,
+  "problem_seed_chain_head": 7119303,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "current",
-      "name": "curated_predicate_exists",
-      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
-      "seed": 7119200,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/logic/predicate_exists",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
-    },
-    "next": {
       "explanation": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
-      "label": "next",
+      "label": "current",
       "name": "t_102978c",
       "plain_english": "Prove that a finite subset of Fin 5 is no larger than its union with another set.",
       "seed": 7119300,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.finite_sets",
       "type_expr": "\u2200 (A B : Finset (Fin 5)), A.card \u2264 (A \u222a B).card"
     },
+    "next": {
+      "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
+      "label": "next",
+      "name": "curated_transitive_relation",
+      "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
+      "seed": 7119400,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/graph/transitive_relation",
+      "topic": "graph_theory.discrete",
+      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
+    },
     "previous": {
-      "explanation": "Prove divisibility is preserved by a sum of squares scaled by 11.",
+      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
       "label": "previous",
-      "name": "t_3e8e58d",
-      "plain_english": "Prove divisibility is preserved by a sum of squares scaled by 11.",
-      "seed": 7119100,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7119100",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b * b * 11 + c * c * 11"
+      "name": "curated_predicate_exists",
+      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
+      "seed": 7119200,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/logic/predicate_exists",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
     }
   }
 }
