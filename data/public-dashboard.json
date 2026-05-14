@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7118089,
+  "chain_head_block": 7118103,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T06:33:25Z",
+  "generated_at": "2026-05-14T06:36:12Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -11,18 +11,18 @@
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
-      "score": 0.6784771680831909,
+      "score": 0.6936904191970825,
       "uid": 7,
       "uid_url": ""
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 36,
+      "correct_theorems_24h": 35,
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
       "passed_prior_round": false,
-      "score": 0.32150760293006897,
+      "score": 0.30629435181617737,
       "uid": 4,
       "uid_url": ""
     },
@@ -51,7 +51,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 54,
+      "correct_theorems_24h": 53,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -62,7 +62,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 53,
+      "correct_theorems_24h": 52,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -73,7 +73,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 31,
+      "correct_theorems_24h": 30,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
       "passed_prior_round": false,
@@ -84,7 +84,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 22,
+      "correct_theorems_24h": 21,
       "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
       "hotkey_url": "",
       "passed_prior_round": false,
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7118000,
-  "problem_seed_chain_head": 7118089,
+  "problem_seed": 7118100,
+  "problem_seed_chain_head": 7118103,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove reversed union-over-intersection distributivity for sets over Fin 5.",
-      "label": "current",
-      "name": "t_35b6692",
-      "plain_english": "Prove reversed union-over-intersection distributivity for sets over Fin 5.",
-      "seed": 7118000,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7118000",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B C : Set (Fin 5), (B \u2229 C) \u222a A = (B \u222a A) \u2229 (C \u222a A)"
-    },
-    "next": {
       "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
-      "label": "next",
+      "label": "current",
       "name": "curated_transitive_relation",
       "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
       "seed": 7118100,
@@ -128,17 +116,29 @@
       "topic": "graph_theory.discrete",
       "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
     },
-    "previous": {
-      "explanation": "Prove divisibility is preserved by two scaled squares and one scaled term using 6.",
-      "label": "previous",
-      "name": "t_4bf6b7f",
-      "plain_english": "Prove divisibility is preserved by two scaled squares and one scaled term using 6.",
-      "seed": 7117900,
+    "next": {
+      "explanation": "Prove that a recursive counter starting at 29 returns n + 29.",
+      "label": "next",
+      "name": "t_4fa735f",
+      "plain_english": "Prove that a recursive counter starting at 29 returns n + 29.",
+      "seed": 7118200,
       "source_lane": "generated",
-      "split": "extreme",
-      "theorem_id": "gen/7117900",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c d : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 d \u2192 a \u2223 b * b * 6 + c * c * 6 + d * 6"
+      "split": "hard",
+      "theorem_id": "gen/7118200",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 n : Nat, Nat.rec 29 (fun _ acc => acc + 1) n = n + 29"
+    },
+    "previous": {
+      "explanation": "Prove reversed union-over-intersection distributivity for sets over Fin 5.",
+      "label": "previous",
+      "name": "t_35b6692",
+      "plain_english": "Prove reversed union-over-intersection distributivity for sets over Fin 5.",
+      "seed": 7118000,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7118000",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 5), (B \u2229 C) \u222a A = (B \u222a A) \u2229 (C \u222a A)"
     }
   }
 }
