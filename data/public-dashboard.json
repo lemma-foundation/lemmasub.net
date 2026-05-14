@@ -1,16 +1,16 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7117443,
+  "chain_head_block": 7117460,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T04:24:14Z",
+  "generated_at": "2026-05-14T04:27:28Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 50,
+      "correct_theorems_24h": 51,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.5263294577598572,
       "uid": 2,
       "uid_url": ""
@@ -18,10 +18,10 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 49,
+      "correct_theorems_24h": 50,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
-      "passed_prior_round": false,
+      "passed_prior_round": true,
       "score": 0.26257723569869995,
       "uid": 3,
       "uid_url": ""
@@ -29,7 +29,7 @@
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
       "coldkey_url": "",
-      "correct_theorems_24h": 34,
+      "correct_theorems_24h": 35,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -43,7 +43,7 @@
       "correct_theorems_24h": 34,
       "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
       "hotkey_url": "",
-      "passed_prior_round": true,
+      "passed_prior_round": false,
       "score": 0.0470435656607151,
       "uid": 4,
       "uid_url": ""
@@ -96,11 +96,11 @@
   "netuid": 467,
   "network": "test",
   "problem_seed": 7117400,
-  "problem_seed_chain_head": 7117443,
+  "problem_seed_chain_head": 7117460,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
-  "proofs_passed_prior_round": 2,
+  "proofs_passed_prior_round": 3,
   "schema_version": 3,
   "score_source": "metagraph_incentive",
   "theorems": {
