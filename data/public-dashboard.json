@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7116198,
+  "chain_head_block": 7116213,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T00:15:14Z",
+  "generated_at": "2026-05-14T00:18:14Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7116100,
-  "problem_seed_chain_head": 7116198,
+  "problem_seed": 7116200,
+  "problem_seed_chain_head": 7116213,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "current",
-      "name": "curated_predicate_exists",
-      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
-      "seed": 7116100,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/logic/predicate_exists",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
-    },
-    "next": {
       "explanation": "Prove the displayed concrete modular-arithmetic identity.",
-      "label": "next",
+      "label": "current",
       "name": "curated_mod_37_5",
       "plain_english": "Prove the displayed concrete modular-arithmetic identity.",
       "seed": 7116200,
@@ -128,17 +116,29 @@
       "topic": "number_theory.mod_arith",
       "type_expr": "(37 : Nat) % 5 = 2"
     },
-    "previous": {
-      "explanation": "Prove that the displayed polynomial function over real numbers is continuous.",
-      "label": "previous",
-      "name": "t_4408ab2",
-      "plain_english": "Prove that the displayed polynomial function over real numbers is continuous.",
-      "seed": 7116000,
+    "next": {
+      "explanation": "Prove distributivity of multiplication over addition for natural numbers.",
+      "label": "next",
+      "name": "t_2ec48f2",
+      "plain_english": "Prove distributivity of multiplication over addition for natural numbers.",
+      "seed": 7116300,
       "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7116000",
-      "topic": "analysis.continuity",
-      "type_expr": "Continuous (fun x : \u211d => (x + 8) ^ 2 + x)"
+      "split": "medium",
+      "theorem_id": "gen/7116300",
+      "topic": "algebra.ring",
+      "type_expr": "\u2200 a b c : Nat, (a + b) * c = a * c + b * c"
+    },
+    "previous": {
+      "explanation": "Prove that a universally true predicate holds for at least one natural number.",
+      "label": "previous",
+      "name": "curated_predicate_exists",
+      "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
+      "seed": 7116100,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/logic/predicate_exists",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
     }
   }
 }
