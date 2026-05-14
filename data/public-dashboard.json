@@ -1,13 +1,13 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7118493,
+  "chain_head_block": 7118508,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T07:54:12Z",
+  "generated_at": "2026-05-14T07:57:09Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 54,
+      "correct_theorems_24h": 53,
       "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -18,7 +18,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 53,
+      "correct_theorems_24h": 52,
       "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -29,7 +29,7 @@
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
       "coldkey_url": "",
-      "correct_theorems_24h": 36,
+      "correct_theorems_24h": 35,
       "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -73,7 +73,7 @@
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
       "coldkey_url": "",
-      "correct_theorems_24h": 31,
+      "correct_theorems_24h": 30,
       "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
       "hotkey_url": "",
       "passed_prior_round": true,
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7118400,
-  "problem_seed_chain_head": 7118493,
+  "problem_seed": 7118500,
+  "problem_seed_chain_head": 7118508,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove set union distributes over intersection for sets over Fin 7.",
-      "label": "current",
-      "name": "t_35b6462",
-      "plain_english": "Prove set union distributes over intersection for sets over Fin 7.",
-      "seed": 7118400,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7118400",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B C : Set (Fin 7), A \u222a (B \u2229 C) = (A \u222a B) \u2229 (A \u222a C)"
-    },
-    "next": {
       "explanation": "Prove that a finite subset of Fin 7 is no larger than its union with another set.",
-      "label": "next",
+      "label": "current",
       "name": "t_27a918d",
       "plain_english": "Prove that a finite subset of Fin 7 is no larger than its union with another set.",
       "seed": 7118500,
@@ -128,17 +116,29 @@
       "topic": "combinatorics.finite_sets",
       "type_expr": "\u2200 A B : Finset (Fin 7), A.card \u2264 (A \u222a B).card"
     },
+    "next": {
+      "explanation": "Prove that a recursive counter starting at zero returns the input natural number.",
+      "label": "next",
+      "name": "curated_nat_rec_counter",
+      "plain_english": "Prove that a recursive counter starting at zero returns the input natural number.",
+      "seed": 7118600,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/recursion/nat_rec_counter",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 n : Nat, Nat.rec 0 (fun _ acc => acc + 1) n = n"
+    },
     "previous": {
-      "explanation": "Prove the square-function difference quotient at a nonzero step.",
+      "explanation": "Prove set union distributes over intersection for sets over Fin 7.",
       "label": "previous",
-      "name": "t_5c50b01",
-      "plain_english": "Prove the square-function difference quotient at a nonzero step.",
-      "seed": 7118300,
+      "name": "t_35b6462",
+      "plain_english": "Prove set union distributes over intersection for sets over Fin 7.",
+      "seed": 7118400,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7118300",
-      "topic": "calculus.limits_light",
-      "type_expr": "\u2200 x h : \u211d, h \u2260 0 \u2192 ((x + h) ^ 2 - x ^ 2) / h = 2 * x + h"
+      "theorem_id": "gen/7118400",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 7), A \u222a (B \u2229 C) = (A \u222a B) \u2229 (A \u222a C)"
     }
   }
 }
