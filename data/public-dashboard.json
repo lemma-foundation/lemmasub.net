@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7118390,
+  "chain_head_block": 7118403,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T07:33:27Z",
+  "generated_at": "2026-05-14T07:36:12Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7118300,
-  "problem_seed_chain_head": 7118390,
+  "problem_seed": 7118400,
+  "problem_seed_chain_head": 7118403,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove the square-function difference quotient at a nonzero step.",
-      "label": "current",
-      "name": "t_5c50b01",
-      "plain_english": "Prove the square-function difference quotient at a nonzero step.",
-      "seed": 7118300,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7118300",
-      "topic": "calculus.limits_light",
-      "type_expr": "\u2200 x h : \u211d, h \u2260 0 \u2192 ((x + h) ^ 2 - x ^ 2) / h = 2 * x + h"
-    },
-    "next": {
       "explanation": "Prove set union distributes over intersection for sets over Fin 7.",
-      "label": "next",
+      "label": "current",
       "name": "t_35b6462",
       "plain_english": "Prove set union distributes over intersection for sets over Fin 7.",
       "seed": 7118400,
@@ -128,17 +116,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 A B C : Set (Fin 7), A \u222a (B \u2229 C) = (A \u222a B) \u2229 (A \u222a C)"
     },
-    "previous": {
-      "explanation": "Prove that a recursive counter starting at 29 returns n + 29.",
-      "label": "previous",
-      "name": "t_4fa735f",
-      "plain_english": "Prove that a recursive counter starting at 29 returns n + 29.",
-      "seed": 7118200,
+    "next": {
+      "explanation": "Prove that a finite subset of Fin 7 is no larger than its union with another set.",
+      "label": "next",
+      "name": "t_27a918d",
+      "plain_english": "Prove that a finite subset of Fin 7 is no larger than its union with another set.",
+      "seed": 7118500,
       "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "gen/7118200",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 n : Nat, Nat.rec 29 (fun _ acc => acc + 1) n = n + 29"
+      "theorem_id": "gen/7118500",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "\u2200 A B : Finset (Fin 7), A.card \u2264 (A \u222a B).card"
+    },
+    "previous": {
+      "explanation": "Prove the square-function difference quotient at a nonzero step.",
+      "label": "previous",
+      "name": "t_5c50b01",
+      "plain_english": "Prove the square-function difference quotient at a nonzero step.",
+      "seed": 7118300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7118300",
+      "topic": "calculus.limits_light",
+      "type_expr": "\u2200 x h : \u211d, h \u2260 0 \u2192 ((x + h) ^ 2 - x ^ 2) / h = 2 * x + h"
     }
   }
 }
