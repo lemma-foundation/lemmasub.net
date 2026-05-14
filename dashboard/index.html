@@ -1,31 +1,48 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The old Lemma public dashboard has been retired.">
-  <title>Lemma Dashboard Retired</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260514-min">
-</head>
-<body>
-  <header>
-    <a class="brand" href="../index.html">Lemma</a>
-    <nav aria-label="Primary">
-      <a href="../faq/index.html">FAQ</a>
-      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Dashboard | Lemma</title>
+    <meta name="description" content="The retired Lemma dashboard page.">
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/">Lemma</a>
+      <nav aria-label="Primary">
+        <a href="/faq/">FAQ</a>
+        <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      </nav>
+    </header>
 
-  <main>
-    <section class="intro">
-      <p class="eyebrow">Dashboard</p>
-      <h1>Retired</h1>
-      <p>The old public dashboard refresh is off. Use the CLI and repository docs for current protocol state.</p>
-    </section>
+    <main>
+      <section class="page-head">
+        <p class="eyebrow">Dashboard</p>
+        <h1>The public dashboard is retired.</h1>
+        <p class="lead">
+          The current Lemma site points people to the proof protocol itself: theorem
+          targets, Lean submissions, validator verification, and the CLI in the repository.
+        </p>
+      </section>
 
-    <section>
-      <p><a href="../index.html">Back to Lemma</a></p>
-    </section>
-  </main>
-</body>
+      <section class="definition">
+        <p>
+          There is no background refresh loop on this page. For current usage, read the
+          repository documentation and run the local CLI against the protocol.
+        </p>
+      </section>
+
+      <div class="link-list compact">
+        <a href="https://github.com/spacetime-tao/lemma">Open the Lemma repository</a>
+        <a href="/">Return home</a>
+      </div>
+    </main>
+
+    <footer>
+      <span>Lemma</span>
+      <a href="/faq/">FAQ</a>
+    </footer>
+  </body>
 </html>

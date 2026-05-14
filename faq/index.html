@@ -1,60 +1,96 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Minimal FAQ for Lemma, a Lean proof protocol on Bittensor.">
-  <title>Lemma FAQ</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260514-min">
-</head>
-<body>
-  <header>
-    <a class="brand" href="../index.html">Lemma</a>
-    <nav aria-label="Primary">
-      <a href="index.html" aria-current="page">FAQ</a>
-      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>FAQ | Lemma</title>
+    <meta name="description" content="Questions and answers about Lemma, a Lean proof subnet.">
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/">Lemma</a>
+      <nav aria-label="Primary">
+        <a aria-current="page" href="/faq/">FAQ</a>
+        <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      </nav>
+    </header>
 
-  <main>
-    <section class="intro">
-      <p class="eyebrow">FAQ</p>
-      <h1>Questions</h1>
-    </section>
+    <main>
+      <section class="page-head">
+        <p class="eyebrow">FAQ</p>
+        <h1>Questions worth answering directly.</h1>
+      </section>
 
-    <section>
-      <h2>What is Lemma?</h2>
-      <p>A Bittensor subnet for rewarding Lean-verified mathematical proofs.</p>
-    </section>
+      <section class="qa-list" aria-label="Frequently asked questions">
+        <article>
+          <h2>What is Lemma?</h2>
+          <p>
+            Lemma is a Bittensor subnet for formal proof work. Miners submit Lean proof
+            files for theorem targets, and validators run Lean to determine whether each
+            submission proves the target.
+          </p>
+        </article>
 
-    <section>
-      <h2>What does a miner do?</h2>
-      <p>Generate a Lean proof out of band, submit it with the CLI, and optionally serve verified proofs to validators.</p>
-    </section>
+        <article>
+          <h2>What is a formal proof?</h2>
+          <p>
+            It is a proof written in a language a computer can check. Instead of relying on
+            a human reader to decide whether an argument is convincing, the proof checker
+            verifies that every step is justified.
+          </p>
+        </article>
 
-    <section>
-      <h2>What does a validator do?</h2>
-      <p>Poll miners, run the pinned Lean checker, and write weights from verification results.</p>
-    </section>
+        <article>
+          <h2>Why Lean?</h2>
+          <p>
+            Lean is both a programming language and a proof checker. For Lemma, its most
+            important property is the boundary it creates: a submission either checks in the
+            pinned environment or it does not.
+          </p>
+        </article>
 
-    <section>
-      <h2>What earns credit?</h2>
-      <p>The exact target theorem proved in Lean. No <code>sorry</code>, no new axioms, no prose score.</p>
-    </section>
+        <article>
+          <h2>What do miners do?</h2>
+          <p>
+            Miners produce Lean proof files. They can work manually, use their own tools, or
+            run local agents. The protocol only needs the final proof file.
+          </p>
+        </article>
 
-    <section>
-      <h2>What happens on a batch tie?</h2>
-      <p>If multiple miners verify in the same validator batch, the reward is split equally.</p>
-    </section>
+        <article>
+          <h2>What do validators do?</h2>
+          <p>
+            Validators fetch submissions, run Lean verification, and convert verified proof
+            results into subnet weights. The reward signal is proof correctness, not a judge
+            score over written reasoning.
+          </p>
+        </article>
 
-    <section>
-      <h2>Where is the dashboard?</h2>
-      <p>Retired. Current protocol state lives in the CLI and repository docs.</p>
-    </section>
-  </main>
+        <article>
+          <h2>How are ties handled?</h2>
+          <p>
+            If several miners verify in the same validator batch, that batch's reward is
+            split equally. The protocol should not prefer a lower UID just because two valid
+            proofs landed together.
+          </p>
+        </article>
 
-  <footer>
-    <a href="../index.html">Home</a>
-  </footer>
-</body>
+        <article>
+          <h2>Where did the dashboard go?</h2>
+          <p>
+            The old public dashboard belonged to an earlier version of the site. Lemma is
+            now centered on the repository, CLI, theorem targets, and verified proof
+            submissions.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <span>Lemma</span>
+      <a href="/">Home</a>
+    </footer>
+  </body>
 </html>

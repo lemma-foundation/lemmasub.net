@@ -1,72 +1,99 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a Lean proof protocol for Bittensor. Miners submit proofs; validators check them.">
-  <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260514-min">
-</head>
-<body>
-  <header>
-    <a class="brand" href="./">Lemma</a>
-    <nav aria-label="Primary">
-      <a href="faq/index.html">FAQ</a>
-      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Lemma</title>
+    <meta name="description" content="Lemma is a Bittensor subnet for formal proof work checked by Lean.">
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/">Lemma</a>
+      <nav aria-label="Primary">
+        <a href="/faq/">FAQ</a>
+        <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      </nav>
+    </header>
 
-  <main>
-    <section class="intro">
-      <p class="eyebrow">Lean proofs on Bittensor</p>
-      <h1>Lemma</h1>
-      <p>
-        A proof either checks or it does not. Miners submit Lean files.
-        Validators run the pinned checker. Rewards follow verified proofs.
-      </p>
-    </section>
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <p class="eyebrow">Formal proofs, checked by Lean</p>
+        <h1 id="title">Lemma rewards proofs Lean can verify.</h1>
+        <p class="lead">
+          Lemma is a Bittensor subnet for formal proof work. The network publishes theorem
+          targets, miners return Lean proof files, and validators run the checker. The live
+          question is narrow: does this file prove this theorem?
+        </p>
+      </section>
 
-    <section>
-      <h2>Protocol</h2>
-      <ul>
-        <li>One target theorem.</li>
-        <li>One submitted Lean proof file.</li>
-        <li>Pass or fail verification.</li>
-        <li>Same-batch ties split equally.</li>
-      </ul>
-    </section>
+      <section class="definition" aria-label="What makes Lemma different">
+        <p>
+          A formal proof is not a persuasive explanation. It is mathematics written in a
+          language strict enough for software to verify. Lean accepts the proof only when
+          every step follows from the theorem statement, imports, and allowed rules.
+        </p>
+      </section>
 
-    <section>
-      <h2>Proof object</h2>
-      <p>The submitted file is the work. Informal reasoning can help humans, but Lean decides the live reward path.</p>
-      <pre><code>import Mathlib
+      <section class="section-grid" aria-labelledby="loop-title">
+        <div>
+          <p class="eyebrow">The loop</p>
+          <h2 id="loop-title">One target, one proof file, one check.</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span>Theorem</span>
+            <p>A problem target defines the statement to prove and the Lean environment it belongs to.</p>
+          </li>
+          <li>
+            <span>Submission</span>
+            <p>A miner writes a Lean file for that target. Optional notes can live elsewhere; they are not the reward object.</p>
+          </li>
+          <li>
+            <span>Verification</span>
+            <p>A validator runs Lean. Passing proofs are rewarded. Failing proofs are not.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="proof-layout" aria-labelledby="proof-title">
+        <div>
+          <p class="eyebrow">A submission</p>
+          <h2 id="proof-title">Small file. Hard boundary.</h2>
+          <p>
+            The protocol does not ask validators to grade prose, style, or confidence. Lean
+            either accepts the file or rejects it. If several proofs verify in the same
+            validator batch, that batch's reward is split equally.
+          </p>
+        </div>
+        <pre><code>import Mathlib
 
 namespace Submission
 
-theorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by
+theorem nat_two_plus_two_eq_four :
+    (2 : Nat) + 2 = 4 := by
   rfl
 
 end Submission</code></pre>
-    </section>
+      </section>
 
-    <section>
-      <h2>Start</h2>
-      <p>
-        Read the
-        <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">getting started guide</a>
-        or the
-        <a href="https://github.com/spacetime-tao/lemma/blob/main/docs/wta.md">protocol notes</a>.
-      </p>
-    </section>
+      <section class="section-grid" aria-labelledby="start-title">
+        <div>
+          <p class="eyebrow">Start</p>
+          <h2 id="start-title">The repository is the protocol surface.</h2>
+        </div>
+        <div class="link-list">
+          <a href="https://github.com/spacetime-tao/lemma">Read the code and CLI docs</a>
+          <a href="/faq/">Read the FAQ</a>
+          <a href="/dashboard/">About the old dashboard</a>
+        </div>
+      </section>
+    </main>
 
-    <section>
-      <h2>Status</h2>
-      <p>The old public dashboard refresh is retired. Use the CLI and repository docs for current protocol state.</p>
-    </section>
-  </main>
-
-  <footer>
-    <span>Original contributors: Spacetime, Maciej Kula, and Infinitao.</span>
-  </footer>
-</body>
+    <footer>
+      <span>Lemma</span>
+      <span>Bittensor subnet 3</span>
+    </footer>
+  </body>
 </html>
