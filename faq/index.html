@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Plain-language answers about the Lemma Bittensor subnet, Lean proofs, miners, validators, rewards, and why formal proofs matter.">
+  <meta name="description" content="Plain-language answers about Lemma, Bittensor subnets, Lean proofs, miners, validators, rewards, and why formal proofs matter.">
   <title>Lemma FAQ</title>
   <link rel="stylesheet" href="../assets/styles.css?v=20260513-faq">
   <script src="../assets/site.js?v=20260513-faq" defer></script>
@@ -31,9 +31,15 @@
     <section class="faq-list" aria-label="Frequently asked questions">
       <article>
         <h2>What is Lemma?</h2>
-        <p>Lemma is a Bittensor subnet that rewards correct mathematical proofs.</p>
-        <p>Every round, Lemma posts a theorem written in Lean. Miners run automated proving systems. Validators run Lean. The proof passes or it fails.</p>
+        <p>Lemma is a Bittensor subnet for using AI to prove mathematical theorems.</p>
+        <p>Lemma posts theorem challenges. Miners use AI to write proof files. Validators use Lean to check them. The proof passes or it fails.</p>
         <p>Bitcoin rewards miners for securing the network. Bittensor rewards miners for producing useful intelligence. Lemma rewards miners for producing correct proofs.</p>
+      </article>
+
+      <article>
+        <h2>What is a Bittensor subnet?</h2>
+        <p>Bittensor is a network of specialized subnets for useful machine work. Each subnet defines the work it wants, the validator rules for checking that work, and the reward signals miners compete for.</p>
+        <p>Lemma's subnet is focused on one task: producing Lean proofs that verify against published theorem statements.</p>
       </article>
 
       <article>
@@ -44,8 +50,8 @@
 
       <article>
         <h2>Are miners manually watching for theorems?</h2>
-        <p>No. The current reference miner is automated software. It receives theorem challenges from validators, calls an AI proving model or proof-search loop, and returns a proof file when it finds one.</p>
-        <p>Human-in-the-loop flows may make sense later for longer unsolved-problem work, but the base round design is automated.</p>
+        <p>No. The current reference miner runs automatically. It receives theorem challenges from validators, calls an AI proving model or proof-search loop, and returns a proof file when it finds one.</p>
+        <p>Human-in-the-loop flows may make sense later for longer open-problem work, but the base round design is automated.</p>
       </article>
 
       <article>
@@ -57,13 +63,13 @@
       <article>
         <h2>Is this subnet focused on revenue?</h2>
         <p>No. Lemma is not built around a revenue model.</p>
-        <p>The value is solved mathematics, better reasoning systems, and a growing public record of machine-checkable proofs. How valuable that is should be decided by the market, similar to how markets decide the value of Bitcoin's security or Bittensor's intelligence.</p>
+        <p>The value is solved mathematics, better reasoning systems, and a growing public record of computer-verified proofs. How valuable that is should be decided by the market, similar to how markets decide the value of Bitcoin's security or Bittensor's intelligence.</p>
       </article>
 
       <article>
         <h2>Why not start with Millennium Problems?</h2>
         <p>A subnet needs an economy before it can aim at the hardest problems in the world.</p>
-        <p>If every task is nearly impossible, miners cannot learn, earn, or improve. Lemma starts with a reliable proving loop so miners can build proof capacity. Harder curated problem sets and winner-take-all proof rewards can come later.</p>
+        <p>If every task is nearly impossible, miners cannot learn, earn, or improve. Lemma starts with a reliable proving loop so miners can build proof capacity. Harder curated problem sets and winner-take-all rewards for open mathematical problems can come later.</p>
       </article>
 
       <article>
@@ -99,22 +105,24 @@
 
       <article>
         <h2>What does a miner do?</h2>
-        <p>A miner runs automated prover software. Validators send it theorem challenges; the miner calls an AI proving model, a proof-search loop, or a repair loop, and returns a Lean proof file when it finds one.</p>
+        <p>In Lemma, a miner uses AI to receive theorem challenges and try to prove them. When it finds a proof, it returns a Lean file for validators to check.</p>
       </article>
 
       <article>
         <h2>What does a validator do?</h2>
-        <p>A validator sends theorem challenges to miners, collects replies, verifies submissions with Lean inside Docker, and publishes weights for eligible work.</p>
+        <p>A validator sends theorem challenges to miners, collects replies, verifies submissions with Lean inside Docker, and publishes weights for eligible work. Weights are the reward signals Bittensor reads when splitting miner rewards.</p>
       </article>
 
       <article>
-        <h2>Do miners earn alpha?</h2>
-        <p>Yes. Alpha is the subnet reward token. Miners can earn alpha when their submissions pass Lean and receive weight under Lemma's rules. The first gate is Lean verification: if a proof does not pass Lean, it is not eligible for miner rewards.</p>
+        <h2>What are UID, weights, and alpha?</h2>
+        <p>A UID is a numbered slot for a participant on a subnet. Weights are validator-published reward signals. Alpha is the reward token for a Bittensor subnet.</p>
+        <p>Lemma currently runs on testnet, where miners can earn testnet alpha. Treat the public site as a test deployment; mainnet alpha only matters if a matching mainnet deployment is announced.</p>
       </article>
 
       <article>
         <h2>What is the difference between testnet and mainnet?</h2>
-        <p>Lemma currently runs on Bittensor testnet. Mainnet, also called Finney, is separate. Only rely on mainnet rewards if the Lemma deployment you are following is registered, live, and configured for the correct network and netuid.</p>
+        <p>Testnet is a rehearsal network for testing software and validator behavior. Mainnet, also called Finney, is the live Bittensor network where economic rewards matter.</p>
+        <p>Lemma currently runs on testnet. Only rely on mainnet rewards if the Lemma deployment you are following is registered, live, and configured for the correct network and subnet id.</p>
       </article>
 
       <article>

@@ -241,8 +241,8 @@ h3 {
   grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.7fr);
   gap: clamp(28px, 6vw, 86px);
   align-items: center;
-  min-height: 76svh;
-  padding: 64px clamp(20px, 4vw, 56px) 72px;
+  min-height: 68svh;
+  padding: 54px clamp(20px, 4vw, 56px) 62px;
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -255,15 +255,15 @@ h3 {
 }
 
 .hero-copy h1 {
-  max-width: 720px;
-  font-size: 46px;
-  line-height: 1.08;
+  max-width: 660px;
+  font-size: 52px;
+  line-height: 1.04;
 }
 
 .lede {
-  max-width: 700px;
+  max-width: 580px;
   color: var(--muted);
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.48;
 }
 
@@ -337,7 +337,12 @@ h3 {
 }
 
 .status-card strong {
-  font-size: 24px;
+  font-size: 22px;
+}
+
+.panel-link {
+  min-height: auto;
+  font-size: 14px;
 }
 
 .status-card code,
@@ -403,6 +408,8 @@ h3 {
   border-bottom: 1px solid var(--line);
   background: var(--notice-bg);
   color: var(--notice-ink);
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .notice-band strong {
@@ -430,7 +437,7 @@ h3 {
 
 .steps {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
