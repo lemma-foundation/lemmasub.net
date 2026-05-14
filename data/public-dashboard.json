@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7117188,
+  "chain_head_block": 7117203,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T03:33:12Z",
+  "generated_at": "2026-05-14T03:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7117100,
-  "problem_seed_chain_head": 7117188,
+  "problem_seed": 7117200,
+  "problem_seed_chain_head": 7117203,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that transposing a 4 by 4 integer matrix twice gives the original matrix.",
-      "label": "current",
-      "name": "t_392cea5",
-      "plain_english": "Prove that transposing a 4 by 4 integer matrix twice gives the original matrix.",
-      "seed": 7117100,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7117100",
-      "topic": "linear_algebra.matrix",
-      "type_expr": "\u2200 A : Matrix (Fin 4) (Fin 4) \u2124, A.transpose.transpose = A"
-    },
-    "next": {
       "explanation": "Prove that the 2 by 2 rational identity matrix has determinant one.",
-      "label": "next",
+      "label": "current",
       "name": "t_17e3126",
       "plain_english": "Prove that the 2 by 2 rational identity matrix has determinant one.",
       "seed": 7117200,
@@ -128,17 +116,29 @@
       "topic": "linear_algebra.matrix",
       "type_expr": "Matrix.det (1 : Matrix (Fin 2) (Fin 2) \u211a) = 1"
     },
-    "previous": {
-      "explanation": "Prove the displayed modular reduction used in a toy arithmetic setting.",
-      "label": "previous",
-      "name": "curated_mod_12345_97",
-      "plain_english": "Prove the displayed modular reduction used in a toy arithmetic setting.",
-      "seed": 7117000,
+    "next": {
+      "explanation": "Prove that image preserves subset containment under a function.",
+      "label": "next",
+      "name": "curated_set_image_mono",
+      "plain_english": "Prove that image preserves subset containment under a function.",
+      "seed": 7117300,
       "source_lane": "catalog",
-      "split": "easy",
-      "theorem_id": "curated/crypto/mod_12345_97",
-      "topic": "cryptography.modular",
-      "type_expr": "(12345 : Nat) % 97 = 26"
+      "split": "hard",
+      "theorem_id": "curated/set/image_monotone",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
+    },
+    "previous": {
+      "explanation": "Prove that transposing a 4 by 4 integer matrix twice gives the original matrix.",
+      "label": "previous",
+      "name": "t_392cea5",
+      "plain_english": "Prove that transposing a 4 by 4 integer matrix twice gives the original matrix.",
+      "seed": 7117100,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7117100",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "\u2200 A : Matrix (Fin 4) (Fin 4) \u2124, A.transpose.transpose = A"
     }
   }
 }
