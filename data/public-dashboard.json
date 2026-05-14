@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7118283,
+  "chain_head_block": 7118300,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-14T07:12:13Z",
+  "generated_at": "2026-05-14T07:15:27Z",
   "miners": [
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -95,8 +95,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7118200,
-  "problem_seed_chain_head": 7118283,
+  "problem_seed": 7118300,
+  "problem_seed_chain_head": 7118300,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -105,20 +105,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a recursive counter starting at 29 returns n + 29.",
-      "label": "current",
-      "name": "t_4fa735f",
-      "plain_english": "Prove that a recursive counter starting at 29 returns n + 29.",
-      "seed": 7118200,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7118200",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 n : Nat, Nat.rec 29 (fun _ acc => acc + 1) n = n + 29"
-    },
-    "next": {
       "explanation": "Prove the square-function difference quotient at a nonzero step.",
-      "label": "next",
+      "label": "current",
       "name": "t_5c50b01",
       "plain_english": "Prove the square-function difference quotient at a nonzero step.",
       "seed": 7118300,
@@ -128,17 +116,29 @@
       "topic": "calculus.limits_light",
       "type_expr": "\u2200 x h : \u211d, h \u2260 0 \u2192 ((x + h) ^ 2 - x ^ 2) / h = 2 * x + h"
     },
+    "next": {
+      "explanation": "Prove set union distributes over intersection for sets over Fin 7.",
+      "label": "next",
+      "name": "t_35b6462",
+      "plain_english": "Prove set union distributes over intersection for sets over Fin 7.",
+      "seed": 7118400,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7118400",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B C : Set (Fin 7), A \u222a (B \u2229 C) = (A \u222a B) \u2229 (A \u222a C)"
+    },
     "previous": {
-      "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
+      "explanation": "Prove that a recursive counter starting at 29 returns n + 29.",
       "label": "previous",
-      "name": "curated_transitive_relation",
-      "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
-      "seed": 7118100,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/graph/transitive_relation",
-      "topic": "graph_theory.discrete",
-      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
+      "name": "t_4fa735f",
+      "plain_english": "Prove that a recursive counter starting at 29 returns n + 29.",
+      "seed": 7118200,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7118200",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 n : Nat, Nat.rec 29 (fun _ acc => acc + 1) n = n + 29"
     }
   }
 }
