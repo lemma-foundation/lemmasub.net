@@ -5,36 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="The old Lemma public dashboard has been retired.">
   <title>Lemma Dashboard Retired</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260514-wta">
-  <script src="../assets/site.js?v=20260514-wta" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260514-proof">
+  <script src="../assets/site.js?v=20260514-proof" defer></script>
 </head>
 <body data-page="dashboard-retired">
   <header class="site-header">
     <a class="brand" href="../index.html" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
+      <a href="../index.html#protocol">Protocol</a>
       <a href="../faq/index.html">FAQ</a>
       <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark</button>
     </nav>
   </header>
 
-  <main class="dashboard-page">
-    <section class="dashboard-head">
-      <div>
-        <p class="eyebrow">Dashboard retired</p>
-        <h1>Public refresh is off.</h1>
-        <p>
-          The old dashboard depended on a validator-side job that repeatedly
-          committed <code>data/public-dashboard.json</code>. That surface is no
-          longer part of Lemma's WTA proof protocol.
-        </p>
-      </div>
+  <main class="content-page">
+    <section class="page-head">
+      <p class="eyebrow">Dashboard retired</p>
+      <h1>Public refresh is off.</h1>
+      <p>
+        The old dashboard depended on a validator-side job that repeatedly
+        committed <code>data/public-dashboard.json</code>. That surface is no
+        longer part of Lemma's proof protocol.
+      </p>
     </section>
 
-    <section class="band">
+    <section class="band compact-band">
       <div class="section-head">
         <p class="eyebrow">Current source of truth</p>
-        <h2>Use the Lemma CLI and repository docs.</h2>
+        <h2>Use the CLI and repository docs.</h2>
         <p>
           The protocol now centers on local proof submission and Lean
           verification. Miners generate proof files out of band, run
@@ -49,7 +48,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Original contributors: Spaceτime, Maciej Kula, and Infinitao.</p>
+    <p>Original contributors: Spacetime, Maciej Kula, and Infinitao.</p>
     <p><a href="../index.html">Lemma home</a></p>
   </footer>
 </body>

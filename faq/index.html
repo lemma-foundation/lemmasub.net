@@ -3,59 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Plain-language answers about Lemma, Lean proofs, miners, validators, and winner-take-all proof rewards.">
+  <meta name="description" content="Plain-language answers about Lemma, Lean proofs, miners, validators, and WTA proof rewards with equal same-batch tie splits.">
   <title>Lemma FAQ</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260514-wta">
-  <script src="../assets/site.js?v=20260514-wta" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260514-proof">
+  <script src="../assets/site.js?v=20260514-proof" defer></script>
 </head>
 <body data-page="faq">
   <header class="site-header">
     <a class="brand" href="../index.html" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
+      <a href="../index.html#protocol">Protocol</a>
       <a href="index.html" aria-current="page">FAQ</a>
       <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark</button>
     </nav>
   </header>
 
-  <main class="dashboard-page faq-page">
-    <section class="dashboard-head">
-      <div>
-        <p class="eyebrow">Plain-language answers</p>
-        <h1>Lemma FAQ</h1>
-        <p>The protocol, in ordinary words: publish a theorem, submit a Lean proof, let Lean decide.</p>
-      </div>
+  <main class="content-page faq-page">
+    <section class="page-head">
+      <p class="eyebrow">Plain-language answers</p>
+      <h1>Lemma FAQ</h1>
+      <p>Publish a theorem. Submit a Lean proof. Let Lean decide.</p>
     </section>
 
     <section class="faq-list" aria-label="Frequently asked questions">
       <article>
         <h2>What is Lemma?</h2>
         <p>Lemma is a Bittensor subnet for rewarding correct mathematical proofs.</p>
-        <p>Each live target is a theorem statement written for Lean. Miners submit proof files. Validators check those files with Lean. The proof passes or it fails.</p>
-      </article>
-
-      <article>
-        <h2>What changed?</h2>
-        <p>The public protocol has been simplified to winner-take-all proof verification.</p>
-        <p>The old dashboard refresh and automated proof-generation framing are retired from this site. The current public story is the direct one: first valid Lean proof wins.</p>
-      </article>
-
-      <article>
-        <h2>What does a miner do now?</h2>
-        <p>A miner generates a Lean proof out of band. That can mean an AI proving model, a local search tool, manual work, or a mix.</p>
-        <p>After that, the miner runs <code>lemma submit</code> to verify and store the proof, then can run <code>lemma miner start</code> to serve stored proofs to validators.</p>
-      </article>
-
-      <article>
-        <h2>What does a validator do?</h2>
-        <p>A validator publishes the target theorem, polls miners for stored proofs, runs the pinned Lean verifier, and rewards the first valid proof.</p>
-        <p>Validators do not grade writing style, confidence, or informal reasoning. Lean verification is the live check.</p>
+        <p>Each target is a theorem statement written for Lean. Miners submit proof files. Validators check those files with Lean. The proof passes or it fails.</p>
       </article>
 
       <article>
         <h2>What earns credit?</h2>
         <p>A Lean proof file that proves the exact target theorem without shortcuts earns credit.</p>
         <p>Invalid files, unfinished proofs, <code>sorry</code>, and new axioms do not earn credit. Proof efficiency is not the core reward axis.</p>
+      </article>
+
+      <article>
+        <h2>How does the reward rule work?</h2>
+        <p>The validator rewards verified proofs for the current target. If exactly one miner verifies in a batch, that miner gets the WTA reward signal.</p>
+        <p>If multiple miners verify in the same validator batch, the batch reward is split equally among those verified miners.</p>
+      </article>
+
+      <article>
+        <h2>What does a miner do?</h2>
+        <p>A miner generates a Lean proof out of band. That can mean an AI proving model, a local search tool, manual work, or a mix.</p>
+        <p>After that, the miner runs <code>lemma submit</code> to verify and store the proof, then can run <code>lemma miner start</code> to serve stored proofs to validators.</p>
+      </article>
+
+      <article>
+        <h2>What does a validator do?</h2>
+        <p>A validator publishes the target theorem, polls miners for stored proofs, runs the pinned Lean verifier, and turns verified proof results into weights.</p>
+        <p>Validators do not grade writing style, confidence, or informal reasoning. Lean verification is the live check.</p>
       </article>
 
       <article>
@@ -72,13 +71,13 @@
 
       <article>
         <h2>Where do I start?</h2>
-        <p>Start with the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">getting started guide</a>, then read the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/wta.md">winner-take-all notes</a>.</p>
+        <p>Start with the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">getting started guide</a>, then read the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/wta.md">protocol notes</a>.</p>
       </article>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Original contributors: Spaceτime, Maciej Kula, and Infinitao.</p>
+    <p>Original contributors: Spacetime, Maciej Kula, and Infinitao.</p>
     <p><a href="../index.html">Lemma home</a></p>
   </footer>
 </body>

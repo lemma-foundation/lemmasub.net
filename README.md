@@ -28,18 +28,13 @@ node --check assets/site.js
 
 The old public dashboard refresh is retired. This repo no longer tracks
 `data/public-dashboard.json`, and `.gitignore` blocks it from being re-added by
-ordinary `git add` commands.
-
-If `Refresh public dashboard data` commits continue appearing, they are coming
-from an older validator-side publisher outside this repo. Stop the old
-`lemma-public-dashboard.service`, `lemma-public-dashboard.path`, and
-`lemma-public-dashboard.timer` units on that host before publishing more site
-changes.
+ordinary `git add` commands. Keep the old validator-side
+`lemma-public-dashboard.timer` disabled so refresh commits do not return.
 
 ## Site Rules
 
-- Keep the public story aligned with the current WTA protocol: first valid Lean
-  proof wins.
+- Keep the public story aligned with the current WTA protocol: verified Lean
+  proofs decide rewards, and same-batch ties split equally.
 - Do not bring prose judging, reasoning scores, proof-efficiency scoring, or the
   old generated-dashboard framing back into this site.
 - Do not publish proof scripts, raw validator logs, wallet material, deploy
