@@ -3,16 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Plain-language answers about Lemma, Bittensor subnets, Lean proofs, miners, validators, rewards, and why formal proofs matter.">
+  <meta name="description" content="Plain-language answers about Lemma, Lean proofs, miners, validators, and winner-take-all proof rewards.">
   <title>Lemma FAQ</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260513-faq">
-  <script src="../assets/site.js?v=20260513-faq" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260514-wta">
+  <script src="../assets/site.js?v=20260514-wta" defer></script>
 </head>
-<body data-page="placeholder">
+<body data-page="faq">
   <header class="site-header">
     <a class="brand" href="../index.html" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
-      <a href="../dashboard/index.html">Dashboard</a>
       <a href="index.html" aria-current="page">FAQ</a>
       <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark</button>
@@ -20,124 +19,60 @@
   </header>
 
   <main class="dashboard-page faq-page">
-    <section class="placeholder-notice" aria-labelledby="placeholder-title">
-      <div>
-        <p class="eyebrow">FAQ paused</p>
-        <h1 id="placeholder-title">Working on a new idea.</h1>
-        <p class="lede">
-          These pages are temporarily parked while the next direction takes
-          shape. Live validator and miner services are stopped for now.
-        </p>
-      </div>
-    </section>
     <section class="dashboard-head">
       <div>
         <p class="eyebrow">Plain-language answers</p>
         <h1>Lemma FAQ</h1>
-        <p>What the subnet does, why proofs matter, and how miners and validators fit together.</p>
+        <p>The protocol, in ordinary words: publish a theorem, submit a Lean proof, let Lean decide.</p>
       </div>
     </section>
 
     <section class="faq-list" aria-label="Frequently asked questions">
       <article>
         <h2>What is Lemma?</h2>
-        <p>Lemma is a Bittensor subnet for using AI to prove mathematical theorems.</p>
-        <p>Lemma posts theorem challenges. Miners use AI to write proof files. Validators use Lean to check them. The proof passes or it fails.</p>
-        <p>Bitcoin rewards miners for securing the network. Bittensor rewards miners for producing useful intelligence. Lemma rewards miners for producing correct proofs.</p>
+        <p>Lemma is a Bittensor subnet for rewarding correct mathematical proofs.</p>
+        <p>Each live target is a theorem statement written for Lean. Miners submit proof files. Validators check those files with Lean. The proof passes or it fails.</p>
       </article>
 
       <article>
-        <h2>What is a Bittensor subnet?</h2>
-        <p>Bittensor is a network of specialized subnets for useful machine work. Each subnet defines the work it wants, the validator rules for checking that work, and the reward signals miners compete for.</p>
-        <p>Lemma's subnet is focused on one task: producing Lean proofs that verify against published theorem statements.</p>
+        <h2>What changed?</h2>
+        <p>The public protocol has been simplified to winner-take-all proof verification.</p>
+        <p>The old dashboard refresh and automated proof-generation framing are retired from this site. The current public story is the direct one: first valid Lean proof wins.</p>
       </article>
 
       <article>
-        <h2>Why do miners solve math?</h2>
-        <p>Proof search is hard, open-ended work. Many miners can try different models, prompts, search loops, repair tools, and compute budgets at the same time.</p>
-        <p>Validators do the cheaper part: they check whether a submitted proof is actually valid. Finding proofs can be difficult. Checking proofs with Lean is objective and reproducible.</p>
-      </article>
-
-      <article>
-        <h2>Are miners manually watching for theorems?</h2>
-        <p>No. The current reference miner runs automatically. It receives theorem challenges from validators, calls an AI proving model or proof-search loop, and returns a proof file when it finds one.</p>
-        <p>Human-in-the-loop flows may make sense later for longer open-problem work, but the base round design is automated.</p>
-      </article>
-
-      <article>
-        <h2>Who needs this math to be solved?</h2>
-        <p>Mathematics sits under science, cryptography, algorithms, software, physics, engineering, and AI reasoning. Verified proofs can become useful knowledge, training data, benchmarks, formal libraries, and building blocks for harder results.</p>
-        <p>Some proofs may be small. Some may matter because they help prove something bigger later. That is why the name fits: in mathematics, a lemma is a proven result that helps prove another result.</p>
-      </article>
-
-      <article>
-        <h2>Is this subnet focused on revenue?</h2>
-        <p>No. Lemma is not built around a revenue model.</p>
-        <p>The value is solved mathematics, better reasoning systems, and a growing public record of computer-verified proofs. How valuable that is should be decided by the market, similar to how markets decide the value of Bitcoin's security or Bittensor's intelligence.</p>
-      </article>
-
-      <article>
-        <h2>Why not start with Millennium Problems?</h2>
-        <p>A subnet needs an economy before it can aim at the hardest problems in the world.</p>
-        <p>If every task is nearly impossible, miners cannot learn, earn, or improve. Lemma starts with a reliable proving loop so miners can build proof capacity. Harder curated problem sets and winner-take-all rewards for open mathematical problems can come later.</p>
-      </article>
-
-      <article>
-        <h2>What is formal mathematics?</h2>
-        <p>Formal mathematics is mathematics written in a fully specified logical language. The definitions, axioms, and allowed inference steps are fixed in advance. Because the rules are explicit, software can check a proof step by step.</p>
-      </article>
-
-      <article>
-        <h2>What is a theorem?</h2>
-        <p>A theorem is a precise mathematical claim: under these assumptions, this conclusion follows. Lemma broadcasts theorem statements in Lean so every miner works on the same target.</p>
-      </article>
-
-      <article>
-        <h2>What is a proof?</h2>
-        <p>A proof is a correct argument for a theorem. In Lemma, the proof must be written as code that Lean can verify. Prose explanations can help humans understand the work, but they are not what earns proof credit.</p>
-      </article>
-
-      <article>
-        <h2>What does a proof assistant do?</h2>
-        <p>A proof assistant checks whether a proof script follows the rules of the formal system. Lemma uses Lean. If every step is valid, Lean accepts the proof. If something is missing or incorrect, Lean rejects it, much like a compiler reporting errors.</p>
-      </article>
-
-      <article>
-        <h2>Why Lean?</h2>
-        <p>Lean gives Lemma an objective checker. Validators do not grade style or persuasive writing. They run the same pinned verifier against the same theorem statement and submitted proof file.</p>
-      </article>
-
-      <article>
-        <h2>What do sorry and new axioms mean?</h2>
-        <p>In Lean, <code>sorry</code> is a temporary placeholder for an unfinished proof. It is useful while someone is still writing, but it is not a real proof for Lemma.</p>
-        <p>A new axiom is an extra assumption added by the submitted file. If miners could add their own assumptions, they could change the rules instead of proving the theorem. Lemma rejects both shortcuts.</p>
-      </article>
-
-      <article>
-        <h2>What does a miner do?</h2>
-        <p>In Lemma, a miner uses AI to receive theorem challenges and try to prove them. When it finds a proof, it returns a Lean file for validators to check.</p>
+        <h2>What does a miner do now?</h2>
+        <p>A miner generates a Lean proof out of band. That can mean an AI proving model, a local search tool, manual work, or a mix.</p>
+        <p>After that, the miner runs <code>lemma submit</code> to verify and store the proof, then can run <code>lemma miner start</code> to serve stored proofs to validators.</p>
       </article>
 
       <article>
         <h2>What does a validator do?</h2>
-        <p>A validator sends theorem challenges to miners, collects replies, verifies submissions with Lean inside Docker, and publishes weights for eligible work. Weights are the reward signals Bittensor reads when splitting miner rewards.</p>
+        <p>A validator publishes the target theorem, polls miners for stored proofs, runs the pinned Lean verifier, and rewards the first valid proof.</p>
+        <p>Validators do not grade writing style, confidence, or informal reasoning. Lean verification is the live check.</p>
       </article>
 
       <article>
-        <h2>What are UID, weights, and alpha?</h2>
-        <p>A UID is a numbered slot for a participant on a subnet. Weights are validator-published reward signals. Alpha is the reward token for a Bittensor subnet.</p>
-        <p>Lemma currently runs on testnet, where miners can earn testnet alpha. Treat the public site as a test deployment; mainnet alpha only matters if a matching mainnet deployment is announced.</p>
+        <h2>What earns credit?</h2>
+        <p>A Lean proof file that proves the exact target theorem without shortcuts earns credit.</p>
+        <p>Invalid files, unfinished proofs, <code>sorry</code>, and new axioms do not earn credit. Proof efficiency is not the core reward axis.</p>
       </article>
 
       <article>
-        <h2>What is the difference between testnet and mainnet?</h2>
-        <p>Testnet is a rehearsal network for testing software and validator behavior. Mainnet, also called Finney, is the live Bittensor network where economic rewards matter.</p>
-        <p>Lemma currently runs on testnet. Only rely on mainnet rewards if the Lemma deployment you are following is registered, live, and configured for the correct network and subnet id.</p>
+        <h2>Is informal reasoning useless?</h2>
+        <p>No. Informal reasoning can help humans understand a result and can help miners find a proof.</p>
+        <p>It is just not the live reward object. The reward object is the Lean proof that checks.</p>
+      </article>
+
+      <article>
+        <h2>Where did the dashboard go?</h2>
+        <p>The old public dashboard JSON refresh has been retired. This repo no longer treats <code>data/public-dashboard.json</code> as a live surface.</p>
+        <p>Use the Lemma CLI and the GitHub docs for current protocol state.</p>
       </article>
 
       <article>
         <h2>Where do I start?</h2>
-        <p>Start with the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/litepaper.md">litepaper</a>, then use the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">getting started guide</a> if you want to run a miner or validator.</p>
+        <p>Start with the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/getting-started.md">getting started guide</a>, then read the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/wta.md">winner-take-all notes</a>.</p>
       </article>
     </section>
   </main>
