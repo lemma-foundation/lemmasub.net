@@ -84,6 +84,7 @@ const solvedHtml = dashboard.renderDashboard(solvedFixture);
 assert(solvedHtml.includes("solver UID 7"), "rendered solved rows should include solver UIDs");
 assert(solvedHtml.includes("Audit receipts"), "rendered dashboard should include audit receipts");
 assert(solvedHtml.includes("2 validator confirmations"), "rendered receipts should group validator confirmations");
+assert(solvedHtml.includes("Audit details and proof"), "rendered receipts should keep audit details collapsed");
 assert(solvedHtml.includes("committed 111"), "rendered receipts should include commitment timing");
 assert(solvedHtml.includes("trivial"), "rendered receipts should include accepted proof text");
 

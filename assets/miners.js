@@ -18,6 +18,19 @@
     return text.length > 16 ? text.slice(0, 16) : text;
   }
 
+  function middleHash(value) {
+    var text = String(value || "");
+    if (text.length <= 18) {
+      return text;
+    }
+    return text.slice(0, 8) + "..." + text.slice(-6);
+  }
+
+  function targetLabel(value) {
+    var parts = String(value || "").split("/");
+    return parts[parts.length - 1] || "unknown target";
+  }
+
   function dateText(unix) {
     if (!Number.isFinite(Number(unix))) {
       return "unknown";
@@ -59,12 +72,21 @@
   function renderSolver(solver) {
     var weight = Number(solver.weight_share || 0) * 100;
     return (
-      "<li>" +
-      "<span>UID " + escapeHtml(solver.uid) + "</span>" +
-      "<code>" + escapeHtml(solver.hotkey || "hotkey unknown") + "</code>" +
-      '<span class="muted">proof ' + escapeHtml(shortHash(solver.proof_sha256)) + "</span>" +
-      '<span class="muted">commit ' + escapeHtml(shortHash(solver.commitment_hash)) + "</span>" +
-      '<span class="muted">' + escapeHtml(weight.toFixed(2)) + "% weight</span>" +
+      '<li class="solver-row">' +
+      '<div class="record-id">' +
+      "<strong>UID " + escapeHtml(solver.uid) + "</strong>" +
+      '<span class="badge">' + escapeHtml(weight.toFixed(2)) + "% weight</span>" +
+      "</div>" +
+      '<div class="record-title">' +
+      "<span>Hotkey</span>" +
+      '<code title="' + escapeHtml(solver.hotkey || "hotkey unknown") + '">' +
+      escapeHtml(middleHash(solver.hotkey || "hotkey unknown")) +
+      "</code>" +
+      "</div>" +
+      '<dl class="record-facts">' +
+      "<div><dt>Proof</dt><dd><code>" + escapeHtml(shortHash(solver.proof_sha256)) + "</code></dd></div>" +
+      "<div><dt>Commit</dt><dd><code>" + escapeHtml(shortHash(solver.commitment_hash)) + "</code></dd></div>" +
+      "</dl>" +
       "</li>"
     );
   }
@@ -142,26 +164,38 @@
     var validatorCount = receipt.validators && receipt.validators.length ? receipt.validators.length : 1;
     var receiptCount = receipt.receipts && receipt.receipts.length ? receipt.receipts.length : 1;
     var receiptNote = shortHash(receipt.receipt_sha256);
+    var name = receipt.theorem_name || targetLabel(receipt.target_id);
     if (receiptCount > 1) {
       receiptNote += " +" + (receiptCount - 1) + " more";
     }
     return (
       '<li class="receipt-row">' +
       "<header>" +
+      '<div class="record-id">' +
       "<strong>UID " + escapeHtml(receipt.solver_uid) + "</strong>" +
-      "<code>" + escapeHtml(receipt.target_id) + "</code>" +
-      '<span class="muted">proof ' + escapeHtml(shortHash(receipt.proof_sha256)) + "</span>" +
-      '<span class="muted">commit ' + escapeHtml(shortHash(receipt.commitment_hash)) + "</span>" +
-      '<span class="muted">' + escapeHtml(countText(validatorCount, "validator confirmation")) + "</span>" +
+      '<span class="badge">' + escapeHtml(countText(validatorCount, "validator confirmation")) + "</span>" +
+      "</div>" +
+      '<div class="record-title">' +
+      "<span>Target</span>" +
+      '<strong title="' + escapeHtml(receipt.target_id) + '">' + escapeHtml(name) + "</strong>" +
+      "</div>" +
+      '<dl class="record-facts">' +
+      "<div><dt>Proof</dt><dd><code>" + escapeHtml(shortHash(receipt.proof_sha256)) + "</code></dd></div>" +
+      "<div><dt>Commit</dt><dd><code>" + escapeHtml(shortHash(receipt.commitment_hash)) + "</code></dd></div>" +
+      "<div><dt>Accepted</dt><dd>block " + escapeHtml(receipt.accepted_block || "unknown") + "</dd></div>" +
+      "</dl>" +
       "</header>" +
-      '<p class="dashboard-meta">Validators ' + escapeHtml(shortList(receipt.validators || [receipt.validator_hotkey], "unknown")) +
-      " - block " + escapeHtml(receipt.accepted_block || "unknown") +
-      " - committed " + escapeHtml(receipt.commitment_first_seen_block || "unknown") +
-      " before cutoff " + escapeHtml(receipt.commit_cutoff_block || "unknown") +
-      " - receipt " + escapeHtml(receiptNote || "unknown") +
-      " - " + escapeHtml(dateText(receipt.accepted_unix)) + "</p>" +
-      "<details>" +
-      "<summary>Accepted proof</summary>" +
+      '<details class="audit-details">' +
+      "<summary>Audit details and proof</summary>" +
+      '<dl class="audit-grid">' +
+      "<div><dt>Target id</dt><dd><code>" + escapeHtml(receipt.target_id) + "</code></dd></div>" +
+      "<div><dt>Validators</dt><dd>" + escapeHtml(shortList(receipt.validators || [receipt.validator_hotkey], "unknown")) + "</dd></div>" +
+      "<div><dt>Receipt</dt><dd><code>" + escapeHtml(receiptNote || "unknown") + "</code></dd></div>" +
+      "<div><dt>Commit window</dt><dd>committed " +
+      escapeHtml(receipt.commitment_first_seen_block || "unknown") +
+      " before cutoff " + escapeHtml(receipt.commit_cutoff_block || "unknown") + "</dd></div>" +
+      "<div><dt>Accepted at</dt><dd>" + escapeHtml(dateText(receipt.accepted_unix)) + "</dd></div>" +
+      "</dl>" +
       "<pre><code>" + escapeHtml(receipt.proof_script || "") + "</code></pre>" +
       "</details>" +
       "</li>"
@@ -208,7 +242,7 @@
       "</section>" +
       '<section class="dashboard-section" aria-labelledby="current-solvers-title">' +
       '<p class="eyebrow">Current solver set</p>' +
-      '<h2 id="current-solvers-title">Weight stays with the latest verified solver set.</h2>' +
+      '<h2 id="current-solvers-title">Verified solvers.</h2>' +
       renderCurrentSolvers(data.current_solver_set) +
       "</section>" +
       '<section class="dashboard-section" aria-labelledby="queue-title">' +
@@ -218,7 +252,7 @@
       "</section>" +
       '<section class="dashboard-section" aria-labelledby="receipts-title">' +
       '<p class="eyebrow">Audit receipts</p>' +
-      '<h2 id="receipts-title">Accepted proofs can be replayed from the public receipt.</h2>' +
+      '<h2 id="receipts-title">Proof receipts.</h2>' +
       renderReceipts(data.accepted_proof_receipts) +
       "</section>" +
       '<p class="dashboard-meta">Generated ' + escapeHtml(dateText(data.generated_unix)) +
