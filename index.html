@@ -13,7 +13,6 @@
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
         <a href="/miners/">Miners</a>
-        <a href="/solve/">Solve</a>
         <a href="/setup/">Setup</a>
         <a href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -71,7 +70,7 @@
           </li>
           <li>
             <span>Verify</span>
-            <p>Lean accepts the proof or rejects it. The earliest valid commitment block wins.</p>
+            <p>Lean accepts the proof or rejects it. Current-epoch verified work earns the reward.</p>
           </li>
         </ol>
       </section>
@@ -82,9 +81,9 @@
           <h2 id="proof-title">Small file. Hard boundary.</h2>
           <p>
             The protocol does not ask validators to grade prose, style, or confidence. Lean
-            either accepts the file or rejects it. If several valid proofs were committed in
-            the same earliest block, those miners split. Later commitments do not dilute the
-            winner.
+            either accepts the file or rejects it. Verified solvers share the earned epoch
+            budget by commitment rank. The rest routes to the owner/burn UID instead of
+            paying stale winners.
           </p>
         </div>
         <pre><code>import Mathlib
@@ -105,7 +104,6 @@ end Submission</code></pre>
         </div>
         <div class="link-list">
           <a href="/miners/">Open the miner target board</a>
-          <a href="/solve/">Open the solve portal</a>
           <a href="/setup/">Set up a miner or validator</a>
           <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Read the code and CLI docs</a>
           <a href="/faq/">Read the FAQ</a>

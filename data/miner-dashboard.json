@@ -76,9 +76,10 @@
   "manifest_sha256": "721d7aeaa8030bd54cf129fef6774b131cac42363efc20dfff2783580164601a",
   "problem_source": "known_theorems",
   "reward": {
-    "mode": "commit_reveal_binary_lean_verify",
-    "rule": "A pre-reveal commitment plus a Lean-accepted proof is eligible.",
-    "tie_policy": "earliest_valid_commitment_block_wins; same_block_valid_commitments_split"
+    "mode": "current_epoch_observed_difficulty_with_owner_burn",
+    "owner_burn_uid": 0,
+    "rank_policy": "commitment_block_ranked; same_rank_commitments_tie",
+    "rule": "Verified current-epoch proofs earn (1 - solve_fraction)^2 of the budget."
   },
   "schema_version": 3,
   "solved_ledger": [

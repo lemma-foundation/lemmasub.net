@@ -75,7 +75,7 @@
       '<li class="solver-row">' +
       '<div class="record-id">' +
       "<strong>UID " + escapeHtml(solver.uid) + "</strong>" +
-      '<span class="badge">' + escapeHtml(weight.toFixed(2)) + "% weight</span>" +
+      '<span class="badge">' + escapeHtml(weight.toFixed(2)) + "% ledger split</span>" +
       "</div>" +
       '<div class="record-title">' +
       "<span>Hotkey</span>" +
@@ -241,7 +241,7 @@
       '<div id="active-target-title">' + activeHtml + "</div>" +
       "</section>" +
       '<section class="dashboard-section" aria-labelledby="current-solvers-title">' +
-      '<p class="eyebrow">Current solver set</p>' +
+      '<p class="eyebrow">Latest accepted proof set</p>' +
       '<h2 id="current-solvers-title">Verified solvers.</h2>' +
       renderCurrentSolvers(data.current_solver_set) +
       "</section>" +
