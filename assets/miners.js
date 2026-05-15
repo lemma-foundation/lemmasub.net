@@ -25,6 +25,21 @@
     return new Date(Number(unix) * 1000).toISOString().replace("T", " ").replace(".000Z", " UTC");
   }
 
+  function countText(count, label) {
+    return count + " " + label + (count === 1 ? "" : "s");
+  }
+
+  function shortList(values, emptyText) {
+    var clean = values.filter(Boolean).map(shortHash);
+    if (clean.length === 0) {
+      return emptyText;
+    }
+    if (clean.length <= 3) {
+      return clean.join(", ");
+    }
+    return clean.slice(0, 3).join(", ") + " +" + (clean.length - 3) + " more";
+  }
+
   function targetStatus(target) {
     if (!target || !target.status) {
       return "queued";
@@ -85,7 +100,51 @@
     );
   }
 
+  function receiptKey(receipt) {
+    return [
+      receipt.target_id || "",
+      receipt.solver_uid || "",
+      receipt.solver_hotkey || "",
+      receipt.proof_sha256 || "",
+      receipt.commitment_hash || "",
+    ].join("|");
+  }
+
+  function groupedReceipts(receipts) {
+    var groups = [];
+    var byKey = Object.create(null);
+    receipts.forEach(function (receipt) {
+      if (!receipt || typeof receipt !== "object") {
+        return;
+      }
+      var key = receiptKey(receipt);
+      var group = byKey[key];
+      if (!group) {
+        group = Object.assign({}, receipt, { receipts: [], validators: [] });
+        byKey[key] = group;
+        groups.push(group);
+      }
+      group.receipts.push(receipt);
+      if (receipt.validator_hotkey && group.validators.indexOf(receipt.validator_hotkey) === -1) {
+        group.validators.push(receipt.validator_hotkey);
+      }
+      var receiptBlock = Number(receipt.accepted_block);
+      var groupBlock = Number(group.accepted_block);
+      if (Number.isFinite(receiptBlock) && (!Number.isFinite(groupBlock) || receiptBlock < groupBlock)) {
+        group.accepted_block = receipt.accepted_block;
+        group.accepted_unix = receipt.accepted_unix;
+      }
+    });
+    return groups;
+  }
+
   function renderReceipt(receipt) {
+    var validatorCount = receipt.validators && receipt.validators.length ? receipt.validators.length : 1;
+    var receiptCount = receipt.receipts && receipt.receipts.length ? receipt.receipts.length : 1;
+    var receiptNote = shortHash(receipt.receipt_sha256);
+    if (receiptCount > 1) {
+      receiptNote += " +" + (receiptCount - 1) + " more";
+    }
     return (
       '<li class="receipt-row">' +
       "<header>" +
@@ -93,12 +152,13 @@
       "<code>" + escapeHtml(receipt.target_id) + "</code>" +
       '<span class="muted">proof ' + escapeHtml(shortHash(receipt.proof_sha256)) + "</span>" +
       '<span class="muted">commit ' + escapeHtml(shortHash(receipt.commitment_hash)) + "</span>" +
-      '<span class="muted">receipt ' + escapeHtml(shortHash(receipt.receipt_sha256)) + "</span>" +
+      '<span class="muted">' + escapeHtml(countText(validatorCount, "validator confirmation")) + "</span>" +
       "</header>" +
-      '<p class="dashboard-meta">Validator ' + escapeHtml(shortHash(receipt.validator_hotkey)) +
+      '<p class="dashboard-meta">Validators ' + escapeHtml(shortList(receipt.validators || [receipt.validator_hotkey], "unknown")) +
       " - block " + escapeHtml(receipt.accepted_block || "unknown") +
       " - committed " + escapeHtml(receipt.commitment_first_seen_block || "unknown") +
       " before cutoff " + escapeHtml(receipt.commit_cutoff_block || "unknown") +
+      " - receipt " + escapeHtml(receiptNote || "unknown") +
       " - " + escapeHtml(dateText(receipt.accepted_unix)) + "</p>" +
       "<details>" +
       "<summary>Accepted proof</summary>" +
@@ -112,7 +172,7 @@
     if (!Array.isArray(receipts) || receipts.length === 0) {
       return '<p class="muted">No accepted proof receipts yet.</p>';
     }
-    return '<ol class="receipt-list">' + receipts.map(renderReceipt).join("") + "</ol>";
+    return '<ol class="receipt-list">' + groupedReceipts(receipts).map(renderReceipt).join("") + "</ol>";
   }
 
   function renderDashboard(data) {

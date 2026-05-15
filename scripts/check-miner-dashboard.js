@@ -65,10 +65,25 @@ solvedFixture.accepted_proof_receipts = [{
   commit_cutoff_block: 122,
   receipt_sha256: "b".repeat(64),
   proof_script: "import Mathlib\n\nnamespace Submission\n\nexample : True := by\n  trivial\n\nend Submission\n",
+}, {
+  target_id: solvedFixture.targets[0].id,
+  solver_uid: 7,
+  solver_hotkey: "hotkey-7",
+  validator_hotkey: "validator-8",
+  accepted_block: 124,
+  accepted_unix: 1778783683,
+  proof_sha256: "a".repeat(64),
+  proof_nonce: "n".repeat(64),
+  commitment_hash: "c".repeat(64),
+  commitment_first_seen_block: 111,
+  commit_cutoff_block: 122,
+  receipt_sha256: "d".repeat(64),
+  proof_script: "import Mathlib\n\nnamespace Submission\n\nexample : True := by\n  trivial\n\nend Submission\n",
 }];
 const solvedHtml = dashboard.renderDashboard(solvedFixture);
 assert(solvedHtml.includes("solver UID 7"), "rendered solved rows should include solver UIDs");
 assert(solvedHtml.includes("Audit receipts"), "rendered dashboard should include audit receipts");
+assert(solvedHtml.includes("2 validator confirmations"), "rendered receipts should group validator confirmations");
 assert(solvedHtml.includes("committed 111"), "rendered receipts should include commitment timing");
 assert(solvedHtml.includes("trivial"), "rendered receipts should include accepted proof text");
 

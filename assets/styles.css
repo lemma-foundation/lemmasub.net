@@ -393,7 +393,7 @@ code {
 
 .receipt-row header {
   display: grid;
-  grid-template-columns: 110px minmax(0, 1fr) minmax(140px, 0.4fr) minmax(140px, 0.4fr);
+  grid-template-columns: 110px minmax(0, 1fr) repeat(3, minmax(140px, 0.4fr));
   gap: 18px;
   align-items: baseline;
 }
