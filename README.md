@@ -2,47 +2,54 @@
 
 Static public website for Lemma.
 
-This repo hosts the public landing page, miner board, and setup guide.
-Keep it boring: static HTML, shared CSS, and links back to the Lemma protocol
-repo.
+The site now has two task surfaces:
+
+- `/cadence/` for recurring validator-scored cadence tasks.
+- `/bounties/` for manual winner-take-all Formal Conjectures campaigns.
 
 ## Local Preview
 
-From the Lemma checkout, generate the dashboard JSON:
+From the Lemma checkout, generate public JSON:
 
 ```bash
-uv run lemma dashboard export --output ../lemmasub.net/data/miner-dashboard.json
+uv run lemma dashboard export --output ../lemmasub.net/data/cadence.json
+uv run lemma dashboard export-bounties --output ../lemmasub.net/data/bounties.json
 ```
+
+Live feeds are served from the validator droplet, not from Git commits:
+
+```bash
+uv run lemma dashboard publish --output-dir /var/www/lemma-live
+```
+
+Then preview the static site:
 
 ```bash
 python3 -m http.server 8877 --bind 127.0.0.1
 ```
 
-Then open:
+Open:
 
 - `http://127.0.0.1:8877/`
-- `http://127.0.0.1:8877/miners/index.html`
-- `http://127.0.0.1:8877/setup/index.html`
-- `http://127.0.0.1:8877/faq/index.html`
-
-There is no build step.
+- `http://127.0.0.1:8877/cadence/`
+- `http://127.0.0.1:8877/bounties/`
+- `http://127.0.0.1:8877/setup/`
+- `http://127.0.0.1:8877/faq/`
 
 Check the static code:
 
 ```bash
-node scripts/check-miner-dashboard.js
+node scripts/check-task-pages.js
 ```
 
 ## Site Rules
 
-- Keep the public story aligned with the current proof protocol: verified Lean
-  proofs earn current-epoch rewards, and unearned budget routes to the
-  owner/burn UID.
-- `data/miner-dashboard.json` is a static public export from the Lemma manifest
-  and solved ledger.
+- Keep the public story simple: cadence tasks are automatic; bounty tasks are
+  manual owner-paid campaigns.
+- Public cadence JSON shows task state, UIDs, and full hotkeys. It must not
+  publish proof bodies, proof hashes, proof nonces, or commitment hashes.
+- Live task feeds should be tiny overwritten JSON files from the validator
+  droplet, not GitHub commit churn or historical archives.
+- The setup page should describe OpenAI-compatible providers, not OpenAI-only
+  setup.
 - There is no browser solve portal. Miners use the Lemma CLI/Axon path.
-- Do not bring prose judging, reasoning scores, proof-efficiency scoring, or the
-  generated-status framing back into this site.
-- Do not publish proof scripts, raw validator logs, wallet material, deploy
-  keys, bearer tokens, SSH usernames, Droplet inventory, or Lean worker
-  endpoints.

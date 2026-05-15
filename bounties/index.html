@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Bounty Tasks | Lemma</title>
+    <meta name="description" content="Manual winner-take-all Formal Conjectures bounty tasks for Lemma.">
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/">Lemma</a>
+      <nav aria-label="Primary">
+        <a href="/cadence/">Cadence</a>
+        <a href="/bounties/" aria-current="page">Bounties</a>
+        <a href="/setup/">Setup</a>
+        <a href="/faq/">FAQ</a>
+        <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+          <span class="icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m17-7-1.5 1.5M6.5 17.5 5 19m14 0-1.5-1.5M6.5 6.5 5 5"></path></svg>
+          </span>
+          <span class="icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"></path></svg>
+          </span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-head" aria-labelledby="title">
+        <p class="eyebrow">Bounty tasks</p>
+        <h1 id="title">Formal Conjectures campaigns, paid winner-take-all.</h1>
+        <p class="lead">
+          Bounty tasks do not require subnet registration. Solve the pinned Lean task,
+          verify locally, sign a package with your hotkey, and submit it for manual review.
+        </p>
+        <p class="source-credit">
+          Source credit:
+          <a href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Google DeepMind Formal Conjectures</a>.
+        </p>
+      </section>
+
+      <section
+        id="bounty-board"
+        class="dashboard-shell"
+        aria-live="polite"
+        data-fallback-url="/data/bounties.json"
+        data-live-url="https://live.lemmasub.net/bounties.json"
+      >
+        <p class="muted">Loading bounty tasks...</p>
+      </section>
+
+      <section class="section-grid" aria-labelledby="verify-title">
+        <div>
+          <p class="eyebrow">Verify locally</p>
+          <h2 id="verify-title">Package a proof before sending it.</h2>
+        </div>
+        <pre><code>uv run lemma mine --bounty &lt;campaign-id&gt; \
+  --submission Submission.lean</code></pre>
+      </section>
+    </main>
+
+    <footer>
+      <span>Lemma</span>
+      <a href="https://bittensor.com/" target="_blank" rel="noopener noreferrer">Testnet 467 on Bittensor</a>
+    </footer>
+
+    <script src="/assets/tasks.js"></script>
+    <script src="/assets/theme.js"></script>
+  </body>
+</html>

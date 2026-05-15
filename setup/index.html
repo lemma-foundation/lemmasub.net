@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>Setup | Lemma</title>
-    <meta name="description" content="Set up a Lemma miner or validator with the guided CLI.">
+    <meta name="description" content="Set up Lemma with a small CLI and an OpenAI-compatible prover endpoint.">
     <link rel="stylesheet" href="/assets/styles.css">
   </head>
   <body>
     <header class="site-header">
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
-        <a href="/miners/">Miners</a>
+        <a href="/cadence/">Cadence</a>
+        <a href="/bounties/">Bounties</a>
         <a aria-current="page" href="/setup/">Setup</a>
         <a href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -30,75 +31,94 @@
     <main>
       <section class="page-head">
         <p class="eyebrow">Setup</p>
-        <h1>Four commands for normal operation.</h1>
+        <h1>Copy, paste, mine.</h1>
         <p class="lead">
-          Lemma keeps wallet creation in btcli, then guides miners and validators through
-          the checks needed before they touch the subnet.
+          Set up one OpenAI-compatible provider, one Bittensor hotkey, then let the
+          Lemma CLI guide the proof, commitment, and miner server.
         </p>
       </section>
 
-      <section class="section-grid" aria-labelledby="cli-title">
+      <section class="section-grid" aria-labelledby="clone-title">
         <div>
-          <p class="eyebrow">CLI</p>
-          <h2 id="cli-title">Start with setup.</h2>
+          <p class="eyebrow">1</p>
+          <h2 id="clone-title">Install Lemma.</h2>
         </div>
         <pre><code>git clone https://github.com/spacetime-tao/lemma.git
 cd lemma
-uv sync --extra btcli
-uv run lemma setup
-uv run lemma mine
-uv run lemma status</code></pre>
+uv sync --extra btcli</code></pre>
+      </section>
+
+      <section class="section-grid" aria-labelledby="api-title">
+        <div>
+          <p class="eyebrow">2</p>
+          <h2 id="api-title">Paste your provider URL and key.</h2>
+        </div>
+        <pre><code>cat &gt;&gt; .env &lt;&lt;'EOF'
+LEMMA_PROVER_BASE_URL=https://your-provider.example/v1
+LEMMA_PROVER_API_KEY=replace_me
+EOF</code></pre>
+      </section>
+
+      <section class="section-grid" aria-labelledby="models-title">
+        <div>
+          <p class="eyebrow">3</p>
+          <h2 id="models-title">List models from that URL.</h2>
+        </div>
+        <pre><code>source .env
+curl -sS "$LEMMA_PROVER_BASE_URL/models" \
+  -H "Authorization: Bearer $LEMMA_PROVER_API_KEY"</code></pre>
+      </section>
+
+      <section class="section-grid" aria-labelledby="model-title">
+        <div>
+          <p class="eyebrow">4</p>
+          <h2 id="model-title">Paste one model id.</h2>
+        </div>
+        <pre><code>cat &gt;&gt; .env &lt;&lt;'EOF'
+LEMMA_PROVER_MODEL=copy_one_model_id_here
+EOF</code></pre>
       </section>
 
       <section class="section-grid" aria-labelledby="wallet-title">
         <div>
-          <p class="eyebrow">Wallets</p>
-          <h2 id="wallet-title">Use btcli for keys.</h2>
+          <p class="eyebrow">5</p>
+          <h2 id="wallet-title">Create and register a hotkey.</h2>
         </div>
-        <pre><code>uv sync --extra btcli
-btcli wallet create --wallet.name &lt;coldkey&gt; --wallet.hotkey &lt;hotkey&gt;
-btcli subnets show --netuid &lt;netuid&gt; --network &lt;network&gt;
-btcli subnets register --netuid &lt;netuid&gt; --wallet.name &lt;coldkey&gt; --wallet.hotkey &lt;hotkey&gt; --network &lt;network&gt;</code></pre>
+        <pre><code>btcli wallet create --wallet.name lemma --wallet.hotkey miner
+btcli subnets show --netuid 467 --network test
+btcli subnets register --netuid 467 \
+  --wallet.name lemma \
+  --wallet.hotkey miner \
+  --network test</code></pre>
       </section>
 
-      <section class="section-grid" aria-labelledby="miner-title">
+      <section class="section-grid" aria-labelledby="cadence-title">
         <div>
-          <p class="eyebrow">Miner</p>
-          <h2 id="miner-title">Commit first, reveal later.</h2>
+          <p class="eyebrow">6</p>
+          <h2 id="cadence-title">Run setup, then mine.</h2>
         </div>
-        <ol class="steps">
-          <li>
-            <span>Setup</span>
-            <p>Run <code>uv run lemma setup --role miner</code> and fix any wallet, chain, Docker, or registration warnings.</p>
-          </li>
-          <li>
-            <span>Mine</span>
-            <p>Run <code>uv run lemma mine</code>, paste a full <code>Submission.lean</code>, and let Lean check it locally.</p>
-          </li>
-          <li>
-            <span>Serve</span>
-            <p>After the commitment is published, Lemma starts the miner server and waits for validators to poll after reveal opens.</p>
-          </li>
-        </ol>
+        <pre><code>uv run lemma setup --role miner --wallet lemma --hotkey miner
+uv run lemma mine
+uv run lemma status</code></pre>
+      </section>
+
+      <section class="section-grid" aria-labelledby="bounty-title">
+        <div>
+          <p class="eyebrow">Bounties</p>
+          <h2 id="bounty-title">Package a bounty proof locally.</h2>
+        </div>
+        <pre><code>uv run lemma mine --bounty &lt;campaign-id&gt; \
+  --submission Submission.lean</code></pre>
       </section>
 
       <section class="section-grid" aria-labelledby="validator-title">
         <div>
-          <p class="eyebrow">Validator</p>
+          <p class="eyebrow">Validators</p>
           <h2 id="validator-title">Check before start.</h2>
         </div>
         <pre><code>bash scripts/prebuild_lean_image.sh
 uv run lemma setup --role validator
 uv run lemma validate</code></pre>
-      </section>
-
-      <section class="definition" aria-label="Commit reveal explanation">
-        <p>
-          A commitment is a public fingerprint of a private proof. It proves the miner had
-          something before the cutoff without showing the proof text. After reveal opens, the
-          miner sends the proof and nonce, and validators recompute the fingerprint before
-          running Lean.
-        </p>
       </section>
     </main>
 

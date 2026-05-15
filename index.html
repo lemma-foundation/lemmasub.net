@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>Lemma</title>
-    <meta name="description" content="Lemma is a Bittensor subnet for formal proof work checked by Lean.">
+    <meta name="description" content="Lemma is a Bittensor subnet for Lean-verified proof work.">
     <link rel="stylesheet" href="/assets/styles.css">
   </head>
   <body>
     <header class="site-header">
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
-        <a href="/miners/">Miners</a>
+        <a href="/cadence/">Cadence</a>
+        <a href="/bounties/">Bounties</a>
         <a href="/setup/">Setup</a>
         <a href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -29,85 +30,50 @@
 
     <main>
       <section class="hero" aria-labelledby="title">
-        <p class="eyebrow">Formal proofs, checked by Lean</p>
-        <h1 id="title">Lemma rewards proofs Lean can verify.</h1>
+        <p class="eyebrow">Lean-verified proof work</p>
+        <h1 id="title">Lemma has two task lanes.</h1>
         <p class="lead">
-          Lemma is a Bittensor subnet for formal proof work. The network publishes theorem
-          targets, miners commit privately before reveal, and validators run the checker.
-          The live question is narrow: did this committed proof file prove this theorem?
+          Cadence tasks are recurring subnet work with automatic validator rewards.
+          Bounty tasks are selected Formal Conjectures campaigns paid manually by the owner,
+          winner-take-all.
         </p>
       </section>
 
-      <section class="definition" aria-label="What makes Lemma different">
-        <p>
-          A formal proof is not a persuasive explanation. It is mathematics written in a
-          language strict enough for software to verify. Lean accepts the proof only when
-          every step follows from the theorem statement, imports, and allowed rules.
-        </p>
-        <p class="source-credit">
-          Source credit: target material is based on
-          <a href="https://github.com/google-deepmind/formal-conjectures" target="_blank" rel="noopener noreferrer">Google DeepMind's Formal Conjectures</a>.
-        </p>
-      </section>
-
-      <section class="section-grid" aria-labelledby="loop-title">
+      <section class="section-grid" aria-labelledby="lanes-title">
         <div>
-          <p class="eyebrow">The loop</p>
-          <h2 id="loop-title">One target, one proof file, one check.</h2>
-        </div>
-        <ol class="steps">
-          <li>
-            <span>Theorem</span>
-            <p>A problem target defines the statement to prove and the Lean environment it belongs to.</p>
-          </li>
-          <li>
-            <span>Commit</span>
-            <p>A miner locally verifies a proof, keeps it private, and publishes a chain commitment.</p>
-          </li>
-          <li>
-            <span>Reveal</span>
-            <p>After the cutoff, the miner reveals the Lean file and nonce for validators to replay.</p>
-          </li>
-          <li>
-            <span>Verify</span>
-            <p>Lean accepts the proof or rejects it. Current-epoch verified work earns the reward.</p>
-          </li>
-        </ol>
-      </section>
-
-      <section class="proof-layout" aria-labelledby="proof-title">
-        <div>
-          <p class="eyebrow">A submission</p>
-          <h2 id="proof-title">Small file. Hard boundary.</h2>
-          <p>
-            The protocol does not ask validators to grade prose, style, or confidence. Lean
-            either accepts the file or rejects it. Verified solvers share the earned epoch
-            budget by commitment rank. The rest routes to the owner/burn UID instead of
-            paying stale winners.
-          </p>
-        </div>
-        <pre><code>import Mathlib
-
-namespace Submission
-
-theorem nat_two_plus_two_eq_four :
-    (2 : Nat) + 2 = 4 := by
-  rfl
-
-end Submission</code></pre>
-      </section>
-
-      <section class="section-grid" aria-labelledby="start-title">
-        <div>
-          <p class="eyebrow">Start</p>
-          <h2 id="start-title">The repository is the protocol surface.</h2>
+          <p class="eyebrow">Tasks</p>
+          <h2 id="lanes-title">Pick the lane that matches your work.</h2>
         </div>
         <div class="link-list">
-          <a href="/miners/">Open the miner target board</a>
-          <a href="/setup/">Set up a miner or validator</a>
-          <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Read the code and CLI docs</a>
-          <a href="/faq/">Read the FAQ</a>
+          <a href="/cadence/">Cadence tasks: automatic subnet rewards</a>
+          <a href="/bounties/">Bounty tasks: Formal Conjectures campaigns</a>
+          <a href="/setup/">Set up an OpenAI-compatible prover</a>
         </div>
+      </section>
+
+      <section class="proof-layout" aria-labelledby="rule-title">
+        <div>
+          <p class="eyebrow">Rule</p>
+          <h2 id="rule-title">The checker is the boundary.</h2>
+          <p>
+            Lemma does not score prose. Miners submit Lean files. Validators replay the
+            pinned theorem, imports, and proof. The proof passes or fails.
+          </p>
+        </div>
+        <pre><code>uv run lemma setup --role miner
+uv run lemma mine
+uv run lemma status
+
+uv run lemma mine --bounty &lt;campaign-id&gt; \
+  --submission Submission.lean</code></pre>
+      </section>
+
+      <section class="definition" aria-label="Vision">
+        <p>
+          The vision is deliberately small: broaden cadence task supply, keep automatic
+          rewards tied to current verified work, and run Formal Conjectures bounties as
+          clear manual campaigns.
+        </p>
       </section>
     </main>
 

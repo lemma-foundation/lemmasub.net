@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>FAQ | Lemma</title>
-    <meta name="description" content="Questions and answers about Lemma, formal mathematics, and Lean proof mining.">
+    <meta name="description" content="Questions and answers about Lemma cadence and bounty proof tasks.">
     <link rel="stylesheet" href="/assets/styles.css">
   </head>
   <body>
     <header class="site-header">
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
-        <a href="/miners/">Miners</a>
+        <a href="/cadence/">Cadence</a>
+        <a href="/bounties/">Bounties</a>
         <a href="/setup/">Setup</a>
         <a aria-current="page" href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -30,128 +31,80 @@
     <main>
       <section class="page-head">
         <p class="eyebrow">FAQ</p>
-        <h1>The basics, stated directly.</h1>
+        <h1>The short version.</h1>
       </section>
 
       <section class="qa-list" aria-label="Frequently asked questions">
         <article>
           <h2>What is Lemma?</h2>
+          <p>Lemma is a Bittensor subnet for Lean-verified formal proof work.</p>
+        </article>
+
+        <article>
+          <h2>What are cadence tasks?</h2>
           <p>
-            Lemma is a Bittensor subnet for formal proof work. Miners submit Lean proof
-            files for theorem targets, and validators run Lean to determine whether each
-            submission proves the target.
+            Cadence tasks are recurring theorem targets for registered miners. Validators
+            check proofs automatically and set subnet weights from current verified work.
           </p>
         </article>
 
         <article>
-          <h2>What is formal mathematics?</h2>
+          <h2>What are bounty tasks?</h2>
           <p>
-            Formal mathematics is mathematics written with enough precision for a proof
-            assistant to check it. Definitions, theorem statements, and proofs are expressed
-            in a language with exact rules, so verification does not depend on interpretation
-            or trust in the author.
+            Bounty tasks are selected Formal Conjectures campaigns. Anyone can work on
+            them, verify locally, and submit a signed package for manual owner review.
           </p>
         </article>
 
         <article>
-          <h2>What is a formal proof?</h2>
+          <h2>Do bounties require a UID?</h2>
+          <p>No. They use a full hotkey signature for identity, not subnet registration.</p>
+        </article>
+
+        <article>
+          <h2>How are cadence rewards paid?</h2>
           <p>
-            It is the proof object for a formal theorem. A traditional proof may omit steps
-            that a trained reader can fill in. A formal proof must provide enough structure
-            for the checker to confirm that the theorem follows from the stated assumptions.
+            Verified current-epoch cadence work earns <code>(1 - solve_fraction)^2</code>
+            of the budget, split by commitment rank. Unearned budget routes to the
+            owner/burn UID.
           </p>
         </article>
 
         <article>
-          <h2>What is a theorem target?</h2>
+          <h2>How are bounties paid?</h2>
           <p>
-            A target is the exact problem miners work on: a Lean theorem statement, the
-            imports it may use, and the environment in which the proof must check. The target
-            is the prompt, and a verifying Lean file is the answer.
+            Bounties are manual winner-take-all campaigns funded from owner emission. The
+            listed reward text is the public promise for that campaign.
           </p>
         </article>
 
         <article>
-          <h2>Can a miner submit a disproof?</h2>
+          <h2>What is OpenAI-compatible?</h2>
           <p>
-            Only if the target asks for one. A submission must prove the exact Lean statement
-            in the target. If the statement is a negation or impossibility claim, then a
-            disproof-style proof can be valid. If the target asks for a positive theorem,
-            proving its negation is not an answer Lean will accept.
+            It means the local prover can point at any API that implements the OpenAI-style
+            chat/completions interface: provider URL, API key, and model name.
           </p>
         </article>
 
         <article>
-          <h2>Where do targets come from?</h2>
+          <h2>Do validators score explanations?</h2>
+          <p>No. The live reward-critical artifact is the Lean proof. It passes or fails.</p>
+        </article>
+
+        <article>
+          <h2>Why not show proof hashes or commitments on the site?</h2>
           <p>
-            Target material is based on
-            <a href="https://github.com/google-deepmind/formal-conjectures" target="_blank" rel="noopener noreferrer">Google DeepMind's Formal Conjectures</a>.
-            Lemma uses the open materials under their published license terms and is not
-            affiliated with or endorsed by Google DeepMind.
+            Public pages show task state and full solver hotkeys. Proof bodies, proof
+            hashes, nonces, and commitment hashes stay out of the public website feed.
           </p>
         </article>
 
         <article>
-          <h2>Why Lean?</h2>
+          <h2>Where do bounty tasks come from?</h2>
           <p>
-            Lean is both a programming language and a proof checker. For Lemma, its most
-            important property is the boundary it creates: a submission either checks in the
-            pinned environment or it does not.
-          </p>
-        </article>
-
-        <article>
-          <h2>What do miners do?</h2>
-          <p>
-            Miners work on Lean theorem targets from the Lemma protocol. These are formal
-            mathematics problems, not essay prompts or numerical quizzes. A miner can work
-            manually, use its own tools, or run local agents. The protocol needs a private
-            pre-reveal commitment first, then the final proof file that Lean accepts.
-          </p>
-        </article>
-
-        <article>
-          <h2>Can other miners copy a submitted answer?</h2>
-          <p>
-            A commitment does not reveal the proof text, proof hash, or nonce. Other miners
-            may see that someone committed to the target, but they cannot copy the proof from
-            the chain. When proof text is revealed, the commit cutoff has already passed.
-          </p>
-        </article>
-
-        <article>
-          <h2>Do miners need to submit explanations?</h2>
-          <p>
-            No. Explanations can be useful for people, research notes, or debugging, but
-            they are not the scoring object. The live protocol rewards verified Lean proofs.
-          </p>
-        </article>
-
-        <article>
-          <h2>What do validators do?</h2>
-          <p>
-            Validators wait until reveal phase, fetch committed submissions, check that the
-            on-chain commitment matches the revealed proof and nonce, run Lean verification,
-            and convert accepted results into subnet weights. The reward signal is proof
-            correctness, not a judge score over written reasoning.
-          </p>
-        </article>
-
-        <article>
-          <h2>How are rewards distributed?</h2>
-          <p>
-            Current-epoch verified work earns <code>(1 - solve_fraction)^2</code> of the
-            budget. Valid proofs share that earned budget by commitment rank, and the
-            unearned remainder routes to the owner/burn UID.
-          </p>
-        </article>
-
-        <article>
-          <h2>Do validators need to start at the exact same time?</h2>
-          <p>
-            No. Validators use the chain block height as the shared clock. They need the same
-            manifest, target genesis block, commit window, and solved ledger. A validator can
-            start late and still compute the same commit or reveal phase.
+            Bounty tasks link to
+            <a href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Google DeepMind Formal Conjectures</a>
+            sources and pin the exact Lean declaration before a campaign opens.
           </p>
         </article>
       </section>
