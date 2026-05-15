@@ -2,7 +2,11 @@
 
 Static public website for Lemma.
 
-The site now has two task surfaces:
+Lemma is framed publicly as a Bittensor subnet for machine-checkable
+mathematics: miners produce Lean proofs, validators verify them mechanically,
+and rewards attach to proof correctness.
+
+The site has two task surfaces:
 
 - `/cadence/` for recurring validator-scored cadence tasks.
 - `/bounties/` for manual winner-take-all Formal Conjectures campaigns.
@@ -44,12 +48,17 @@ node scripts/check-task-pages.js
 
 ## Site Rules
 
-- Keep the public story simple: cadence tasks are automatic; bounty tasks are
-  manual owner-paid campaigns.
+- Keep the public story direct: Lemma is a proof market for Lean-verified work.
+  Cadence tasks are automatic subnet reward work; bounty tasks are manual
+  owner-paid campaigns.
 - Public cadence JSON shows task state, UIDs, and full hotkeys. It must not
   publish proof bodies, proof hashes, proof nonces, or commitment hashes.
 - Live task feeds should be tiny overwritten JSON files from the validator
   droplet, not GitHub commit churn or historical archives.
-- The setup page should describe OpenAI-compatible providers, not OpenAI-only
-  setup.
+- The setup page should describe OpenAI-compatible providers rather than tying
+  setup to one company. Keep provider links visible for OpenAI, Gemini, Chutes,
+  and Anthropic, and keep the Anthropic copy clear that its compatibility layer
+  is for testing and comparison rather than preferred production use.
+- Every setup command panel should have a copy button, and wrapped code must
+  remain readable at desktop, split-window, and mobile widths.
 - There is no browser solve portal. Miners use the Lemma CLI/Axon path.

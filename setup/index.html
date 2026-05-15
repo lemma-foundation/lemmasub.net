@@ -33,92 +33,182 @@
         <p class="eyebrow">Setup</p>
         <h1>Copy, paste, mine.</h1>
         <p class="lead">
-          Set up one OpenAI-compatible provider, one Bittensor hotkey, then let the
-          Lemma CLI guide the proof, commitment, and miner server.
+          Choose one OpenAI-compatible provider, paste one model id, create one
+          Bittensor hotkey, then let the Lemma CLI guide proof submission and mining.
         </p>
       </section>
 
-      <section class="section-grid" aria-labelledby="clone-title">
+      <section class="provider-guide" aria-labelledby="providers-title">
+        <div>
+          <p class="eyebrow">Provider</p>
+          <h2 id="providers-title">Use any endpoint that speaks the OpenAI API shape.</h2>
+          <p>
+            Lemma only needs a base URL, API key, and model id for optional prover
+            assistance. The command below lists models from the URL you choose, so you
+            can copy the exact returned <code>id</code> into <code>LEMMA_PROVER_MODEL</code>.
+          </p>
+        </div>
+        <div class="provider-grid">
+          <article class="provider-card">
+            <h3><a href="https://platform.openai.com/docs/api-reference/models/list" target="_blank" rel="noopener noreferrer">OpenAI models API</a></h3>
+            <code>https://api.openai.com/v1</code>
+            <p>Use your OpenAI API key, then list models at <code>/models</code>.</p>
+          </article>
+          <article class="provider-card">
+            <h3><a href="https://ai.google.dev/gemini-api/docs/openai" target="_blank" rel="noopener noreferrer">Gemini OpenAI compatibility</a></h3>
+            <code>https://generativelanguage.googleapis.com/v1beta/openai</code>
+            <p>Use a Gemini API key with Google's OpenAI-compatible endpoint.</p>
+          </article>
+          <article class="provider-card">
+            <h3><a href="https://chutes.ai/docs/examples/llm-chat" target="_blank" rel="noopener noreferrer">Chutes LLM chat docs</a></h3>
+            <code>https://llm.chutes.ai/v1</code>
+            <p>Use a Chutes API key and list live models from the shared endpoint.</p>
+          </article>
+          <article class="provider-card">
+            <h3><a href="https://docs.anthropic.com/en/api/openai-sdk" target="_blank" rel="noopener noreferrer">Anthropic OpenAI SDK compatibility</a></h3>
+            <code>https://api.anthropic.com/v1</code>
+            <p>Anthropic describes this as a testing and comparison layer, not the preferred production API.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-grid setup-step" aria-labelledby="clone-title">
         <div>
           <p class="eyebrow">1</p>
           <h2 id="clone-title">Install Lemma.</h2>
+          <p class="step-note">This downloads the CLI and installs the Bittensor command-line tools Lemma uses for wallet registration.</p>
         </div>
-        <pre><code>git clone https://github.com/spacetime-tao/lemma.git
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>Terminal</span>
+            <button type="button" data-copy-code aria-label="Copy install Lemma commands"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>git clone https://github.com/spacetime-tao/lemma.git
 cd lemma
 uv sync --extra btcli</code></pre>
+        </div>
       </section>
 
-      <section class="section-grid" aria-labelledby="api-title">
+      <section class="section-grid setup-step" aria-labelledby="api-title">
         <div>
           <p class="eyebrow">2</p>
           <h2 id="api-title">Paste your provider URL and key.</h2>
+          <p class="step-note">Start with OpenAI, or replace the base URL with Gemini, Chutes, Anthropic, or another compatible provider.</p>
         </div>
-        <pre><code>cat &gt;&gt; .env &lt;&lt;'EOF'
-LEMMA_PROVER_BASE_URL=https://your-provider.example/v1
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>.env</span>
+            <button type="button" data-copy-code aria-label="Copy provider environment commands"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>cat &gt;&gt; .env &lt;&lt;'EOF'
+LEMMA_PROVER_BASE_URL=https://api.openai.com/v1
 LEMMA_PROVER_API_KEY=replace_me
 EOF</code></pre>
+        </div>
       </section>
 
-      <section class="section-grid" aria-labelledby="models-title">
+      <section class="section-grid setup-step" aria-labelledby="models-title">
         <div>
           <p class="eyebrow">3</p>
           <h2 id="models-title">List models from that URL.</h2>
+          <p class="step-note">The response contains model ids. Copy one id exactly as the provider returns it.</p>
         </div>
-        <pre><code>source .env
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>Terminal</span>
+            <button type="button" data-copy-code aria-label="Copy model listing commands"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>source .env
 curl -sS "$LEMMA_PROVER_BASE_URL/models" \
   -H "Authorization: Bearer $LEMMA_PROVER_API_KEY"</code></pre>
+        </div>
       </section>
 
-      <section class="section-grid" aria-labelledby="model-title">
+      <section class="section-grid setup-step" aria-labelledby="model-title">
         <div>
           <p class="eyebrow">4</p>
           <h2 id="model-title">Paste one model id.</h2>
+          <p class="step-note">This tells Lemma which provider model to use when you ask the CLI for prover help.</p>
         </div>
-        <pre><code>cat &gt;&gt; .env &lt;&lt;'EOF'
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>.env</span>
+            <button type="button" data-copy-code aria-label="Copy model environment commands"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>cat &gt;&gt; .env &lt;&lt;'EOF'
 LEMMA_PROVER_MODEL=copy_one_model_id_here
 EOF</code></pre>
+        </div>
       </section>
 
-      <section class="section-grid" aria-labelledby="wallet-title">
+      <section class="section-grid setup-step" aria-labelledby="wallet-title">
         <div>
           <p class="eyebrow">5</p>
           <h2 id="wallet-title">Create and register a hotkey.</h2>
+          <p class="step-note">Cadence mining requires a registered subnet UID. Bounty campaigns only need a hotkey signature.</p>
         </div>
-        <pre><code>btcli wallet create --wallet.name lemma --wallet.hotkey miner
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>btcli</span>
+            <button type="button" data-copy-code aria-label="Copy Bittensor wallet commands"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>btcli wallet create --wallet.name lemma --wallet.hotkey miner
 btcli subnets show --netuid 467 --network test
 btcli subnets register --netuid 467 \
   --wallet.name lemma \
   --wallet.hotkey miner \
   --network test</code></pre>
+        </div>
       </section>
 
-      <section class="section-grid" aria-labelledby="cadence-title">
+      <section class="section-grid setup-step" aria-labelledby="cadence-title">
         <div>
           <p class="eyebrow">6</p>
           <h2 id="cadence-title">Run setup, then mine.</h2>
+          <p class="step-note">The CLI shows the active theorem, verifies your Lean proof locally, commits privately, and starts the miner server.</p>
         </div>
-        <pre><code>uv run lemma setup --role miner --wallet lemma --hotkey miner
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>Lemma CLI</span>
+            <button type="button" data-copy-code aria-label="Copy Lemma mining commands"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>uv run lemma setup --role miner --wallet lemma --hotkey miner
 uv run lemma mine
 uv run lemma status</code></pre>
+        </div>
       </section>
 
-      <section class="section-grid" aria-labelledby="bounty-title">
+      <section class="section-grid setup-step" aria-labelledby="bounty-title">
         <div>
           <p class="eyebrow">Bounties</p>
           <h2 id="bounty-title">Package a bounty proof locally.</h2>
+          <p class="step-note">Bounties are manual owner-emission campaigns. The package is signed by your hotkey and does not require subnet registration.</p>
         </div>
-        <pre><code>uv run lemma mine --bounty &lt;campaign-id&gt; \
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>Lemma CLI</span>
+            <button type="button" data-copy-code aria-label="Copy bounty package command"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>uv run lemma mine --bounty &lt;campaign-id&gt; \
   --submission Submission.lean</code></pre>
+        </div>
       </section>
 
-      <section class="section-grid" aria-labelledby="validator-title">
+      <section class="section-grid setup-step" aria-labelledby="validator-title">
         <div>
           <p class="eyebrow">Validators</p>
           <h2 id="validator-title">Check before start.</h2>
+          <p class="step-note">Validators prebuild the Lean verifier image, configure a validator hotkey, then run the proof-checking service.</p>
         </div>
-        <pre><code>bash scripts/prebuild_lean_image.sh
+        <div class="code-panel">
+          <div class="code-panel-head">
+            <span>Lemma CLI</span>
+            <button type="button" data-copy-code aria-label="Copy validator setup commands"><span class="copy-status" aria-live="polite">Copy</span></button>
+          </div>
+          <pre><code>bash scripts/prebuild_lean_image.sh
 uv run lemma setup --role validator
 uv run lemma validate</code></pre>
+        </div>
       </section>
     </main>
 
@@ -126,6 +216,7 @@ uv run lemma validate</code></pre>
       <span>Lemma</span>
       <a href="https://bittensor.com/" target="_blank" rel="noopener noreferrer">Testnet 467 on Bittensor</a>
     </footer>
+    <script src="/assets/site.js"></script>
     <script src="/assets/theme.js"></script>
   </body>
 </html>
