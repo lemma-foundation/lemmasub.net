@@ -1,29 +1,77 @@
 {
-  "accepted_proof_receipts": [],
+  "accepted_proof_receipts": [
+    {
+      "accepted_block": 7124821,
+      "accepted_unix": 1778821605,
+      "build_seconds": 356.2158924060059,
+      "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: two plus two is four. -/\ntheorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by\n  sorry\n\nend Submission\n",
+      "commit_cutoff_block": 7124477,
+      "commitment_first_seen_block": 7124455,
+      "commitment_hash": "dfe9427121db6941b925fff4fb7e72b9235e5de3816cf8dd9e0007eae635b636",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "lemma_version": "0.1.0",
+      "manifest_sha256": "721d7aeaa8030bd54cf129fef6774b131cac42363efc20dfff2783580164601a",
+      "mathlib_rev": "5450b53e5ddc",
+      "proof_nonce": "a899edc130e42f20c271fb1ee9b99297963bb421466fefc9b0fd0cf35381f73c",
+      "proof_script": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: two plus two is four. -/\ntheorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by\n  rfl\n\nend Submission\n",
+      "proof_sha256": "db88feec885001a7dbc8a3bc2ed492e8a5a80db76c1c7c128b85d12bfff4c0e3",
+      "receipt_sha256": "5e047aafa7d39b444e99884ebb3ba8e135c193f27bf584f8ff1aab67de4470a9",
+      "solver_hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+      "solver_uid": 1,
+      "target_id": "known/smoke/nat_two_plus_two_eq_four",
+      "theorem_name": "nat_two_plus_two_eq_four",
+      "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
+      "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "verify_reason": "ok"
+    }
+  ],
   "active_target": {
-    "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: two plus two is four. -/\ntheorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by\n  sorry\n\nend Submission\n",
+    "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: conjunction can be flipped. -/\ntheorem prop_and_comm (p q : Prop) : p \u2227 q \u2192 q \u2227 p := by\n  sorry\n\nend Submission\n",
     "difficulty": "smoke",
-    "id": "known/smoke/nat_two_plus_two_eq_four",
+    "id": "known/smoke/prop_and_comm",
     "imports": [
       "Mathlib"
     ],
     "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
     "mathlib_rev": "5450b53e5ddc",
-    "order": 1,
+    "order": 2,
     "status": "active",
-    "theorem_name": "nat_two_plus_two_eq_four",
-    "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
-    "title": "Two plus two is four"
+    "theorem_name": "prop_and_comm",
+    "theorem_statement_sha256": "2877b67095cbdc5ee4d6aa91c0c153892d41f15f9a8e09504f58071c2dece35c",
+    "title": "Conjunction is commutative"
   },
   "counts": {
-    "accepted_proof_receipts": 0,
-    "current_solver_count": 0,
-    "remaining_targets": 5,
-    "solved_targets": 0,
+    "accepted_proof_receipts": 1,
+    "current_solver_count": 1,
+    "remaining_targets": 4,
+    "solved_targets": 1,
     "total_targets": 5
   },
-  "current_solver_set": null,
-  "generated_unix": 1778818692,
+  "current_solver_set": {
+    "accepted_block": 7124821,
+    "accepted_unix": 1778821605,
+    "lemma_version": "0.1.0",
+    "solvers": [
+      {
+        "build_seconds": 356.2158924060059,
+        "commit_cutoff_block": 7124477,
+        "commitment_block": 7124455,
+        "commitment_hash": "dfe9427121db6941b925fff4fb7e72b9235e5de3816cf8dd9e0007eae635b636",
+        "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+        "proof_sha256": "db88feec885001a7dbc8a3bc2ed492e8a5a80db76c1c7c128b85d12bfff4c0e3",
+        "uid": 1,
+        "verify_reason": "ok",
+        "weight_share": 1.0
+      }
+    ],
+    "target_id": "known/smoke/nat_two_plus_two_eq_four",
+    "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
+    "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy"
+  },
+  "generated_unix": 1778821649,
   "lemma_version": "0.1.0",
   "manifest_sha256": "721d7aeaa8030bd54cf129fef6774b131cac42363efc20dfff2783580164601a",
   "problem_source": "known_theorems",
@@ -33,10 +81,31 @@
     "tie_policy": "earliest_valid_commitment_block_wins; same_block_valid_commitments_split"
   },
   "schema_version": 3,
-  "solved_ledger": [],
+  "solved_ledger": [
+    {
+      "accepted_block": 7124821,
+      "accepted_unix": 1778821605,
+      "lemma_version": "0.1.0",
+      "solvers": [
+        {
+          "build_seconds": 356.2158924060059,
+          "commit_cutoff_block": 7124477,
+          "commitment_block": 7124455,
+          "commitment_hash": "dfe9427121db6941b925fff4fb7e72b9235e5de3816cf8dd9e0007eae635b636",
+          "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+          "proof_sha256": "db88feec885001a7dbc8a3bc2ed492e8a5a80db76c1c7c128b85d12bfff4c0e3",
+          "uid": 1,
+          "verify_reason": "ok",
+          "weight_share": 1.0
+        }
+      ],
+      "target_id": "known/smoke/nat_two_plus_two_eq_four",
+      "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
+      "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy"
+    }
+  ],
   "targets": [
     {
-      "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: two plus two is four. -/\ntheorem nat_two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by\n  sorry\n\nend Submission\n",
       "difficulty": "smoke",
       "id": "known/smoke/nat_two_plus_two_eq_four",
       "imports": [
@@ -45,12 +114,32 @@
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "order": 1,
-      "status": "active",
+      "solved": {
+        "accepted_block": 7124821,
+        "accepted_unix": 1778821605,
+        "commit_cutoff_block": [
+          7124477
+        ],
+        "commitment_block": [
+          7124455
+        ],
+        "commitment_hash": [
+          "dfe9427121db6941b925fff4fb7e72b9235e5de3816cf8dd9e0007eae635b636"
+        ],
+        "proof_sha256": [
+          "db88feec885001a7dbc8a3bc2ed492e8a5a80db76c1c7c128b85d12bfff4c0e3"
+        ],
+        "solver_uids": [
+          1
+        ]
+      },
+      "status": "solved",
       "theorem_name": "nat_two_plus_two_eq_four",
       "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
       "title": "Two plus two is four"
     },
     {
+      "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: conjunction can be flipped. -/\ntheorem prop_and_comm (p q : Prop) : p \u2227 q \u2192 q \u2227 p := by\n  sorry\n\nend Submission\n",
       "difficulty": "smoke",
       "id": "known/smoke/prop_and_comm",
       "imports": [
@@ -59,7 +148,7 @@
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "order": 2,
-      "status": "queued",
+      "status": "active",
       "theorem_name": "prop_and_comm",
       "theorem_statement_sha256": "2877b67095cbdc5ee4d6aa91c0c153892d41f15f9a8e09504f58071c2dece35c",
       "title": "Conjunction is commutative"
