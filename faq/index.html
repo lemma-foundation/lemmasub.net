@@ -13,6 +13,7 @@
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
         <a href="/miners/">Miners</a>
+        <a href="/setup/">Setup</a>
         <a aria-current="page" href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="theme-toggle" type="button" aria-label="Toggle color theme">
@@ -104,8 +105,17 @@
           <p>
             Miners work on Lean theorem targets from the Lemma protocol. These are formal
             mathematics problems, not essay prompts or numerical quizzes. A miner can work
-            manually, use its own tools, or run local agents; the protocol only needs the
-            final proof file that Lean accepts.
+            manually, use its own tools, or run local agents. The protocol needs a private
+            pre-reveal commitment first, then the final proof file that Lean accepts.
+          </p>
+        </article>
+
+        <article>
+          <h2>Can other miners copy a submitted answer?</h2>
+          <p>
+            A commitment does not reveal the proof text, proof hash, or nonce. Other miners
+            may see that someone committed to the target, but they cannot copy the proof from
+            the chain. When proof text is revealed, the commit cutoff has already passed.
           </p>
         </article>
 
@@ -120,19 +130,28 @@
         <article>
           <h2>What do validators do?</h2>
           <p>
-            Validators fetch submissions, run Lean verification, and convert verified proof
-            results into subnet weights. The reward signal is proof correctness, not a judge
-            score over written reasoning.
+            Validators wait until reveal phase, fetch committed submissions, check that the
+            on-chain commitment matches the revealed proof and nonce, run Lean verification,
+            and convert accepted results into subnet weights. The reward signal is proof
+            correctness, not a judge score over written reasoning.
           </p>
         </article>
 
         <article>
           <h2>How are rewards distributed?</h2>
           <p>
-            Validators turn verified proof results into subnet weights. If one miner verifies
-            the active target, that miner receives the weight for the solved target. If
-            several miners verify in the same validator batch, the weight is split equally
-            across those miners.
+            Among all revealed proofs that pass Lean and have valid pre-cutoff commitments,
+            the earliest valid commitment block wins. If multiple valid miners committed in
+            that same block, they split. Later commitments do not dilute the winner.
+          </p>
+        </article>
+
+        <article>
+          <h2>Do validators need to start at the exact same time?</h2>
+          <p>
+            No. Validators use the chain block height as the shared clock. They need the same
+            manifest, target genesis block, commit window, and solved ledger. A validator can
+            start late and still compute the same commit or reveal phase.
           </p>
         </article>
       </section>

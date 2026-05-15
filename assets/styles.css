@@ -344,7 +344,8 @@ code {
 }
 
 .solver-list,
-.target-list {
+.target-list,
+.receipt-list {
   display: grid;
   gap: 0;
   margin: 0;
@@ -383,6 +384,38 @@ code {
   overflow-wrap: anywhere;
   color: var(--muted);
   font-size: 13px;
+}
+
+.receipt-row {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.receipt-row header {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) minmax(140px, 0.4fr) minmax(140px, 0.4fr);
+  gap: 18px;
+  align-items: baseline;
+}
+
+.receipt-row code {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.receipt-row details {
+  margin-top: 14px;
+}
+
+.receipt-row summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.receipt-row pre {
+  margin-top: 14px;
 }
 
 .link-list.compact {
@@ -493,7 +526,8 @@ footer a {
   }
 
   .solver-list li,
-  .target-row {
+  .target-row,
+  .receipt-row header {
     grid-template-columns: 1fr;
     gap: 6px;
   }

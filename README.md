@@ -28,7 +28,8 @@ There is no build step.
 ## Site Rules
 
 - Keep the public story aligned with the current proof protocol: verified Lean
-  proofs decide rewards, and same-batch ties split equally.
+  proofs decide rewards, earliest valid commitment block wins, and same-block
+  valid commitments split.
 - `data/miner-dashboard.json` is a static public export from the Lemma manifest
   and solved ledger.
 - Do not bring prose judging, reasoning scores, proof-efficiency scoring, or the

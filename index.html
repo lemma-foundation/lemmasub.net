@@ -13,6 +13,7 @@
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
         <a href="/miners/">Miners</a>
+        <a href="/setup/">Setup</a>
         <a href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="theme-toggle" type="button" aria-label="Toggle color theme">
@@ -32,8 +33,8 @@
         <h1 id="title">Lemma rewards proofs Lean can verify.</h1>
         <p class="lead">
           Lemma is a Bittensor subnet for formal proof work. The network publishes theorem
-          targets, miners return Lean proof files, and validators run the checker. The live
-          question is narrow: does this file prove this theorem?
+          targets, miners commit privately before reveal, and validators run the checker.
+          The live question is narrow: did this committed proof file prove this theorem?
         </p>
       </section>
 
@@ -60,12 +61,16 @@
             <p>A problem target defines the statement to prove and the Lean environment it belongs to.</p>
           </li>
           <li>
-            <span>Submission</span>
-            <p>A miner writes a Lean file for that target. Optional notes can live elsewhere; they are not the reward object.</p>
+            <span>Commit</span>
+            <p>A miner locally verifies a proof, keeps it private, and publishes a chain commitment.</p>
           </li>
           <li>
-            <span>Verification</span>
-            <p>A validator runs Lean. Passing proofs are rewarded. Failing proofs are not.</p>
+            <span>Reveal</span>
+            <p>After the cutoff, the miner reveals the Lean file and nonce for validators to replay.</p>
+          </li>
+          <li>
+            <span>Verify</span>
+            <p>Lean accepts the proof or rejects it. The earliest valid commitment block wins.</p>
           </li>
         </ol>
       </section>
@@ -76,8 +81,9 @@
           <h2 id="proof-title">Small file. Hard boundary.</h2>
           <p>
             The protocol does not ask validators to grade prose, style, or confidence. Lean
-            either accepts the file or rejects it. If several proofs verify in the same
-            validator batch, that batch's reward is split equally.
+            either accepts the file or rejects it. If several valid proofs were committed in
+            the same earliest block, those miners split. Later commitments do not dilute the
+            winner.
           </p>
         </div>
         <pre><code>import Mathlib
@@ -98,6 +104,7 @@ end Submission</code></pre>
         </div>
         <div class="link-list">
           <a href="/miners/">Open the miner target board</a>
+          <a href="/setup/">Set up a miner or validator</a>
           <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Read the code and CLI docs</a>
           <a href="/faq/">Read the FAQ</a>
         </div>
