@@ -10,6 +10,7 @@ const dataPath = path.join(root, "data", "miner-dashboard.json");
 const raw = fs.readFileSync(dataPath, "utf8");
 const data = JSON.parse(raw);
 const setupHtml = fs.readFileSync(path.join(root, "setup", "index.html"), "utf8");
+const solveHtml = fs.readFileSync(path.join(root, "solve", "index.html"), "utf8");
 
 function assert(condition, message) {
   if (!condition) {
@@ -88,9 +89,10 @@ assert(solvedHtml.includes("Audit details and proof"), "rendered receipts should
 assert(solvedHtml.includes("committed 111"), "rendered receipts should include commitment timing");
 assert(solvedHtml.includes("trivial"), "rendered receipts should include accepted proof text");
 
-for (const page of ["index.html", "faq/index.html", "miners/index.html", "setup/index.html"]) {
+for (const page of ["index.html", "faq/index.html", "miners/index.html", "setup/index.html", "solve/index.html"]) {
   const html = fs.readFileSync(path.join(root, page), "utf8");
   assert(html.includes('href="/setup/"'), `${page} must link to /setup/`);
+  assert(html.includes('href="/solve/"'), `${page} must link to /solve/`);
 }
 
 assert(setupHtml.includes("uv run lemma setup"), "setup page must show lemma setup");
@@ -101,5 +103,7 @@ assert(setupHtml.includes("uv run lemma validate"), "setup page must show lemma 
 assert(setupHtml.includes("btcli wallet create"), "setup page must show btcli wallet creation");
 assert(setupHtml.includes("btcli subnets register"), "setup page must show btcli registration");
 assert(setupHtml.includes("A commitment is a public fingerprint"), "setup page must explain commit/reveal");
+assert(solveHtml.includes("/assets/solve.js"), "solve page must load solve.js");
+assert(solveHtml.includes("wss://entrypoint-finney.opentensor.ai:443"), "solve page must expose the finney RPC");
 
 console.log("miner dashboard ok");
