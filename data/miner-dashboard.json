@@ -105,6 +105,70 @@
       "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy"
     }
   ],
+  "target_window": {
+    "current": {
+      "challenge_source": "import Mathlib\n\nnamespace Submission\n\n/-- Smoke target: conjunction can be flipped. -/\ntheorem prop_and_comm (p q : Prop) : p \u2227 q \u2192 q \u2227 p := by\n  sorry\n\nend Submission\n",
+      "difficulty": "smoke",
+      "id": "known/smoke/prop_and_comm",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 2,
+      "status": "active",
+      "theorem_name": "prop_and_comm",
+      "theorem_statement_sha256": "2877b67095cbdc5ee4d6aa91c0c153892d41f15f9a8e09504f58071c2dece35c",
+      "title": "Conjunction is commutative"
+    },
+    "next": {
+      "difficulty": "smoke",
+      "id": "known/smoke/nat_add_zero_right",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 3,
+      "status": "queued",
+      "theorem_name": "nat_add_zero_right",
+      "theorem_statement_sha256": "9f9c96e99caf9c6d5bc52b2f9736d292571e565e04e6fbaabc40c918f169d558",
+      "title": "Adding zero on the right"
+    },
+    "previous": {
+      "difficulty": "smoke",
+      "id": "known/smoke/nat_two_plus_two_eq_four",
+      "imports": [
+        "Mathlib"
+      ],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "order": 1,
+      "solved": {
+        "accepted_block": 7124821,
+        "accepted_unix": 1778821605,
+        "commit_cutoff_block": [
+          7124477
+        ],
+        "commitment_block": [
+          7124455
+        ],
+        "commitment_hash": [
+          "dfe9427121db6941b925fff4fb7e72b9235e5de3816cf8dd9e0007eae635b636"
+        ],
+        "proof_sha256": [
+          "db88feec885001a7dbc8a3bc2ed492e8a5a80db76c1c7c128b85d12bfff4c0e3"
+        ],
+        "solver_uids": [
+          1
+        ]
+      },
+      "status": "solved",
+      "theorem_name": "nat_two_plus_two_eq_four",
+      "theorem_statement_sha256": "f6eb94b13651b808d280c0b875d2bd0193330e206fa04906779d16557e1c13e9",
+      "title": "Two plus two is four"
+    }
+  },
   "targets": [
     {
       "difficulty": "smoke",

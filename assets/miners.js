@@ -122,6 +122,48 @@
     );
   }
 
+  function renderWindowSlot(label, target) {
+    if (!target) {
+      return (
+        '<article class="window-card is-empty">' +
+        "<span>" + escapeHtml(label) + "</span>" +
+        "<strong>None</strong>" +
+        '<small class="muted">No theorem in this slot.</small>' +
+        "</article>"
+      );
+    }
+    var status = targetStatus(target);
+    var meta = status + " - order " + target.order + " - " + (target.difficulty || "unlabeled");
+    if (status === "solved" && target.solved && target.solved.accepted_block) {
+      meta += " - block " + target.solved.accepted_block;
+    }
+    return (
+      '<article class="window-card is-' + escapeHtml(status) + '">' +
+      "<span>" + escapeHtml(label) + "</span>" +
+      "<strong>" + escapeHtml(target.title || target.id) + "</strong>" +
+      "<code>" + escapeHtml(target.id) + "</code>" +
+      '<small class="muted">' + escapeHtml(meta) + "</small>" +
+      "</article>"
+    );
+  }
+
+  function renderTheoremWindow(windowData) {
+    if (!windowData || typeof windowData !== "object") {
+      return "";
+    }
+    return (
+      '<section class="dashboard-section" aria-labelledby="theorem-window-title">' +
+      '<p class="eyebrow">Theorem window</p>' +
+      '<h2 id="theorem-window-title">Previous, current, next.</h2>' +
+      '<div class="theorem-window">' +
+      renderWindowSlot("Previous theorem", windowData.previous) +
+      renderWindowSlot("Current theorem", windowData.current) +
+      renderWindowSlot("Next theorem", windowData.next) +
+      "</div>" +
+      "</section>"
+    );
+  }
+
   function receiptKey(receipt) {
     return [
       receipt.target_id || "",
@@ -236,6 +278,7 @@
       renderStat("Remaining", counts.remaining_targets || 0) +
       renderStat("Current solvers", counts.current_solver_count || 0) +
       "</div>" +
+      renderTheoremWindow(data.target_window) +
       '<section class="dashboard-section" aria-labelledby="active-target-title">' +
       '<p class="eyebrow">Active target</p>' +
       '<div id="active-target-title">' + activeHtml + "</div>" +

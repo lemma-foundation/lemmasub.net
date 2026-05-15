@@ -26,6 +26,7 @@ assert(
 assert(data.counts && Number.isInteger(data.counts.total_targets), "counts.total_targets must be an integer");
 assert(Array.isArray(data.targets), "targets must be an array");
 assert(data.targets.length === data.counts.total_targets, "targets length must match counts.total_targets");
+assert(data.target_window && typeof data.target_window === "object", "target_window must be an object");
 if (raw.includes("proof_script")) {
   assert(Array.isArray(data.accepted_proof_receipts), "proof_script must appear only with accepted receipts");
 }
@@ -35,9 +36,15 @@ const activeCount = data.targets.filter((target) => target.status === "active").
 assert(activeCount <= 1, "at most one target can be active");
 if (data.active_target) {
   assert(data.active_target.status === "active", "active_target must have active status");
+  assert(data.target_window.current, "target_window.current must be set while a target is active");
+  assert(data.target_window.current.id === data.active_target.id, "target_window.current must match active_target");
 }
 
 const html = dashboard.renderDashboard(data);
+assert(html.includes("Theorem window"), "rendered dashboard should include the theorem window");
+assert(html.includes("Previous theorem"), "rendered dashboard should include the previous theorem");
+assert(html.includes("Current theorem"), "rendered dashboard should include the current theorem");
+assert(html.includes("Next theorem"), "rendered dashboard should include the next theorem");
 assert(html.includes("Active target"), "rendered dashboard should include the active section");
 assert(html.includes("Ordered target state"), "rendered dashboard should include the target queue");
 
