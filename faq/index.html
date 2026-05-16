@@ -16,8 +16,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-7">
-  <script src="../assets/site.js?v=20260516-site-polish-7" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-8">
+  <script src="../assets/site.js?v=20260516-site-polish-8" defer></script>
 </head>
 <body id="top" data-page="faq">
   <header class="site-header">
@@ -38,7 +38,6 @@
   <main class="dashboard-page faq-page">
     <section class="dashboard-head">
       <div>
-        <p class="eyebrow">Plain-language answers</p>
         <h1>Lemma FAQ</h1>
         <p>Plain-language answers about Lemma, theorem proving, miners, validators, and why verified reasoning matters.</p>
       </div>
@@ -60,7 +59,7 @@
         <section class="faq-group" aria-labelledby="faq-basics">
           <h2 id="faq-basics">Basics</h2>
           <div class="faq-list" aria-label="Basics">
-            <details open>
+            <details id="faq-what-is-lemma" open>
               <summary><span>What is Lemma?</span></summary>
               <div class="faq-answer">
                 <p>Lemma is a Bittensor subnet for using AI to prove mathematical theorems.</p>
@@ -69,7 +68,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-useful-subnet">
               <summary><span>How is this subnet useful?</span></summary>
               <div class="faq-answer">
                 <p>Lemma creates a market for verified reasoning.</p>
@@ -79,7 +78,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-verified-reasoning">
               <summary><span>What do you mean by verified reasoning?</span></summary>
               <div class="faq-answer">
                 <p>Verified reasoning means the answer can be checked by software, not just trusted by humans.</p>
@@ -94,7 +93,7 @@
         <section class="faq-group" aria-labelledby="faq-why">
           <h2 id="faq-why">Why It Matters</h2>
           <div class="faq-list" aria-label="Why it matters">
-            <details>
+            <details id="faq-why-miners-solve-math">
               <summary><span>Why do miners solve math?</span></summary>
               <div class="faq-answer">
                 <p>Miners solve math because formal proofs are one of the cleanest ways to measure real AI reasoning.</p>
@@ -105,7 +104,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-who-needs-this-math">
               <summary><span>Who needs this math to be solved?</span></summary>
               <div class="faq-answer">
                 <p>Some theorem challenges may be small on their own, but formal proofs can become building blocks.</p>
@@ -114,7 +113,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-famous-open-problems">
               <summary><span>Is Lemma only useful if it solves famous open problems?</span></summary>
               <div class="faq-answer">
                 <p>No.</p>
@@ -124,7 +123,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-millennium-prize-problems">
               <summary><span>Why not start with Millennium Prize Problems?</span></summary>
               <div class="faq-answer">
                 <p>Because the first goal is to build proof capacity.</p>
@@ -138,7 +137,7 @@
         <section class="faq-group" aria-labelledby="faq-lean">
           <h2 id="faq-lean">Lean Proofs</h2>
           <div class="faq-list" aria-label="Lean proofs">
-            <details>
+            <details id="faq-formal-mathematics">
               <summary><span>What is formal mathematics?</span></summary>
               <div class="faq-answer">
                 <p>Formal mathematics is mathematics written in a precise language that software can check.</p>
@@ -147,7 +146,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-what-is-lean">
               <summary><span>What is Lean?</span></summary>
               <div class="faq-answer">
                 <p>Lean is a proof assistant.</p>
@@ -156,16 +155,15 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-what-is-a-theorem">
               <summary><span>What is a theorem?</span></summary>
               <div class="faq-answer">
                 <p>A theorem is a precise claim that can be proven true.</p>
                 <p>In Lemma, theorem statements are written in Lean. This removes ambiguity. Every miner receives a formal target, and validators check whether the submitted proof proves that exact target.</p>
-                <p class="source-note">Note: Theorem windows are representative. Miners get deterministic same-difficulty variants; validators verify the exact theorem sent.</p>
               </div>
             </details>
 
-            <details>
+            <details id="faq-what-is-a-proof">
               <summary><span>What is a proof?</span></summary>
               <div class="faq-answer">
                 <p>A proof is a correct argument showing why a theorem is true.</p>
@@ -174,7 +172,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-proof-assistant">
               <summary><span>What does a proof assistant do?</span></summary>
               <div class="faq-answer">
                 <p>A proof assistant checks whether a proof follows the rules of a formal system.</p>
@@ -183,7 +181,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-lean-vs-text">
               <summary><span>Why use Lean instead of normal text answers?</span></summary>
               <div class="faq-answer">
                 <p>Because normal text answers are hard to score objectively.</p>
@@ -198,7 +196,7 @@
         <section class="faq-group" aria-labelledby="faq-roles">
           <h2 id="faq-roles">Subnet Roles</h2>
           <div class="faq-list" aria-label="Subnet roles">
-            <details>
+            <details id="faq-bittensor-subnet">
               <summary><span>What is a Bittensor subnet?</span></summary>
               <div class="faq-answer">
                 <p>A Bittensor subnet is a specialized market for machine intelligence.</p>
@@ -207,7 +205,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-what-do-miners-do">
               <summary><span>What do miners do?</span></summary>
               <div class="faq-answer">
                 <p>Miners receive theorem challenges and try to produce valid Lean proofs.</p>
@@ -216,7 +214,16 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-miner-theorem-variants">
+              <summary><span>Why do miners get different theorem variants?</span></summary>
+              <div class="faq-answer">
+                <p>The dashboard shows the public theorem window, but that window can be representative rather than the exact Lean target every miner receives.</p>
+                <p>During a window, Lemma can give miners deterministic same-difficulty variants. This helps reduce simple copying while keeping the round fair.</p>
+                <p>Deterministic means the assignment is reproducible. Validators know the exact theorem sent to each miner and check the submitted proof against that theorem.</p>
+              </div>
+            </details>
+
+            <details id="faq-what-do-validators-do">
               <summary><span>What do validators do?</span></summary>
               <div class="faq-answer">
                 <p>Validators send theorem challenges to miners, collect their proof files, check the submissions with Lean, reject invalid shortcuts, and publish reward weights.</p>
@@ -225,7 +232,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-manual-theorem-watching">
               <summary><span>Are miners manually watching for theorems?</span></summary>
               <div class="faq-answer">
                 <p>No. The reference miner is designed to run automatically.</p>
@@ -239,7 +246,7 @@
         <section class="faq-group" aria-labelledby="faq-bounties">
           <h2 id="faq-bounties">Bounties And Rules</h2>
           <div class="faq-list" aria-label="Bounties and rules">
-            <details>
+            <details id="faq-bounty-targets">
               <summary><span>What are bounties?</span></summary>
               <div class="faq-answer">
                 <p>Bounties are harder proof targets that do not fit the normal timed theorem rounds.</p>
@@ -250,7 +257,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-proof-file-rules">
               <summary><span>What rules do proof files follow?</span></summary>
               <div class="faq-answer">
                 <p>Every submitted proof file must prove the exact theorem Lemma published. Miners cannot change the theorem, add extra assumptions, use <code>sorry</code>, or add Lean features that change the rules instead of proving the target.</p>
@@ -262,7 +269,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-sorry-and-axioms">
               <summary><span>What are sorry and new axioms?</span></summary>
               <div class="faq-answer">
                 <p>In Lean, <code>sorry</code> is a placeholder for an unfinished proof. It tells Lean to temporarily accept a missing proof while someone is still working.</p>
@@ -272,7 +279,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-fake-proof">
               <summary><span>Can miners fake a proof?</span></summary>
               <div class="faq-answer">
                 <p>They can try, but validators are designed to reject shortcuts.</p>
@@ -287,7 +294,7 @@
         <section class="faq-group" aria-labelledby="faq-network">
           <h2 id="faq-network">Network And Rewards</h2>
           <div class="faq-list" aria-label="Network and rewards">
-            <details>
+            <details id="faq-uid-weights-alpha">
               <summary><span>What are UID, weights, and alpha?</span></summary>
               <div class="faq-answer">
                 <p>A UID is a numbered participant slot on a subnet.</p>
@@ -297,7 +304,7 @@
               </div>
             </details>
 
-            <details>
+            <details id="faq-testnet-vs-mainnet">
               <summary><span>What is the difference between testnet and mainnet?</span></summary>
               <div class="faq-answer">
                 <p>Testnet is for testing software, validator behavior, miner behavior, and subnet design.</p>
@@ -311,7 +318,7 @@
         <section class="faq-group" aria-labelledby="faq-start">
           <h2 id="faq-start">Get Started</h2>
           <div class="faq-list" aria-label="Get started">
-            <details>
+            <details id="faq-where-do-i-start">
               <summary><span>Where do I start?</span></summary>
               <div class="faq-answer">
                 <p>If you want to understand the project, start with the <a class="text-link" href="https://github.com/spacetime-tao/lemma/blob/main/docs/litepaper.md" target="_blank" rel="noopener noreferrer">litepaper</a>.</p>

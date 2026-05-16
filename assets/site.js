@@ -703,9 +703,7 @@ function initializeFaqAccordion() {
   if (!items.length) {
     return;
   }
-  if (!items.some((item) => item.open)) {
-    items[0].open = true;
-  }
+  addFaqPermalinks(items);
   items.forEach((item) => {
     item.addEventListener("toggle", () => {
       if (!item.open) {
@@ -718,6 +716,57 @@ function initializeFaqAccordion() {
       });
     });
   });
+  window.addEventListener("hashchange", () => {
+    openFaqFromHash(items, { scroll: true });
+  });
+  if (!openFaqFromHash(items) && !items.some((item) => item.open)) {
+    items[0].open = true;
+  }
+}
+
+function addFaqPermalinks(items) {
+  items.forEach((item) => {
+    const summary = item.querySelector("summary");
+    const label = summary?.querySelector("span")?.textContent?.trim();
+    if (!item.id || !summary || summary.querySelector(".faq-permalink")) {
+      return;
+    }
+    const link = document.createElement("a");
+    link.className = "faq-permalink";
+    link.href = `#${item.id}`;
+    link.textContent = "#";
+    link.setAttribute("aria-label", `Link to question: ${label || item.id}`);
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      history.pushState(null, "", `#${item.id}`);
+      openFaqItem(items, item, { scroll: true });
+    });
+    summary.append(link);
+  });
+}
+
+function openFaqFromHash(items, { scroll = false } = {}) {
+  const id = window.location.hash.slice(1);
+  if (!id) {
+    return false;
+  }
+  const target = document.getElementById(id);
+  const item = target?.matches("details") ? target : target?.closest("details");
+  if (!item || !items.includes(item)) {
+    return false;
+  }
+  openFaqItem(items, item, { scroll });
+  return true;
+}
+
+function openFaqItem(items, item, { scroll = false } = {}) {
+  items.forEach((other) => {
+    other.open = other === item;
+  });
+  if (scroll) {
+    item.scrollIntoView({ block: "start" });
+  }
 }
 
 function initializeScrollReveals() {
