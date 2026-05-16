@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7132097,
+  "chain_head_block": 7132111,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-16T05:15:15Z",
+  "generated_at": "2026-05-16T05:18:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -26,7 +26,7 @@
       "score": 0.0,
       "uid": 3,
       "uid_url": "",
-      "validator_rolling_score": 0.4343884542236323
+      "validator_rolling_score": 0.3111928305110925
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -38,7 +38,7 @@
       "score": 0.0,
       "uid": 4,
       "uid_url": "",
-      "validator_rolling_score": 0.4343884542236323
+      "validator_rolling_score": 0.3111928305110925
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -50,7 +50,7 @@
       "score": 0.0,
       "uid": 5,
       "uid_url": "",
-      "validator_rolling_score": 0.4343884542236323
+      "validator_rolling_score": 0.3111928305110925
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -62,7 +62,7 @@
       "score": 0.0,
       "uid": 6,
       "uid_url": "",
-      "validator_rolling_score": 0.4343884542236323
+      "validator_rolling_score": 0.3111928305110925
     },
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -74,7 +74,7 @@
       "score": 0.0,
       "uid": 7,
       "uid_url": "",
-      "validator_rolling_score": 0.4343884542236323
+      "validator_rolling_score": 0.3111928305110925
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7132000,
-  "problem_seed_chain_head": 7132097,
+  "problem_seed": 7132100,
+  "problem_seed_chain_head": 7132111,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove commutativity of natural-number addition after adding 1 to both sides.",
-      "label": "current",
-      "name": "t_f445fe",
-      "plain_english": "Prove commutativity of natural-number addition after adding 1 to both sides.",
-      "seed": 7132000,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7132000",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 a b : Nat, a + b + 1 = b + a + 1"
-    },
-    "next": {
       "explanation": "Prove a shifted square inequality for the sum x plus y with offset 4.",
-      "label": "next",
+      "label": "current",
       "name": "t_58a4c2d",
       "plain_english": "Prove a shifted square inequality for the sum x plus y with offset 4.",
       "seed": 7132100,
@@ -136,17 +124,29 @@
       "topic": "optimization.inequalities",
       "type_expr": "\u2200 x y : \u211d, 4 * x * y + (4 : \u211d) \u2264 (x + y) ^ 2 + (4 : \u211d)"
     },
+    "next": {
+      "explanation": "Prove that shifting a real number by one is a continuous function.",
+      "label": "next",
+      "name": "curated_continuous_shift",
+      "plain_english": "Prove that shifting a real number by one is a continuous function.",
+      "seed": 7132200,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/analysis/continuous_shift",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => x + 1)"
+    },
     "previous": {
-      "explanation": "Prove the real absolute-value triangle inequality through an intermediate point.",
+      "explanation": "Prove commutativity of natural-number addition after adding 1 to both sides.",
       "label": "previous",
-      "name": "t_14d3805",
-      "plain_english": "Prove the real absolute-value triangle inequality through an intermediate point.",
-      "seed": 7131900,
+      "name": "t_f445fe",
+      "plain_english": "Prove commutativity of natural-number addition after adding 1 to both sides.",
+      "seed": 7132000,
       "source_lane": "generated",
       "split": "medium",
-      "theorem_id": "gen/7131900",
-      "topic": "geometry.metric",
-      "type_expr": "\u2200 x y z : \u211d, |x - z| \u2264 |x - y| + |y - z|"
+      "theorem_id": "gen/7132000",
+      "topic": "algebra.basic",
+      "type_expr": "\u2200 a b : Nat, a + b + 1 = b + a + 1"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
