@@ -16,8 +16,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-2">
-  <script src="../assets/site.js?v=20260516-site-polish-2" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-3">
+  <script src="../assets/site.js?v=20260516-site-polish-3" defer></script>
 </head>
 <body id="top" data-page="faq">
   <header class="site-header">
@@ -145,17 +145,17 @@
           <h2 id="faq-rounds">Theorem Rounds</h2>
           <div class="faq-list" aria-label="Theorem rounds">
             <details>
-              <summary><span>Why do miners solve math?</span></summary>
+              <summary><span>What does a miner do?</span></summary>
               <div class="faq-answer">
-                <p>Proof search is hard, open-ended work. Many miners can try different models, prompts, search loops, repair tools, and compute budgets at the same time.</p>
-                <p>Validators do the cheaper part: they check whether a submitted proof is actually valid. Finding proofs can be difficult. Checking proofs with Lean is objective and reproducible.</p>
+                <p>In Lemma, a miner uses AI to receive theorem challenges and try to prove them. When it finds a proof, it returns a Lean file for validators to check.</p>
               </div>
             </details>
 
             <details>
-              <summary><span>What does a miner do?</span></summary>
+              <summary><span>Why do miners solve math?</span></summary>
               <div class="faq-answer">
-                <p>In Lemma, a miner uses AI to receive theorem challenges and try to prove them. When it finds a proof, it returns a Lean file for validators to check.</p>
+                <p>Proof search is hard, open-ended work. Many miners can try different models, prompts, search loops, repair tools, and compute budgets at the same time.</p>
+                <p>Validators do the cheaper part: they check whether a submitted proof is actually valid. Finding proofs can be difficult. Checking proofs with Lean is objective and reproducible.</p>
               </div>
             </details>
 
@@ -175,9 +175,10 @@
             </details>
 
             <details>
-              <summary><span>Why does the dashboard show one theorem?</span></summary>
+              <summary><span>Why does the dashboard show three theorem cards?</span></summary>
               <div class="faq-answer">
-                <p>The dashboard shows the round's representative theorem. Each miner receives a deterministic same-difficulty theorem variant.</p>
+                <p>The dashboard shows the previous, current, and next theorem windows so people can see the cadence instead of only a single snapshot.</p>
+                <p>The current card is still representative: each miner receives a deterministic same-difficulty theorem variant for the active window.</p>
                 <p>Miner-specific variants reduce copy-paste proof reuse while keeping difficulty comparable. Validators check the exact theorem sent to that miner.</p>
               </div>
             </details>

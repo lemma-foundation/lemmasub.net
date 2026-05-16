@@ -559,19 +559,16 @@ h3 {
   background: var(--operator-bg);
 }
 
-.operator-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  grid-column: 1 / -1;
-}
-
 .get-started-notes {
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1fr);
   gap: 12px 18px;
   max-width: 1120px;
+}
+
+.role-doc-link {
+  margin-top: 10px;
 }
 
 .get-started-notes p {
@@ -588,6 +585,11 @@ h3 {
 
 .notice-inline strong {
   color: var(--rust);
+}
+
+.notice-inline .text-link {
+  min-height: auto;
+  color: var(--blue);
 }
 
 .value-grid {
