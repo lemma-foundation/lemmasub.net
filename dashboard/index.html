@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <title>Dashboard | Lemma</title>
-    <meta name="description" content="Current Lemma cadence theorem tasks and one active bounty campaign.">
+    <title>Miner Board | Lemma</title>
+    <meta name="description" content="Current Lemma proof targets and accepted solver state for miners.">
     <link rel="stylesheet" href="/assets/styles.css">
   </head>
   <body>
@@ -28,19 +28,19 @@
     </header>
 
     <main>
-      <section class="page-head reveal" aria-labelledby="title">
-        <p class="eyebrow">Dashboard</p>
-        <h1 id="title">Current proof work.</h1>
+      <section class="page-head board-head" aria-labelledby="title">
+        <p class="eyebrow">Miner target board</p>
+        <h1 id="title">Proof targets miners can work from.</h1>
         <p class="lead">
-          Cadence is the live registered-miner task. Bounty is the one open
-          manual campaign with its reward and source. Cadence miners use prover
-          APIs by default; manual proof files are the advanced path.
+          The board is a static snapshot from cadence state and accepted proof
+          receipts. Rewards follow the same rule as the protocol: Lean accepts
+          the proof or it does not.
         </p>
       </section>
 
       <section
         id="dashboard-board"
-        class="dashboard-shell reveal"
+        class="dashboard-shell"
         aria-live="polite"
         data-cadence-fallback-url="/data/cadence.json"
         data-cadence-live-url="https://live.lemmasub.net/cadence.json"

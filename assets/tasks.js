@@ -68,6 +68,7 @@
       '<article class="window-card is-' + escapeHtml(task.status || "queued") + '">' +
       "<span>" + escapeHtml(label) + "</span>" +
       renderTaskLink(task) +
+      "<code>" + escapeHtml(task.id || "") + "</code>" +
       '<small class="muted">' +
       escapeHtml((task.split || task.difficulty || task.status || "queued") + " - seed " + (task.window_seed || "")) +
       "</small>" +
@@ -87,22 +88,24 @@
     var countdown = cadence && cadence.next_rotation_block
       ? "block " + cadence.next_rotation_block + " - " + (cadence.next_rotation_eta || "about 20 minutes")
       : "next 100-block boundary";
+    var toolchain = [task.lean_toolchain, task.mathlib_rev].filter(Boolean).join(" / ") || "unknown";
+    var meta = "Target " + (task.id || "unknown") +
+      " - " + (task.split || task.difficulty || "cadence") +
+      " - " + imports;
     return (
       '<article class="current-theorem">' +
-      '<div class="current-theorem-head">' +
-      '<p class="eyebrow">Current theorem</p>' +
       "<h2>" + renderTaskLink(task) + "</h2>" +
-      '<span class="badge">' + escapeHtml(task.difficulty || task.split || "cadence") + "</span>" +
-      "</div>" +
-      '<dl class="detail-grid">' +
+      '<p class="dashboard-meta">' + escapeHtml(meta) + "</p>" +
+      '<dl class="detail-grid is-compact">' +
       renderFact("Split", task.split || task.source_lane) +
+      renderFact("Difficulty", task.difficulty || task.split) +
       renderFact("Topic", task.topic || task.source_lane) +
       renderFact("Theorem id", task.id) +
       renderFact("Theorem name", task.theorem_name) +
       renderFact("Seed/window", "seed " + ((cadence && cadence.seed) || task.window_seed || 0)) +
       renderFact("Next rotation", countdown) +
       renderFact("Imports", imports) +
-      renderFact("Toolchain", (task.lean_toolchain || "") + " / " + (task.mathlib_rev || "")) +
+      renderFact("Toolchain", toolchain) +
       renderFact("Statement hash", shortHash(task.theorem_statement_sha256)) +
       "</dl>" +
       "<pre><code>" + escapeHtml(task.challenge_source || "") + "</code></pre>" +
@@ -144,6 +147,7 @@
       '<li class="target-row is-' + escapeHtml(task.status || "queued") + '">' +
       "<span>" + escapeHtml(task.status || "queued") + "</span>" +
       renderTaskLink(task) +
+      "<code>" + escapeHtml(task.id || "") + "</code>" +
       '<small class="muted">' +
       escapeHtml(meta + " - " + (task.split || task.difficulty || "cadence") + " - seed " + (task.window_seed || "")) +
       "</small>" +
@@ -190,32 +194,34 @@
     var updateClass = changed ? " is-updated" : "";
     var receipts = data.accepted_proof_receipts || data.accepted_solver_receipts || [];
     return (
-      '<div class="task-feed' + updateClass + '">' +
+      '<div class="task-feed miner-board' + updateClass + '">' +
       '<div class="stats-grid">' +
+      renderStat("Total targets", counts.total_targets || 0) +
+      renderStat("Accepted", counts.accepted_targets || 0) +
       renderStat("Window seed", cadence.seed || data.seed || 0) +
-      renderStat("Next block", cadence.next_rotation_block || "unknown") +
-      renderStat("Receipts", counts.accepted_solver_receipts || receipts.length || 0) +
       renderStat("Current solvers", counts.current_solver_count || 0) +
       "</div>" +
+      '<p class="dashboard-meta">Registered miners use prover APIs for cadence. The theorem window is 100 blocks, about 20 minutes, and validators score only Lean proofs that pass.</p>' +
       '<section class="dashboard-section"><p class="eyebrow">Theorem window</p>' +
       '<h2>Previous, current, next.</h2><div class="theorem-window">' +
-      renderWindowSlot("Previous", data.target_window && data.target_window.previous) +
-      renderWindowSlot("Current", data.target_window && data.target_window.current) +
-      renderWindowSlot("Next", data.target_window && data.target_window.next) +
+      renderWindowSlot("Previous theorem", data.target_window && data.target_window.previous) +
+      renderWindowSlot("Current theorem", data.target_window && data.target_window.current) +
+      renderWindowSlot("Next theorem", data.target_window && data.target_window.next) +
       "</div></section>" +
       '<section class="dashboard-section theorem-focus">' +
+      '<p class="eyebrow">Active target</p>' +
       renderCurrentTheorem(current, cadence) +
       "</section>" +
-      '<section class="dashboard-section"><p class="eyebrow">Recently accepted miners</p>' +
-      "<h2>Current accepted solver set.</h2>" +
+      '<section class="dashboard-section"><p class="eyebrow">Latest accepted proof set</p>' +
+      "<h2>Verified solvers.</h2>" +
       renderSolvers(data.current_solver_set) +
       "</section>" +
-      '<section class="dashboard-section"><p class="eyebrow">Ordered target state</p>' +
-      "<h2>Window anchors.</h2>" +
+      '<section class="dashboard-section"><p class="eyebrow">Queue</p>' +
+      "<h2>Ordered target state.</h2>" +
       '<ol class="target-list">' + (data.targets || []).map(renderTargetRow).join("") + "</ol>" +
       "</section>" +
-      '<section class="dashboard-section"><p class="eyebrow">Proof receipts</p>' +
-      "<h2>Accepted proof receipts.</h2>" +
+      '<section class="dashboard-section"><p class="eyebrow">Audit receipts</p>' +
+      "<h2>Proof receipts.</h2>" +
       renderReceipts(receipts) +
       "</section>" +
       '<p class="dashboard-meta">Generated ' + escapeHtml(dateText(data.generated_unix)) + "</p>" +
@@ -303,13 +309,9 @@
 
   function renderDashboard(cadenceData, bountyData) {
     return (
-      '<div class="dashboard-stack">' +
-      '<section aria-labelledby="cadence-title"><p class="eyebrow">Cadence</p>' +
-      '<h2 id="cadence-title">Live cadence work.</h2>' +
-      '<p class="dashboard-meta">Registered miners use prover APIs for cadence. The theorem window is 100 blocks, about 20 minutes, and validators score only Lean proofs that pass.</p>' +
+      '<div class="dashboard-stack miner-board-stack">' +
       renderCadence(cadenceData) +
-      "</section>" +
-      '<section aria-labelledby="bounty-title"><p class="eyebrow">Bounty</p>' +
+      '<section class="bounty-secondary" aria-labelledby="bounty-title"><p class="eyebrow">Bounty</p>' +
       '<h2 id="bounty-title">One focused campaign.</h2>' +
       '<p class="dashboard-meta">Bounty work is open to anyone; no subnet UID is required.</p>' +
       renderCurrentBounty(bountyData) +

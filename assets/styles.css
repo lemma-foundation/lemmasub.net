@@ -180,6 +180,19 @@ main {
   border-bottom: 1px solid var(--line);
 }
 
+.board-head {
+  padding: 34px 0 26px;
+}
+
+.board-head h1 {
+  font-size: clamp(42px, 6vw, 64px);
+}
+
+.board-head .lead {
+  max-width: 720px;
+  font-size: clamp(18px, 2vw, 21px);
+}
+
 .eyebrow {
   margin: 0 0 16px;
   color: var(--accent);
@@ -580,7 +593,11 @@ button:not(.theme-toggle):focus-visible {
 
 .dashboard-stack {
   display: grid;
-  gap: 60px;
+  gap: 36px;
+}
+
+.miner-board-stack {
+  gap: 42px;
 }
 
 .task-feed {
@@ -612,7 +629,7 @@ button:not(.theme-toggle):focus-visible {
   gap: 8px;
   min-width: 0;
   padding: 18px;
-  background: color-mix(in srgb, var(--soft) 60%, var(--bg));
+  background: var(--bg);
 }
 
 .stat span,
@@ -642,15 +659,7 @@ button:not(.theme-toggle):focus-visible {
   gap: 8px;
   min-width: 0;
   padding: 18px;
-  background: color-mix(in srgb, var(--soft) 60%, var(--bg));
-}
-
-.window-card:hover,
-.target-row:hover,
-.solver-row:hover,
-.bounty-row:hover,
-.bounty-card:hover {
-  transform: translateY(-1px);
+  background: var(--bg);
 }
 
 .window-card > span {
@@ -676,7 +685,7 @@ button:not(.theme-toggle):focus-visible {
 }
 
 .dashboard-section {
-  padding: 48px 0;
+  padding: 40px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -689,12 +698,16 @@ button:not(.theme-toggle):focus-visible {
 }
 
 .theorem-focus {
-  padding-top: 42px;
+  padding-top: 40px;
 }
 
 .current-theorem {
   display: grid;
-  gap: 22px;
+  gap: 14px;
+}
+
+.current-theorem > h2 {
+  margin-bottom: 0;
 }
 
 .current-theorem-head {
@@ -723,7 +736,15 @@ button:not(.theme-toggle):focus-visible {
 .detail-grid > div {
   min-width: 0;
   padding: 15px;
-  background: color-mix(in srgb, var(--soft) 58%, var(--bg));
+  background: var(--bg);
+}
+
+.detail-grid.is-compact {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.detail-grid dd {
+  overflow-wrap: anywhere;
 }
 
 .solver-list,
@@ -740,7 +761,7 @@ button:not(.theme-toggle):focus-visible {
 
 .target-row {
   display: grid;
-  grid-template-columns: 86px minmax(0, 1fr) minmax(150px, 0.45fr);
+  grid-template-columns: 86px minmax(0, 1fr) minmax(190px, 0.6fr) minmax(150px, 0.45fr);
   gap: 18px;
   align-items: baseline;
   padding: 18px 0;
@@ -857,6 +878,14 @@ button:not(.theme-toggle):focus-visible {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 20px;
   align-items: start;
+}
+
+.bounty-secondary {
+  padding-top: 12px;
+}
+
+.bounty-secondary .task-feed {
+  animation: none;
 }
 
 .bounty-card-head h2 {
@@ -1057,6 +1086,10 @@ footer a {
   .hero,
   .page-head {
     padding: 42px 0 34px;
+  }
+
+  .board-head {
+    padding: 30px 0 24px;
   }
 
   h1 {

@@ -51,13 +51,15 @@ assert(bountyHtml.includes("5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No"), 
 assert(bountyHtml.includes("Google DeepMind Formal Conjectures"), "bounty render must show source attribution");
 assert(bountyHtml.includes("not affiliated with Google DeepMind"), "bounty render must show non-affiliation note");
 const dashboardHtml = tasks.renderDashboard(cadence, bounties);
-assert(dashboardHtml.includes("Live cadence work"), "dashboard render must include cadence heading");
+assert(dashboardHtml.includes("Theorem window"), "dashboard render must include theorem window");
 assert(dashboardHtml.includes("Current theorem"), "dashboard render must include current theorem section");
 assert(dashboardHtml.includes("100 blocks"), "dashboard render must explain cadence duration");
 assert(dashboardHtml.includes("Bounty solved, awaiting next bounty."), "dashboard render must show solved-bounty waiting note");
 assert(dashboardHtml.includes("1k SN467 alpha"), "dashboard render must show current bounty reward");
 assert(dashboardHtml.includes("no subnet UID is required"), "dashboard render must explain bounty access");
 assert((dashboardHtml.match(/<article class="bounty-card/g) || []).length === 1, "dashboard render must show one bounty card");
+assert(!dashboardHtml.includes("Proof</dt>"), "dashboard render must not show proof fields");
+assert(!dashboardHtml.includes("Commit</dt>"), "dashboard render must not show commit fields");
 const weakVisionCopy = ["The vision", "is deliberately", "small"].join(" ");
 
 for (const page of [
@@ -91,6 +93,8 @@ assert(homeHtml.includes("not affiliated with Google DeepMind"), "home page must
 
 const dashboardPageHtml = fs.readFileSync(path.join(root, "dashboard", "index.html"), "utf8");
 assert(dashboardPageHtml.includes('id="dashboard-board"'), "dashboard page must mount combined dashboard");
+assert(dashboardPageHtml.includes("Miner target board"), "dashboard page must include miner board heading");
+assert(dashboardPageHtml.includes("Proof targets miners can work from"), "dashboard page must include old miner board framing");
 assert(dashboardPageHtml.includes("data-cadence-live-url"), "dashboard page must include cadence live feed");
 assert(dashboardPageHtml.includes("data-bounty-live-url"), "dashboard page must include bounty live feed");
 
