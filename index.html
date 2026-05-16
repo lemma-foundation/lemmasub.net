@@ -16,8 +16,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-16">
-  <script src="assets/site.js?v=20260516-site-polish-16" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-17">
+  <script src="assets/site.js?v=20260516-site-polish-17" defer></script>
 </head>
 <body id="top" data-page="home">
   <header class="site-header">
@@ -136,70 +136,66 @@
         <div class="proof-target">
           <p class="statement-label">Formal theorem to prove</p>
           <pre class="lean-statement"><code>theorem sum_first_odds (n : Nat) :
-    (Finset.range n).sum (fun k => 2 * k + 1) = n ^ 2 := by</code></pre>
+    (Finset.range n).sum (fun k => 2 * k + 1) = n ^ 2 := by
+  sorry</code></pre>
+          <p class="proof-sorry-note"><code>sorry</code> is Lean's placeholder for an unfinished proof. In a real Lemma submission, the miner replaces it with proof code that Lean accepts.</p>
         </div>
         <h4 class="proof-map-heading">How the proof works</h4>
-        <div class="proof-map" aria-label="Informal proof explanation matched to Lean code">
-          <article>
-            <div class="proof-map-copy">
+        <div class="proof-map proof-map-full" aria-label="Informal proof explanation matched to Lean code">
+          <div class="proof-step-list">
+            <article>
               <span>1</span>
               <div>
                 <h4>Set up the file</h4>
                 <p><code>import Mathlib</code> loads Lean's math library. <code>namespace Submission</code> puts the answer where validators expect to find it.</p>
               </div>
-            </div>
-            <pre class="lean-snippet"><code>import Mathlib
-
-namespace Submission</code></pre>
-          </article>
-          <article>
-            <div class="proof-map-copy">
+            </article>
+            <article>
               <span>2</span>
               <div>
                 <h4>State the exact theorem</h4>
                 <p>For every natural number <code>n</code>, add the odd numbers made by <code>2 * k + 1</code> over <code>Finset.range n</code>, which is <code>0</code> through <code>n - 1</code>.</p>
               </div>
-            </div>
-            <pre class="lean-snippet"><code>theorem sum_first_odds (n : Nat) :
-    (Finset.range n).sum (fun k => 2 * k + 1) = n ^ 2 :=</code></pre>
-          </article>
-          <article>
-            <div class="proof-map-copy">
+            </article>
+            <article>
               <span>3</span>
               <div>
                 <h4>Split into base and step cases</h4>
                 <p><code>induction n</code> asks Lean to prove the formula for <code>0</code>, then prove the next case assuming the earlier one. <code>simp</code> closes the empty-sum case.</p>
               </div>
-            </div>
-            <pre class="lean-snippet"><code>  by
-    induction n with
-    | zero =>
-        simp</code></pre>
-          </article>
-          <article>
-            <div class="proof-map-copy">
+            </article>
+            <article>
               <span>4</span>
               <div>
                 <h4>Use the earlier result</h4>
                 <p>In the successor case, <code>ih</code> is the already-proved formula for <code>n</code>. The rewrite turns the bigger sum into the old sum plus the new last odd number.</p>
               </div>
-            </div>
-            <pre class="lean-snippet"><code>    | succ n ih =>
-        rw [Finset.sum_range_succ, ih]</code></pre>
-          </article>
-          <article>
-            <div class="proof-map-copy">
+            </article>
+            <article>
               <span>5</span>
               <div>
                 <h4>Let Lean check the algebra</h4>
-                <p>After the rewrite, only the algebra remains: <code>n ^ 2 + (2 * n + 1) = (n + 1) ^ 2</code>. <code>ring</code> verifies that exactly.</p>
+                <p>After the rewrite, only the algebra remains: <code>n ^ 2 + (2 * n + 1) = (n + 1) ^ 2</code>. <code>ring</code> verifies that exactly, then <code>end Submission</code> closes the file's namespace.</p>
               </div>
-            </div>
-            <pre class="lean-snippet"><code>        ring
+            </article>
+          </div>
+          <pre class="lean-statement proof-full-code"><code>import Mathlib
+
+namespace Submission
+
+theorem sum_first_odds (n : Nat) :
+    (Finset.range n).sum (fun k => 2 * k + 1) = n ^ 2 :=
+  by
+    induction n with
+    | zero =>
+        simp
+    | succ n ih =>
+        rw [Finset.sum_range_succ, ih]
+        ring
 
 end Submission</code></pre>
-          </article>
         </div>
+        <p class="proof-spacing-note">Blank lines in this example are only for readability; Lean ignores them.</p>
       </article>
     </section>
 
@@ -226,7 +222,7 @@ end Submission</code></pre>
       <div class="proof-lanes">
         <article>
           <h3>Cadence theorem rounds</h3>
-          <p>The timed loop keeps miners proving regularly and gives validators a steady way to score current work: publish theorem window, collect proof files, verify with Lean, reward valid work.</p>
+          <p>The timed loop keeps miners proving regularly. By default, a theorem window is 100 blocks, roughly 20 minutes. Validators publish the window, collect proof files, verify with Lean, and reward valid work.</p>
         </article>
         <article>
           <h3><a class="title-link" href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Formal Conjectures</a> bounties</h3>
@@ -239,12 +235,14 @@ end Submission</code></pre>
     <section class="band">
       <div class="section-head">
         <p class="eyebrow">Long-term direction</p>
-        <h2>Keep the cadence steady, then make the theorem windows harder.</h2>
+        <h2>Keep cadence steady, then aim at harder theorem targets.</h2>
         <p>
           The base loop should stay simple: miners receive theorem challenges,
           validators check proofs with Lean, and valid work can be rewarded.
-          Over time, Lemma can steadily increase theorem difficulty so miners
-          have to build stronger proving systems.
+          Over time, Lemma can steadily increase cadence difficulty and use
+          selected <a class="text-link" href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Formal Conjectures</a>
+          targets as harder bounty work, so miners have to build stronger
+          proving systems.
         </p>
       </div>
     </section>

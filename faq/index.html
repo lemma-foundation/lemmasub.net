@@ -16,8 +16,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-16">
-  <script src="../assets/site.js?v=20260516-site-polish-16" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-17">
+  <script src="../assets/site.js?v=20260516-site-polish-17" defer></script>
 </head>
 <body id="top" data-page="faq">
   <header class="site-header">
@@ -220,6 +220,15 @@
                 <p>Miners receive slightly different versions of a theorem during the same round.</p>
                 <p>This helps prevent simple copying while keeping the task fair. The variants are deterministic, so validators know exactly which theorem each miner received and check the submitted proof against that specific target.</p>
                 <p>The dashboard may show the public theorem window, but each miner's actual Lean target can be a same-difficulty variant from that window.</p>
+              </div>
+            </details>
+
+            <details id="faq-theorem-round-length">
+              <summary><span>How long is a theorem round?</span></summary>
+              <div class="faq-answer">
+                <p>The default cadence round is 100 Bittensor blocks.</p>
+                <p>At roughly 12 seconds per block, that is about 20 minutes per theorem window.</p>
+                <p>The dashboard countdown shows the public window time. A miner request that arrives late in the window may have less than the full 20 minutes before the next theorem window begins.</p>
               </div>
             </details>
 
