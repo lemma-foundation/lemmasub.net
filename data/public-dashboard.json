@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7131796,
+  "chain_head_block": 7131811,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-16T04:15:12Z",
+  "generated_at": "2026-05-16T04:18:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -26,7 +26,7 @@
       "score": 0.0,
       "uid": 3,
       "uid_url": "",
-      "validator_rolling_score": 0.7163929600000001
+      "validator_rolling_score": 0.6063550013440001
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -38,7 +38,7 @@
       "score": 0.0,
       "uid": 4,
       "uid_url": "",
-      "validator_rolling_score": 0.7163929600000001
+      "validator_rolling_score": 0.6063550013440001
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -50,7 +50,7 @@
       "score": 0.0,
       "uid": 5,
       "uid_url": "",
-      "validator_rolling_score": 0.7163929600000001
+      "validator_rolling_score": 0.6063550013440001
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -62,7 +62,7 @@
       "score": 0.0,
       "uid": 6,
       "uid_url": "",
-      "validator_rolling_score": 0.7163929600000001
+      "validator_rolling_score": 0.6063550013440001
     },
     {
       "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
@@ -74,7 +74,7 @@
       "score": 0.0,
       "uid": 7,
       "uid_url": "",
-      "validator_rolling_score": 0.7163929600000001
+      "validator_rolling_score": 0.6063550013440001
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7131700,
-  "problem_seed_chain_head": 7131796,
+  "problem_seed": 7131800,
+  "problem_seed_chain_head": 7131811,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a finite range is contained in the range shifted upward by 12.",
-      "label": "current",
-      "name": "t_3b30137",
-      "plain_english": "Prove that a finite range is contained in the range shifted upward by 12.",
-      "seed": 7131700,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7131700",
-      "topic": "combinatorics.finite_sets",
-      "type_expr": "\u2200 n : Nat, Finset.range n \u2286 Finset.range (n + 12)"
-    },
-    "next": {
       "explanation": "Prove that a universally true predicate holds for at least one natural number.",
-      "label": "next",
+      "label": "current",
       "name": "curated_predicate_exists",
       "plain_english": "Prove that a universally true predicate holds for at least one natural number.",
       "seed": 7131800,
@@ -136,17 +124,29 @@
       "topic": "logic.predicates",
       "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, P n"
     },
-    "previous": {
-      "explanation": "Prove by induction that adding zero on the left leaves n + 4 unchanged.",
-      "label": "previous",
-      "name": "t_4267308",
-      "plain_english": "Prove by induction that adding zero on the left leaves n + 4 unchanged.",
-      "seed": 7131600,
+    "next": {
+      "explanation": "Prove the real absolute-value triangle inequality through an intermediate point.",
+      "label": "next",
+      "name": "t_14d3805",
+      "plain_english": "Prove the real absolute-value triangle inequality through an intermediate point.",
+      "seed": 7131900,
       "source_lane": "generated",
       "split": "medium",
-      "theorem_id": "gen/7131600",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 n : Nat, 0 + (n + 4) = n + 4"
+      "theorem_id": "gen/7131900",
+      "topic": "geometry.metric",
+      "type_expr": "\u2200 x y z : \u211d, |x - z| \u2264 |x - y| + |y - z|"
+    },
+    "previous": {
+      "explanation": "Prove that a finite range is contained in the range shifted upward by 12.",
+      "label": "previous",
+      "name": "t_3b30137",
+      "plain_english": "Prove that a finite range is contained in the range shifted upward by 12.",
+      "seed": 7131700,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7131700",
+      "topic": "combinatorics.finite_sets",
+      "type_expr": "\u2200 n : Nat, Finset.range n \u2286 Finset.range (n + 12)"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
