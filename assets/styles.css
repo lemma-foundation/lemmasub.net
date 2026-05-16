@@ -1160,9 +1160,11 @@ body[data-page="home"] .site-footer {
 
 .theorem-mode-note {
   max-width: 760px;
-  margin: 14px 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
+  margin: 24px 0 30px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
   font-size: 19px;
   line-height: 1.45;
 }
@@ -1170,7 +1172,7 @@ body[data-page="home"] .site-footer {
 .theorem-mode-note .text-link {
   display: block;
   width: fit-content;
-  margin-top: 6px;
+  margin-top: 10px;
   min-height: 0;
   font-size: 14px;
   line-height: 1.35;
@@ -1244,6 +1246,30 @@ body[data-page="home"] .site-footer {
   cursor: pointer;
   color: var(--blue);
   font-weight: 750;
+  transition: color 180ms ease;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
+
+@supports selector(details::details-content) {
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition:
+      block-size 220ms ease,
+      opacity 180ms ease,
+      content-visibility 220ms allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
 }
 
 .technical-details dl {
