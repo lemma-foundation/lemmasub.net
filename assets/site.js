@@ -544,17 +544,22 @@ function initializeCopyButtons(root = document) {
     button.type = "button";
     button.title = "Copy";
     button.setAttribute("aria-label", "Copy code");
+    button.innerHTML = '<span class="copy-button-icon" aria-hidden="true"></span><span class="copy-button-check" aria-hidden="true"></span>';
+    let resetTimer = 0;
     button.addEventListener("click", async () => {
       const ok = await copyText(target.textContent.trimEnd());
       if (!ok) {
         return;
       }
+      window.clearTimeout(resetTimer);
+      delete button.dataset.copied;
+      button.offsetWidth;
       button.dataset.copied = "true";
       button.setAttribute("aria-label", "Copied");
-      window.setTimeout(() => {
+      resetTimer = window.setTimeout(() => {
         delete button.dataset.copied;
         button.setAttribute("aria-label", "Copy code");
-      }, 1200);
+      }, 1300);
     });
     wrapper.append(button);
   });
@@ -582,7 +587,8 @@ function fallbackCopyText(text) {
   document.body.append(area);
   area.select();
   try {
-    return document.execCommand("copy");
+    document.execCommand("copy");
+    return true;
   } catch {
     return false;
   } finally {

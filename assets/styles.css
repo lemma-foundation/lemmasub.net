@@ -463,16 +463,16 @@ h3 {
 
 .copy-block > pre,
 .copy-block > code {
-  padding-right: 52px;
+  padding-right: 46px;
 }
 
 .copy-button {
   appearance: none;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 34px;
-  height: 34px;
+  top: 9px;
+  right: 9px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -480,6 +480,10 @@ h3 {
   background: color-mix(in srgb, var(--panel) 82%, transparent);
   color: var(--muted);
   cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
 .copy-button:hover,
@@ -494,26 +498,83 @@ h3 {
   outline-offset: 2px;
 }
 
-.copy-button::before,
-.copy-button::after {
+.copy-button:active {
+  transform: scale(0.94);
+}
+
+.copy-button-icon,
+.copy-button-check {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity 150ms ease,
+    transform 180ms ease;
+}
+
+.copy-button-icon::before,
+.copy-button-icon::after {
   content: "";
   position: absolute;
-  width: 11px;
-  height: 13px;
-  border: 2px solid currentColor;
+  width: 10px;
+  height: 12px;
+  border: 1.8px solid currentColor;
   border-radius: 3px;
 }
 
-.copy-button::before {
+.copy-button-icon::before {
   top: 9px;
-  left: 9px;
+  left: 8px;
   opacity: 0.68;
 }
 
-.copy-button::after {
+.copy-button-icon::after {
   top: 6px;
-  left: 13px;
+  left: 12px;
   background: inherit;
+}
+
+.copy-button-check {
+  opacity: 0;
+  transform: scale(0.72);
+}
+
+.copy-button-check::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  width: 7px;
+  height: 12px;
+  border-right: 2.3px solid currentColor;
+  border-bottom: 2.3px solid currentColor;
+  transform: rotate(42deg);
+}
+
+.copy-button[data-copied="true"] .copy-button-icon {
+  opacity: 0;
+  transform: scale(0.74);
+}
+
+.copy-button[data-copied="true"] .copy-button-check {
+  opacity: 1;
+  transform: scale(1);
+  animation: copy-check-pop 260ms cubic-bezier(0.2, 1.45, 0.45, 1);
+}
+
+@keyframes copy-check-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.58);
+  }
+
+  70% {
+    transform: scale(1.14);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .metric-grid,
