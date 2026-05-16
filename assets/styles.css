@@ -99,6 +99,16 @@ a {
   color: inherit;
 }
 
+.title-link {
+  color: inherit;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.13em;
+}
+
+.title-link:hover {
+  color: var(--blue);
+}
+
 code,
 pre,
 .addr {
@@ -511,6 +521,19 @@ h3 {
   line-height: 1.55;
 }
 
+.section-head > p:not(.eyebrow),
+.steps p,
+.value-grid p,
+.proof-lanes p,
+.operator-band p,
+.proof-example > div > p,
+.bounty-card p,
+.faq-answer p,
+.dashboard-head p {
+  font-size: 18px;
+  line-height: 1.58;
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -562,7 +585,7 @@ h3 {
 .get-started-notes {
   display: grid;
   grid-column: 1 / -1;
-  gap: 10px;
+  gap: 18px;
   max-width: 720px;
 }
 
@@ -662,6 +685,15 @@ h3 {
 .line-note-foot {
   margin-top: 10px;
   font-size: 14px;
+}
+
+.source-note {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 16px !important;
+  line-height: 1.5 !important;
 }
 
 .proof-lanes-band {
@@ -941,12 +973,14 @@ h3 {
 .back-to-top {
   position: fixed;
   right: clamp(20px, 4vw, 56px);
+  left: auto;
   bottom: 24px;
   z-index: 30;
-  display: inline-grid;
+  display: grid;
   place-items: center;
   width: 38px;
   height: 38px;
+  margin: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--panel);
@@ -976,6 +1010,13 @@ h3 {
 
 .site-footer p {
   margin: 0;
+}
+
+body[data-page="home"] .site-footer {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
 }
 
 .dashboard-page {

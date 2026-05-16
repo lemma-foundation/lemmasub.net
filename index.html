@@ -16,7 +16,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-3">
+  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-5">
   <script src="assets/site.js?v=20260516-site-polish-3" defer></script>
 </head>
 <body id="top" data-page="home">
@@ -135,13 +135,17 @@
           </p>
           <h4>Step by step</h4>
           <ol class="line-notes">
-            <li><code>import Mathlib</code> loads Lean's standard math library, so the proof can use facts and tactics that already exist.</li>
-            <li><code>namespace Submission</code> puts the miner's answer in the exact named box validators expect.</li>
-            <li><code>theorem sum_first_odds</code> states the target: the sum of the first <code>n</code> odd numbers is <code>n ^ 2</code>.</li>
-            <li><code>induction n</code> splits the proof into the zero case and the step from <code>n</code> to <code>n + 1</code>.</li>
-            <li><code>simp</code> closes the zero case by simplification.</li>
-            <li><code>rw</code> uses the induction result and the rule for adding one more term to the sum.</li>
-            <li><code>ring</code> asks Lean to check the remaining algebra.</li>
+            <li><code>import Mathlib</code> loads Lean's standard math library, including finite sums, natural-number arithmetic, induction support, and tactics like <code>simp</code>, <code>rw</code>, and <code>ring</code>.</li>
+            <li><code>namespace Submission</code> puts the miner's answer in the exact named box validators expect. The validator later looks for <code>Submission.sum_first_odds</code>.</li>
+            <li><code>theorem sum_first_odds (n : Nat)</code> says the theorem must work for every natural number <code>n</code>, not just one example.</li>
+            <li><code>Finset.range n</code> is the finite set <code>0, 1, ..., n - 1</code>. The expression <code>fun k =&gt; 2 * k + 1</code> turns those numbers into the first odd numbers: <code>1, 3, 5, ...</code>.</li>
+            <li>The equation says: add those odd numbers, and the result is <code>n ^ 2</code>. For example, when <code>n = 4</code>, this is <code>1 + 3 + 5 + 7 = 16</code>.</li>
+            <li><code>by</code> starts the proof. <code>induction n</code> tells Lean to prove the theorem by first proving it for <code>0</code>, then proving that if it works for <code>n</code>, it also works for <code>n + 1</code>.</li>
+            <li>In the <code>zero</code> case, <code>Finset.range 0</code> has no terms, so the left side is an empty sum, which is <code>0</code>. The right side is also <code>0 ^ 2</code>. <code>simp</code> lets Lean reduce that automatically.</li>
+            <li>In the <code>succ n ih</code> case, <code>ih</code> is the induction hypothesis: Lean may assume the formula is already true for <code>n</code>.</li>
+            <li><code>Finset.sum_range_succ</code> rewrites the sum up to <code>n + 1</code> as the old sum up to <code>n</code> plus the new last odd number, <code>2 * n + 1</code>.</li>
+            <li><code>rw [..., ih]</code> applies that range-sum rewrite and then replaces the old sum with <code>n ^ 2</code> using the induction hypothesis.</li>
+            <li>After the rewrite, the remaining goal is ordinary algebra: <code>n ^ 2 + (2 * n + 1) = (n + 1) ^ 2</code>. <code>ring</code> asks Lean to verify that algebra exactly.</li>
             <li><code>end Submission</code> closes the named box, so the file is complete.</li>
           </ol>
           <p class="line-note-foot">The blank lines are only for readability; Lean ignores them.</p>
@@ -190,8 +194,9 @@ end Submission</code></pre>
           <p>The timed loop keeps miners proving regularly and gives validators a steady way to score current work: publish theorem window, collect proof files, verify with Lean, reward valid work.</p>
         </article>
         <article>
-          <h3>Formal Conjectures bounties</h3>
-          <p>Bounties are for harder selected statements that do not fit the normal timer. Lemma uses the public Formal Conjectures database from Google DeepMind as one source of targets, but is not affiliated with or partnered with Google DeepMind in any way.</p>
+          <h3><a class="title-link" href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Formal Conjectures</a> bounties</h3>
+          <p>Bounties are for harder selected statements that do not fit the normal timer. Lemma uses the public Formal Conjectures database from Google DeepMind as the source of targets.</p>
+          <p class="source-note">Note: Lemma is not affiliated with or partnered with Google DeepMind.</p>
         </article>
       </div>
     </section>
