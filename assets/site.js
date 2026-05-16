@@ -557,7 +557,7 @@ function theoremGridKey(theorems) {
 }
 
 function theoremModeNote(data) {
-  return "The dashboard shows current, next, and previous theorem windows. Each miner receives a deterministic same-difficulty variant for the current window, and validators check the exact theorem sent to that miner.";
+  return "Note: Theorem windows are representative. Miners get deterministic same-difficulty variants; validators verify the exact theorem sent.";
 }
 
 function startDashboardPolling() {
