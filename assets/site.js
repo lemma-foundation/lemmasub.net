@@ -107,7 +107,7 @@ function applyHomeData(data, dataLoaded) {
 
   setAll("[data-current-id]", current ? plainTheorem(current) : (dataLoaded ? "No current theorem" : "Data unavailable"));
   setAll("[data-current-goal]", current?.type_expr || "Public dashboard JSON is not available.");
-  setAll("[data-theorem-mode-note]", theoremModeNote(data));
+  renderTheoremModeNotes();
   setAll("[data-network-label]", networkLabel(data));
   setAll("[data-miner-count]", String(stats.minerCount));
   setAll("[data-top-score]", formatScore(stats.topScore));
@@ -244,7 +244,7 @@ function theoremCard(label, theorem, isMain, openSlots = new Set()) {
       </div>
     </div>
     <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
-    <p class="theorem-mode-note">${escapeHtml(theoremModeNote(dashboardData))}</p>
+    <p class="theorem-mode-note">${escapeHtml(theoremModeNote(dashboardData))} <a class="text-link" href="${theoremVariantFaqHref()}">Why miners can get variants</a></p>
     <p class="statement-label">Formal theorem to prove</p>
     <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
     <details class="technical-details"${detailsOpen}>
@@ -558,6 +558,21 @@ function theoremGridKey(theorems) {
 
 function theoremModeNote(data) {
   return "Note: Theorem windows are representative. Miners get deterministic same-difficulty variants; validators verify the exact theorem sent.";
+}
+
+function renderTheoremModeNotes() {
+  document.querySelectorAll("[data-theorem-mode-note]").forEach((node) => {
+    node.textContent = `${theoremModeNote()} `;
+    const link = document.createElement("a");
+    link.className = "text-link";
+    link.href = theoremVariantFaqHref();
+    link.textContent = "Why miners can get variants";
+    node.append(link);
+  });
+}
+
+function theoremVariantFaqHref() {
+  return `${PAGE === "dashboard" ? "../" : ""}faq/index.html#faq-miner-theorem-variants`;
 }
 
 function startDashboardPolling() {
