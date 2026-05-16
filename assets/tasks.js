@@ -170,6 +170,9 @@
     var title = escapeHtml(bounty.title || bounty.id || "Current bounty");
     var href = bounty.source_url ? ' href="' + escapeHtml(bounty.source_url) + '"' : "";
     var note = stateNote ? '<p class="bounty-note">' + escapeHtml(stateNote) + "</p>" : "";
+    var sourceName = bounty.upstream_repo === "google-deepmind/formal-conjectures"
+      ? "Google DeepMind Formal Conjectures"
+      : (bounty.upstream_repo || "source pending");
     return (
       '<article class="bounty-card is-' + escapeHtml(bounty.status || "planned") + '">' +
       '<div class="bounty-card-head">' +
@@ -179,10 +182,13 @@
       '<strong class="reward-pill">' + escapeHtml(bounty.reward_label || "Reward TBD") + "</strong>" +
       "</div>" +
       note +
+      '<p class="source-credit bounty-source">Source: <a href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">' +
+      escapeHtml(sourceName) +
+      "</a>. Lemma is not affiliated with Google DeepMind.</p>" +
       '<dl class="record-facts bounty-facts">' +
       "<div><dt>Status</dt><dd>" + escapeHtml(bounty.status || "planned") + "</dd></div>" +
       "<div><dt>Declaration</dt><dd><code>" + escapeHtml(bounty.declaration || "pending") + "</code></dd></div>" +
-      "<div><dt>Source</dt><dd>" + escapeHtml(bounty.lean_file || "pending") + "</dd></div>" +
+      "<div><dt>Lean file</dt><dd>" + escapeHtml(bounty.lean_file || "pending") + "</dd></div>" +
       acceptedDetails(accepted) +
       "</dl>" +
       "</article>"
@@ -230,11 +236,13 @@
     return (
       '<div class="dashboard-stack">' +
       '<section aria-labelledby="cadence-title"><p class="eyebrow">Cadence</p>' +
-      '<h2 id="cadence-title">Live theorem work.</h2>' +
+      '<h2 id="cadence-title">Live cadence work.</h2>' +
+      '<p class="dashboard-meta">Registered miners work on cadence. The default commit window is 25 blocks, then validators score only Lean proofs that pass.</p>' +
       renderCadence(cadenceData) +
       "</section>" +
       '<section aria-labelledby="bounty-title"><p class="eyebrow">Bounty</p>' +
       '<h2 id="bounty-title">One focused campaign.</h2>' +
+      '<p class="dashboard-meta">Bounty work is open to anyone; no subnet UID is required.</p>' +
       renderCurrentBounty(bountyData) +
       "</section>" +
       "</div>"
