@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeInfoTips();
   initializeFaqAccordion();
   initializeScrollReveals();
+  initializeCopyButtons();
   if (PAGE !== "home" && PAGE !== "dashboard") {
     return;
   }
@@ -189,6 +190,7 @@ function renderTheorems(theorems) {
   const previous = theoremCard("previous", theorems.previous, false, openSlots);
   const next = theoremCard("next", theorems.next, false, openSlots);
   grid.innerHTML = `${current}<div class="side-theorems">${next}${previous}</div>`;
+  initializeCopyButtons(grid);
 }
 
 function openTheoremDetailSlots() {
@@ -525,6 +527,67 @@ function renderTheoremModeNotes() {
     link.textContent = "Why miners can get variants";
     node.append(link);
   });
+}
+
+function initializeCopyButtons(root = document) {
+  root.querySelectorAll("pre, code[data-current-goal]").forEach((target) => {
+    if (target.closest(".copy-block")) {
+      return;
+    }
+    const wrapper = document.createElement("div");
+    wrapper.className = "copy-block";
+    target.before(wrapper);
+    wrapper.append(target);
+
+    const button = document.createElement("button");
+    button.className = "copy-button";
+    button.type = "button";
+    button.title = "Copy";
+    button.setAttribute("aria-label", "Copy code");
+    button.addEventListener("click", async () => {
+      const ok = await copyText(target.textContent.trimEnd());
+      if (!ok) {
+        return;
+      }
+      button.dataset.copied = "true";
+      button.setAttribute("aria-label", "Copied");
+      window.setTimeout(() => {
+        delete button.dataset.copied;
+        button.setAttribute("aria-label", "Copy code");
+      }, 1200);
+    });
+    wrapper.append(button);
+  });
+}
+
+async function copyText(text) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      return fallbackCopyText(text);
+    }
+  }
+  return fallbackCopyText(text);
+}
+
+function fallbackCopyText(text) {
+  const area = document.createElement("textarea");
+  area.value = text;
+  area.setAttribute("readonly", "");
+  area.style.position = "fixed";
+  area.style.top = "-1000px";
+  area.style.opacity = "0";
+  document.body.append(area);
+  area.select();
+  try {
+    return document.execCommand("copy");
+  } catch {
+    return false;
+  } finally {
+    area.remove();
+  }
 }
 
 function theoremVariantFaqHref() {

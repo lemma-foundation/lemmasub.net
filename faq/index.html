@@ -16,8 +16,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-12">
-  <script src="../assets/site.js?v=20260516-site-polish-12" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-15">
+  <script src="../assets/site.js?v=20260516-site-polish-15" defer></script>
 </head>
 <body id="top" data-page="faq">
   <header class="site-header">
@@ -217,9 +217,9 @@
             <details id="faq-miner-theorem-variants">
               <summary><span>Why do miners get different theorem variants?</span></summary>
               <div class="faq-answer">
-                <p>The dashboard shows the public theorem window, but that window can be representative rather than the exact Lean target every miner receives.</p>
-                <p>During a window, Lemma can give miners deterministic same-difficulty variants. This helps reduce simple copying while keeping the round fair.</p>
-                <p>Deterministic means the assignment is reproducible. Validators know the exact theorem sent to each miner and check the submitted proof against that theorem.</p>
+                <p>Miners receive slightly different versions of a theorem during the same round.</p>
+                <p>This helps prevent simple copying while keeping the task fair. The variants are deterministic, so validators know exactly which theorem each miner received and check the submitted proof against that specific target.</p>
+                <p>The dashboard may show the public theorem window, but each miner's actual Lean target can be a same-difficulty variant from that window.</p>
               </div>
             </details>
 

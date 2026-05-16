@@ -16,8 +16,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-12">
-  <script src="assets/site.js?v=20260516-site-polish-12" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-15">
+  <script src="assets/site.js?v=20260516-site-polish-15" defer></script>
 </head>
 <body id="top" data-page="home">
   <header class="site-header">
@@ -123,7 +123,7 @@
 
     <section class="band miner-solve-band">
       <article class="proof-example">
-        <div>
+        <div class="proof-example-intro">
           <p class="eyebrow">Concrete example</p>
           <h3>Lemma posts: prove the first <em>n</em> odd numbers add to <em>n</em><sup>2</sup>.</h3>
           <p>
@@ -132,60 +132,74 @@
             Lean arithmetic tactic to prove a classic theorem for every natural
             number <code>n</code>.
           </p>
-          <h4>How the proof works</h4>
-          <div class="proof-walkthrough">
-            <article>
+        </div>
+        <div class="proof-target">
+          <p class="statement-label">Formal theorem to prove</p>
+          <pre class="lean-statement"><code>theorem sum_first_odds (n : Nat) :
+    (Finset.range n).sum (fun k => 2 * k + 1) = n ^ 2 := by</code></pre>
+        </div>
+        <h4 class="proof-map-heading">How the proof works</h4>
+        <div class="proof-map" aria-label="Informal proof explanation matched to Lean code">
+          <article>
+            <div class="proof-map-copy">
               <span>1</span>
               <div>
-                <h5>Put the file in Lemma's expected shape</h5>
-                <p><code>import Mathlib</code> loads Lean's math library. <code>namespace Submission</code> puts the miner's theorem where validators look for it.</p>
+                <h4>Set up the file</h4>
+                <p><code>import Mathlib</code> loads Lean's math library. <code>namespace Submission</code> puts the answer where validators expect to find it.</p>
               </div>
-            </article>
-            <article>
+            </div>
+            <pre class="lean-snippet"><code>import Mathlib
+
+namespace Submission</code></pre>
+          </article>
+          <article>
+            <div class="proof-map-copy">
               <span>2</span>
               <div>
-                <h5>State the exact target</h5>
-                <p>The theorem says this must work for every natural number <code>n</code>. <code>Finset.range n</code> means <code>0, 1, ..., n - 1</code>, so <code>2 * k + 1</code> turns that range into the first odd numbers.</p>
+                <h4>State the exact theorem</h4>
+                <p>For every natural number <code>n</code>, add the odd numbers made by <code>2 * k + 1</code> over <code>Finset.range n</code>, which is <code>0</code> through <code>n - 1</code>.</p>
               </div>
-            </article>
-            <article>
+            </div>
+            <pre class="lean-snippet"><code>theorem sum_first_odds (n : Nat) :
+    (Finset.range n).sum (fun k => 2 * k + 1) = n ^ 2 :=</code></pre>
+          </article>
+          <article>
+            <div class="proof-map-copy">
               <span>3</span>
               <div>
-                <h5>Split the proof by induction</h5>
-                <p><code>induction n</code> creates two jobs: prove the formula for <code>0</code>, then prove that if it works for <code>n</code>, it also works for <code>n + 1</code>. <code>simp</code> closes the empty-sum case.</p>
+                <h4>Split into base and step cases</h4>
+                <p><code>induction n</code> asks Lean to prove the formula for <code>0</code>, then prove the next case assuming the earlier one. <code>simp</code> closes the empty-sum case.</p>
               </div>
-            </article>
-            <article>
-              <span>4</span>
-              <div>
-                <h5>Add the next odd number</h5>
-                <p>In the successor case, <code>ih</code> is the already-proved result for <code>n</code>. <code>Finset.sum_range_succ</code> rewrites the bigger sum as the old sum plus the new last term, <code>2 * n + 1</code>.</p>
-              </div>
-            </article>
-            <article>
-              <span>5</span>
-              <div>
-                <h5>Let Lean check the algebra</h5>
-                <p><code>rw [..., ih]</code> replaces the old sum with <code>n ^ 2</code>. The only thing left is <code>n ^ 2 + (2 * n + 1) = (n + 1) ^ 2</code>, which <code>ring</code> verifies exactly.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-        <pre class="lean-statement"><code>import Mathlib
-
-namespace Submission
-
-theorem sum_first_odds (n : Nat) :
-    (Finset.range n).sum (fun k => 2 * k + 1) = n ^ 2 :=
-  by
+            </div>
+            <pre class="lean-snippet"><code>  by
     induction n with
     | zero =>
-        simp
-    | succ n ih =>
-        rw [Finset.sum_range_succ, ih]
-        ring
+        simp</code></pre>
+          </article>
+          <article>
+            <div class="proof-map-copy">
+              <span>4</span>
+              <div>
+                <h4>Use the earlier result</h4>
+                <p>In the successor case, <code>ih</code> is the already-proved formula for <code>n</code>. The rewrite turns the bigger sum into the old sum plus the new last odd number.</p>
+              </div>
+            </div>
+            <pre class="lean-snippet"><code>    | succ n ih =>
+        rw [Finset.sum_range_succ, ih]</code></pre>
+          </article>
+          <article>
+            <div class="proof-map-copy">
+              <span>5</span>
+              <div>
+                <h4>Let Lean check the algebra</h4>
+                <p>After the rewrite, only the algebra remains: <code>n ^ 2 + (2 * n + 1) = (n + 1) ^ 2</code>. <code>ring</code> verifies that exactly.</p>
+              </div>
+            </div>
+            <pre class="lean-snippet"><code>        ring
 
 end Submission</code></pre>
+          </article>
+        </div>
       </article>
     </section>
 

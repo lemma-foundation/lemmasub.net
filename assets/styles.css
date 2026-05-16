@@ -83,7 +83,7 @@ body {
   .bounty-card,
   .faq-list details,
   .dashboard-note article,
-  .proof-walkthrough article,
+  .proof-map article,
   .table-shell,
   .operator-band,
   .notice-inline,
@@ -457,6 +457,65 @@ h3 {
   line-height: 1.5;
 }
 
+.copy-block {
+  position: relative;
+}
+
+.copy-block > pre,
+.copy-block > code {
+  padding-right: 52px;
+}
+
+.copy-button {
+  appearance: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  background: color-mix(in srgb, var(--panel) 82%, transparent);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible,
+.copy-button[data-copied="true"] {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.copy-button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.copy-button::before,
+.copy-button::after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 13px;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+}
+
+.copy-button::before {
+  top: 9px;
+  left: 9px;
+  opacity: 0.68;
+}
+
+.copy-button::after {
+  top: 6px;
+  left: 13px;
+  background: inherit;
+}
+
 .metric-grid,
 .scoreboard-grid {
   display: grid;
@@ -641,7 +700,6 @@ h3 {
 
 .proof-example {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1fr);
   gap: 18px;
   align-items: start;
   margin-top: 18px;
@@ -661,27 +719,47 @@ h3 {
   color: var(--muted);
 }
 
-.proof-example h4 {
-  margin: 18px 0 10px;
-  font-size: 16px;
+.proof-example-intro {
+  max-width: 860px;
 }
 
-.proof-walkthrough {
-  display: grid;
-  gap: 10px;
+.proof-target {
+  max-width: 860px;
 }
 
-.proof-walkthrough article {
+.proof-target .lean-statement {
+  margin-bottom: 0;
+}
+
+.proof-map-heading {
+  margin: 2px 0 -2px;
+  font-size: 20px;
+}
+
+.proof-map {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
   gap: 12px;
-  padding: 13px;
+}
+
+.proof-map article {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(360px, 1.1fr);
+  gap: 16px;
+  align-items: stretch;
+  padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--soft);
 }
 
-.proof-walkthrough span {
+.proof-map-copy {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  align-content: start;
+}
+
+.proof-map-copy span {
   display: grid;
   place-items: center;
   width: 30px;
@@ -695,22 +773,37 @@ h3 {
   line-height: 1;
 }
 
-.proof-walkthrough h5 {
+.proof-map h4 {
   margin: 1px 0 5px;
   color: var(--ink);
   font-size: 17px;
   line-height: 1.18;
 }
 
-.proof-walkthrough p {
+.proof-map p {
   margin: 0;
   font-size: 16px;
   line-height: 1.48;
 }
 
-.proof-walkthrough code {
+.proof-map code {
   color: var(--ink);
   font-weight: 750;
+}
+
+.lean-snippet {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.46;
+}
+
+.lean-snippet code {
+  font-weight: 650;
 }
 
 .source-note {
@@ -1584,6 +1677,10 @@ td a:hover,
   .theorem-layout,
   .bounty-card,
   .faq-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-map article {
     grid-template-columns: 1fr;
   }
 
