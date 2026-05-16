@@ -440,7 +440,7 @@ h3 {
 
 .panel-link {
   min-height: auto;
-  font-size: 14px;
+  font-size: 19px;
 }
 
 .status-card code,
@@ -1165,6 +1165,12 @@ body[data-page="home"] .site-footer {
   border-top: 1px solid var(--line);
   font-size: 19px;
   line-height: 1.45;
+}
+
+.theorem-mode-note .text-link {
+  display: inline;
+  min-height: 0;
+  font-size: 14px;
 }
 
 .theorem-card.compact h3 {
