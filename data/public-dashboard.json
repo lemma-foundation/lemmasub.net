@@ -1,0 +1,144 @@
+{
+  "block_time_sec_estimate": 12.0,
+  "chain_head_block": 7118253,
+  "correct_count_window_hours": 24.0,
+  "generated_at": "2026-05-14T07:06:13Z",
+  "miners": [
+    {
+      "coldkey": "5DrGPoRtPX6TtmNqnvVuxjgfkcCfE41KMDsR5e5bQvuzNTih",
+      "coldkey_url": "",
+      "correct_theorems_24h": 36,
+      "hotkey": "5DfCB52M8E6YyzRjvfRVbieSVn2p2PsRjv4NpdgqnUAbxcEu",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.6936904191970825,
+      "uid": 7,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 36,
+      "hotkey": "5ERYVfQGPK7Eco7RLpkS3CBAGGH1yftQ32aMinDMwJc6AT9g",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.30629435181617737,
+      "uid": 4,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5FNuyRXqdv1uqrmtPQwAPYxmhrGkK1J3TGQkTeJEEzJcZKaP",
+      "coldkey_url": "",
+      "correct_theorems_24h": 0,
+      "hotkey": "5Ft8o9Xi5uN2Q7BvneDfH221F7SbNg9EtuCK4Vi3Ep8WgNb9",
+      "hotkey_url": "",
+      "passed_prior_round": false,
+      "score": 0.0,
+      "uid": 0,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 0,
+      "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+      "hotkey_url": "",
+      "passed_prior_round": false,
+      "score": 0.0,
+      "uid": 1,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 54,
+      "hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0,
+      "uid": 2,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 53,
+      "hotkey": "5EZ4e91yvqhUfNE5QwUeCYhqamCuE3bToJEyRKeTSvq8nVzt",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0,
+      "uid": 3,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 31,
+      "hotkey": "5EHvVWWxbExN8Fmy65yD7SfTpXAHA4gTUtKPHr6q9VLxY5Lx",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0,
+      "uid": 5,
+      "uid_url": ""
+    },
+    {
+      "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
+      "coldkey_url": "",
+      "correct_theorems_24h": 22,
+      "hotkey": "5GWPs4PYXTZmGkFHpDFk5SQWeXkuntaCNoVmzf9h1tJvRNe8",
+      "hotkey_url": "",
+      "passed_prior_round": true,
+      "score": 0.0,
+      "uid": 6,
+      "uid_url": ""
+    }
+  ],
+  "netuid": 467,
+  "network": "test",
+  "problem_seed": 7118200,
+  "problem_seed_chain_head": 7118253,
+  "problem_seed_mode": "quantize",
+  "problem_seed_quantize_blocks": 100,
+  "problem_seed_tag": "quantize",
+  "proofs_passed_prior_round": 6,
+  "schema_version": 3,
+  "score_source": "metagraph_incentive",
+  "theorems": {
+    "current": {
+      "explanation": "Prove that a recursive counter starting at 29 returns n + 29.",
+      "label": "current",
+      "name": "t_4fa735f",
+      "plain_english": "Prove that a recursive counter starting at 29 returns n + 29.",
+      "seed": 7118200,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7118200",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 n : Nat, Nat.rec 29 (fun _ acc => acc + 1) n = n + 29"
+    },
+    "next": {
+      "explanation": "Prove the square-function difference quotient at a nonzero step.",
+      "label": "next",
+      "name": "t_5c50b01",
+      "plain_english": "Prove the square-function difference quotient at a nonzero step.",
+      "seed": 7118300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7118300",
+      "topic": "calculus.limits_light",
+      "type_expr": "\u2200 x h : \u211d, h \u2260 0 \u2192 ((x + h) ^ 2 - x ^ 2) / h = 2 * x + h"
+    },
+    "previous": {
+      "explanation": "Prove that a transitive relation composes two adjacent relation steps.",
+      "label": "previous",
+      "name": "curated_transitive_relation",
+      "plain_english": "Prove that a transitive relation composes two adjacent relation steps.",
+      "seed": 7118100,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/graph/transitive_relation",
+      "topic": "graph_theory.discrete",
+      "type_expr": "\u2200 R : Nat \u2192 Nat \u2192 Prop, (\u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c) \u2192 \u2200 a b c : Nat, R a b \u2192 R b c \u2192 R a c"
+    }
+  }
+}

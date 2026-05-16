@@ -1,62 +1,171 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
-    <title>Miner Board | Lemma</title>
-    <meta name="description" content="Current Lemma proof targets and accepted solver state for miners.">
-    <link rel="stylesheet" href="/assets/styles.css">
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="wordmark" href="/">Lemma</a>
-      <nav aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="/dashboard/" aria-current="page">Dashboard</a>
-        <a href="/faq/">FAQ</a>
-        <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <button class="theme-toggle" type="button" aria-label="Toggle color theme">
-          <span class="icon-sun" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m17-7-1.5 1.5M6.5 17.5 5 19m14 0-1.5-1.5M6.5 6.5 5 5"></path></svg>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Public Lemma subnet dashboard.">
+  <title>Lemma Dashboard</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260513-faq">
+  <script src="../assets/site.js?v=20260513-faq" defer></script>
+</head>
+<body data-page="dashboard">
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Lemma home">Lemma</a>
+    <nav aria-label="Primary">
+      <a href="index.html" aria-current="page">Dashboard</a>
+      <a href="../faq/index.html">FAQ</a>
+      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark</button>
+    </nav>
+  </header>
+
+  <main class="dashboard-page">
+    <section class="dashboard-head">
+      <div>
+        <p class="eyebrow">Public subnet dashboard</p>
+        <h1>Lemma Dashboard</h1>
+        <p>Live testnet theorem, active miners, and public chain scores.</p>
+      </div>
+      <p class="meta" data-dashboard-state>Loading dashboard data...</p>
+    </section>
+
+    <section class="status-strip" aria-label="Dashboard status">
+      <div><span>Network</span><strong data-status-network>unknown</strong></div>
+      <div>
+        <span class="label-with-info">
+          <span>Data updated</span>
+          <span class="info-tip">
+            <button class="info-button" type="button" aria-label="What data updated means" aria-expanded="false">?</button>
+            <span class="info-bubble" role="tooltip">How long ago the public dashboard file was generated.</span>
           </span>
-          <span class="icon-moon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"></path></svg>
+        </span>
+        <strong data-status-age>unknown</strong>
+      </div>
+      <div>
+        <span class="label-with-info">
+          <span>Block number</span>
+          <span class="info-tip">
+            <button class="info-button" type="button" aria-label="What block number means" aria-expanded="false">?</button>
+            <span class="info-bubble align-right" role="tooltip">Estimated from the latest public export, then corrected whenever fresh JSON loads.</span>
           </span>
-        </button>
-      </nav>
-    </header>
+        </span>
+        <strong data-status-chain-head>unknown</strong>
+      </div>
+    </section>
 
-    <main>
-      <section class="page-head board-head" aria-labelledby="title">
-        <p class="eyebrow">Miner target board</p>
-        <h1 id="title">Proof targets miners can work from.</h1>
-        <p class="lead">
-          The board is a static snapshot from cadence state and accepted proof
-          receipts. Rewards follow the same rule as the protocol: Lean accepts
-          the proof or it does not.
-        </p>
-      </section>
+    <section class="scoreboard-grid" aria-label="Scoreboard metrics">
+      <article>
+        <span class="label-with-info">
+          <span>Active miners</span>
+          <span class="info-tip">
+            <button class="info-button" type="button" aria-label="What active miners means" aria-expanded="false">?</button>
+            <span class="info-bubble" role="tooltip">Miner UIDs shown by default. Known owner and validator rows are hidden. Use Show all UIDs to include them.</span>
+          </span>
+        </span>
+        <strong data-miner-count>0</strong>
+      </article>
+      <article>
+        <span class="label-with-info">
+          <span>Proofs passed in latest validator round</span>
+          <span class="info-tip">
+            <button class="info-button" type="button" aria-label="What proofs that passed means" aria-expanded="false">?</button>
+            <span class="info-bubble" role="tooltip">Total proof attempts accepted by Lean in the most recent exported round. Proof files are not published.</span>
+          </span>
+        </span>
+        <strong data-proof-count>Loading...</strong>
+      </article>
+      <article>
+        <span class="label-with-info">
+          <span>Top chain score</span>
+          <span class="info-tip">
+            <button class="info-button" type="button" aria-label="What metagraph score means" aria-expanded="false">?</button>
+            <span class="info-bubble align-right" role="tooltip">The chain's current incentive score. More than one UID can share the same top score.</span>
+          </span>
+        </span>
+        <strong data-top-score>?</strong>
+      </article>
+    </section>
 
-      <section
-        id="dashboard-board"
-        class="dashboard-shell"
-        aria-live="polite"
-        data-cadence-fallback-url="/data/cadence.json"
-        data-cadence-live-url="https://live.lemmasub.net/cadence.json"
-        data-bounty-fallback-url="/data/bounties.json"
-        data-bounty-live-url="https://live.lemmasub.net/bounties.json"
-      >
-        <p class="muted">Loading dashboard...</p>
-      </section>
-    </main>
+    <section class="theorem-layout" data-theorem-grid>
+      <article class="theorem-card current">
+        <p class="label">Current</p>
+        <h2>Loading theorem...</h2>
+      </article>
+    </section>
 
-    <footer>
-      <span>Lemma</span>
-      <a href="https://bittensor.com/" target="_blank" rel="noopener noreferrer">Testnet 467 on Bittensor</a>
-    </footer>
+    <section class="miners-section">
+      <div class="table-head">
+        <div>
+          <h2>Miners</h2>
+          <p>Active miners are shown by default. Use Show all UIDs to include known owner and validator rows.</p>
+        </div>
+        <div class="table-tools">
+          <label class="search-field">
+            <span>Search miners</span>
+            <input type="search" data-miner-search placeholder="UID, coldkey, hotkey">
+          </label>
+          <label class="check-label">
+            <input type="checkbox" data-show-all-uids>
+            <span>Show all UIDs</span>
+          </label>
+        </div>
+      </div>
+      <div class="table-shell">
+        <table class="miners-table" data-miners-table>
+          <thead>
+            <tr>
+              <th><button type="button" data-sort-key="uid" data-sort-type="number">UID</button></th>
+              <th><button type="button" data-sort-key="coldkey" data-sort-type="text">Coldkey</button></th>
+              <th><button type="button" data-sort-key="hotkey" data-sort-type="text">Hotkey</button></th>
+              <th>
+                <span class="table-label">
+                  <button type="button" data-sort-key="score" data-sort-type="number">Chain Score</button>
+                  <span class="info-tip">
+                    <button class="info-button" type="button" aria-label="What metagraph score means" aria-expanded="false">?</button>
+                    <span class="info-bubble align-right" role="tooltip">The chain's current incentive score for a UID. It is not a grade for one theorem.</span>
+                  </span>
+                </span>
+              </th>
+              <th>
+                <span class="table-label">
+                  <button type="button" data-sort-key="passedPriorRound" data-sort-type="number">Passed previous round</button>
+                  <span class="info-tip">
+                    <button class="info-button" type="button" aria-label="What previous round pass means" aria-expanded="false">?</button>
+                    <span class="info-bubble align-right" role="tooltip">Whether this UID had a proof accepted by Lean in the latest exported validator round.</span>
+                  </span>
+                </span>
+              </th>
+              <th>
+                <span class="table-label">
+                  <button type="button" data-sort-key="correct" data-sort-type="number">Proofs passed (24h)</button>
+                  <span class="info-tip">
+                    <button class="info-button" type="button" aria-label="What proofs that passed means" aria-expanded="false">?</button>
+                    <span class="info-bubble align-right" role="tooltip">Proof attempts accepted by Lean in the last 24 hours, deduplicated by UID and theorem in this validator export. Proof files are not published.</span>
+                  </span>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody data-miners-body>
+            <tr><td colspan="6">Loading miners...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <script src="/assets/tasks.js"></script>
-    <script src="/assets/theme.js"></script>
-  </body>
+    <section class="footnote-band dashboard-note">
+      <p>
+        Chain score is the public incentive value reported by the testnet metagraph, not a per-theorem grade.
+        Proof counts come from one canonical validator-side summary export, not a merged view across every validator.
+        The dashboard publishes theorem lane metadata, public miner fields, and aggregate counts only.
+      </p>
+      <p class="meta" data-empty-miners>No public miner rows are present in this snapshot.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Original contributors: Spaceτime, Maciej Kula, and Infinitao.</p>
+    <p><a href="../index.html">Lemma home</a></p>
+  </footer>
+</body>
 </html>
