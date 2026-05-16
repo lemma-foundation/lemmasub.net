@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7132291,
+  "chain_head_block": 7132306,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-16T05:54:12Z",
+  "generated_at": "2026-05-16T05:57:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7132200,
-  "problem_seed_chain_head": 7132291,
+  "problem_seed": 7132300,
+  "problem_seed_chain_head": 7132306,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "current",
-      "name": "curated_continuous_shift",
-      "plain_english": "Prove that shifting a real number by one is a continuous function.",
-      "seed": 7132200,
-      "source_lane": "catalog",
-      "split": "hard",
-      "theorem_id": "curated/analysis/continuous_shift",
-      "topic": "analysis.continuity",
-      "type_expr": "Continuous (fun x : \u211d => x + 1)"
-    },
-    "next": {
       "explanation": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
-      "label": "next",
+      "label": "current",
       "name": "t_48fedfa",
       "plain_english": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
       "seed": 7132300,
@@ -136,17 +124,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 (f : Fin 5 \u2192 Fin 5) (A B C : Set (Fin 5)), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
     },
-    "previous": {
-      "explanation": "Prove a shifted square inequality for the sum x plus y with offset 4.",
-      "label": "previous",
-      "name": "t_58a4c2d",
-      "plain_english": "Prove a shifted square inequality for the sum x plus y with offset 4.",
-      "seed": 7132100,
+    "next": {
+      "explanation": "Prove that a set over Fin 7 is contained in its union with another set.",
+      "label": "next",
+      "name": "t_22f0102",
+      "plain_english": "Prove that a set over Fin 7 is contained in its union with another set.",
+      "seed": 7132400,
       "source_lane": "generated",
+      "split": "medium",
+      "theorem_id": "gen/7132400",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 A B : Set (Fin 7), A \u2286 A \u222a B"
+    },
+    "previous": {
+      "explanation": "Prove that shifting a real number by one is a continuous function.",
+      "label": "previous",
+      "name": "curated_continuous_shift",
+      "plain_english": "Prove that shifting a real number by one is a continuous function.",
+      "seed": 7132200,
+      "source_lane": "catalog",
       "split": "hard",
-      "theorem_id": "gen/7132100",
-      "topic": "optimization.inequalities",
-      "type_expr": "\u2200 x y : \u211d, 4 * x * y + (4 : \u211d) \u2264 (x + y) ^ 2 + (4 : \u211d)"
+      "theorem_id": "curated/analysis/continuous_shift",
+      "topic": "analysis.continuity",
+      "type_expr": "Continuous (fun x : \u211d => x + 1)"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
