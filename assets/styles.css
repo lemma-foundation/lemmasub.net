@@ -45,11 +45,16 @@
   --operator-bg: #111b1d;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
+  background: var(--bg);
   scroll-behavior: smooth;
 }
 
@@ -500,6 +505,7 @@ h3 {
 .table-head p,
 .meta,
 .theorem-explain,
+.theorem-mode-note,
 .dashboard-head p {
   color: var(--muted);
 }
@@ -818,6 +824,12 @@ h3 {
   max-width: 820px;
   font-size: 28px;
   line-height: 1.12;
+}
+
+.theorem-mode-note {
+  max-width: 760px;
+  margin: 10px 0 0;
+  font-size: 14px;
 }
 
 .theorem-card.compact h3 {

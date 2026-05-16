@@ -41,6 +41,7 @@ function assert(condition, message) {
 }
 
 const data = context.normalizeDashboardData({
+  theorem_display_mode: "uid_variants",
   correct_count_window_hours: "bad",
   proofs_passed_prior_round: "0",
   miners: [
@@ -64,12 +65,16 @@ const data = context.normalizeDashboardData({
 });
 
 assert(data.correct_count_window_hours === 24, "invalid lookback should default to 24h");
+assert(data.uid_variant_problems === true, "variant display mode should normalize");
+assert(data.theorem_display_mode === "uid_variants", "variant display mode should survive normalization");
 assert(data.proofs_passed_prior_round === 0, "zero prior-round proof count should survive normalization");
 assert(data.miners[0].correct === 3, "numeric miner counts should normalize");
 assert(data.miners[1].correct === 0, "invalid miner counts should default to zero");
 assert(context.theoremDetails(data.theorems.current).includes('<span class="detail-value">Curated</span>'), "catalog source should render as curated");
 assert(context.theoremDetails(data.theorems.previous).includes('<span class="detail-value">Synthesized</span>'), "generated source should render as synthesized");
-assert(context.theoremDetails(data.theorems.current).includes('<dt>Set/topic</dt>'), "theorem details should explain set/topic");
+assert(context.theoremDetails(data.theorems.current).includes('<dt>Topic</dt>'), "theorem details should explain topic");
+assert(context.theoremModeNote(data).includes("Variant mode is on"), "variant theorem note should render");
+assert(context.normalizeDashboardData({}).theorem_display_mode === "shared", "missing variant fields should default to shared mode");
 assert(context.dataAgeLabel("1970-01-01T00:00:00Z") !== "unknown", "Unix epoch timestamp should be valid");
 
 const sorted = [...data.miners].sort(context.compareMiners);

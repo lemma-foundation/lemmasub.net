@@ -54,8 +54,11 @@ async function loadDashboardData() {
 
 function normalizeDashboardData(raw) {
   const data = raw && typeof raw === "object" ? raw : {};
+  const displayMode = theoremDisplayMode(data);
   return {
     schema_version: data.schema_version,
+    uid_variant_problems: displayMode === "uid_variants",
+    theorem_display_mode: displayMode,
     generated_at: stringOrEmpty(data.generated_at),
     network: stringOrEmpty(data.network),
     netuid: data.netuid,
@@ -103,6 +106,7 @@ function applyHomeData(data, dataLoaded) {
 
   setAll("[data-current-id]", current ? plainTheorem(current) : (dataLoaded ? "No current theorem" : "Data unavailable"));
   setAll("[data-current-goal]", current?.type_expr || "Public dashboard JSON is not available.");
+  setAll("[data-theorem-mode-note]", theoremModeNote(data));
   setAll("[data-network-label]", networkLabel(data));
   setAll("[data-top-score]", formatScore(stats.topScore));
   setAll("[data-proof-count]", proofCountLabel(stats.priorRoundProofCount));
@@ -132,6 +136,8 @@ function hydrateDashboard(data, dataLoaded) {
 
 function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
   const previousCurrent = theoremKey(displayedTheorems.current);
+  const previousTheoremGridKey = theoremGridKey(displayedTheorems);
+  const previousDisplayMode = dashboardData.theorem_display_mode;
   miners = data.miners;
   dashboardData = data;
   dashboardDataLoaded = dataLoaded;
@@ -148,8 +154,13 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
   setAll("[data-proof-count]", proofCountLabel(stats.priorRoundProofCount));
 
   const theoremChanged = previousCurrent && previousCurrent !== theoremKey(displayedTheorems.current);
-  renderTheorems(displayedTheorems);
-  if (animate && theoremChanged) {
+  const shouldRenderTheorems = !document.querySelector("[data-theorem-grid] [data-theorem-slot]")
+    || previousDisplayMode !== data.theorem_display_mode
+    || previousTheoremGridKey !== theoremGridKey(displayedTheorems);
+  if (shouldRenderTheorems) {
+    renderTheorems(displayedTheorems);
+  }
+  if (animate && theoremChanged && shouldRenderTheorems) {
     animateTheoremGrid();
   }
   startScheduleTicker(data);
@@ -227,10 +238,11 @@ function theoremCard(label, theorem, isMain, openSlots = new Set()) {
     <div class="theorem-topline">
       <p class="label">${escapeHtml(title)}</p>
       <div class="theorem-meta">
-        <span>Time left: <strong data-next-countdown>${escapeHtml(nextCountdownLabel(dashboardData))}</strong></span>
+        <span>Time left in theorem window: <strong data-next-countdown>${escapeHtml(nextCountdownLabel(dashboardData))}</strong></span>
       </div>
     </div>
     <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
+    <p class="theorem-mode-note">${escapeHtml(theoremModeNote(dashboardData))}</p>
     <p class="statement-label">Formal theorem to prove</p>
     <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
     <details class="technical-details"${detailsOpen}>
@@ -399,12 +411,12 @@ function cleanPlainTheorem(value) {
 
 function theoremDetails(theorem) {
   return [
-    ["Theorem id", theorem.theorem_id || "unknown", "Stable public identifier for this theorem row."],
-    ["Name", theorem.name || "unknown", "Lean theorem name miners prove."],
-    ["Seed", theorem.seed ?? "unknown", "Public chain-derived sampler input."],
-    ["Difficulty", humanDifficulty(theorem.split) || "unknown", "Cadence split used by scoring."],
-    ["Set/topic", humanTopic(theorem.topic) || "unknown", "Human grouping for the statement."],
-    ["Source", humanSource(theorem.source_lane) || "unknown", "Where the statement came from."]
+    ["ID", theorem.theorem_id || "unknown", "Stable public theorem identifier."],
+    ["Lean name", theorem.name || "unknown", "The theorem name in Lean."],
+    ["Seed", theorem.seed ?? "unknown", "The chain number used to pick this theorem."],
+    ["Difficulty", humanDifficulty(theorem.split) || "unknown", "The theorem difficulty group."],
+    ["Topic", humanTopic(theorem.topic) || "unknown", "The theorem topic group."],
+    ["Source", humanSource(theorem.source_lane) || "unknown", "The theorem source lane."]
   ]
     .map(([label, value, help]) => `<dt>${label}</dt><dd><span class="detail-value">${escapeHtml(value)}</span><span class="detail-help">${escapeHtml(help)}</span></dd>`)
     .join("");
@@ -536,6 +548,23 @@ function theoremKey(theorem) {
     return "";
   }
   return String(theorem.theorem_id || theorem.seed || theorem.type_expr || "");
+}
+
+function theoremGridKey(theorems) {
+  return ["previous", "current", "next"].map((slot) => theoremKey(theorems?.[slot])).join("|");
+}
+
+function theoremDisplayMode(data) {
+  return data?.theorem_display_mode === "uid_variants" || data?.uid_variant_problems === true
+    ? "uid_variants"
+    : "shared";
+}
+
+function theoremModeNote(data) {
+  if (theoremDisplayMode(data) === "uid_variants") {
+    return "Variant mode is on: this dashboard shows the round's representative theorem. Each UID receives a deterministic same-difficulty variant, and validators check the exact theorem sent to that UID.";
+  }
+  return "Normal mode: queried miners receive this theorem during the current window.";
 }
 
 function startDashboardPolling() {

@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Plain-language answers about Lemma, Bittensor subnets, Lean proofs, miners, validators, rewards, and why formal proofs matter.">
   <title>Lemma FAQ</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260516-bounties">
-  <script src="../assets/site.js?v=20260516-bounties" defer></script>
+  <script>
+    (() => {
+      try {
+        const stored = localStorage.getItem("lemma-theme");
+        const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = stored || preferred;
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-clarity">
+  <script src="../assets/site.js?v=20260516-clarity" defer></script>
 </head>
 <body data-page="faq">
   <header class="site-header">
     <a class="brand" href="../index.html" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
+      <a href="../index.html">Home</a>
       <a href="../dashboard/index.html">Dashboard</a>
       <a href="../bounties/index.html">Bounties</a>
       <a href="index.html" aria-current="page">FAQ</a>
@@ -37,7 +49,7 @@
         <h2>What is Lemma?</h2>
         <p>Lemma is a Bittensor subnet for using AI to prove mathematical theorems.</p>
         <p>Lemma posts theorem challenges. Miners use AI to write proof files. Validators use Lean to check them. The proof passes or it fails.</p>
-        <p>Bitcoin rewards miners for securing the network. Bittensor rewards miners for producing useful intelligence. Lemma rewards miners for producing correct proofs.</p>
+        <p>Open participants compete under public rules, and the network rewards work that can be checked.</p>
       </article>
 
       <article>
@@ -65,15 +77,16 @@
       </article>
 
       <article>
-        <h2>Is this subnet focused on revenue?</h2>
-        <p>No. Lemma is not built around a revenue model.</p>
-        <p>The value is solved mathematics, better reasoning systems, and a growing public record of computer-verified proofs. How valuable that is should be decided by the market, similar to how markets decide the value of Bitcoin's security or Bittensor's intelligence.</p>
-      </article>
-
-      <article>
         <h2>Why not start with Millennium Problems?</h2>
         <p>A subnet needs an economy before it can aim at the hardest problems in the world.</p>
         <p>If every task is nearly impossible, miners cannot learn, earn, or improve. Lemma starts with a reliable proving loop so miners can build proof capacity. Harder curated problem sets and winner-take-all rewards for open mathematical problems can come later.</p>
+      </article>
+
+      <article>
+        <h2>What is Google DeepMind Formal Conjectures?</h2>
+        <p>Formal Conjectures is a Lean 4 benchmark and repository of formalized mathematical statements. Its entries include research open statements, research solved statements, and separate formal proof metadata.</p>
+        <p>For Lemma bounties, the near-term fit is proof formalization: selected research-solved statements where the mathematical result is known, but producing a clean Lean proof artifact is still valuable work.</p>
+        <p>Formal Conjectures software is Apache 2.0. Other materials are CC-BY 4.0 or source-specific third-party licenses.</p>
       </article>
 
       <article>
@@ -83,7 +96,19 @@
 
       <article>
         <h2>What is a theorem?</h2>
-        <p>A theorem is a precise mathematical claim: under these assumptions, this conclusion follows. Lemma broadcasts theorem statements in Lean so every miner works on the same target.</p>
+        <p>A theorem is a precise mathematical claim: under these assumptions, this conclusion follows. Lemma broadcasts theorem statements in Lean so miners and validators know exactly what must be proven.</p>
+      </article>
+
+      <article>
+        <h2>Do all miners get the same theorem?</h2>
+        <p>In normal mode, queried miners receive the same theorem during the current window.</p>
+        <p>If UID-specific variant mode is enabled, the dashboard shows the round's representative theorem. Each UID receives a deterministic same-difficulty variant, and validators check the exact theorem sent to that UID.</p>
+      </article>
+
+      <article>
+        <h2>How long do miners have?</h2>
+        <p>The default cadence is 100 blocks. With the current 12-second block estimate, that is roughly 20 minutes per theorem window.</p>
+        <p>A miner gets the remaining time until the next seed edge when it is queried, clamped by the validator's published forward-wait policy. The dashboard countdown is time left in the theorem window, not a guarantee that every miner response gets the full interval.</p>
       </article>
 
       <article>

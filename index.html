@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lemma rewards correct mathematical proofs. AI systems produce Lean proof files, validators check them, and each proof passes or fails.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260516-bounties">
-  <script src="assets/site.js?v=20260516-bounties" defer></script>
+  <script>
+    (() => {
+      try {
+        const stored = localStorage.getItem("lemma-theme");
+        const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = stored || preferred;
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260516-clarity">
+  <script src="assets/site.js?v=20260516-clarity" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header">
     <a class="brand" href="./" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
+      <a href="./" aria-current="page">Home</a>
       <a href="dashboard/index.html">Dashboard</a>
       <a href="bounties/index.html">Bounties</a>
       <a href="faq/index.html">FAQ</a>
@@ -44,6 +56,7 @@
           <strong data-current-id>Unavailable</strong>
           <p class="statement-label">Formal theorem to prove</p>
           <code data-current-goal>Waiting for public dashboard data.</code>
+          <p class="theorem-mode-note" data-theorem-mode-note>Normal mode: queried miners receive this theorem during the current window.</p>
           <a class="text-link panel-link" href="dashboard/index.html">Open full dashboard</a>
         </div>
         <div class="metric-grid">
@@ -70,9 +83,10 @@
         <p class="eyebrow">What is a mathematical theorem?</p>
         <h2>A theorem is a precise claim that can be proven true.</h2>
         <p>
-          Lemma publishes one theorem at a time. The statement is fixed, every
-          miner works on the same target, and the proof has to match that
-          target exactly.
+          Lemma publishes a theorem window. In normal mode, queried miners
+          receive the same theorem during that window. If variant mode is
+          enabled, each UID receives a deterministic same-difficulty theorem
+          variant and validators check the exact statement sent to that UID.
         </p>
       </div>
     </section>
@@ -152,13 +166,13 @@ end Submission</code></pre>
     <section class="band">
       <div class="section-head useful-copy">
         <p class="eyebrow">Why this matters</p>
-        <h2>Mathematics becomes useful long before anyone knows how to price it.</h2>
+        <h2>Mathematics is infrastructure for science, software, and reasoning.</h2>
         <p>
-          Mathematics sits under science, cryptography, algorithms, software,
-          engineering, and AI reasoning. Lemma creates open incentives for
-          producing verified mathematical work. The value of solved mathematics,
-          better reasoning systems, and a public record of computer-verified
-          proofs is for the market to decide.
+          Mathematics sits under cryptography, algorithms, physics,
+          engineering, formal libraries, training data, and reusable verified
+          knowledge. Hard proofs often build on smaller proofs. Lemma creates
+          open incentives for producing proof artifacts that can be checked and
+          reused.
         </p>
       </div>
     </section>
@@ -206,7 +220,7 @@ end Submission</code></pre>
         <article>
           <span>03</span>
           <h3>Formal Conjectures bounties</h3>
-          <p>Solved Formal Conjectures statements can become off-cadence bounties for miners who produce verified Lean proofs.</p>
+          <p>Research-solved Formal Conjectures statements can become off-cadence proof formalization bounties.</p>
         </article>
       </div>
     </section>
@@ -214,12 +228,12 @@ end Submission</code></pre>
     <section class="band">
       <div class="section-head">
         <p class="eyebrow">Network comparison</p>
-        <h2>Bitcoin rewards security. Bittensor rewards useful machine work. Lemma rewards correct proofs.</h2>
+        <h2>Open participants compete under public rules, and the network rewards work that can be checked.</h2>
         <p>
-          A Bittensor subnet is a specialized part of Bittensor where miners
-          do work and validators check it. Lemma uses that structure for
-          theorem proving: miners run AI proving systems, validators verify
-          proofs with Lean, and valid proofs can receive rewards.
+          Bittensor coordinates miners and validators. Lean checks proof
+          files. Lemma points that structure at theorem proving: miners run AI
+          proving systems, validators verify proofs with Lean, and valid proofs
+          can receive rewards.
         </p>
       </div>
     </section>

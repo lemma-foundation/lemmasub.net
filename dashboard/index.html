@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Public Lemma subnet dashboard.">
   <title>Lemma Dashboard</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260516-bounties">
-  <script src="../assets/site.js?v=20260516-bounties" defer></script>
+  <script>
+    (() => {
+      try {
+        const stored = localStorage.getItem("lemma-theme");
+        const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = stored || preferred;
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-clarity">
+  <script src="../assets/site.js?v=20260516-clarity" defer></script>
 </head>
 <body data-page="dashboard">
   <header class="site-header">
     <a class="brand" href="../index.html" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
+      <a href="../index.html">Home</a>
       <a href="index.html" aria-current="page">Dashboard</a>
       <a href="../bounties/index.html">Bounties</a>
       <a href="../faq/index.html">FAQ</a>
@@ -161,6 +173,7 @@
       <p>
         Chain score is the public incentive value reported by the testnet metagraph, not a per-theorem grade.
         Proof counts come from one canonical validator-side summary export, not a merged view across every validator.
+        The theorem countdown is time left in the public theorem window, not a promise that every miner query receives the full interval.
         The dashboard publishes theorem lane metadata, public miner fields, and aggregate counts only.
         It does not publish proof scripts, nonces, commitments, wallet files, local paths, or private exports.
       </p>
