@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7132591,
+  "chain_head_block": 7132606,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-16T06:54:12Z",
+  "generated_at": "2026-05-16T06:57:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7132500,
-  "problem_seed_chain_head": 7132591,
+  "problem_seed": 7132600,
+  "problem_seed_chain_head": 7132606,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that the image of the preimage of a set over Fin 4 is contained in the set.",
-      "label": "current",
-      "name": "t_33aabfc",
-      "plain_english": "Prove that the image of the preimage of a set over Fin 4 is contained in the set.",
-      "seed": 7132500,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7132500",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 (f : Fin 4 \u2192 Fin 4) (S : Set (Fin 4)), f '' (f \u207b\u00b9' S) \u2286 S"
-    },
-    "next": {
       "explanation": "Prove that an intersection of sets over Fin 3 is contained in the second set.",
-      "label": "next",
+      "label": "current",
       "name": "t_98f188",
       "plain_english": "Prove that an intersection of sets over Fin 3 is contained in the second set.",
       "seed": 7132600,
@@ -136,17 +124,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 A B : Set (Fin 3), A \u2229 B \u2286 B"
     },
-    "previous": {
-      "explanation": "Prove that a set over Fin 7 is contained in its union with another set.",
-      "label": "previous",
-      "name": "t_22f0102",
-      "plain_english": "Prove that a set over Fin 7 is contained in its union with another set.",
-      "seed": 7132400,
+    "next": {
+      "explanation": "Prove the append-length identity for lists replicated with value 12.",
+      "label": "next",
+      "name": "t_3bc46dc",
+      "plain_english": "Prove the append-length identity for lists replicated with value 12.",
+      "seed": 7132700,
       "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7132400",
+      "split": "hard",
+      "theorem_id": "gen/7132700",
+      "topic": "combinatorics.counting",
+      "type_expr": "\u2200 n m : Nat, (List.replicate n 12 ++ List.replicate m 12).length = n + m"
+    },
+    "previous": {
+      "explanation": "Prove that the image of the preimage of a set over Fin 4 is contained in the set.",
+      "label": "previous",
+      "name": "t_33aabfc",
+      "plain_english": "Prove that the image of the preimage of a set over Fin 4 is contained in the set.",
+      "seed": 7132500,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7132500",
       "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 A B : Set (Fin 7), A \u2286 A \u222a B"
+      "type_expr": "\u2200 (f : Fin 4 \u2192 Fin 4) (S : Set (Fin 4)), f '' (f \u207b\u00b9' S) \u2286 S"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
