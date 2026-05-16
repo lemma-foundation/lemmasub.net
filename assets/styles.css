@@ -157,15 +157,15 @@ p {
 
 h1 {
   margin-bottom: 14px;
-  font-size: 72px;
-  line-height: 0.98;
+  font-size: 60px;
+  line-height: 1.02;
   letter-spacing: 0;
 }
 
 h2 {
   margin-bottom: 12px;
-  font-size: 34px;
-  line-height: 1.1;
+  font-size: 32px;
+  line-height: 1.12;
   letter-spacing: 0;
 }
 
@@ -434,24 +434,11 @@ h3 {
   font-weight: 750;
 }
 
-.notice-band,
 .operator-band,
 .footnote-band,
 .band,
 .dashboard-page {
   padding: 52px clamp(20px, 4vw, 56px);
-}
-
-.notice-band {
-  border-bottom: 1px solid var(--line);
-  background: var(--notice-bg);
-  color: var(--notice-ink);
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.notice-band strong {
-  color: var(--rust);
 }
 
 .section-head {
@@ -521,6 +508,29 @@ h3 {
 
 .operator-cta {
   grid-column: 1 / -1;
+}
+
+.get-started-notes {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 12px;
+  max-width: 920px;
+}
+
+.get-started-notes p {
+  margin: 0;
+}
+
+.notice-inline {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--notice-bg);
+  color: var(--notice-ink) !important;
+}
+
+.notice-inline strong {
+  color: var(--rust);
 }
 
 .value-grid {
@@ -608,9 +618,31 @@ h3 {
   align-items: flex-start;
 }
 
+.bounty-page .eyebrow {
+  font-size: 13px;
+}
+
+.bounty-page .dashboard-head h1 {
+  max-width: 920px;
+  font-size: 50px;
+  line-height: 1.04;
+}
+
+.bounty-page .dashboard-head p,
+.bounty-sources p {
+  font-size: 18px;
+  line-height: 1.55;
+}
+
 .bounty-sources {
   padding-right: 0;
   padding-left: 0;
+}
+
+.bounty-sources h2 {
+  max-width: 760px;
+  font-size: 32px;
+  line-height: 1.14;
 }
 
 .source-list {
@@ -684,6 +716,7 @@ h3 {
 
 .faq-group {
   margin-top: 28px;
+  scroll-margin-top: 92px;
 }
 
 .faq-group h2 {
@@ -778,6 +811,31 @@ h3 {
 .footnote-band p {
   max-width: 880px;
   margin: 0;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  font-size: 22px;
+  font-weight: 850;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.back-to-top:hover {
+  border-color: var(--blue);
+  color: var(--blue);
 }
 
 .site-footer {
@@ -1170,14 +1228,22 @@ td a:hover,
 
 @media (max-width: 980px) {
   h1 {
-    font-size: 56px;
+    font-size: 48px;
   }
 
   .hero-copy h1 {
-    font-size: 40px;
+    font-size: 38px;
   }
 
   h2 {
+    font-size: 29px;
+  }
+
+  .bounty-page .dashboard-head h1 {
+    font-size: 42px;
+  }
+
+  .bounty-sources h2 {
     font-size: 30px;
   }
 
@@ -1232,11 +1298,11 @@ td a:hover,
 
   h1,
   .dashboard-head h1 {
-    font-size: 42px;
+    font-size: 36px;
   }
 
   .hero-copy h1 {
-    font-size: 32px;
+    font-size: 31px;
   }
 
   .hero {
@@ -1245,7 +1311,17 @@ td a:hover,
   }
 
   .lede {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .bounty-page .dashboard-head h1,
+  .bounty-sources h2 {
+    font-size: 32px;
+  }
+
+  .bounty-page .dashboard-head p,
+  .bounty-sources p {
+    font-size: 16px;
   }
 
   .steps,
@@ -1283,5 +1359,13 @@ td a:hover,
 
   .table-tools input[type="search"] {
     width: 100%;
+  }
+
+  .back-to-top {
+    right: 12px;
+    bottom: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 }
