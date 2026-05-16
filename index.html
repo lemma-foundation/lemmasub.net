@@ -16,7 +16,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-5">
+  <link rel="stylesheet" href="assets/styles.css?v=20260516-site-polish-6">
   <script src="assets/site.js?v=20260516-site-polish-3" defer></script>
 </head>
 <body id="top" data-page="home">
@@ -133,22 +133,44 @@
             Lean arithmetic tactic to prove a classic theorem for every natural
             number <code>n</code>.
           </p>
-          <h4>Step by step</h4>
-          <ol class="line-notes">
-            <li><code>import Mathlib</code> loads Lean's standard math library, including finite sums, natural-number arithmetic, induction support, and tactics like <code>simp</code>, <code>rw</code>, and <code>ring</code>.</li>
-            <li><code>namespace Submission</code> puts the miner's answer in the exact named box validators expect. The validator later looks for <code>Submission.sum_first_odds</code>.</li>
-            <li><code>theorem sum_first_odds (n : Nat)</code> says the theorem must work for every natural number <code>n</code>, not just one example.</li>
-            <li><code>Finset.range n</code> is the finite set <code>0, 1, ..., n - 1</code>. The expression <code>fun k =&gt; 2 * k + 1</code> turns those numbers into the first odd numbers: <code>1, 3, 5, ...</code>.</li>
-            <li>The equation says: add those odd numbers, and the result is <code>n ^ 2</code>. For example, when <code>n = 4</code>, this is <code>1 + 3 + 5 + 7 = 16</code>.</li>
-            <li><code>by</code> starts the proof. <code>induction n</code> tells Lean to prove the theorem by first proving it for <code>0</code>, then proving that if it works for <code>n</code>, it also works for <code>n + 1</code>.</li>
-            <li>In the <code>zero</code> case, <code>Finset.range 0</code> has no terms, so the left side is an empty sum, which is <code>0</code>. The right side is also <code>0 ^ 2</code>. <code>simp</code> lets Lean reduce that automatically.</li>
-            <li>In the <code>succ n ih</code> case, <code>ih</code> is the induction hypothesis: Lean may assume the formula is already true for <code>n</code>.</li>
-            <li><code>Finset.sum_range_succ</code> rewrites the sum up to <code>n + 1</code> as the old sum up to <code>n</code> plus the new last odd number, <code>2 * n + 1</code>.</li>
-            <li><code>rw [..., ih]</code> applies that range-sum rewrite and then replaces the old sum with <code>n ^ 2</code> using the induction hypothesis.</li>
-            <li>After the rewrite, the remaining goal is ordinary algebra: <code>n ^ 2 + (2 * n + 1) = (n + 1) ^ 2</code>. <code>ring</code> asks Lean to verify that algebra exactly.</li>
-            <li><code>end Submission</code> closes the named box, so the file is complete.</li>
-          </ol>
-          <p class="line-note-foot">The blank lines are only for readability; Lean ignores them.</p>
+          <h4>How the proof works</h4>
+          <div class="proof-walkthrough">
+            <article>
+              <span>1</span>
+              <div>
+                <h5>Put the file in Lemma's expected shape</h5>
+                <p><code>import Mathlib</code> loads Lean's math library. <code>namespace Submission</code> puts the miner's theorem where validators look for it.</p>
+              </div>
+            </article>
+            <article>
+              <span>2</span>
+              <div>
+                <h5>State the exact target</h5>
+                <p>The theorem says this must work for every natural number <code>n</code>. <code>Finset.range n</code> means <code>0, 1, ..., n - 1</code>, so <code>2 * k + 1</code> turns that range into the first odd numbers.</p>
+              </div>
+            </article>
+            <article>
+              <span>3</span>
+              <div>
+                <h5>Split the proof by induction</h5>
+                <p><code>induction n</code> creates two jobs: prove the formula for <code>0</code>, then prove that if it works for <code>n</code>, it also works for <code>n + 1</code>. <code>simp</code> closes the empty-sum case.</p>
+              </div>
+            </article>
+            <article>
+              <span>4</span>
+              <div>
+                <h5>Add the next odd number</h5>
+                <p>In the successor case, <code>ih</code> is the already-proved result for <code>n</code>. <code>Finset.sum_range_succ</code> rewrites the bigger sum as the old sum plus the new last term, <code>2 * n + 1</code>.</p>
+              </div>
+            </article>
+            <article>
+              <span>5</span>
+              <div>
+                <h5>Let Lean check the algebra</h5>
+                <p><code>rw [..., ih]</code> replaces the old sum with <code>n ^ 2</code>. The only thing left is <code>n ^ 2 + (2 * n + 1) = (n + 1) ^ 2</code>, which <code>ring</code> verifies exactly.</p>
+              </div>
+            </article>
+          </div>
         </div>
         <pre class="lean-statement"><code>import Mathlib
 
