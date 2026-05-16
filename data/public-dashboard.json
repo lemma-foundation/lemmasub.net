@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7132396,
+  "chain_head_block": 7132411,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-16T06:15:11Z",
+  "generated_at": "2026-05-16T06:18:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -26,7 +26,7 @@
       "score": 0.49999237060546875,
       "uid": 7,
       "uid_url": "",
-      "validator_rolling_score": 0.11441514385811144
+      "validator_rolling_score": 0.09684097776150553
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -38,7 +38,7 @@
       "score": 0.12498664855957031,
       "uid": 3,
       "uid_url": "",
-      "validator_rolling_score": 0.11441514385811144
+      "validator_rolling_score": 0.09684097776150553
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -50,7 +50,7 @@
       "score": 0.12498664855957031,
       "uid": 4,
       "uid_url": "",
-      "validator_rolling_score": 0.11441514385811144
+      "validator_rolling_score": 0.09684097776150553
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -62,7 +62,7 @@
       "score": 0.12498664855957031,
       "uid": 5,
       "uid_url": "",
-      "validator_rolling_score": 0.11441514385811144
+      "validator_rolling_score": 0.09684097776150553
     },
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -74,7 +74,7 @@
       "score": 0.12498664855957031,
       "uid": 6,
       "uid_url": "",
-      "validator_rolling_score": 0.11441514385811144
+      "validator_rolling_score": 0.09684097776150553
     },
     {
       "coldkey": "5FNuyRXqdv1uqrmtPQwAPYxmhrGkK1J3TGQkTeJEEzJcZKaP",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7132300,
-  "problem_seed_chain_head": 7132396,
+  "problem_seed": 7132400,
+  "problem_seed_chain_head": 7132411,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
-      "label": "current",
-      "name": "t_48fedfa",
-      "plain_english": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
-      "seed": 7132300,
-      "source_lane": "generated",
-      "split": "extreme",
-      "theorem_id": "gen/7132300",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 (f : Fin 5 \u2192 Fin 5) (A B C : Set (Fin 5)), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
-    },
-    "next": {
       "explanation": "Prove that a set over Fin 7 is contained in its union with another set.",
-      "label": "next",
+      "label": "current",
       "name": "t_22f0102",
       "plain_english": "Prove that a set over Fin 7 is contained in its union with another set.",
       "seed": 7132400,
@@ -136,17 +124,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 A B : Set (Fin 7), A \u2286 A \u222a B"
     },
-    "previous": {
-      "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "previous",
-      "name": "curated_continuous_shift",
-      "plain_english": "Prove that shifting a real number by one is a continuous function.",
-      "seed": 7132200,
-      "source_lane": "catalog",
+    "next": {
+      "explanation": "Prove that the image of the preimage of a set over Fin 4 is contained in the set.",
+      "label": "next",
+      "name": "t_33aabfc",
+      "plain_english": "Prove that the image of the preimage of a set over Fin 4 is contained in the set.",
+      "seed": 7132500,
+      "source_lane": "generated",
       "split": "hard",
-      "theorem_id": "curated/analysis/continuous_shift",
-      "topic": "analysis.continuity",
-      "type_expr": "Continuous (fun x : \u211d => x + 1)"
+      "theorem_id": "gen/7132500",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Fin 4 \u2192 Fin 4) (S : Set (Fin 4)), f '' (f \u207b\u00b9' S) \u2286 S"
+    },
+    "previous": {
+      "explanation": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
+      "label": "previous",
+      "name": "t_48fedfa",
+      "plain_english": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
+      "seed": 7132300,
+      "source_lane": "generated",
+      "split": "extreme",
+      "theorem_id": "gen/7132300",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Fin 5 \u2192 Fin 5) (A B C : Set (Fin 5)), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
