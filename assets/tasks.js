@@ -154,28 +154,68 @@
     );
   }
 
-  function renderBounty(bounty) {
-    var accepted = bounty.accepted || null;
-    var acceptedHtml = accepted
-      ? (
-        "<div><dt>Accepted</dt><dd>" + escapeHtml(dateText(accepted.accepted_unix)) + "</dd></div>" +
-        "<div><dt>Solver</dt><dd><code>" + escapeHtml(accepted.solver_hotkey || "unknown") + "</code></dd></div>" +
-        (accepted.solver_uid == null ? "" : "<div><dt>UID</dt><dd>" + escapeHtml(accepted.solver_uid) + "</dd></div>")
-      )
-      : "";
+  function acceptedDetails(accepted) {
+    if (!accepted) {
+      return "";
+    }
     return (
-      '<li class="bounty-row is-' + escapeHtml(bounty.status || "planned") + '">' +
-      '<div class="record-id"><strong>' + escapeHtml(bounty.reward_label || "Reward TBD") + "</strong>" +
-      '<span class="badge">' + escapeHtml(bounty.status || "planned") + "</span></div>" +
-      '<div class="record-title"><span>Task</span>' +
-      '<a href="' + escapeHtml(bounty.source_url || "#") + '">' + escapeHtml(bounty.title || bounty.id) + "</a>" +
+      "<div><dt>Accepted</dt><dd>" + escapeHtml(dateText(accepted.accepted_unix)) + "</dd></div>" +
+      "<div><dt>Solver</dt><dd><code>" + escapeHtml(accepted.solver_hotkey || "unknown") + "</code></dd></div>" +
+      (accepted.solver_uid == null ? "" : "<div><dt>UID</dt><dd>" + escapeHtml(accepted.solver_uid) + "</dd></div>")
+    );
+  }
+
+  function renderBounty(bounty, stateNote) {
+    var accepted = bounty.accepted || null;
+    var title = escapeHtml(bounty.title || bounty.id || "Current bounty");
+    var href = bounty.source_url ? ' href="' + escapeHtml(bounty.source_url) + '"' : "";
+    var note = stateNote ? '<p class="bounty-note">' + escapeHtml(stateNote) + "</p>" : "";
+    return (
+      '<article class="bounty-card is-' + escapeHtml(bounty.status || "planned") + '">' +
+      '<div class="bounty-card-head">' +
+      '<div><p class="eyebrow">Current bounty</p><h2>' +
+      (href ? "<a" + href + ">" + title + "</a>" : title) +
+      "</h2></div>" +
+      '<strong class="reward-pill">' + escapeHtml(bounty.reward_label || "Reward TBD") + "</strong>" +
       "</div>" +
-      '<dl class="record-facts">' +
+      note +
+      '<dl class="record-facts bounty-facts">' +
+      "<div><dt>Status</dt><dd>" + escapeHtml(bounty.status || "planned") + "</dd></div>" +
       "<div><dt>Declaration</dt><dd><code>" + escapeHtml(bounty.declaration || "pending") + "</code></dd></div>" +
       "<div><dt>Source</dt><dd>" + escapeHtml(bounty.lean_file || "pending") + "</dd></div>" +
-      acceptedHtml +
+      acceptedDetails(accepted) +
       "</dl>" +
-      "</li>"
+      "</article>"
+    );
+  }
+
+  function currentBounty(campaigns) {
+    var open = campaigns.filter(function (bounty) { return bounty.status === "open"; });
+    if (open.length) {
+      return { bounty: open[0], note: "" };
+    }
+    var accepted = campaigns.filter(function (bounty) { return bounty.accepted || bounty.status === "accepted"; });
+    if (accepted.length) {
+      return { bounty: accepted[0], note: "Bounty solved, awaiting next bounty." };
+    }
+    return campaigns.length ? { bounty: campaigns[0], note: "No bounty is open yet." } : null;
+  }
+
+  function renderCurrentBounty(data) {
+    if (!data || data.schema_version !== 1) {
+      throw new Error("unsupported bounty schema");
+    }
+    var campaigns = Array.isArray(data.campaigns) ? data.campaigns : [];
+    var selected = currentBounty(campaigns);
+    return (
+      '<div class="task-feed">' +
+      '<section class="dashboard-section bounty-focus"><p class="eyebrow">Bounty</p>' +
+      (selected
+        ? renderBounty(selected.bounty, selected.note)
+        : '<div class="empty-panel"><h2>No bounty posted yet.</h2><p class="muted">The next focused campaign will appear here when it opens.</p></div>') +
+      "</section>" +
+      '<p class="dashboard-meta">Generated ' + escapeHtml(dateText(data.generated_unix)) + "</p>" +
+      "</div>"
     );
   }
 
@@ -183,22 +223,20 @@
     if (!data || data.schema_version !== 1) {
       throw new Error("unsupported bounty schema");
     }
-    var campaigns = Array.isArray(data.campaigns) ? data.campaigns : [];
+    return renderCurrentBounty(data);
+  }
+
+  function renderDashboard(cadenceData, bountyData) {
     return (
-      '<div class="task-feed">' +
-      '<div class="stats-grid">' +
-      renderStat("Listed", campaigns.length) +
-      renderStat("Open", campaigns.filter(function (c) { return c.status === "open"; }).length) +
-      renderStat("Reward mode", "WTA") +
-      renderStat("UID needed", "No") +
-      "</div>" +
-      '<section class="dashboard-section"><p class="eyebrow">Formal Conjectures bounties</p>' +
-      "<h2>Selected tasks.</h2>" +
-      (campaigns.length
-        ? '<ol class="bounty-list">' + campaigns.map(renderBounty).join("") + "</ol>"
-        : '<p class="muted">No bounty campaign is open yet.</p>') +
+      '<div class="dashboard-stack">' +
+      '<section aria-labelledby="cadence-title"><p class="eyebrow">Cadence</p>' +
+      '<h2 id="cadence-title">Live theorem work.</h2>' +
+      renderCadence(cadenceData) +
       "</section>" +
-      '<p class="dashboard-meta">Generated ' + escapeHtml(dateText(data.generated_unix)) + "</p>" +
+      '<section aria-labelledby="bounty-title"><p class="eyebrow">Bounty</p>' +
+      '<h2 id="bounty-title">One focused campaign.</h2>' +
+      renderCurrentBounty(bountyData) +
+      "</section>" +
       "</div>"
     );
   }
@@ -250,7 +288,69 @@
     root.setInterval(refreshLive, pollMs);
   }
 
-  var api = { renderBounties: renderBounties, renderCadence: renderCadence };
+  function mountDashboard(id) {
+    var el = root.document && root.document.getElementById(id);
+    if (!el || typeof root.fetch !== "function") {
+      return;
+    }
+    var cadenceFallbackUrl = el.getAttribute("data-cadence-fallback-url");
+    var cadenceLiveUrl = el.getAttribute("data-cadence-live-url");
+    var bountyFallbackUrl = el.getAttribute("data-bounty-fallback-url");
+    var bountyLiveUrl = el.getAttribute("data-bounty-live-url");
+    var cadenceEtag = "";
+    var bountyEtag = "";
+    var cadenceData = null;
+    var bountyData = null;
+
+    function paint() {
+      if (cadenceData && bountyData) {
+        el.innerHTML = renderDashboard(cadenceData, bountyData);
+      }
+    }
+
+    Promise.all([fetchJson(cadenceFallbackUrl), fetchJson(bountyFallbackUrl)])
+      .then(function (results) {
+        cadenceData = results[0].data;
+        bountyData = results[1].data;
+        cadenceEtag = results[0].etag || "";
+        bountyEtag = results[1].etag || "";
+        paint();
+        refreshLive();
+      })
+      .catch(function (error) {
+        el.innerHTML = '<p class="muted">Dashboard data unavailable: ' + escapeHtml(error.message) + "</p>";
+      });
+
+    function refreshLive() {
+      var cadencePromise = cadenceLiveUrl ? fetchJson(cadenceLiveUrl, cadenceEtag).catch(function () { return null; }) : Promise.resolve(null);
+      var bountyPromise = bountyLiveUrl ? fetchJson(bountyLiveUrl, bountyEtag).catch(function () { return null; }) : Promise.resolve(null);
+      Promise.all([cadencePromise, bountyPromise]).then(function (results) {
+        var changed = false;
+        if (results[0]) {
+          cadenceData = results[0].data;
+          cadenceEtag = results[0].etag || cadenceEtag;
+          changed = true;
+        }
+        if (results[1]) {
+          bountyData = results[1].data;
+          bountyEtag = results[1].etag || bountyEtag;
+          changed = true;
+        }
+        if (changed) {
+          paint();
+        }
+      });
+    }
+
+    root.setInterval(refreshLive, pollMs);
+  }
+
+  var api = {
+    renderBounties: renderBounties,
+    renderCadence: renderCadence,
+    renderCurrentBounty: renderCurrentBounty,
+    renderDashboard: renderDashboard,
+  };
   root.LemmaTasks = api;
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
@@ -260,10 +360,12 @@
       root.document.addEventListener("DOMContentLoaded", function () {
         mountFeed("cadence-board", renderCadence);
         mountFeed("bounty-board", renderBounties);
+        mountDashboard("dashboard-board");
       });
     } else {
       mountFeed("cadence-board", renderCadence);
       mountFeed("bounty-board", renderBounties);
+      mountDashboard("dashboard-board");
     }
   }
 })(typeof window !== "undefined" ? window : globalThis);

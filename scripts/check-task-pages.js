@@ -41,22 +41,30 @@ assert(!bountiesRaw.includes("proof_script"), "bounty JSON must not publish proo
 assert(!bountiesRaw.includes("proof_sha256"), "bounty JSON must not publish proof hashes");
 assert(!bountiesRaw.includes("signature"), "bounty JSON must not publish signatures");
 const bountyHtml = tasks.renderBounties(bounties);
-assert(bountyHtml.includes("Formal Conjectures bounties"), "bounty render must include title");
-assert(bountyHtml.includes("UID needed"), "bounty render must explain UID is not needed");
 assert(bountyHtml.includes("1k SN467 alpha"), "bounty render must show reward");
 assert(bountyHtml.includes("Accepted"), "bounty render must show accepted winner state");
 assert(bountyHtml.includes("5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No"), "bounty solver hotkey must render");
+const dashboardHtml = tasks.renderDashboard(cadence, bounties);
+assert(dashboardHtml.includes("Live theorem work"), "dashboard render must include cadence heading");
+assert(dashboardHtml.includes("Current cadence task"), "dashboard render must include current cadence section");
+assert(dashboardHtml.includes("Bounty solved, awaiting next bounty."), "dashboard render must show solved-bounty waiting note");
+assert(dashboardHtml.includes("1k SN467 alpha"), "dashboard render must show current bounty reward");
+assert((dashboardHtml.match(/<article class="bounty-card/g) || []).length === 1, "dashboard render must show one bounty card");
 const weakVisionCopy = ["The vision", "is deliberately", "small"].join(" ");
 
 for (const page of [
   "index.html",
-  "cadence/index.html",
-  "bounties/index.html",
+  "dashboard/index.html",
   "faq/index.html",
+  "examples/cadence/0000/index.html",
+  "examples/bounties/example/index.html",
 ]) {
   const html = fs.readFileSync(path.join(root, page), "utf8");
-  assert(html.includes('href="/cadence/"'), `${page} must link to /cadence/`);
-  assert(html.includes('href="/bounties/"'), `${page} must link to /bounties/`);
+  assert(html.includes('href="/"'), `${page} must link to home`);
+  assert(html.includes('href="/dashboard/"'), `${page} must link to /dashboard/`);
+  assert(html.includes('href="/faq/"'), `${page} must link to /faq/`);
+  assert(!html.includes('href="/cadence/"'), `${page} must not link to removed /cadence/`);
+  assert(!html.includes('href="/bounties/"'), `${page} must not link to removed /bounties/`);
   assert(!html.includes('href="/setup/"'), `${page} must not link to removed /setup/`);
   assert(!html.includes('href="/solve/"'), `${page} must not link to removed /solve/`);
   assert(!html.includes(weakVisionCopy), `${page} must not use weak vision copy`);
@@ -64,7 +72,23 @@ for (const page of [
 
 const homeHtml = fs.readFileSync(path.join(root, "index.html"), "utf8");
 assert(homeHtml.includes("sum_first_odds"), "home page must show the concrete Lean proof example");
-assert(homeHtml.includes("The proof passes or fails."), "home page must explain binary proof checking");
+assert(homeHtml.includes("Lean is the referee."), "home page must explain Lean");
+
+const dashboardPageHtml = fs.readFileSync(path.join(root, "dashboard", "index.html"), "utf8");
+assert(dashboardPageHtml.includes('id="dashboard-board"'), "dashboard page must mount combined dashboard");
+assert(dashboardPageHtml.includes("data-cadence-live-url"), "dashboard page must include cadence live feed");
+assert(dashboardPageHtml.includes("data-bounty-live-url"), "dashboard page must include bounty live feed");
+
+const faqHtml = fs.readFileSync(path.join(root, "faq", "index.html"), "utf8");
+for (const question of ["What is Lean?", "What is formal mathematics?", "What is a theorem?", "What is a proof?"]) {
+  assert(faqHtml.includes(question), `FAQ must include ${question}`);
+}
+
+for (const redirect of ["cadence/index.html", "bounties/index.html", "miners/index.html"]) {
+  const html = fs.readFileSync(path.join(root, redirect), "utf8");
+  assert(html.includes('url=/dashboard/'), `${redirect} must redirect to dashboard`);
+  assert(html.includes('href="/dashboard/"'), `${redirect} must link to dashboard`);
+}
 
 const setupHtml = fs.readFileSync(path.join(root, "setup", "index.html"), "utf8");
 assert(setupHtml.includes('url=/'), "setup page must redirect to home");

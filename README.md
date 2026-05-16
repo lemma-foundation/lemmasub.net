@@ -6,10 +6,11 @@ Lemma is framed publicly as a Bittensor subnet for machine-checkable
 mathematics: miners produce Lean proofs, validators verify them mechanically,
 and rewards attach to proof correctness.
 
-The site has two task surfaces:
+The site has three public pages:
 
-- `/cadence/` for recurring validator-scored cadence tasks.
-- `/bounties/` for manual winner-take-all Formal Conjectures campaigns.
+- `/` explains Lemma from top to bottom.
+- `/dashboard/` combines live cadence tasks and the current bounty.
+- `/faq/` answers beginner and protocol questions.
 
 ## Local Preview
 
@@ -35,8 +36,10 @@ python3 -m http.server 8877 --bind 127.0.0.1
 Open:
 
 - `http://127.0.0.1:8877/`
-- `http://127.0.0.1:8877/cadence/`
-- `http://127.0.0.1:8877/bounties/`
+- `http://127.0.0.1:8877/dashboard/`
+- `http://127.0.0.1:8877/cadence/` redirects to `/dashboard/`
+- `http://127.0.0.1:8877/bounties/` redirects to `/dashboard/`
+- `http://127.0.0.1:8877/miners/` redirects to `/dashboard/`
 - `http://127.0.0.1:8877/setup/` redirects to `/`
 - `http://127.0.0.1:8877/faq/`
 
@@ -55,6 +58,7 @@ node scripts/check-task-pages.js
   publish proof bodies, proof hashes, proof nonces, or commitment hashes.
 - Live task feeds should be tiny overwritten JSON files from the validator
   droplet, not GitHub commit churn or historical archives.
+- `/dashboard/` is the only public task page. Keep old task URLs as redirects.
 - `/setup/` is not a content page. Keep it as a redirect to `/` for old links.
 - The home page should teach the proof loop directly and include the concrete
   `sum_first_odds` Lean example with step-by-step explanation.

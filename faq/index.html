@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>FAQ | Lemma</title>
-    <meta name="description" content="Questions and answers about Lemma cadence and bounty proof tasks.">
+    <meta name="description" content="Questions and answers about Lean, formal mathematics, and Lemma proof tasks.">
     <link rel="stylesheet" href="/assets/styles.css">
   </head>
   <body>
     <header class="site-header">
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
-        <a href="/cadence/">Cadence</a>
-        <a href="/bounties/">Bounties</a>
+        <a href="/">Home</a>
+        <a href="/dashboard/">Dashboard</a>
         <a aria-current="page" href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="theme-toggle" type="button" aria-label="Toggle color theme">
@@ -28,12 +28,12 @@
     </header>
 
     <main>
-      <section class="page-head">
+      <section class="page-head reveal">
         <p class="eyebrow">FAQ</p>
         <h1>The short version.</h1>
       </section>
 
-      <section class="qa-list" aria-label="Frequently asked questions">
+      <section class="qa-list reveal" aria-label="Frequently asked questions">
         <article>
           <h2>What is Lemma?</h2>
           <p>
@@ -44,18 +44,50 @@
         </article>
 
         <article>
+          <h2>What is Lean?</h2>
+          <p>
+            Lean is a programming language and proof checker. It can read a formal
+            proof and confirm whether each step follows from the rules.
+          </p>
+        </article>
+
+        <article>
+          <h2>What is formal mathematics?</h2>
+          <p>
+            Formal mathematics is math written in a precise language a computer can
+            check. Definitions, statements, and proofs have exact meanings.
+          </p>
+        </article>
+
+        <article>
+          <h2>What is a theorem?</h2>
+          <p>
+            A theorem is a mathematical claim. In Lemma, the claim is written as a
+            Lean statement so miners know exactly what must be proved.
+          </p>
+        </article>
+
+        <article>
+          <h2>What is a proof?</h2>
+          <p>
+            A proof is the chain of steps that establishes a theorem. A Lean proof is
+            accepted only when Lean can check every step.
+          </p>
+        </article>
+
+        <article>
           <h2>What are cadence tasks?</h2>
           <p>
-            Cadence tasks are recurring theorem targets for registered miners. Validators
-            check proofs automatically and set subnet weights from current verified work.
+            Cadence tasks are recurring theorem targets for registered miners. They
+            appear on the <a href="/dashboard/">dashboard</a> and feed automatic subnet rewards.
           </p>
         </article>
 
         <article>
           <h2>What are bounty tasks?</h2>
           <p>
-            Bounty tasks are selected Formal Conjectures campaigns. Anyone can work on
-            them, verify locally, and submit a signed package for manual owner review.
+            Bounties are focused campaigns for one selected theorem at a time. The
+            current bounty also appears on the <a href="/dashboard/">dashboard</a>.
           </p>
         </article>
 
@@ -84,7 +116,7 @@
         <article>
           <h2>What is OpenAI-compatible?</h2>
           <p>
-            It means optional prover assistance can point at an API that follows the
+            Optional prover assistance can point at an API that follows the
             OpenAI-style URL, API key, and model-id pattern. It is not required for
             manually prepared Lean proofs.
           </p>

@@ -12,8 +12,8 @@
     <header class="site-header">
       <a class="wordmark" href="/">Lemma</a>
       <nav aria-label="Primary">
-        <a href="/cadence/">Cadence</a>
-        <a href="/bounties/">Bounties</a>
+        <a href="/" aria-current="page">Home</a>
+        <a href="/dashboard/">Dashboard</a>
         <a href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="theme-toggle" type="button" aria-label="Toggle color theme">
@@ -28,80 +28,77 @@
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="title">
+      <section class="hero reveal" aria-labelledby="title">
         <p class="eyebrow">Bittensor testnet subnet 467</p>
-        <h1 id="title">Lemma rewards proofs Lean can verify.</h1>
+        <h1 id="title">A proof market for mathematics Lean can verify.</h1>
         <p class="lead">
-          Lemma is a Bittensor subnet for machine-checkable mathematics. Miners
-          produce Lean proof files, validators run the pinned checker, and rewards
-          follow proof correctness.
+          Lemma turns theorem statements into open proof work. Miners submit Lean
+          proof files, validators replay them mechanically, and rewards follow the
+          proofs that pass.
         </p>
-      </section>
-
-      <section class="section-grid" aria-labelledby="lanes-title">
-        <div>
-          <p class="eyebrow">Subnet loop</p>
-          <h2 id="lanes-title">One target, one proof file, one mechanical check.</h2>
+        <div class="hero-actions">
+          <a class="button-link" href="/dashboard/">View dashboard</a>
+          <a class="text-link" href="/faq/">Read the FAQ</a>
         </div>
-        <ol class="steps">
-          <li>
-            <span>Theorem</span>
-            <p>The subnet publishes a precise Lean statement, imports, and target environment.</p>
-          </li>
-          <li>
-            <span>Proof</span>
-            <p>Miners work however they want, then submit a complete <code>Submission.lean</code> file.</p>
-          </li>
-          <li>
-            <span>Verify</span>
-            <p>Validators replay the file with Lean. The proof passes or fails.</p>
-          </li>
-          <li>
-            <span>Reward</span>
-            <p>Current verified cadence work earns automatic subnet rewards. Bounties pay manual campaign rewards.</p>
-          </li>
-        </ol>
       </section>
 
-      <section class="proof-layout" aria-labelledby="rule-title">
+      <section class="feature-band reveal" aria-labelledby="what-title">
         <div>
-          <p class="eyebrow">Two task surfaces</p>
-          <h2 id="rule-title">Cadence is automatic. Bounties are focused campaigns.</h2>
+          <p class="eyebrow">What it is</p>
+          <h2 id="what-title">A subnet for exact answers, not persuasive prose.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span>1</span>
+            <h3>The target is formal.</h3>
+            <p>Each task is a precise Lean theorem with pinned imports and environment.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>The work is open.</h3>
+            <p>Miners can use search, models, manual proof work, or their own tooling.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>The check is binary.</h3>
+            <p>Validators run Lean. The submitted file either verifies or it does not.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-grid reveal" aria-labelledby="lean-title">
+        <div>
+          <p class="eyebrow">Why Lean</p>
+          <h2 id="lean-title">Lean is the referee.</h2>
+        </div>
+        <div class="split-copy">
           <p>
-            Cadence tasks are recurring targets for registered miners. Formal
-            Conjectures bounties are manual owner-emission campaigns for larger
-            theorem work and do not require subnet registration.
+            Lean is proof-checking software. It does not trust a paragraph that
+            sounds right; it checks each step against formal rules.
           </p>
-          <div class="link-list compact-links">
-            <a href="/cadence/">View cadence tasks</a>
-            <a href="/bounties/">View bounty campaigns</a>
-          </div>
+          <p>
+            That makes Lemma's reward path simple: the valuable object is the
+            proof file. Informal reasoning can help humans, but the subnet pays
+            for machine-checkable correctness.
+          </p>
         </div>
-        <pre><code>git clone https://github.com/spacetime-tao/lemma.git
-cd lemma
-uv sync --extra btcli
-uv run lemma mine
-uv run lemma status</code></pre>
       </section>
 
-      <section class="proof-example" aria-labelledby="example-title">
+      <section class="proof-example reveal" aria-labelledby="example-title">
         <div>
-          <p class="eyebrow">Concrete example</p>
-          <h2 id="example-title">A submitted proof is just a Lean file.</h2>
+          <p class="eyebrow">Proof example</p>
+          <h2 id="example-title">The explanation and the submission sit side by side.</h2>
           <p>
-            Suppose the target is the classic claim that the first <em>n</em> odd
-            numbers add to <em>n</em><sup>2</sup>. A miner can use a proving model,
-            local search, manual work, or all three, but the reward-critical object is
-            the file Lean accepts.
+            Suppose the task says the first <em>n</em> odd numbers add to
+            <em>n</em><sup>2</sup>. The explanation helps a person follow the
+            idea. The Lean file is what validators check.
           </p>
           <ol class="line-notes">
-            <li><code>import Mathlib</code> loads Lean's standard math library.</li>
-            <li><code>namespace Submission</code> puts the answer where validators expect it.</li>
+            <li><code>import Mathlib</code> loads the math library.</li>
+            <li><code>namespace Submission</code> matches the expected wrapper.</li>
             <li><code>theorem sum_first_odds</code> states the exact target.</li>
-            <li><code>induction n</code> splits the proof into the zero case and the successor case.</li>
-            <li><code>simp</code> closes the zero case by simplification.</li>
-            <li><code>rw</code> uses the induction result and the rule for adding one more term.</li>
-            <li><code>ring</code> asks Lean to check the remaining algebra.</li>
+            <li><code>induction n</code> proves zero, then the next number.</li>
+            <li><code>simp</code>, <code>rw</code>, and <code>ring</code> close the checked steps.</li>
           </ol>
         </div>
         <pre><code>import Mathlib
@@ -120,12 +117,35 @@ theorem sum_first_odds (n : Nat) :
 end Submission</code></pre>
       </section>
 
-      <section class="definition" aria-label="Vision">
-        <p>
-          Lemma is building a public market for machine-checkable mathematics:
-          recurring subnet targets for miners, and larger proof campaigns when the
-          task deserves focused attention.
-        </p>
+      <section class="feature-band reveal" aria-labelledby="system-title">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2 id="system-title">Two kinds of work, one verification rule.</h2>
+        </div>
+        <div class="feature-grid two-up">
+          <article>
+            <span>Cadence</span>
+            <h3>Recurring subnet tasks.</h3>
+            <p>Registered miners solve the current theorem. Validators check proofs and set weights from current verified work.</p>
+          </article>
+          <article>
+            <span>Bounty</span>
+            <h3>One focused campaign.</h3>
+            <p>A manual winner-take-all task appears when a theorem deserves concentrated attention and a listed reward.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-grid reveal" aria-labelledby="participate-title">
+        <div>
+          <p class="eyebrow">Participate</p>
+          <h2 id="participate-title">Work offline. Submit online. Let Lean decide.</h2>
+        </div>
+        <div class="steps compact-steps">
+          <div><span>Find the task</span><p>Open the dashboard and inspect the current theorem or bounty.</p></div>
+          <div><span>Write the proof</span><p>Use any workflow, but produce a complete <code>Submission.lean</code>.</p></div>
+          <div><span>Verify and submit</span><p>The CLI checks locally, commits privately, and serves proof text only after reveal opens.</p></div>
+        </div>
       </section>
     </main>
 
