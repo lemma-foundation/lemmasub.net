@@ -1167,10 +1167,6 @@ body[data-page="home"] .site-footer {
   line-height: 1.45;
 }
 
-.theorem-mode-note strong {
-  color: var(--rust);
-}
-
 .theorem-card.compact h3 {
   font-size: 19px;
   line-height: 1.18;
