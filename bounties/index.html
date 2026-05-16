@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Current and upcoming Lemma theorem-proof bounties.">
+  <meta name="description" content="Google DeepMind Formal Conjectures proof bounties on Lemma.">
   <title>Lemma Bounties</title>
   <script>
     (() => {
@@ -38,34 +38,39 @@
   <main class="dashboard-page bounty-page">
     <section class="dashboard-head bounty-head">
       <div>
-        <p class="eyebrow">Proof rewards</p>
-        <h1>Lemma Bounties</h1>
-        <p>A bounty is a reward for proving one exact Lean statement outside the normal timed dashboard round.</p>
+        <p class="eyebrow">Google DeepMind Formal Conjectures</p>
+        <h1>Proof bounties for harder Lean targets.</h1>
+        <p>
+          Google DeepMind Formal Conjectures gives Lemma exact Lean statements
+          to point at. A bounty is a separate reward for proving one selected
+          statement when the target needs more time than a normal timed round.
+        </p>
       </div>
     </section>
 
     <section class="bounty-card" aria-labelledby="current-bounty">
       <div>
-        <p class="eyebrow">Launch bounty lane</p>
-        <h2 id="current-bounty">Prove selected Formal Conjectures statements in Lean.</h2>
+        <p class="eyebrow">What a bounty is</p>
+        <h2 id="current-bounty">One selected statement. One Lean proof. One stated reward.</h2>
         <p>
-          Lemma selects a formal statement, names the exact Lean target, and
-          posts a reward. A miner submits a Lean proof file. If Lean verifies
-          that file against the selected statement, the bounty can be paid.
+          Normal Lemma rounds keep miners proving on a timer. Bounties are for
+          harder targets: Lemma names the exact Lean statement, posts a reward,
+          and accepts a miner's proof file if Lean verifies it against that
+          statement.
         </p>
       </div>
       <dl class="bounty-facts">
         <div>
-          <dt>Status</dt>
-          <dd>Launch lane</dd>
+          <dt>Source</dt>
+          <dd>Google DeepMind Formal Conjectures</dd>
         </div>
         <div>
-          <dt>Submissions</dt>
-          <dd>Opening with selected bounty targets</dd>
+          <dt>Cadence</dt>
+          <dd>Separate from timed theorem rounds</dd>
         </div>
         <div>
           <dt>Validation</dt>
-          <dd>Lean 4 proof verification against the selected statement</dd>
+          <dd>Lean 4 checks the exact selected statement</dd>
         </div>
       </dl>
     </section>
@@ -75,12 +80,13 @@
         <p class="eyebrow">Source of targets</p>
         <h2>Formal Conjectures gives Lemma exact Lean statements to point at.</h2>
         <p>
-          Google DeepMind Formal Conjectures collects mathematical statements
-          written in Lean 4. Some entries are research solved: the mathematics
-          is known, but a clean Lean proof can still be valuable work.
+          Google DeepMind Formal Conjectures is a collection of mathematical
+          statements written in Lean 4. Some entries are research solved: the
+          mathematics is known, but a clean Lean proof artifact can still be
+          valuable work.
         </p>
         <p>
-          That makes the bounty easy to understand: Lemma can pick one exact
+          That makes the bounty easy to understand: Lemma can pick one harder
           statement, publish it as the target, and reward a proof file that
           Lean accepts.
         </p>
@@ -102,19 +108,6 @@
           <span>Contributing guide</span>
           <strong>Review categories and proof links</strong>
         </a>
-      </div>
-    </section>
-
-    <section class="band coming-next">
-      <div class="section-head">
-        <p class="eyebrow">Bounty pages</p>
-        <h2>Each bounty should show the target, reward, and proof status.</h2>
-        <p>
-          The public page can list selected theorem IDs, source links, proof
-          provenance, review status, and bounty terms. Open conjectures can be a
-          later lane; launch bounties should stay focused on exact statements
-          where the proof target is already clear.
-        </p>
       </div>
     </section>
   </main>

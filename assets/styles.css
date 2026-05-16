@@ -500,7 +500,7 @@ h3 {
 
 .steps p,
 .value-grid p,
-.roadmap-list p,
+.proof-lanes p,
 .operator-band p,
 .table-head p,
 .meta,
@@ -523,19 +523,20 @@ h3 {
   grid-column: 1 / -1;
 }
 
-.value-grid,
-.roadmap-list {
+.value-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
-.roadmap-list {
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+.proof-lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .value-grid article,
-.roadmap-list article {
+.proof-lanes article {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -591,7 +592,7 @@ h3 {
   font-size: 14px;
 }
 
-.roadmap-band {
+.proof-lanes-band {
   border-top: 1px solid var(--line);
 }
 
@@ -647,8 +648,7 @@ h3 {
   font-weight: 750;
 }
 
-.bounty-sources,
-.coming-next {
+.bounty-sources {
   padding-right: 0;
   padding-left: 0;
 }
@@ -761,13 +761,6 @@ h3 {
 .faq-list p,
 .faq-list li {
   color: var(--muted);
-}
-
-.roadmap-list span {
-  display: block;
-  margin-bottom: 34px;
-  color: var(--gold);
-  font-weight: 700;
 }
 
 .footnote-band {
@@ -1193,7 +1186,6 @@ td a:hover,
   .steps,
   .scoreboard-grid,
   .value-grid,
-  .roadmap-list,
   .source-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1256,7 +1248,7 @@ td a:hover,
   .scoreboard-grid,
   .metric-grid,
   .value-grid,
-  .roadmap-list,
+  .proof-lanes,
   .source-list {
     grid-template-columns: 1fr;
   }

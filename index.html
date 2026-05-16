@@ -56,7 +56,7 @@
           <strong data-current-id>Unavailable</strong>
           <p class="statement-label">Formal theorem to prove</p>
           <code data-current-goal>Waiting for public dashboard data.</code>
-          <p class="theorem-mode-note" data-theorem-mode-note>The dashboard shows the round's representative theorem. Each UID receives a deterministic same-difficulty variant.</p>
+          <p class="theorem-mode-note" data-theorem-mode-note>The dashboard shows the round's representative theorem. Each miner receives a deterministic same-difficulty variant.</p>
           <a class="text-link panel-link" href="dashboard/index.html">Open full dashboard</a>
         </div>
         <div class="metric-grid">
@@ -84,9 +84,10 @@
         <h2>A theorem is a precise claim that can be proven true.</h2>
         <p>
           Lemma publishes a theorem window. The dashboard shows the round's
-          representative theorem. Each UID receives a deterministic
-          same-difficulty theorem variant, and validators check the exact
-          statement sent to that UID.
+          representative theorem. Each miner receives a deterministic
+          same-difficulty theorem variant. That keeps difficulty comparable
+          while making copy-paste proof reuse less useful; validators check the
+          exact statement sent to that miner.
         </p>
       </div>
     </section>
@@ -200,27 +201,20 @@ end Submission</code></pre>
       </div>
     </section>
 
-    <section class="band roadmap-band">
+    <section class="band proof-lanes-band">
       <div class="section-head">
-        <p class="eyebrow">Launch path</p>
-        <h2>Run the proof loop, fund harder proof targets, then grow the theorem supply.</h2>
-        <p>Lemma starts with the automatic theorem cadence and the bounty lane together. As participation grows, both lanes can take on harder work.</p>
+        <p class="eyebrow">Two proof lanes</p>
+        <h2>Timed theorem rounds keep the subnet moving. Bounties aim at harder targets.</h2>
+        <p>Lemma needs both: a steady cadence where miners compete under the same timer, and separate bounties for selected Lean statements that need more time and attention.</p>
       </div>
-      <div class="roadmap-list">
+      <div class="proof-lanes">
         <article>
-          <span>01</span>
-          <h3>Reliable cadence</h3>
-          <p>Keep the base loop simple: publish a theorem, collect proof files, verify them with Lean, and reward valid work.</p>
+          <h3>Cadence theorem rounds</h3>
+          <p>The timed loop keeps miners proving regularly and gives validators a steady way to score current work: publish theorem window, collect proof files, verify with Lean, reward valid work.</p>
         </article>
         <article>
-          <span>02</span>
-          <h3>Growing theorem supply</h3>
-          <p>Lemma continually broadens its set of automatically generated and curated theorems, increasing in difficulty as participation grows.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Formal Conjectures bounties</h3>
-          <p>Some known math results already have exact Lean statements. Lemma can post those as bounties: prove this statement in Lean and claim the reward.</p>
+          <h3>Google DeepMind Formal Conjectures bounties</h3>
+          <p>Bounties are for harder selected statements that do not fit the normal timer. Lemma can name one exact Lean target, post a reward, and accept a proof file that Lean verifies.</p>
         </article>
       </div>
     </section>
@@ -228,12 +222,12 @@ end Submission</code></pre>
     <section class="band">
       <div class="section-head">
         <p class="eyebrow">Network comparison</p>
-        <h2>Bitcoin rewards security. Bittensor rewards useful machine work. Lemma rewards correct proofs.</h2>
+        <h2>Bitcoin rewards miners for securing the network. Bittensor rewards miners for producing useful intelligence. Lemma rewards miners for producing correct proofs.</h2>
         <p>
-          The pattern is similar: open participants compete under public rules,
-          and the network rewards work that can be checked. In Lemma, miners
-          produce Lean proof files, validators check them with Lean, and valid
-          proofs can receive rewards.
+          Bittensor gives Lemma open participation, miner competition,
+          validator scoring, and token rewards. Lean gives Lemma the objective
+          check. That pairing keeps the subnet simple: publish theorem, verify
+          proof, reward valid work.
         </p>
       </div>
     </section>
