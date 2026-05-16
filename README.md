@@ -37,7 +37,7 @@ Open:
 - `http://127.0.0.1:8877/`
 - `http://127.0.0.1:8877/cadence/`
 - `http://127.0.0.1:8877/bounties/`
-- `http://127.0.0.1:8877/setup/`
+- `http://127.0.0.1:8877/setup/` redirects to `/`
 - `http://127.0.0.1:8877/faq/`
 
 Check the static code:
@@ -55,10 +55,7 @@ node scripts/check-task-pages.js
   publish proof bodies, proof hashes, proof nonces, or commitment hashes.
 - Live task feeds should be tiny overwritten JSON files from the validator
   droplet, not GitHub commit churn or historical archives.
-- The setup page should describe OpenAI-compatible providers rather than tying
-  setup to one company. Keep provider links visible for OpenAI, Gemini, Chutes,
-  and Anthropic, and keep the Anthropic copy clear that its compatibility layer
-  is for testing and comparison rather than preferred production use.
-- Every setup command panel should have a copy button, and wrapped code must
-  remain readable at desktop, split-window, and mobile widths.
+- `/setup/` is not a content page. Keep it as a redirect to `/` for old links.
+- The home page should teach the proof loop directly and include the concrete
+  `sum_first_odds` Lean example with step-by-step explanation.
 - There is no browser solve portal. Miners use the Lemma CLI/Axon path.

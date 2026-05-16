@@ -14,7 +14,6 @@
       <nav aria-label="Primary">
         <a href="/cadence/">Cadence</a>
         <a href="/bounties/">Bounties</a>
-        <a href="/setup/">Setup</a>
         <a href="/faq/">FAQ</a>
         <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="theme-toggle" type="button" aria-label="Toggle color theme">
@@ -30,55 +29,102 @@
 
     <main>
       <section class="hero" aria-labelledby="title">
-        <p class="eyebrow">Lean-verified proof work</p>
-        <h1 id="title">A proof market for machine-checkable mathematics.</h1>
+        <p class="eyebrow">Bittensor testnet subnet 467</p>
+        <h1 id="title">Lemma rewards proofs Lean can verify.</h1>
         <p class="lead">
-          Lemma is a Bittensor subnet where miners produce Lean proofs, validators
-          verify them mechanically, and rewards attach to proof correctness.
+          Lemma is a Bittensor subnet for machine-checkable mathematics. Miners
+          produce Lean proof files, validators run the pinned checker, and rewards
+          follow proof correctness.
         </p>
       </section>
 
       <section class="section-grid" aria-labelledby="lanes-title">
         <div>
-          <p class="eyebrow">Tasks</p>
-          <h2 id="lanes-title">Two surfaces, one rule: the proof must check.</h2>
+          <p class="eyebrow">Subnet loop</p>
+          <h2 id="lanes-title">One target, one proof file, one mechanical check.</h2>
         </div>
-        <div>
-          <p>
-            Cadence tasks are recurring subnet targets for registered miners. Bounty
-            tasks are larger Formal Conjectures campaigns when a theorem deserves
-            focused attention outside normal validator weights.
-          </p>
-          <div class="link-list compact-links">
-            <a href="/cadence/">Cadence tasks: automatic subnet rewards</a>
-            <a href="/bounties/">Bounty tasks: Formal Conjectures campaigns</a>
-            <a href="/setup/">Set up an OpenAI-compatible prover</a>
-          </div>
-        </div>
+        <ol class="steps">
+          <li>
+            <span>Theorem</span>
+            <p>The subnet publishes a precise Lean statement, imports, and target environment.</p>
+          </li>
+          <li>
+            <span>Proof</span>
+            <p>Miners work however they want, then submit a complete <code>Submission.lean</code> file.</p>
+          </li>
+          <li>
+            <span>Verify</span>
+            <p>Validators replay the file with Lean. The proof passes or fails.</p>
+          </li>
+          <li>
+            <span>Reward</span>
+            <p>Current verified cadence work earns automatic subnet rewards. Bounties pay manual campaign rewards.</p>
+          </li>
+        </ol>
       </section>
 
       <section class="proof-layout" aria-labelledby="rule-title">
         <div>
-          <p class="eyebrow">Rule</p>
-          <h2 id="rule-title">The checker is the boundary.</h2>
+          <p class="eyebrow">Two task surfaces</p>
+          <h2 id="rule-title">Cadence is automatic. Bounties are focused campaigns.</h2>
           <p>
-            Lemma does not score prose. Miners submit Lean files. Validators replay the
-            pinned theorem, imports, and proof. The proof passes or fails.
+            Cadence tasks are recurring targets for registered miners. Formal
+            Conjectures bounties are manual owner-emission campaigns for larger
+            theorem work and do not require subnet registration.
           </p>
+          <div class="link-list compact-links">
+            <a href="/cadence/">View cadence tasks</a>
+            <a href="/bounties/">View bounty campaigns</a>
+          </div>
         </div>
-        <pre><code>uv run lemma setup --role miner
+        <pre><code>git clone https://github.com/spacetime-tao/lemma.git
+cd lemma
+uv sync --extra btcli
 uv run lemma mine
-uv run lemma status
+uv run lemma status</code></pre>
+      </section>
 
-uv run lemma mine --bounty &lt;campaign-id&gt; \
-  --submission Submission.lean</code></pre>
+      <section class="proof-example" aria-labelledby="example-title">
+        <div>
+          <p class="eyebrow">Concrete example</p>
+          <h2 id="example-title">A submitted proof is just a Lean file.</h2>
+          <p>
+            Suppose the target is the classic claim that the first <em>n</em> odd
+            numbers add to <em>n</em><sup>2</sup>. A miner can use a proving model,
+            local search, manual work, or all three, but the reward-critical object is
+            the file Lean accepts.
+          </p>
+          <ol class="line-notes">
+            <li><code>import Mathlib</code> loads Lean's standard math library.</li>
+            <li><code>namespace Submission</code> puts the answer where validators expect it.</li>
+            <li><code>theorem sum_first_odds</code> states the exact target.</li>
+            <li><code>induction n</code> splits the proof into the zero case and the successor case.</li>
+            <li><code>simp</code> closes the zero case by simplification.</li>
+            <li><code>rw</code> uses the induction result and the rule for adding one more term.</li>
+            <li><code>ring</code> asks Lean to check the remaining algebra.</li>
+          </ol>
+        </div>
+        <pre><code>import Mathlib
+
+namespace Submission
+
+theorem sum_first_odds (n : Nat) :
+    (Finset.range n).sum (fun k =&gt; 2 * k + 1) = n ^ 2 := by
+  induction n with
+  | zero =&gt;
+      simp
+  | succ n ih =&gt;
+      rw [Finset.sum_range_succ, ih]
+      ring
+
+end Submission</code></pre>
       </section>
 
       <section class="definition" aria-label="Vision">
         <p>
-          Lemma is building a public market for machine-checkable mathematics: recurring
-          subnet targets for miners, and larger proof campaigns when the task deserves
-          focused attention.
+          Lemma is building a public market for machine-checkable mathematics:
+          recurring subnet targets for miners, and larger proof campaigns when the
+          task deserves focused attention.
         </p>
       </section>
     </main>

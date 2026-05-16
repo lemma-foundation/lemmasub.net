@@ -52,36 +52,23 @@ for (const page of [
   "index.html",
   "cadence/index.html",
   "bounties/index.html",
-  "setup/index.html",
   "faq/index.html",
 ]) {
   const html = fs.readFileSync(path.join(root, page), "utf8");
   assert(html.includes('href="/cadence/"'), `${page} must link to /cadence/`);
   assert(html.includes('href="/bounties/"'), `${page} must link to /bounties/`);
-  assert(html.includes('href="/setup/"'), `${page} must link to /setup/`);
+  assert(!html.includes('href="/setup/"'), `${page} must not link to removed /setup/`);
   assert(!html.includes('href="/solve/"'), `${page} must not link to removed /solve/`);
   assert(!html.includes(weakVisionCopy), `${page} must not use weak vision copy`);
 }
 
+const homeHtml = fs.readFileSync(path.join(root, "index.html"), "utf8");
+assert(homeHtml.includes("sum_first_odds"), "home page must show the concrete Lean proof example");
+assert(homeHtml.includes("The proof passes or fails."), "home page must explain binary proof checking");
+
 const setupHtml = fs.readFileSync(path.join(root, "setup", "index.html"), "utf8");
-const codePanels = setupHtml.match(/class="code-panel"/g) || [];
-const copyButtons = setupHtml.match(/data-copy-code/g) || [];
-assert(codePanels.length > 0, "setup page must have code panels");
-assert(copyButtons.length === codePanels.length, "every setup code panel must have a copy button");
-assert(setupHtml.includes("LEMMA_PROVER_BASE_URL"), "setup page must show provider base URL");
-assert(setupHtml.includes("LEMMA_PROVER_API_KEY"), "setup page must show provider API key");
-assert(setupHtml.includes("LEMMA_PROVER_MODEL"), "setup page must show provider model");
-assert(setupHtml.includes("$LEMMA_PROVER_BASE_URL/models"), "setup page must show model-list request");
-assert(setupHtml.includes("/assets/site.js"), "setup page must load copy-button helper");
-assert(setupHtml.includes("https://platform.openai.com/docs/api-reference/models/list"), "setup page must link OpenAI model docs");
-assert(setupHtml.includes("https://ai.google.dev/gemini-api/docs/openai"), "setup page must link Gemini compatibility docs");
-assert(setupHtml.includes("https://chutes.ai/docs/examples/llm-chat"), "setup page must link Chutes LLM docs");
-assert(setupHtml.includes("https://docs.anthropic.com/en/api/openai-sdk"), "setup page must link Anthropic compatibility docs");
-assert(setupHtml.includes("https://api.openai.com/v1"), "setup page must show OpenAI base URL");
-assert(setupHtml.includes("https://generativelanguage.googleapis.com/v1beta/openai"), "setup page must show Gemini base URL");
-assert(setupHtml.includes("https://llm.chutes.ai/v1"), "setup page must show Chutes base URL");
-assert(setupHtml.includes("https://api.anthropic.com/v1"), "setup page must show Anthropic base URL");
-assert(setupHtml.includes("uv run lemma mine --bounty"), "setup page must show bounty verification");
-assert(setupHtml.includes("uv run lemma validate"), "setup page must show validator command");
+assert(setupHtml.includes('url=/'), "setup page must redirect to home");
+assert(!setupHtml.includes("LEMMA_PROVER_BASE_URL"), "setup page must not keep setup instructions");
+assert(!fs.existsSync(path.join(root, "assets", "site.js")), "setup copy helper must be removed");
 
 console.log("task pages ok");
