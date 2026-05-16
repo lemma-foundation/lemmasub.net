@@ -73,8 +73,8 @@ assert(data.miners[1].correct === 0, "invalid miner counts should default to zer
 assert(context.theoremDetails(data.theorems.current).includes('<span class="detail-value">Curated</span>'), "catalog source should render as curated");
 assert(context.theoremDetails(data.theorems.previous).includes('<span class="detail-value">Synthesized</span>'), "generated source should render as synthesized");
 assert(context.theoremDetails(data.theorems.current).includes('<dt>Topic</dt>'), "theorem details should explain topic");
-assert(context.theoremModeNote(data).includes("Variant mode is on"), "variant theorem note should render");
-assert(context.normalizeDashboardData({}).theorem_display_mode === "shared", "missing variant fields should default to shared mode");
+assert(context.theoremModeNote(data).includes("Each UID receives"), "variant theorem note should render");
+assert(context.normalizeDashboardData({}).theorem_display_mode === "uid_variants", "missing variant fields should use UID variants");
 assert(context.dataAgeLabel("1970-01-01T00:00:00Z") !== "unknown", "Unix epoch timestamp should be valid");
 
 const sorted = [...data.miners].sort(context.compareMiners);

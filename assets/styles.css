@@ -690,15 +690,66 @@ h3 {
   gap: 12px;
 }
 
-.faq-list article {
-  padding: 20px;
+.faq-list details {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
+  overflow: hidden;
 }
 
-.faq-list h2 {
+.faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 62px;
+  padding: 18px 20px;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 800;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.faq-list details[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-list details[open] summary::after {
+  content: "-";
+}
+
+.faq-list summary span {
+  min-width: 0;
   font-size: 22px;
+  line-height: 1.18;
+}
+
+.faq-answer {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px 20px;
+}
+
+.faq-answer p {
+  margin-bottom: 0;
 }
 
 .faq-list p:last-child,

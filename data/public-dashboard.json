@@ -111,7 +111,7 @@
   "proofs_passed_prior_round": 0,
   "schema_version": 4,
   "score_source": "metagraph_incentive",
-  "theorem_display_mode": "shared",
+  "theorem_display_mode": "uid_variants",
   "theorems": {
     "current": {
       "explanation": "Prove the append-length identity for lists replicated with value 12.",
@@ -150,6 +150,6 @@
       "type_expr": "\u2200 A B : Set (Fin 3), A \u2229 B \u2286 B"
     }
   },
-  "uid_variant_problems": false,
+  "uid_variant_problems": true,
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
 }

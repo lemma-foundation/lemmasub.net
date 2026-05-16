@@ -27,7 +27,7 @@
       <a href="../dashboard/index.html">Dashboard</a>
       <a href="index.html" aria-current="page">Bounties</a>
       <a href="../faq/index.html">FAQ</a>
-      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
       <span class="theme-toggle" role="group" aria-label="Theme">
         <button class="theme-option" type="button" data-theme-choice="light" aria-label="Use light theme">&#9788;</button>
         <button class="theme-option" type="button" data-theme-choice="dark" aria-label="Use dark theme">&#9790;</button>
@@ -38,30 +38,30 @@
   <main class="dashboard-page bounty-page">
     <section class="dashboard-head bounty-head">
       <div>
-        <p class="eyebrow">Off-cadence proof work</p>
+        <p class="eyebrow">Proof rewards</p>
         <h1>Lemma Bounties</h1>
-        <p>Manual bounties for verified Lean proofs of selected formal statements.</p>
+        <p>A bounty is a reward for proving one exact Lean statement outside the normal timed dashboard round.</p>
       </div>
     </section>
 
     <section class="bounty-card" aria-labelledby="current-bounty">
       <div>
-        <p class="eyebrow">Current bounty</p>
-        <h2 id="current-bounty">Formal Conjectures proof formalization</h2>
+        <p class="eyebrow">Launch bounty lane</p>
+        <h2 id="current-bounty">Prove selected Formal Conjectures statements in Lean.</h2>
         <p>
-          The first bounty direction is selected Google DeepMind Formal
-          Conjectures entries whose mathematical result is known or resolved
-          but where a clean Lean proof artifact can still be valuable work.
+          Lemma selects a formal statement, names the exact Lean target, and
+          posts a reward. A miner submits a Lean proof file. If Lean verifies
+          that file against the selected statement, the bounty can be paid.
         </p>
       </div>
       <dl class="bounty-facts">
         <div>
           <dt>Status</dt>
-          <dd>Selecting candidates</dd>
+          <dd>Launch lane</dd>
         </div>
         <div>
           <dt>Submissions</dt>
-          <dd>Not open on this page yet</dd>
+          <dd>Opening with selected bounty targets</dd>
         </div>
         <div>
           <dt>Validation</dt>
@@ -72,14 +72,17 @@
 
     <section class="band bounty-sources">
       <div class="section-head">
-        <p class="eyebrow">Source material</p>
-        <h2>Formal statements first, proof rewards second.</h2>
+        <p class="eyebrow">Source of targets</p>
+        <h2>Formal Conjectures gives Lemma exact Lean statements to point at.</h2>
         <p>
-          Formal Conjectures is a Lean 4 collection of formalized mathematical
-          problem statements with research open, research solved, and formal
-          proof metadata. Research-solved entries are useful proof
-          formalization targets because the mathematics is known while the Lean
-          proof artifact can still be the work.
+          Google DeepMind Formal Conjectures collects mathematical statements
+          written in Lean 4. Some entries are research solved: the mathematics
+          is known, but a clean Lean proof can still be valuable work.
+        </p>
+        <p>
+          That makes the bounty easy to understand: Lemma can pick one exact
+          statement, publish it as the target, and reward a proof file that
+          Lean accepts.
         </p>
         <p>
           Formal Conjectures software is Apache 2.0. Other materials are
@@ -87,15 +90,15 @@
         </p>
       </div>
       <div class="source-list">
-        <a class="source-link" href="https://google-deepmind.github.io/formal-conjectures/">
+        <a class="source-link" href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">
           <span>Formal Conjectures</span>
-          <strong>Browse the benchmark</strong>
+          <strong>Browse the Lean statements</strong>
         </a>
-        <a class="source-link" href="https://arxiv.org/abs/2605.13171">
+        <a class="source-link" href="https://arxiv.org/abs/2605.13171" target="_blank" rel="noopener noreferrer">
           <span>arXiv paper</span>
           <strong>Read the project paper</strong>
         </a>
-        <a class="source-link" href="https://google-deepmind.github.io/formal-conjectures/contribute/">
+        <a class="source-link" href="https://google-deepmind.github.io/formal-conjectures/contribute/" target="_blank" rel="noopener noreferrer">
           <span>Contributing guide</span>
           <strong>Review categories and proof links</strong>
         </a>
@@ -104,12 +107,13 @@
 
     <section class="band coming-next">
       <div class="section-head">
-        <p class="eyebrow">Coming next</p>
-        <h2>Candidate pages, exact theorem IDs, and review notes.</h2>
+        <p class="eyebrow">Bounty pages</p>
+        <h2>Each bounty should show the target, reward, and proof status.</h2>
         <p>
-          Later versions can list selected theorem IDs, proof provenance, review
-          status, and bounty terms. Open conjectures remain a future lane. This
-          page does not collect submissions or publish a live bounty feed yet.
+          The public page can list selected theorem IDs, source links, proof
+          provenance, review status, and bounty terms. Open conjectures can be a
+          later lane; launch bounties should stay focused on exact statements
+          where the proof target is already clear.
         </p>
       </div>
     </section>

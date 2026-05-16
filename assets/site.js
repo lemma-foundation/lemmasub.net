@@ -26,6 +26,7 @@ let optimisticRotationKey = "";
 document.addEventListener("DOMContentLoaded", async () => {
   initializeTheme();
   initializeInfoTips();
+  initializeFaqAccordion();
   if (PAGE !== "home" && PAGE !== "dashboard") {
     return;
   }
@@ -54,11 +55,10 @@ async function loadDashboardData() {
 
 function normalizeDashboardData(raw) {
   const data = raw && typeof raw === "object" ? raw : {};
-  const displayMode = theoremDisplayMode(data);
   return {
     schema_version: data.schema_version,
-    uid_variant_problems: displayMode === "uid_variants",
-    theorem_display_mode: displayMode,
+    uid_variant_problems: true,
+    theorem_display_mode: "uid_variants",
     generated_at: stringOrEmpty(data.generated_at),
     network: stringOrEmpty(data.network),
     netuid: data.netuid,
@@ -554,17 +554,8 @@ function theoremGridKey(theorems) {
   return ["previous", "current", "next"].map((slot) => theoremKey(theorems?.[slot])).join("|");
 }
 
-function theoremDisplayMode(data) {
-  return data?.theorem_display_mode === "uid_variants" || data?.uid_variant_problems === true
-    ? "uid_variants"
-    : "shared";
-}
-
 function theoremModeNote(data) {
-  if (theoremDisplayMode(data) === "uid_variants") {
-    return "Variant mode is on: this dashboard shows the round's representative theorem. Each UID receives a deterministic same-difficulty variant, and validators check the exact theorem sent to that UID.";
-  }
-  return "Normal mode: queried miners receive this theorem during the current window.";
+  return "The dashboard shows the round's representative theorem. Each UID receives a deterministic same-difficulty variant, and validators check the exact theorem sent to that UID.";
 }
 
 function startDashboardPolling() {
@@ -697,6 +688,28 @@ function closeInfoTips() {
   document.querySelectorAll(".info-tip.is-open").forEach((tip) => {
     tip.classList.remove("is-open");
     tip.querySelector(".info-button")?.setAttribute("aria-expanded", "false");
+  });
+}
+
+function initializeFaqAccordion() {
+  const items = Array.from(document.querySelectorAll(".faq-list details"));
+  if (!items.length) {
+    return;
+  }
+  if (!items.some((item) => item.open)) {
+    items[0].open = true;
+  }
+  items.forEach((item) => {
+    item.addEventListener("toggle", () => {
+      if (!item.open) {
+        return;
+      }
+      items.forEach((other) => {
+        if (other !== item) {
+          other.open = false;
+        }
+      });
+    });
   });
 }
 
