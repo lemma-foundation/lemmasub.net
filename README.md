@@ -53,7 +53,7 @@ node scripts/check-task-pages.js
 
 - Keep the public story direct: Lemma is a proof market for Lean-verified work.
   Cadence tasks are automatic subnet reward work; bounty tasks are manual
-  owner-paid campaigns.
+  operator-funded campaigns.
 - Public cadence JSON shows task state, UIDs, and full hotkeys. It must not
   publish proof bodies, proof hashes, proof nonces, or commitment hashes.
 - Live task feeds should be tiny overwritten JSON files from the validator

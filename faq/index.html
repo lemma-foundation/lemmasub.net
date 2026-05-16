@@ -87,28 +87,27 @@
         <article>
           <h2>How long are cadence tasks?</h2>
           <p>
-            They are block-based. The default commit window is 25 blocks, roughly
-            five minutes if blocks are about 12 seconds apart. Reveal opens on the
-            next block, and the target stays current until a proof is accepted.
+            They are block-based. Each theorem window is 100 blocks, about
+            20 minutes if blocks are about 12 seconds apart. The next theorem is
+            chosen by the next fixed window, not by whether the last one was solved.
           </p>
         </article>
 
         <article>
-          <h2>How does scoring work?</h2>
+          <h2>How does cadence scoring work?</h2>
           <p>
             Cadence scoring is automatic: validators check the submitted Lean file,
-            and it passes or fails. Bounties are separate manual campaigns with one
-            listed reward for the accepted proof.
+            and it passes or fails. Easy, medium, hard, and extreme tasks update
+            difficulty-weighted rolling scores, and positive rolling scores become
+            validator weights.
           </p>
         </article>
 
         <article>
-          <h2>How are cadence rewards paid?</h2>
+          <h2>How are bounty rewards paid?</h2>
           <p>
-            Example: if 20% of eligible miners solve, the earned share is
-            <code>(1 - 0.20)^2 = 0.64</code>. So 64% of that epoch's miner budget
-            goes to verified solvers, split by commitment rank. The other 36%
-            routes to the owner/burn UID.
+            Bounties are separate manual campaigns with one listed reward for the
+            accepted proof. They do not control automatic cadence validator weights.
           </p>
         </article>
 
@@ -132,17 +131,17 @@
         <article>
           <h2>How are bounties paid?</h2>
           <p>
-            Bounties are manual winner-take-all campaigns funded from owner
-            emission. The listed reward text is the public promise for that campaign.
+            Bounties are manual winner-take-all campaigns funded by the operator.
+            The listed reward text is the public promise for that campaign.
           </p>
         </article>
 
         <article>
           <h2>What is OpenAI-compatible?</h2>
           <p>
-            Optional prover assistance can point at an API that follows the
-            OpenAI-style URL, API key, and model-id pattern. It is not required for
-            manually prepared Lean proofs.
+            Cadence miners point <code>lemma mine</code> at an API that follows the
+            OpenAI-style URL, API key, and model-id pattern. Manually prepared Lean
+            proofs remain available through the advanced <code>--submission</code> path.
           </p>
         </article>
 

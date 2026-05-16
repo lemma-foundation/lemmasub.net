@@ -16,11 +16,13 @@ function assert(condition, message) {
 }
 
 const cadenceRaw = JSON.stringify(cadence);
-assert(cadence.schema_version === 4, "cadence schema_version must be 4");
+assert(cadence.schema_version === 5, "cadence schema_version must be 5");
 assert(cadence.problem_source === "hybrid", "cadence problem_source must be hybrid");
 assert(cadence.counts && Number.isInteger(cadence.counts.total_targets), "cadence counts must be present");
 assert(Array.isArray(cadence.targets), "cadence targets must be an array");
 assert(cadence.target_window && cadence.target_window.current, "cadence current theorem must be present");
+assert(cadence.cadence && cadence.cadence.window_blocks === 100, "cadence window must be 100 blocks");
+assert(cadence.cadence.variants_enabled === true, "UID variants must be enabled");
 assert(!cadenceRaw.includes("proof_script"), "cadence JSON must not publish proof scripts");
 assert(!cadenceRaw.includes("proof_sha256"), "cadence JSON must not publish proof hashes");
 assert(!cadenceRaw.includes("commitment_hash"), "cadence JSON must not publish commitments");
@@ -29,6 +31,8 @@ assert(!cadenceRaw.includes("proof_nonce"), "cadence JSON must not publish proof
 const cadenceHtml = tasks.renderCadence(cadence);
 assert(cadenceHtml.includes("Theorem window"), "cadence render must include theorem window");
 assert(cadenceHtml.includes("Ordered target state"), "cadence render must include ordered target state");
+assert(cadenceHtml.includes("Current theorem"), "cadence render must emphasize current theorem");
+assert(cadenceHtml.includes("Proof receipts"), "cadence render must include proof receipts");
 assert(cadenceHtml.includes("5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No"), "hotkey must render in full");
 assert(!cadenceHtml.includes("Proof</dt>"), "cadence render must not show proof fields");
 assert(!cadenceHtml.includes("Commit</dt>"), "cadence render must not show commit fields");
@@ -48,8 +52,8 @@ assert(bountyHtml.includes("Google DeepMind Formal Conjectures"), "bounty render
 assert(bountyHtml.includes("not affiliated with Google DeepMind"), "bounty render must show non-affiliation note");
 const dashboardHtml = tasks.renderDashboard(cadence, bounties);
 assert(dashboardHtml.includes("Live cadence work"), "dashboard render must include cadence heading");
-assert(dashboardHtml.includes("Current cadence task"), "dashboard render must include current cadence section");
-assert(dashboardHtml.includes("25 blocks"), "dashboard render must explain cadence duration");
+assert(dashboardHtml.includes("Current theorem"), "dashboard render must include current theorem section");
+assert(dashboardHtml.includes("100 blocks"), "dashboard render must explain cadence duration");
 assert(dashboardHtml.includes("Bounty solved, awaiting next bounty."), "dashboard render must show solved-bounty waiting note");
 assert(dashboardHtml.includes("1k SN467 alpha"), "dashboard render must show current bounty reward");
 assert(dashboardHtml.includes("no subnet UID is required"), "dashboard render must explain bounty access");
@@ -79,8 +83,10 @@ assert(homeHtml.includes("sum_first_odds"), "home page must show the concrete Le
 assert(homeHtml.includes("Lean is the referee."), "home page must explain Lean");
 assert(homeHtml.includes("One idea, written in two forms."), "home page must not repeat layout instruction as copy");
 assert(!homeHtml.includes("sit side by side"), "home page must not describe layout instructions literally");
-assert(homeHtml.includes("(1 - 0.20)^2 = 0.64"), "home page must include concrete cadence reward example");
+assert(homeHtml.includes("Cadence scoring"), "home page must split cadence scoring copy");
+assert(homeHtml.includes("Bounty rewards"), "home page must split bounty reward copy");
 assert(homeHtml.includes("prover APIs"), "home page must explain API-assisted cadence work");
+assert(!homeHtml.includes("Some bounty tasks use"), "home page must remove stale Some source copy");
 assert(homeHtml.includes("not affiliated with Google DeepMind"), "home page must include source non-affiliation note");
 
 const dashboardPageHtml = fs.readFileSync(path.join(root, "dashboard", "index.html"), "utf8");
@@ -94,9 +100,9 @@ for (const question of ["What is Lean?", "What is formal mathematics?", "What is
 }
 for (const copy of [
   "How long are cadence tasks?",
-  "How does scoring work?",
+  "How does cadence scoring work?",
   "Do I have to be a miner to work on a bounty?",
-  "(1 - 0.20)^2 = 0.64",
+  "How are bounty rewards paid?",
   "Google DeepMind Formal Conjectures",
   "not affiliated with Google DeepMind",
   "Apache 2.0",

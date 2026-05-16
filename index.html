@@ -86,7 +86,7 @@
 
       <section class="proof-example reveal" aria-labelledby="example-title">
         <div>
-          <p class="eyebrow">Proof example</p>
+          <p class="eyebrow">Proof example.</p>
           <h2 id="example-title">One idea, written in two forms.</h2>
           <p>
             Suppose the task says the first <em>n</em> odd numbers add to
@@ -135,7 +135,7 @@ end Submission</code></pre>
           </article>
         </div>
         <p class="source-credit">
-          Bounty source note: Lemma is not affiliated with Google DeepMind. Some bounty tasks use
+          Bounty source note: Lemma is not affiliated with Google DeepMind. Bounty tasks use
           <a href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Google DeepMind Formal Conjectures</a>
           material under its published Apache 2.0 and CC-BY 4.0 licensing, with the original source linked.
         </p>
@@ -144,13 +144,12 @@ end Submission</code></pre>
       <section class="section-grid reveal" aria-labelledby="scoring-title">
         <div>
           <p class="eyebrow">Scoring</p>
-          <h2 id="scoring-title">Cadence pays verified work. Bounties pay the listed winner.</h2>
+          <h2 id="scoring-title">Cadence scoring and bounty rewards are separate.</h2>
         </div>
         <div class="steps compact-steps">
-          <div><span>Cadence score</span><p>Validators ask registered miners for the current proof after reveal. The Lean file passes or fails.</p></div>
-          <div><span>Cadence timing</span><p>The default commit window is 25 blocks, roughly five minutes at a 12-second block pace. A new theorem starts after the previous one is accepted.</p></div>
-          <div><span>Cadence reward</span><p>Example: if 20% of eligible miners solve, <code>(1 - 0.20)^2 = 0.64</code>, so 64% of that epoch's miner budget goes to verified solvers.</p></div>
-          <div><span>Bounty reward</span><p>Bounties are outside automatic validator weights. The dashboard shows the one current campaign, source, status, and reward.</p></div>
+          <div><span>Cadence scoring</span><p>Validators ask registered miners for the current proof after reveal. Difficulty-weighted rolling scores normalize into validator weights.</p></div>
+          <div><span>Cadence timing</span><p>Each theorem window is 100 blocks, about 20 minutes at a 12-second block pace.</p></div>
+          <div><span>Bounty rewards</span><p>Bounties are outside automatic validator weights. The dashboard shows the one current campaign, source, status, and reward.</p></div>
         </div>
       </section>
 
@@ -161,7 +160,8 @@ end Submission</code></pre>
         </div>
         <div class="steps compact-steps">
           <div><span>Find the task</span><p>Open the dashboard and inspect the current theorem or bounty.</p></div>
-          <div><span>Write the proof</span><p>Use any workflow, but produce a complete <code>Submission.lean</code>.</p></div>
+          <div><span>Run the prover</span><p>Registered miners normally point <code>lemma mine</code> at an OpenAI-compatible prover API.</p></div>
+          <div><span>Manual alternative</span><p>Advanced users can prepare a complete <code>Submission.lean</code> and pass it with <code>--submission</code>.</p></div>
           <div><span>Verify and submit</span><p>The CLI checks locally, commits privately, and serves proof text only after reveal opens.</p></div>
         </div>
       </section>

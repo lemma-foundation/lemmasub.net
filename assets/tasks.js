@@ -23,6 +23,11 @@
     return new Date(Number(unix) * 1000).toISOString().replace("T", " ").replace(".000Z", " UTC");
   }
 
+  function shortHash(value) {
+    var text = String(value || "");
+    return text.length > 18 ? text.slice(0, 10) + "..." + text.slice(-6) : text;
+  }
+
   function taskHref(task) {
     return task && task.source_url ? String(task.source_url) : "";
   }
@@ -63,7 +68,44 @@
       '<article class="window-card is-' + escapeHtml(task.status || "queued") + '">' +
       "<span>" + escapeHtml(label) + "</span>" +
       renderTaskLink(task) +
-      '<small class="muted">' + escapeHtml(task.status || "queued") + "</small>" +
+      '<small class="muted">' +
+      escapeHtml((task.split || task.difficulty || task.status || "queued") + " - seed " + (task.window_seed || "")) +
+      "</small>" +
+      "</article>"
+    );
+  }
+
+  function renderFact(label, value) {
+    return "<div><dt>" + escapeHtml(label) + "</dt><dd>" + escapeHtml(value || "unknown") + "</dd></div>";
+  }
+
+  function renderCurrentTheorem(task, cadence) {
+    if (!task) {
+      return "<h2>No current cadence theorem.</h2>";
+    }
+    var imports = Array.isArray(task.imports) && task.imports.length ? task.imports.join(", ") : "imports unknown";
+    var countdown = cadence && cadence.next_rotation_block
+      ? "block " + cadence.next_rotation_block + " - " + (cadence.next_rotation_eta || "about 20 minutes")
+      : "next 100-block boundary";
+    return (
+      '<article class="current-theorem">' +
+      '<div class="current-theorem-head">' +
+      '<p class="eyebrow">Current theorem</p>' +
+      "<h2>" + renderTaskLink(task) + "</h2>" +
+      '<span class="badge">' + escapeHtml(task.difficulty || task.split || "cadence") + "</span>" +
+      "</div>" +
+      '<dl class="detail-grid">' +
+      renderFact("Split", task.split || task.source_lane) +
+      renderFact("Topic", task.topic || task.source_lane) +
+      renderFact("Theorem id", task.id) +
+      renderFact("Theorem name", task.theorem_name) +
+      renderFact("Seed/window", "seed " + ((cadence && cadence.seed) || task.window_seed || 0)) +
+      renderFact("Next rotation", countdown) +
+      renderFact("Imports", imports) +
+      renderFact("Toolchain", (task.lean_toolchain || "") + " / " + (task.mathlib_rev || "")) +
+      renderFact("Statement hash", shortHash(task.theorem_statement_sha256)) +
+      "</dl>" +
+      "<pre><code>" + escapeHtml(task.challenge_source || "") + "</code></pre>" +
       "</article>"
     );
   }
@@ -102,34 +144,57 @@
       '<li class="target-row is-' + escapeHtml(task.status || "queued") + '">' +
       "<span>" + escapeHtml(task.status || "queued") + "</span>" +
       renderTaskLink(task) +
-      '<small class="muted">' + escapeHtml(meta) + "</small>" +
+      '<small class="muted">' +
+      escapeHtml(meta + " - " + (task.split || task.difficulty || "cadence") + " - seed " + (task.window_seed || "")) +
+      "</small>" +
       "</li>"
     );
   }
 
+  function renderReceipt(receipt) {
+    return (
+      '<li class="receipt-row">' +
+      "<header>" +
+      '<div class="record-id"><strong>UID ' + escapeHtml(receipt.solver_uid) + "</strong>" +
+      '<span class="badge">' + escapeHtml(receipt.verify_reason || "ok") + "</span></div>" +
+      '<div class="record-title"><span>Theorem</span><strong>' +
+      escapeHtml(receipt.title || receipt.theorem_name || receipt.target_id) +
+      "</strong></div>" +
+      '<dl class="record-facts">' +
+      renderFact("Accepted", "block " + (receipt.accepted_block || "unknown")) +
+      renderFact("Hotkey", receipt.solver_hotkey || "unknown") +
+      renderFact("Lean time", Number(receipt.build_seconds || 0).toFixed(1) + "s") +
+      "</dl>" +
+      "</header>" +
+      "</li>"
+    );
+  }
+
+  function renderReceipts(receipts) {
+    if (!Array.isArray(receipts) || receipts.length === 0) {
+      return '<p class="muted">No accepted proof receipts yet.</p>';
+    }
+    return '<ol class="receipt-list">' + receipts.slice(-12).reverse().map(renderReceipt).join("") + "</ol>";
+  }
+
   function renderCadence(data) {
-    if (!data || data.schema_version !== 4) {
+    if (!data || (data.schema_version !== 5 && data.schema_version !== 4)) {
       throw new Error("unsupported cadence schema");
     }
     var counts = data.counts || {};
+    var cadence = data.cadence || {};
     var current = data.active_target || (data.target_window && data.target_window.current);
     var currentId = current && current.id ? String(current.id) : "";
     var changed = lastCadenceId && currentId && currentId !== lastCadenceId;
     lastCadenceId = currentId || lastCadenceId;
     var updateClass = changed ? " is-updated" : "";
-    var activeHtml = current
-      ? (
-        "<h2>" + renderTaskLink(current) + "</h2>" +
-        '<p class="dashboard-meta">' + escapeHtml(current.source_lane || "cadence") + "</p>" +
-        "<pre><code>" + escapeHtml(current.challenge_source || "") + "</code></pre>"
-      )
-      : "<h2>All listed cadence tasks are solved.</h2>";
+    var receipts = data.accepted_proof_receipts || data.accepted_solver_receipts || [];
     return (
       '<div class="task-feed' + updateClass + '">' +
       '<div class="stats-grid">' +
-      renderStat("Total", counts.total_targets || 0) +
-      renderStat("Solved", counts.solved_targets || 0) +
-      renderStat("Remaining", counts.remaining_targets || 0) +
+      renderStat("Window seed", cadence.seed || data.seed || 0) +
+      renderStat("Next block", cadence.next_rotation_block || "unknown") +
+      renderStat("Receipts", counts.accepted_solver_receipts || receipts.length || 0) +
       renderStat("Current solvers", counts.current_solver_count || 0) +
       "</div>" +
       '<section class="dashboard-section"><p class="eyebrow">Theorem window</p>' +
@@ -138,16 +203,20 @@
       renderWindowSlot("Current", data.target_window && data.target_window.current) +
       renderWindowSlot("Next", data.target_window && data.target_window.next) +
       "</div></section>" +
-      '<section class="dashboard-section"><p class="eyebrow">Current cadence task</p>' +
-      activeHtml +
+      '<section class="dashboard-section theorem-focus">' +
+      renderCurrentTheorem(current, cadence) +
       "</section>" +
-      '<section class="dashboard-section"><p class="eyebrow">Latest accepted solver set</p>' +
-      "<h2>Verified hotkeys.</h2>" +
+      '<section class="dashboard-section"><p class="eyebrow">Recently accepted miners</p>' +
+      "<h2>Current accepted solver set.</h2>" +
       renderSolvers(data.current_solver_set) +
       "</section>" +
       '<section class="dashboard-section"><p class="eyebrow">Ordered target state</p>' +
-      "<h2>Task links.</h2>" +
+      "<h2>Window anchors.</h2>" +
       '<ol class="target-list">' + (data.targets || []).map(renderTargetRow).join("") + "</ol>" +
+      "</section>" +
+      '<section class="dashboard-section"><p class="eyebrow">Proof receipts</p>' +
+      "<h2>Accepted proof receipts.</h2>" +
+      renderReceipts(receipts) +
       "</section>" +
       '<p class="dashboard-meta">Generated ' + escapeHtml(dateText(data.generated_unix)) + "</p>" +
       "</div>"
@@ -237,7 +306,7 @@
       '<div class="dashboard-stack">' +
       '<section aria-labelledby="cadence-title"><p class="eyebrow">Cadence</p>' +
       '<h2 id="cadence-title">Live cadence work.</h2>' +
-      '<p class="dashboard-meta">Registered miners work on cadence. The default commit window is 25 blocks, then validators score only Lean proofs that pass.</p>' +
+      '<p class="dashboard-meta">Registered miners use prover APIs for cadence. The theorem window is 100 blocks, about 20 minutes, and validators score only Lean proofs that pass.</p>' +
       renderCadence(cadenceData) +
       "</section>" +
       '<section aria-labelledby="bounty-title"><p class="eyebrow">Bounty</p>' +
