@@ -55,6 +55,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
   font: 16px/1.52 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -95,6 +96,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 20px;
+  min-width: 0;
 }
 
 nav a {
@@ -110,16 +112,35 @@ nav a[aria-current="page"] {
 }
 
 .theme-toggle {
-  min-height: 32px;
-  padding: 0 11px;
+  display: inline-grid;
+  grid-template-columns: repeat(2, 32px);
+  min-height: 34px;
+  padding: 2px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel);
-  color: var(--ink);
+  border-radius: 999px;
+  background: var(--soft);
+}
+
+.theme-option {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
   cursor: pointer;
   font: inherit;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.theme-option[aria-pressed="true"] {
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: 0 1px 5px rgba(23, 32, 36, 0.16);
 }
 
 h1,
@@ -167,13 +188,19 @@ h3 {
   display: inline-flex;
   gap: 6px;
   align-items: center;
+  min-width: 0;
 }
 
 .info-tip {
   position: relative;
   display: inline-flex;
   align-items: center;
+  z-index: 2;
   text-transform: none;
+}
+
+.info-tip.is-open {
+  z-index: 80;
 }
 
 .info-button {
@@ -194,6 +221,7 @@ h3 {
 }
 
 .info-bubble {
+  display: none;
   position: absolute;
   left: 50%;
   bottom: calc(100% + 8px);
@@ -225,6 +253,7 @@ h3 {
 .info-tip:hover .info-bubble,
 .info-tip:focus-within .info-bubble,
 .info-tip.is-open .info-bubble {
+  display: block;
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
@@ -238,7 +267,7 @@ h3 {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.7fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(min(360px, 100%), 0.7fr);
   gap: clamp(28px, 6vw, 86px);
   align-items: center;
   min-height: 68svh;
@@ -251,6 +280,7 @@ h3 {
 }
 
 .hero-copy {
+  min-width: 0;
   max-width: 760px;
 }
 
@@ -311,6 +341,7 @@ h3 {
 }
 
 .hero-panel {
+  min-width: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel-glass);
@@ -369,6 +400,8 @@ h3 {
 .scoreboard-grid article {
   display: grid;
   gap: 5px;
+  position: relative;
+  min-width: 0;
   padding: 16px 20px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -515,6 +548,12 @@ h3 {
   background: var(--panel);
 }
 
+.proof-example > *,
+.theorem-card,
+.status-strip div {
+  min-width: 0;
+}
+
 .proof-example p {
   color: var(--muted);
 }
@@ -552,6 +591,88 @@ h3 {
 
 .miner-solve-band {
   border-top: 1px solid var(--line);
+}
+
+.bounty-page {
+  max-width: 1120px;
+}
+
+.bounty-head {
+  align-items: flex-start;
+}
+
+.bounty-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+  gap: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.bounty-card p {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.bounty-facts {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.bounty-facts div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.bounty-facts dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bounty-facts dd {
+  margin: 4px 0 0;
+  font-weight: 750;
+}
+
+.bounty-sources,
+.coming-next {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.source-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.source-link {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  text-decoration: none;
+}
+
+.source-link span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.source-link strong {
+  color: var(--blue);
 }
 
 .faq-page {
@@ -643,6 +764,7 @@ h3 {
 .status-strip div {
   display: grid;
   gap: 5px;
+  position: relative;
   min-width: 0;
   padding: 14px;
   border-right: 1px solid var(--line);
@@ -730,6 +852,8 @@ h3 {
 
 .lean-statement {
   margin: 14px 0;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .statement-label {
@@ -769,8 +893,19 @@ h3 {
 }
 
 .technical-details dd {
+  display: grid;
+  gap: 2px;
   margin: 0;
   overflow-wrap: anywhere;
+}
+
+.detail-value {
+  color: var(--ink);
+}
+
+.detail-help {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .theorem-layout.is-rotating .theorem-card {
@@ -860,6 +995,8 @@ h3 {
 }
 
 .table-shell {
+  position: relative;
+  max-width: 100%;
   overflow-x: auto;
   border: 1px solid var(--line);
   background: var(--panel);
@@ -877,6 +1014,38 @@ td {
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
+}
+
+thead {
+  position: relative;
+  z-index: 6;
+}
+
+th {
+  position: relative;
+}
+
+.table-label .info-bubble {
+  top: calc(100% + 8px);
+  bottom: auto;
+  z-index: 90;
+  transform: translate(-50%, -4px);
+}
+
+.table-label .info-bubble.align-right {
+  transform: translate(0, -4px);
+}
+
+.table-label .info-tip:hover .info-bubble,
+.table-label .info-tip:focus-within .info-bubble,
+.table-label .info-tip.is-open .info-bubble {
+  transform: translate(-50%, 0);
+}
+
+.table-label .info-tip:hover .info-bubble.align-right,
+.table-label .info-tip:focus-within .info-bubble.align-right,
+.table-label .info-tip.is-open .info-bubble.align-right {
+  transform: translate(0, 0);
 }
 
 .pass-mark {
@@ -953,14 +1122,16 @@ td a:hover,
   .hero,
   .operator-band,
   .proof-example,
-  .theorem-layout {
+  .theorem-layout,
+  .bounty-card {
     grid-template-columns: 1fr;
   }
 
   .steps,
   .scoreboard-grid,
   .value-grid,
-  .roadmap-list {
+  .roadmap-list,
+  .source-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -990,6 +1161,7 @@ td a:hover,
 @media (max-width: 640px) {
   .site-header {
     align-items: flex-start;
+    flex-wrap: wrap;
   }
 
   nav {
@@ -1021,7 +1193,8 @@ td a:hover,
   .scoreboard-grid,
   .metric-grid,
   .value-grid,
-  .roadmap-list {
+  .roadmap-list,
+  .source-list {
     grid-template-columns: 1fr;
   }
 

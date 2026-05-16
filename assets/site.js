@@ -6,7 +6,6 @@ const DATA_URL = new URL(
 const DASHBOARD_REFRESH_MS = 10000;
 const DASHBOARD_CATCHUP_MS = 5000;
 const DASHBOARD_CATCHUP_ATTEMPTS = 24;
-const TOP_UID_LIST_LIMIT = 6;
 
 let miners = [];
 let minerFilter = "";
@@ -106,7 +105,6 @@ function applyHomeData(data, dataLoaded) {
   setAll("[data-current-goal]", current?.type_expr || "Public dashboard JSON is not available.");
   setAll("[data-network-label]", networkLabel(data));
   setAll("[data-top-score]", formatScore(stats.topScore));
-  setAll("[data-top-miner]", topMinersLabel(stats.topMiners));
   setAll("[data-proof-count]", proofCountLabel(stats.priorRoundProofCount));
 }
 
@@ -147,7 +145,6 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
   setText("[data-status-chain-head]", blockNumberLabel(data));
   setAll("[data-miner-count]", String(stats.minerCount));
   setAll("[data-top-score]", formatScore(stats.topScore));
-  setAll("[data-top-miner]", topMinersLabel(stats.topMiners));
   setAll("[data-proof-count]", proofCountLabel(stats.priorRoundProofCount));
 
   const theoremChanged = previousCurrent && previousCurrent !== theoremKey(displayedTheorems.current);
@@ -168,17 +165,10 @@ function dashboardStats(data) {
     }
     return best === null || miner.score > best ? miner.score : best;
   }, null);
-  const topMiners = topScore === null
-    ? []
-    : validMiners
-      .filter((miner) => miner.score === topScore)
-      .sort((a, b) => Number(a.uid) - Number(b.uid));
-
   return {
     minerCount: validMiners.length,
     priorRoundProofCount: data.proofs_passed_prior_round,
-    topScore,
-    topMiners
+    topScore
   };
 }
 
@@ -188,32 +178,43 @@ function renderTheorems(theorems) {
     return;
   }
 
-  const current = theoremCard("current", theorems.current, true);
-  const previous = theoremCard("previous", theorems.previous, false);
-  const next = theoremCard("next", theorems.next, false);
+  const openSlots = openTheoremDetailSlots();
+  const current = theoremCard("current", theorems.current, true, openSlots);
+  const previous = theoremCard("previous", theorems.previous, false, openSlots);
+  const next = theoremCard("next", theorems.next, false, openSlots);
   grid.innerHTML = `${current}<div class="side-theorems">${next}${previous}</div>`;
 }
 
-function theoremCard(label, theorem, isMain) {
+function openTheoremDetailSlots() {
+  return new Set(
+    Array.from(document.querySelectorAll("[data-theorem-slot] details[open]"))
+      .map((details) => details.closest("[data-theorem-slot]")?.dataset.theoremSlot)
+      .filter(Boolean)
+  );
+}
+
+function theoremCard(label, theorem, isMain, openSlots = new Set()) {
   const heading = isMain ? "h2" : "h3";
   const title = label === "current" ? "Current theorem" : `${capitalize(label)} theorem`;
   if (!theorem) {
-    return `<article class="theorem-card${isMain ? " current" : ""}">
+    return `<article class="theorem-card${isMain ? " current" : ""}" data-theorem-slot="${escapeHtml(label)}">
       <p class="label">${escapeHtml(title)}</p>
       <${heading}>Waiting for fresh public data</${heading}>
       <p class="theorem-explain">The current snapshot does not include another theorem for this slot yet.</p>
     </article>`;
   }
 
+  const detailsOpen = openSlots.has(label) ? " open" : "";
+
   if (!isMain) {
-    return `<article class="theorem-card compact">
+    return `<article class="theorem-card compact" data-theorem-slot="${escapeHtml(label)}">
       <div class="theorem-topline">
         <p class="label">${escapeHtml(title)}</p>
       </div>
       <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
       <p class="statement-label">Formal theorem to prove</p>
       <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
-      <details class="technical-details">
+      <details class="technical-details"${detailsOpen}>
         <summary>Details</summary>
         <dl>
           ${theoremDetails(theorem)}
@@ -222,7 +223,7 @@ function theoremCard(label, theorem, isMain) {
     </article>`;
   }
 
-  return `<article class="theorem-card current">
+  return `<article class="theorem-card current" data-theorem-slot="${escapeHtml(label)}">
     <div class="theorem-topline">
       <p class="label">${escapeHtml(title)}</p>
       <div class="theorem-meta">
@@ -232,7 +233,7 @@ function theoremCard(label, theorem, isMain) {
     <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
     <p class="statement-label">Formal theorem to prove</p>
     <pre class="lean-statement">${escapeHtml(theorem.type_expr || "")}</pre>
-    <details class="technical-details">
+    <details class="technical-details"${detailsOpen}>
       <summary>Details</summary>
       <dl>
         ${theoremDetails(theorem)}
@@ -379,17 +380,6 @@ function networkLabel(data) {
   return `${network} / netuid ${netuid}`;
 }
 
-function topMinersLabel(topMiners) {
-  if (!topMiners.length) {
-    return "No data";
-  }
-  if (topMiners.length > TOP_UID_LIST_LIMIT) {
-    return `${topMiners.length} UIDs tied`;
-  }
-  const uids = topMiners.map((miner) => miner.uid).join(", ");
-  return topMiners.length === 1 ? `UID ${uids}` : `Tied UIDs ${uids}`;
-}
-
 function proofCountLabel(value) {
   return value === null ? "No round data" : String(value);
 }
@@ -409,14 +399,14 @@ function cleanPlainTheorem(value) {
 
 function theoremDetails(theorem) {
   return [
-    ["Theorem id", theorem.theorem_id || "unknown"],
-    ["Name", theorem.name || "unknown"],
-    ["Seed", theorem.seed ?? "unknown"],
-    ["Difficulty", humanDifficulty(theorem.split) || "unknown"],
-    ["Set", humanTopic(theorem.topic) || "unknown"],
-    ["Source", humanSource(theorem.source_lane) || "unknown"]
+    ["Theorem id", theorem.theorem_id || "unknown", "Stable public identifier for this theorem row."],
+    ["Name", theorem.name || "unknown", "Lean theorem name miners prove."],
+    ["Seed", theorem.seed ?? "unknown", "Public chain-derived sampler input."],
+    ["Difficulty", humanDifficulty(theorem.split) || "unknown", "Cadence split used by scoring."],
+    ["Set/topic", humanTopic(theorem.topic) || "unknown", "Human grouping for the statement."],
+    ["Source", humanSource(theorem.source_lane) || "unknown", "Where the statement came from."]
   ]
-    .map(([label, value]) => `<dt>${label}</dt><dd>${escapeHtml(value)}</dd>`)
+    .map(([label, value, help]) => `<dt>${label}</dt><dd><span class="detail-value">${escapeHtml(value)}</span><span class="detail-help">${escapeHtml(help)}</span></dd>`)
     .join("");
 }
 
@@ -618,9 +608,9 @@ function initializeTheme() {
   const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   setTheme(stored || preferred);
 
-  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+  document.querySelectorAll("[data-theme-choice]").forEach((button) => {
     button.addEventListener("click", () => {
-      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      const next = button.dataset.themeChoice === "dark" ? "dark" : "light";
       storeTheme(next);
       setTheme(next);
     });
@@ -646,9 +636,9 @@ function storeTheme(theme) {
 function setTheme(theme) {
   const normalized = theme === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = normalized;
-  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-    button.textContent = normalized === "dark" ? "Light" : "Dark";
-    button.setAttribute("aria-pressed", normalized === "dark" ? "true" : "false");
+  document.querySelectorAll("[data-theme-choice]").forEach((button) => {
+    const active = button.dataset.themeChoice === normalized;
+    button.setAttribute("aria-pressed", active ? "true" : "false");
   });
 }
 

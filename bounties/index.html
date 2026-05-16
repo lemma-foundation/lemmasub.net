@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Current and upcoming Lemma theorem-proof bounties.">
+  <title>Lemma Bounties</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-bounties">
+  <script src="../assets/site.js?v=20260516-bounties" defer></script>
+</head>
+<body data-page="bounties">
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Lemma home">Lemma</a>
+    <nav aria-label="Primary">
+      <a href="../dashboard/index.html">Dashboard</a>
+      <a href="index.html" aria-current="page">Bounties</a>
+      <a href="../faq/index.html">FAQ</a>
+      <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
+      <span class="theme-toggle" role="group" aria-label="Theme">
+        <button class="theme-option" type="button" data-theme-choice="light" aria-label="Use light theme">&#9788;</button>
+        <button class="theme-option" type="button" data-theme-choice="dark" aria-label="Use dark theme">&#9790;</button>
+      </span>
+    </nav>
+  </header>
+
+  <main class="dashboard-page bounty-page">
+    <section class="dashboard-head bounty-head">
+      <div>
+        <p class="eyebrow">Off-cadence proof work</p>
+        <h1>Lemma Bounties</h1>
+        <p>Manual bounties for verified Lean proofs of selected formal statements.</p>
+      </div>
+    </section>
+
+    <section class="bounty-card" aria-labelledby="current-bounty">
+      <div>
+        <p class="eyebrow">Current bounty</p>
+        <h2 id="current-bounty">Formal Conjectures solved-statement proof</h2>
+        <p>
+          The first bounty direction is solved Google DeepMind Formal Conjectures
+          statements that already have a formal Lean statement and need an
+          independently verified Lean proof artifact.
+        </p>
+      </div>
+      <dl class="bounty-facts">
+        <div>
+          <dt>Status</dt>
+          <dd>Preparing candidate selection</dd>
+        </div>
+        <div>
+          <dt>Reward lane</dt>
+          <dd>Manual owner-funded bounty</dd>
+        </div>
+        <div>
+          <dt>Validation</dt>
+          <dd>Lean 4 proof verification against the selected statement</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="band bounty-sources">
+      <div class="section-head">
+        <p class="eyebrow">Source material</p>
+        <h2>Formal statements first, proof rewards second.</h2>
+        <p>
+          Formal Conjectures is a Lean 4 collection of formalized mathematical
+          problem statements with open, solved, and formally proved categories.
+          Its paper describes solved problems as useful proof-autoformalization
+          targets, which makes them a natural first Lemma bounty source.
+        </p>
+      </div>
+      <div class="source-list">
+        <a class="source-link" href="https://google-deepmind.github.io/formal-conjectures/">
+          <span>Formal Conjectures</span>
+          <strong>Browse the benchmark</strong>
+        </a>
+        <a class="source-link" href="https://arxiv.org/abs/2605.13171">
+          <span>arXiv paper</span>
+          <strong>Read the project paper</strong>
+        </a>
+        <a class="source-link" href="https://google-deepmind.github.io/formal-conjectures/contribute/">
+          <span>Contributing guide</span>
+          <strong>Review categories and proof links</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="band coming-next">
+      <div class="section-head">
+        <p class="eyebrow">Coming next</p>
+        <h2>Candidate pages, exact theorem IDs, and review notes.</h2>
+        <p>
+          Later versions can list selected theorem IDs, proof provenance, review
+          status, and bounty terms. This page does not collect submissions or
+          publish a live bounty feed yet.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Original contributors: Spaceτime, Maciej Kula, and Infinitao.</p>
+    <p><a href="../index.html">Lemma home</a></p>
+  </footer>
+</body>
+</html>

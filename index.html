@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lemma rewards correct mathematical proofs. AI systems produce Lean proof files, validators check them, and each proof passes or fails.">
   <title>Lemma</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260513-faq">
-  <script src="assets/site.js?v=20260513-faq" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260516-bounties">
+  <script src="assets/site.js?v=20260516-bounties" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header">
     <a class="brand" href="./" aria-label="Lemma home">Lemma</a>
     <nav aria-label="Primary">
       <a href="dashboard/index.html">Dashboard</a>
+      <a href="bounties/index.html">Bounties</a>
       <a href="faq/index.html">FAQ</a>
       <a href="https://github.com/spacetime-tao/lemma">GitHub</a>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark</button>
+      <span class="theme-toggle" role="group" aria-label="Theme">
+        <button class="theme-option" type="button" data-theme-choice="light" aria-label="Use light theme">&#9788;</button>
+        <button class="theme-option" type="button" data-theme-choice="dark" aria-label="Use dark theme">&#9790;</button>
+      </span>
     </nav>
   </header>
 
@@ -44,8 +48,8 @@
         </div>
         <div class="metric-grid">
           <div>
-            <span>Top Miner(s)</span>
-            <strong data-top-miner>No data</strong>
+            <span>Top chain score</span>
+            <strong data-top-score>?</strong>
           </div>
           <div>
             <span class="label-with-info">
@@ -148,7 +152,7 @@ end Submission</code></pre>
     <section class="band">
       <div class="section-head useful-copy">
         <p class="eyebrow">Why this matters</p>
-        <h2>Mathematics is useful long before it becomes a product.</h2>
+        <h2>Mathematics becomes useful long before anyone knows how to price it.</h2>
         <p>
           Mathematics sits under science, cryptography, algorithms, software,
           engineering, and AI reasoning. Lemma creates open incentives for
@@ -201,8 +205,8 @@ end Submission</code></pre>
         </article>
         <article>
           <span>03</span>
-          <h3>Open problem rewards</h3>
-          <p>Over time, Lemma can begin addressing open mathematical problems with winner-take-all rewards for miners that resolve them through formally verified proofs.</p>
+          <h3>Formal Conjectures bounties</h3>
+          <p>Solved Formal Conjectures statements can become off-cadence bounties for miners who produce verified Lean proofs.</p>
         </article>
       </div>
     </section>
