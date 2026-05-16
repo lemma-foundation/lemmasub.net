@@ -1,0 +1,243 @@
+{
+  "schema_version": 5,
+  "generated_unix": 1778821649,
+  "lemma_version": "0.1.0",
+  "block": 7124821,
+  "seed": 7124800,
+  "problem_source": "hybrid",
+  "known_theorems_manifest_sha256": "721d7aeaa8030bd54cf129fef6774b131cac42363efc20dfff2783580164601a",
+  "generated_registry_sha256": "61c22a6e00fd7149d4be5aa2294c8e96577648eecad4abef1a33715975a52610",
+  "cadence": {
+    "block": 7124821,
+    "seed": 7124800,
+    "window_blocks": 100,
+    "window_start_block": 7124800,
+    "window_end_block": 7124899,
+    "next_rotation_block": 7124900,
+    "blocks_until_rotation": 79,
+    "next_rotation_eta_seconds": 948,
+    "next_rotation_eta": "about 16 minutes",
+    "variants_enabled": true,
+    "split_weights": {
+      "easy": 10,
+      "medium": 35,
+      "hard": 50,
+      "extreme": 5
+    },
+    "difficulty_scoring_weights": {
+      "easy": 1,
+      "medium": 2,
+      "hard": 4,
+      "extreme": 8
+    }
+  },
+  "reward": {
+    "mode": "difficulty_weighted_rolling_score",
+    "rule": "Verified proofs update per-UID rolling scores; positive rolling scores normalize into weights.",
+    "coldkey_partitioning": true,
+    "coldkey_partitioning_note": "Same-coldkey partitioning applies work/reward pressure; it is not Sybil-proof identity."
+  },
+  "counts": {
+    "total_targets": 100,
+    "accepted_windows": 1,
+    "accepted_targets": 1,
+    "current_solver_count": 1,
+    "accepted_solver_receipts": 1
+  },
+  "active_target": {
+    "id": "gen/easy/7124800",
+    "order": 10000,
+    "title": "Boolean conjunction false and true",
+    "difficulty": "easy",
+    "status": "current",
+    "theorem_name": "generated_easy_bool_and_3ec108d35584",
+    "split": "easy",
+    "topic": "arithmetic.basic",
+    "window_seed": 7124800,
+    "source_lane": "generated",
+    "source_url": "https://lemmasub.net/examples/cadence/0000/",
+    "imports": ["Mathlib"],
+    "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+    "mathlib_rev": "5450b53e5ddc",
+    "theorem_statement_sha256": "d1830b99889dda0c68fbd3454e39ee0d1c4214f719e770acc79f091540ddce08",
+    "challenge_source": "import Mathlib\n\nnamespace Submission\n\ntheorem generated_easy_bool_and_3ec108d35584 : (false && true) = false := by\n  sorry\n\nend Submission\n",
+    "submission_stub": "import Mathlib\n\nnamespace Submission\n\ntheorem generated_easy_bool_and_3ec108d35584 : (false && true) = false := by\n  sorry\n\nend Submission\n"
+  },
+  "target_window": {
+    "previous": {
+      "id": "gen/easy/7124700",
+      "order": 10000,
+      "title": "Natural arithmetic 60 + 11",
+      "difficulty": "easy",
+      "status": "previous",
+      "theorem_name": "generated_easy_nat_add_bd13f49a4be5",
+      "split": "easy",
+      "topic": "arithmetic.basic",
+      "window_seed": 7124700,
+      "source_lane": "generated",
+      "source_url": "https://lemmasub.net/examples/cadence/0000/",
+      "imports": ["Mathlib"],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "theorem_statement_sha256": "4dab17ca1ebd53aa8d0c46df16888bb5ebd6fa29a93433ecfe356e26454495e4"
+    },
+    "current": {
+      "id": "gen/easy/7124800",
+      "order": 10000,
+      "title": "Boolean conjunction false and true",
+      "difficulty": "easy",
+      "status": "current",
+      "theorem_name": "generated_easy_bool_and_3ec108d35584",
+      "split": "easy",
+      "topic": "arithmetic.basic",
+      "window_seed": 7124800,
+      "source_lane": "generated",
+      "source_url": "https://lemmasub.net/examples/cadence/0000/",
+      "imports": ["Mathlib"],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "theorem_statement_sha256": "d1830b99889dda0c68fbd3454e39ee0d1c4214f719e770acc79f091540ddce08",
+      "challenge_source": "import Mathlib\n\nnamespace Submission\n\ntheorem generated_easy_bool_and_3ec108d35584 : (false && true) = false := by\n  sorry\n\nend Submission\n",
+      "submission_stub": "import Mathlib\n\nnamespace Submission\n\ntheorem generated_easy_bool_and_3ec108d35584 : (false && true) = false := by\n  sorry\n\nend Submission\n"
+    },
+    "next": {
+      "id": "gen/easy/7124900",
+      "order": 10000,
+      "title": "Natural arithmetic 35 + 59",
+      "difficulty": "easy",
+      "status": "next",
+      "theorem_name": "generated_easy_nat_add_289563695fac",
+      "split": "easy",
+      "topic": "arithmetic.basic",
+      "window_seed": 7124900,
+      "source_lane": "generated",
+      "source_url": "https://lemmasub.net/examples/cadence/0000/",
+      "imports": ["Mathlib"],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "theorem_statement_sha256": "003385df33b9dd06d4a30c3d22ff637868533960ceddf96c9b4d29909cd3ec9c"
+    }
+  },
+  "targets": [
+    {
+      "id": "gen/easy/7124700",
+      "order": 10000,
+      "title": "Natural arithmetic 60 + 11",
+      "difficulty": "easy",
+      "status": "previous",
+      "theorem_name": "generated_easy_nat_add_bd13f49a4be5",
+      "split": "easy",
+      "topic": "arithmetic.basic",
+      "window_seed": 7124700,
+      "source_lane": "generated",
+      "source_url": "https://lemmasub.net/examples/cadence/0000/",
+      "imports": ["Mathlib"],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "theorem_statement_sha256": "4dab17ca1ebd53aa8d0c46df16888bb5ebd6fa29a93433ecfe356e26454495e4"
+    },
+    {
+      "id": "gen/easy/7124800",
+      "order": 10000,
+      "title": "Boolean conjunction false and true",
+      "difficulty": "easy",
+      "status": "current",
+      "theorem_name": "generated_easy_bool_and_3ec108d35584",
+      "split": "easy",
+      "topic": "arithmetic.basic",
+      "window_seed": 7124800,
+      "source_lane": "generated",
+      "source_url": "https://lemmasub.net/examples/cadence/0000/",
+      "imports": ["Mathlib"],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "theorem_statement_sha256": "d1830b99889dda0c68fbd3454e39ee0d1c4214f719e770acc79f091540ddce08",
+      "challenge_source": "import Mathlib\n\nnamespace Submission\n\ntheorem generated_easy_bool_and_3ec108d35584 : (false && true) = false := by\n  sorry\n\nend Submission\n"
+    },
+    {
+      "id": "gen/easy/7124900",
+      "order": 10000,
+      "title": "Natural arithmetic 35 + 59",
+      "difficulty": "easy",
+      "status": "next",
+      "theorem_name": "generated_easy_nat_add_289563695fac",
+      "split": "easy",
+      "topic": "arithmetic.basic",
+      "window_seed": 7124900,
+      "source_lane": "generated",
+      "source_url": "https://lemmasub.net/examples/cadence/0000/",
+      "imports": ["Mathlib"],
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "theorem_statement_sha256": "003385df33b9dd06d4a30c3d22ff637868533960ceddf96c9b4d29909cd3ec9c"
+    }
+  ],
+  "current_solver_set": {
+    "target_id": "gen/easy/7124800",
+    "accepted_block": 7124821,
+    "accepted_unix": 1778821605,
+    "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+    "lemma_version": "0.1.0",
+    "theorem_statement_sha256": "d1830b99889dda0c68fbd3454e39ee0d1c4214f719e770acc79f091540ddce08",
+    "solvers": [
+      {
+        "uid": 1,
+        "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+        "verify_reason": "ok",
+        "build_seconds": 356.2,
+        "weight_share": 1.0
+      }
+    ]
+  },
+  "solved_ledger": [
+    {
+      "target_id": "gen/easy/7124800",
+      "accepted_block": 7124821,
+      "accepted_unix": 1778821605,
+      "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "lemma_version": "0.1.0",
+      "theorem_statement_sha256": "d1830b99889dda0c68fbd3454e39ee0d1c4214f719e770acc79f091540ddce08",
+      "solvers": [
+        {
+          "uid": 1,
+          "hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+          "verify_reason": "ok",
+          "build_seconds": 356.2,
+          "weight_share": 1.0
+        }
+      ]
+    }
+  ],
+  "accepted_solver_receipts": [
+    {
+      "accepted_block": 7124821,
+      "accepted_unix": 1778821605,
+      "build_seconds": 356.2,
+      "lemma_version": "0.1.0",
+      "solver_hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+      "solver_uid": 1,
+      "target_id": "gen/easy/7124800",
+      "theorem_name": "generated_easy_bool_and_3ec108d35584",
+      "theorem_statement_sha256": "d1830b99889dda0c68fbd3454e39ee0d1c4214f719e770acc79f091540ddce08",
+      "title": "Boolean conjunction false and true",
+      "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "verify_reason": "ok"
+    }
+  ],
+  "accepted_proof_receipts": [
+    {
+      "accepted_block": 7124821,
+      "accepted_unix": 1778821605,
+      "build_seconds": 356.2,
+      "lemma_version": "0.1.0",
+      "solver_hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No",
+      "solver_uid": 1,
+      "target_id": "gen/easy/7124800",
+      "theorem_name": "generated_easy_bool_and_3ec108d35584",
+      "theorem_statement_sha256": "d1830b99889dda0c68fbd3454e39ee0d1c4214f719e770acc79f091540ddce08",
+      "title": "Boolean conjunction false and true",
+      "validator_hotkey": "5Gc8mjFsqyTkvdeXhWCSLxW2M7AvsVDweMHyS9z8RbEngQmy",
+      "verify_reason": "ok"
+    }
+  ]
+}

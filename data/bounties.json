@@ -1,0 +1,24 @@
+{
+  "campaigns": [
+    {
+      "accepted": {
+        "accepted_unix": 1778821700,
+        "reward_status": "accepted",
+        "solver_hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No"
+      },
+      "declaration": "Example.formal_conjecture",
+      "id": "example.formal_conjecture",
+      "lean_file": "FormalConjectures/Example.lean",
+      "reward_label": "1k SN467 alpha",
+      "source_url": "/examples/bounties/example/",
+      "statement_sha256": "pending",
+      "status": "accepted",
+      "title": "Example Formal Conjectures bounty",
+      "upstream_commit": "pending",
+      "upstream_repo": "google-deepmind/formal-conjectures"
+    }
+  ],
+  "generated_unix": 1778821649,
+  "reward_mode": "manual_winner_take_all_owner_emission",
+  "schema_version": 1
+}
