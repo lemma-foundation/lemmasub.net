@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeTheme();
   initializeInfoTips();
   initializeFaqAccordion();
+  initializeScrollReveals();
   if (PAGE !== "home" && PAGE !== "dashboard") {
     return;
   }
@@ -108,6 +109,7 @@ function applyHomeData(data, dataLoaded) {
   setAll("[data-current-goal]", current?.type_expr || "Public dashboard JSON is not available.");
   setAll("[data-theorem-mode-note]", theoremModeNote(data));
   setAll("[data-network-label]", networkLabel(data));
+  setAll("[data-miner-count]", String(stats.minerCount));
   setAll("[data-top-score]", formatScore(stats.topScore));
   setAll("[data-proof-count]", proofCountLabel(stats.priorRoundProofCount));
 }
@@ -628,9 +630,9 @@ function initializeTheme() {
   const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   setTheme(stored || preferred);
 
-  document.querySelectorAll("[data-theme-choice]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const next = button.dataset.themeChoice === "dark" ? "dark" : "light";
+  document.querySelectorAll(".theme-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
       storeTheme(next);
       setTheme(next);
     });
@@ -656,9 +658,14 @@ function storeTheme(theme) {
 function setTheme(theme) {
   const normalized = theme === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = normalized;
+  document.querySelectorAll(".theme-toggle").forEach((toggle) => {
+    toggle.dataset.currentTheme = normalized;
+    toggle.setAttribute("aria-label", `Switch to ${normalized === "dark" ? "light" : "dark"} theme`);
+  });
   document.querySelectorAll("[data-theme-choice]").forEach((button) => {
     const active = button.dataset.themeChoice === normalized;
     button.setAttribute("aria-pressed", active ? "true" : "false");
+    button.setAttribute("aria-label", `Switch to ${normalized === "dark" ? "light" : "dark"} theme`);
   });
 }
 
@@ -711,6 +718,27 @@ function initializeFaqAccordion() {
       });
     });
   });
+}
+
+function initializeScrollReveals() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+    document.querySelectorAll(".band, .dashboard-head, .status-strip, .scoreboard-grid, .theorem-layout, .miners-section, .dashboard-note, .source-link, .bounty-card").forEach((element) => {
+      element.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const items = document.querySelectorAll(".band, .dashboard-head, .status-strip, .scoreboard-grid, .theorem-layout, .miners-section, .dashboard-note, .source-link, .bounty-card");
+  items.forEach((element) => element.classList.add("reveal-on-scroll"));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  items.forEach((element) => observer.observe(element));
 }
 
 function linkOrText(text, url) {

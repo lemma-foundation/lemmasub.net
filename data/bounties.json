@@ -1,24 +1,19 @@
 {
   "campaigns": [
     {
-      "accepted": {
-        "accepted_unix": 1778821700,
-        "reward_status": "accepted",
-        "solver_hotkey": "5DvFMbph3has15zmHLd6WsZAKNhYN45ctmydJEQTWxA2U2No"
-      },
-      "declaration": "Example.formal_conjecture",
-      "id": "example.formal_conjecture",
-      "lean_file": "FormalConjectures/Example.lean",
-      "reward_label": "1k SN467 alpha",
-      "source_url": "/examples/bounties/example/",
+      "declaration": "Submission.two_plus_two_eq_four",
+      "id": "smoke.two_plus_two",
+      "lean_file": "Submission.lean",
+      "reward_label": "Demo / no payout",
+      "source_url": "/bounties/",
       "statement_sha256": "pending",
-      "status": "accepted",
-      "title": "Example Formal Conjectures bounty",
+      "status": "open",
+      "title": "Smoke test: two plus two",
       "upstream_commit": "pending",
-      "upstream_repo": "google-deepmind/formal-conjectures"
+      "upstream_repo": "spacetime-tao/lemma"
     }
   ],
-  "generated_unix": 1778821649,
-  "reward_mode": "manual_winner_take_all_owner_emission",
+  "generated_unix": 1778918400,
+  "reward_mode": "manual_demo_no_payout",
   "schema_version": 1
 }

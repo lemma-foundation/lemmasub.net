@@ -16,8 +16,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260516-text-ux">
-  <script src="../assets/site.js?v=20260516-clarity" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260516-site-polish-2">
+  <script src="../assets/site.js?v=20260516-site-polish-2" defer></script>
 </head>
 <body id="top" data-page="dashboard">
   <header class="site-header">
@@ -169,14 +169,25 @@
       </div>
     </section>
 
-    <section class="footnote-band dashboard-note">
-      <p>
-        Chain score is the public incentive value reported by the testnet metagraph, not a per-theorem grade.
-        Proof counts come from one canonical validator-side summary export, not a merged view across every validator.
-        The theorem countdown is time left in the public theorem window, not a promise that every miner query receives the full interval.
-        The dashboard publishes theorem lane metadata, public miner fields, and aggregate counts only.
-        It does not publish proof scripts, nonces, commitments, wallet files, local paths, or private exports.
-      </p>
+    <section class="footnote-band dashboard-note" aria-label="Dashboard notes">
+      <div class="dashboard-note-grid">
+        <article>
+          <span>Chain score</span>
+          <p>The public incentive value reported by the testnet metagraph, not a per-theorem grade.</p>
+        </article>
+        <article>
+          <span>Proof counts</span>
+          <p>From one canonical validator-side summary export, not a merged view across every validator.</p>
+        </article>
+        <article>
+          <span>Theorem window</span>
+          <p>The countdown is public window time, not a promise that every miner query receives the full interval.</p>
+        </article>
+        <article>
+          <span>Public data only</span>
+          <p>No proof scripts, nonces, commitments, wallet files, local paths, or private exports are published.</p>
+        </article>
+      </div>
       <p class="meta" data-empty-miners>No public miner rows are present in this snapshot.</p>
     </section>
   </main>
