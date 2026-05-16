@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7132186,
+  "chain_head_block": 7132201,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-16T05:33:12Z",
+  "generated_at": "2026-05-16T05:36:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7132100,
-  "problem_seed_chain_head": 7132186,
+  "problem_seed": 7132200,
+  "problem_seed_chain_head": 7132201,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove a shifted square inequality for the sum x plus y with offset 4.",
-      "label": "current",
-      "name": "t_58a4c2d",
-      "plain_english": "Prove a shifted square inequality for the sum x plus y with offset 4.",
-      "seed": 7132100,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7132100",
-      "topic": "optimization.inequalities",
-      "type_expr": "\u2200 x y : \u211d, 4 * x * y + (4 : \u211d) \u2264 (x + y) ^ 2 + (4 : \u211d)"
-    },
-    "next": {
       "explanation": "Prove that shifting a real number by one is a continuous function.",
-      "label": "next",
+      "label": "current",
       "name": "curated_continuous_shift",
       "plain_english": "Prove that shifting a real number by one is a continuous function.",
       "seed": 7132200,
@@ -136,17 +124,29 @@
       "topic": "analysis.continuity",
       "type_expr": "Continuous (fun x : \u211d => x + 1)"
     },
-    "previous": {
-      "explanation": "Prove commutativity of natural-number addition after adding 1 to both sides.",
-      "label": "previous",
-      "name": "t_f445fe",
-      "plain_english": "Prove commutativity of natural-number addition after adding 1 to both sides.",
-      "seed": 7132000,
+    "next": {
+      "explanation": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
+      "label": "next",
+      "name": "t_48fedfa",
+      "plain_english": "Prove that image preserves a two-step subset chain under a function on Fin 5.",
+      "seed": 7132300,
       "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7132000",
-      "topic": "algebra.basic",
-      "type_expr": "\u2200 a b : Nat, a + b + 1 = b + a + 1"
+      "split": "extreme",
+      "theorem_id": "gen/7132300",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Fin 5 \u2192 Fin 5) (A B C : Set (Fin 5)), A \u2286 B \u2192 B \u2286 C \u2192 f '' A \u2286 f '' C"
+    },
+    "previous": {
+      "explanation": "Prove a shifted square inequality for the sum x plus y with offset 4.",
+      "label": "previous",
+      "name": "t_58a4c2d",
+      "plain_english": "Prove a shifted square inequality for the sum x plus y with offset 4.",
+      "seed": 7132100,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7132100",
+      "topic": "optimization.inequalities",
+      "type_expr": "\u2200 x y : \u211d, 4 * x * y + (4 : \u211d) \u2264 (x + y) ^ 2 + (4 : \u211d)"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
