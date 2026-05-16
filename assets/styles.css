@@ -1168,9 +1168,12 @@ body[data-page="home"] .site-footer {
 }
 
 .theorem-mode-note .text-link {
-  display: inline;
+  display: block;
+  width: fit-content;
+  margin-top: 6px;
   min-height: 0;
   font-size: 14px;
+  line-height: 1.35;
 }
 
 .theorem-card.compact h3 {
@@ -1191,16 +1194,27 @@ body[data-page="home"] .site-footer {
   justify-content: flex-end;
   gap: 8px;
   color: var(--muted);
-  font-size: 13px;
-  font-weight: 750;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .theorem-meta span {
-  padding: 5px 8px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 7px 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 999px;
   background: var(--soft);
+  color: var(--muted);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.theorem-meta strong {
   color: var(--ink);
+  font-size: 15px;
+  font-weight: 850;
 }
 
 .lean-statement {

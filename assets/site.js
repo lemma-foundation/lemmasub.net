@@ -4,8 +4,6 @@ const DATA_URL = new URL(
   document.baseURI,
 ).href;
 const DASHBOARD_REFRESH_MS = 10000;
-const DASHBOARD_CATCHUP_MS = 5000;
-const DASHBOARD_CATCHUP_ATTEMPTS = 24;
 
 let miners = [];
 let minerFilter = "";
@@ -14,14 +12,10 @@ let sortState = { key: "score", direction: "desc", type: "number" };
 let scheduleTimer = 0;
 let homeRefreshTimer = 0;
 let dashboardRefreshTimer = 0;
-let dashboardCatchupTimer = 0;
-let dashboardCatchupAttempts = 0;
-let scheduleCanRotate = false;
 let controlsAttached = false;
 let displayedTheorems = {};
 let dashboardData = {};
 let dashboardDataLoaded = false;
-let optimisticRotationKey = "";
 
 document.addEventListener("DOMContentLoaded", async () => {
   initializeTheme();
@@ -144,7 +138,6 @@ function applyDashboardData(data, dataLoaded, { animate = true } = {}) {
   dashboardData = data;
   dashboardDataLoaded = dataLoaded;
   displayedTheorems = { ...data.theorems };
-  optimisticRotationKey = "";
   const stats = dashboardStats(data);
 
   setText("[data-dashboard-state]", dashboardStateText(data, dataLoaded));
@@ -240,7 +233,7 @@ function theoremCard(label, theorem, isMain, openSlots = new Set()) {
     <div class="theorem-topline">
       <p class="label">${escapeHtml(title)}</p>
       <div class="theorem-meta">
-        <span>Time left in theorem window: <strong data-next-countdown>${escapeHtml(nextCountdownLabel(dashboardData))}</strong></span>
+        <span>Time left: <strong data-next-countdown>${escapeHtml(nextCountdownLabel(dashboardData))}</strong></span>
       </div>
     </div>
     <${heading}>${escapeHtml(plainTheorem(theorem))}</${heading}>
@@ -482,8 +475,6 @@ function secondsUntilNextTheorem(data) {
 
 function startScheduleTicker(data) {
   window.clearInterval(scheduleTimer);
-  const initialCountdown = secondsUntilNextTheorem(data);
-  scheduleCanRotate = initialCountdown !== null;
   scheduleTimer = window.setInterval(() => tickSchedule(data), 1000);
   tickSchedule(data);
 }
@@ -497,46 +488,11 @@ function tickSchedule(data) {
     setText("[data-next-countdown]", "unknown");
     return;
   }
-  if (countdown === 0 && scheduleCanRotate && displayedTheorems.next) {
-    scheduleCanRotate = false;
-    rotateTheoremPreview(data);
-    refreshDashboardData();
-    startCatchupPolling();
+  if (countdown === 0) {
+    setText("[data-next-countdown]", "refreshing");
     return;
   }
-  setText("[data-next-countdown]", countdown === 0 ? "Waiting for public data" : formatDuration(countdown));
-}
-
-function rotateTheoremPreview(data) {
-  const current = displayedTheorems.current || data.theorems.current;
-  const next = displayedTheorems.next || data.theorems.next;
-  if (!next) {
-    setText("[data-next-countdown]", "Waiting for public data");
-    return;
-  }
-
-  const seed = numberOrNull(next.seed) ?? nextProblemSeed(data);
-  const rotated = { previous: current, current: next, next: null };
-  dashboardData = {
-    ...data,
-    schedule_generated_at: new Date().toISOString(),
-    chain_head_block: seed ?? data.chain_head_block,
-    problem_seed_chain_head: seed ?? data.problem_seed_chain_head,
-    problem_seed: seed ?? data.problem_seed,
-    theorems: rotated
-  };
-  displayedTheorems = rotated;
-  optimisticRotationKey = theoremKey(next);
-  renderTheorems(displayedTheorems);
-  animateTheoremGrid();
-  startScheduleTicker(dashboardData);
-  setText("[data-dashboard-state]", "Waiting for fresh public data for the new theorem.");
-}
-
-function nextProblemSeed(data) {
-  const currentSeed = numberOrNull(data.problem_seed);
-  const interval = numberOrNull(data.problem_seed_quantize_blocks);
-  return currentSeed === null || interval === null ? null : currentSeed + interval;
+  setText("[data-next-countdown]", formatDuration(countdown));
 }
 
 function animateTheoremGrid() {
@@ -587,44 +543,7 @@ async function refreshDashboardData() {
     return;
   }
   const data = normalizeDashboardData(result.data);
-  if (isStaleAfterPreviewRotation(data)) {
-    setText("[data-dashboard-state]", "Waiting for fresh public data for the new theorem.");
-    return;
-  }
   applyDashboardData(data, true);
-  if (dashboardCatchupTimer && secondsUntilNextTheorem(data) > 0) {
-    stopCatchupPolling();
-  }
-}
-
-function isStaleAfterPreviewRotation(data) {
-  if (!optimisticRotationKey) {
-    return false;
-  }
-  const incomingSeed = numberOrNull(data.problem_seed);
-  const previewSeed = numberOrNull(dashboardData.problem_seed);
-  if (incomingSeed !== null && previewSeed !== null && incomingSeed < previewSeed) {
-    return true;
-  }
-  const incomingCurrent = theoremKey(data.theorems.current);
-  return incomingCurrent && incomingCurrent !== optimisticRotationKey;
-}
-
-function startCatchupPolling() {
-  stopCatchupPolling();
-  dashboardCatchupAttempts = 0;
-  dashboardCatchupTimer = window.setInterval(async () => {
-    dashboardCatchupAttempts += 1;
-    await refreshDashboardData();
-    if (dashboardCatchupAttempts >= DASHBOARD_CATCHUP_ATTEMPTS) {
-      stopCatchupPolling();
-    }
-  }, DASHBOARD_CATCHUP_MS);
-}
-
-function stopCatchupPolling() {
-  window.clearInterval(dashboardCatchupTimer);
-  dashboardCatchupTimer = 0;
 }
 
 function formatDuration(totalSeconds) {
