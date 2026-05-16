@@ -608,46 +608,6 @@ h3 {
   align-items: flex-start;
 }
 
-.bounty-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
-  gap: 24px;
-  padding: 22px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel);
-}
-
-.bounty-card p {
-  color: var(--muted);
-  font-size: 18px;
-}
-
-.bounty-facts {
-  display: grid;
-  gap: 10px;
-  margin: 0;
-}
-
-.bounty-facts div {
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--soft);
-}
-
-.bounty-facts dt {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.bounty-facts dd {
-  margin: 4px 0 0;
-  font-weight: 750;
-}
-
 .bounty-sources {
   padding-right: 0;
   padding-left: 0;
@@ -683,6 +643,15 @@ h3 {
 
 .faq-page {
   max-width: 980px;
+}
+
+.faq-group {
+  margin-top: 28px;
+}
+
+.faq-group h2 {
+  margin-bottom: 12px;
+  font-size: 22px;
 }
 
 .faq-list {
@@ -1178,8 +1147,7 @@ td a:hover,
   .hero,
   .operator-band,
   .proof-example,
-  .theorem-layout,
-  .bounty-card {
+  .theorem-layout {
     grid-template-columns: 1fr;
   }
 
