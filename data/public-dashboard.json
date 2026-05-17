@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7138096,
+  "chain_head_block": 7138111,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-17T01:15:11Z",
+  "generated_at": "2026-05-17T01:18:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7138000,
-  "problem_seed_chain_head": 7138096,
+  "problem_seed": 7138100,
+  "problem_seed_chain_head": 7138111,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that a universally true predicate has witness 4 with the equality first.",
-      "label": "current",
-      "name": "t_4148371",
-      "plain_english": "Prove that a universally true predicate has witness 4 with the equality first.",
-      "seed": 7138000,
-      "source_lane": "generated",
-      "split": "medium",
-      "theorem_id": "gen/7138000",
-      "topic": "logic.predicates",
-      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, n = 4 \u2227 P n"
-    },
-    "next": {
       "explanation": "Prove that a natural number dividing two values also divides their sum.",
-      "label": "next",
+      "label": "current",
       "name": "curated_dvd_add",
       "plain_english": "Prove that a natural number dividing two values also divides their sum.",
       "seed": 7138100,
@@ -136,17 +124,29 @@
       "topic": "number_theory.divisibility",
       "type_expr": "\u2200 a b c : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 b + c"
     },
+    "next": {
+      "explanation": "Prove that a recursive counter starting at zero returns the input natural number.",
+      "label": "next",
+      "name": "curated_nat_rec_counter",
+      "plain_english": "Prove that a recursive counter starting at zero returns the input natural number.",
+      "seed": 7138200,
+      "source_lane": "catalog",
+      "split": "hard",
+      "theorem_id": "curated/recursion/nat_rec_counter",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 n : Nat, Nat.rec 0 (fun _ acc => acc + 1) n = n"
+    },
     "previous": {
-      "explanation": "Prove divisibility is preserved by a three-square sum scaled by 6.",
+      "explanation": "Prove that a universally true predicate has witness 4 with the equality first.",
       "label": "previous",
-      "name": "t_4bf1d5f",
-      "plain_english": "Prove divisibility is preserved by a three-square sum scaled by 6.",
-      "seed": 7137900,
+      "name": "t_4148371",
+      "plain_english": "Prove that a universally true predicate has witness 4 with the equality first.",
+      "seed": 7138000,
       "source_lane": "generated",
-      "split": "extreme",
-      "theorem_id": "gen/7137900",
-      "topic": "number_theory.divisibility",
-      "type_expr": "\u2200 a b c d : Nat, a \u2223 b \u2192 a \u2223 c \u2192 a \u2223 d \u2192 a \u2223 b * b * 6 + c * c * 6 + d * d * 6"
+      "split": "medium",
+      "theorem_id": "gen/7138000",
+      "topic": "logic.predicates",
+      "type_expr": "\u2200 P : Nat \u2192 Prop, (\u2200 n : Nat, P n) \u2192 \u2203 n : Nat, n = 4 \u2227 P n"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
