@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7138396,
+  "chain_head_block": 7138411,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-17T02:15:12Z",
+  "generated_at": "2026-05-17T02:18:12Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7138300,
-  "problem_seed_chain_head": 7138396,
+  "problem_seed": 7138400,
+  "problem_seed_chain_head": 7138411,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove that image preserves subset containment under a function on Fin 5.",
-      "label": "current",
-      "name": "t_4cadb96",
-      "plain_english": "Prove that image preserves subset containment under a function on Fin 5.",
-      "seed": 7138300,
-      "source_lane": "generated",
-      "split": "hard",
-      "theorem_id": "gen/7138300",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 (f : Fin 5 \u2192 Fin 5) (A B : Set (Fin 5)), A \u2286 B \u2192 f '' A \u2286 f '' B"
-    },
-    "next": {
       "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "label": "next",
+      "label": "current",
       "name": "curated_list_append_nil_induction",
       "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
       "seed": 7138400,
@@ -136,17 +124,29 @@
       "topic": "foundations.recursion",
       "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
     },
-    "previous": {
-      "explanation": "Prove that a recursive counter starting at zero returns the input natural number.",
-      "label": "previous",
-      "name": "curated_nat_rec_counter",
-      "plain_english": "Prove that a recursive counter starting at zero returns the input natural number.",
-      "seed": 7138200,
+    "next": {
+      "explanation": "Prove that image preserves subset containment under a function.",
+      "label": "next",
+      "name": "curated_set_image_mono",
+      "plain_english": "Prove that image preserves subset containment under a function.",
+      "seed": 7138500,
       "source_lane": "catalog",
       "split": "hard",
-      "theorem_id": "curated/recursion/nat_rec_counter",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 n : Nat, Nat.rec 0 (fun _ acc => acc + 1) n = n"
+      "theorem_id": "curated/set/image_monotone",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
+    },
+    "previous": {
+      "explanation": "Prove that image preserves subset containment under a function on Fin 5.",
+      "label": "previous",
+      "name": "t_4cadb96",
+      "plain_english": "Prove that image preserves subset containment under a function on Fin 5.",
+      "seed": 7138300,
+      "source_lane": "generated",
+      "split": "hard",
+      "theorem_id": "gen/7138300",
+      "topic": "set_theory.finite_sets",
+      "type_expr": "\u2200 (f : Fin 5 \u2192 Fin 5) (A B : Set (Fin 5)), A \u2286 B \u2192 f '' A \u2286 f '' B"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
