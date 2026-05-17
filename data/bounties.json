@@ -1,19 +1,6 @@
 {
-  "campaigns": [
-    {
-      "declaration": "Submission.two_plus_two_eq_four",
-      "id": "starter.two_plus_two",
-      "lean_file": "Submission.lean",
-      "reward_label": "No payout",
-      "source_url": "/bounties/",
-      "statement_sha256": "pending",
-      "status": "open",
-      "title": "Easy bounty: two plus two",
-      "upstream_commit": "pending",
-      "upstream_repo": "spacetime-tao/lemma"
-    }
-  ],
+  "campaigns": [],
   "generated_unix": 1778918400,
-  "reward_mode": "manual_no_payout",
+  "reward_mode": "not_live",
   "schema_version": 1
 }

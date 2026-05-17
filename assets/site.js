@@ -515,7 +515,7 @@ function theoremGridKey(theorems) {
 }
 
 function theoremModeNote(data) {
-  return "Note: Theorem windows are representative. Miners get deterministic same-difficulty variants; validators verify the exact theorem sent.";
+  return "Note: Theorem windows are representative. Each miner receives a deterministic same-difficulty variant; validators verify the exact theorem sent.";
 }
 
 function renderTheoremModeNotes() {
@@ -783,13 +783,13 @@ function openFaqItem(items, item, { scroll = false } = {}) {
 
 function initializeScrollReveals() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
-    document.querySelectorAll(".band, .dashboard-head, .status-strip, .scoreboard-grid, .theorem-layout, .miners-section, .dashboard-note, .source-link, .bounty-card").forEach((element) => {
+    document.querySelectorAll(".band, .dashboard-head, .status-strip, .scoreboard-grid, .theorem-layout, .miners-section, .dashboard-note, .source-link, .bounty-info-grid article, .bounty-status-grid article").forEach((element) => {
       element.classList.add("is-visible");
     });
     return;
   }
 
-  const items = document.querySelectorAll(".band, .dashboard-head, .status-strip, .scoreboard-grid, .theorem-layout, .miners-section, .dashboard-note, .source-link, .bounty-card");
+  const items = document.querySelectorAll(".band, .dashboard-head, .status-strip, .scoreboard-grid, .theorem-layout, .miners-section, .dashboard-note, .source-link, .bounty-info-grid article, .bounty-status-grid article");
   items.forEach((element) => element.classList.add("reveal-on-scroll"));
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

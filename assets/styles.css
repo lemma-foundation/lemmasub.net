@@ -80,7 +80,8 @@ body {
   .scoreboard-grid article,
   .status-strip,
   .source-link,
-  .bounty-card,
+  .bounty-info-grid article,
+  .bounty-status-grid article,
   .faq-list details,
   .dashboard-note article,
   .proof-map article,
@@ -481,10 +482,6 @@ h3 {
   margin-bottom: 0;
 }
 
-.bounty-card .copy-block-lean {
-  margin: 8px 0 16px;
-}
-
 .copy-button {
   appearance: none;
   position: absolute;
@@ -668,7 +665,7 @@ h3 {
 .proof-lanes p,
 .operator-band p,
 .proof-example > div > p,
-.bounty-card p,
+.bounty-info-grid p,
 .faq-answer p,
 .dashboard-head p {
   font-size: 18px;
@@ -953,71 +950,69 @@ h3 {
   padding-left: 0;
 }
 
-.starter-bounty {
+.bounty-status-band,
+.bounty-process,
+.bounty-claim {
   padding-right: 0;
   padding-left: 0;
   border-top: 1px solid var(--line);
 }
 
-.starter-bounty .section-head {
+.bounty-status-band .section-head,
+.bounty-process .section-head,
+.bounty-claim .section-head {
   max-width: 760px;
 }
 
-.bounty-card {
+.bounty-status-grid,
+.bounty-info-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
-  gap: 16px;
+  gap: 12px;
+}
+
+.bounty-status-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.bounty-info-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.bounty-status-grid article,
+.bounty-info-grid article {
+  min-width: 0;
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
 }
 
-.bounty-card h3 {
-  margin-bottom: 10px;
-  font-size: 24px;
-}
-
-.bounty-card p {
-  color: var(--muted);
-}
-
-.bounty-card dl {
-  display: grid;
-  gap: 8px;
-  margin: 0 0 18px;
-}
-
-.bounty-card dt {
+.bounty-status-grid span {
+  display: block;
+  margin-bottom: 8px;
   color: var(--muted);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
 }
 
-.bounty-card dd {
-  margin: 0 0 4px;
+.bounty-status-grid strong {
+  display: block;
   color: var(--ink);
-  font-weight: 750;
+  font-size: 22px;
 }
 
-.bounty-card .lean-statement {
-  margin: 8px 0 16px;
-  font-size: 13px;
+.bounty-info-grid h3 {
+  margin-bottom: 10px;
+  font-size: 21px;
 }
 
-.bounty-cli {
-  grid-column: 1 / -1;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
+.bounty-info-grid p {
+  color: var(--muted);
 }
 
-.bounty-cli p {
-  max-width: 720px;
-}
-
-.bounty-cli .lean-statement {
-  max-width: 760px;
+.bounty-claim .lean-statement {
+  margin-top: 16px;
   font-size: 14px;
 }
 
@@ -1791,7 +1786,6 @@ td a:hover,
   .operator-band,
   .proof-example,
   .theorem-layout,
-  .bounty-card,
   .faq-layout {
     grid-template-columns: 1fr;
   }
@@ -1818,6 +1812,7 @@ td a:hover,
   .steps,
   .scoreboard-grid,
   .value-grid,
+  .bounty-info-grid,
   .source-list,
   .dashboard-note-grid,
   .get-started-notes {
@@ -1893,6 +1888,8 @@ td a:hover,
   .metric-grid,
   .value-grid,
   .proof-lanes,
+  .bounty-status-grid,
+  .bounty-info-grid,
   .source-list,
   .dashboard-note-grid,
   .get-started-notes {

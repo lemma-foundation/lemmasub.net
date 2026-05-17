@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Formal Conjectures proof bounties on Lemma.">
+  <meta name="description" content="Manual reviewed Formal Conjectures bounty policy for Lemma.">
   <title>Lemma Bounties</title>
   <script>
     (() => {
@@ -38,78 +38,120 @@
   <main class="dashboard-page bounty-page">
     <section class="dashboard-head bounty-head">
       <div>
-        <p class="eyebrow"><a class="title-link" href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Formal Conjectures</a></p>
-        <h1>Bounties for harder Lean targets.</h1>
+        <p class="eyebrow">Manual bounties</p>
+        <h1>Bounties are not live yet.</h1>
         <p>
-          Lemma uses the public Formal Conjectures database from Google
-          DeepMind as the source of bounty targets. A bounty is separate
-          from the timed miner rounds and can be attempted by anyone, not only
-          miners.
+          Lemma is preparing manual reviewed rewards for harder Lean proof
+          work. These will be separate from cadence miner rounds: no timer,
+          no automatic validator scoring, and no active payout or claim intake
+          yet.
+        </p>
+        <p>
+          The intended process is aligned with the normal Formal Conjectures
+          and Lean community workflow: publish a pinned target, submit proof
+          work through GitHub review, verify the exact artifact, then make a
+          reviewed payout decision.
         </p>
         <p class="source-note">Note: Lemma is not affiliated with or partnered with Google DeepMind.</p>
       </div>
     </section>
 
-    <section class="band starter-bounty" aria-labelledby="starter-bounty-title">
+    <section class="band bounty-status-band" aria-labelledby="bounty-status-title">
       <div class="section-head">
-        <p class="eyebrow">Easy bounty</p>
-        <h2 id="starter-bounty-title">Prove an easy Lean theorem.</h2>
+        <p class="eyebrow">Current status</p>
+        <h2 id="bounty-status-title">Informational only.</h2>
         <p>
-          This bounty publishes a complete Lean target. Write a
-          <code>Submission.lean</code> proof for <code>(2 : Nat) + 2 = 4</code>,
-          then submit it with the Lemma CLI.
+          There are no active Lemma bounties, no live claim form, and no
+          public bounty treasury payout path. This page exists so solvers know
+          what will be required before any high-value bounty opens.
         </p>
       </div>
-      <article class="bounty-card">
-        <div class="bounty-card-main">
-          <p class="label">Easy bounty</p>
-          <h3>two_plus_two_eq_four</h3>
-          <p>Lean target:</p>
-          <pre class="lean-statement"><code>theorem two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by
-  sorry</code></pre>
-        </div>
-        <div class="bounty-card-side">
-          <dl>
-            <dt>Bounty id</dt>
-            <dd><code>starter.two_plus_two</code></dd>
-            <dt>Difficulty</dt>
-            <dd>Easy</dd>
-            <dt>Status</dt>
-            <dd>Open</dd>
-            <dt>Reward</dt>
-            <dd>No payout</dd>
-          </dl>
-        </div>
-        <div class="bounty-cli">
-          <p class="label">Submit with Lemma CLI</p>
-          <p>Put your proof in <code>Submission.lean</code>, then run:</p>
-          <pre class="lean-statement"><code>uv run lemma bounty show starter.two_plus_two
+      <div class="bounty-status-grid" aria-label="Current bounty status">
+        <article>
+          <span>Status</span>
+          <strong>Not live</strong>
+        </article>
+        <article>
+          <span>Claims</span>
+          <strong>Closed</strong>
+        </article>
+        <article>
+          <span>Payouts</span>
+          <strong>None</strong>
+        </article>
+      </div>
+    </section>
 
-uv run lemma bounty verify starter.two_plus_two \
-  --submission Submission.lean
+    <section class="band bounty-process" aria-labelledby="bounty-process-title">
+      <div class="section-head">
+        <p class="eyebrow">Future process</p>
+        <h2 id="bounty-process-title">Manual review before any payout.</h2>
+        <p>
+          Cadence rounds are routine: miners receive theorem variants,
+          validators check proof files, and passing proofs become
+          reward-eligible. Bounties are different. They may involve longer
+          proofs, helper lemmas, supporting files, upstream review, and checks
+          that the formal statement matches the intended target.
+        </p>
+      </div>
+      <div class="bounty-info-grid">
+        <article>
+          <h3>Publish a locked target</h3>
+          <p>Lemma will publish a bounty record before work starts, including the source URL, pinned repository commit or tag, Lean and Mathlib versions, target statement hash, reward, creation timestamp, and whether <code>formal_proof</code> already existed.</p>
+        </article>
+        <article>
+          <h3>Use public review</h3>
+          <p>Solvers should work through a GitHub PR, issue, or external proof repository. For Formal Conjectures targets, that means following the project contribution process and producing reproducible <code>lake build</code> evidence.</p>
+        </article>
+        <article>
+          <h3>Claim with structure</h3>
+          <p>A TAO address comment in Lean code can be useful metadata, but it is not enough. The real claim must live in a structured GitHub issue, PR, proof repository, or Lemma bounty registry record.</p>
+        </article>
+      </div>
+    </section>
 
-uv run lemma bounty submit starter.two_plus_two \
-  --submission Submission.lean \
-  --payout &lt;SS58&gt;</code></pre>
-        </div>
-      </article>
+    <section class="band bounty-claim" aria-labelledby="bounty-claim-title">
+      <div class="section-head">
+        <p class="eyebrow">Claim record</p>
+        <h2 id="bounty-claim-title">The payout address must be tied to the claimant.</h2>
+        <p>
+          Future claims should include GitHub identity, proof provenance, TAO
+          address, and preferably a wallet-signed message. This keeps someone
+          from copying a proof and redirecting the reward by editing a comment.
+        </p>
+        <pre class="lean-statement"><code>Lemma bounty claim
+Bounty ID: lemma-bounty-0007
+Theorem: AgohGiuga.isWeakGiuga_iff_prime_dvd
+Claimant GitHub: @username
+Claimant TAO address: 5...
+Formal Conjectures commit/PR: ...
+Proof commit: ...
+Wallet signature: optional for small bounties, required for high-value bounties</code></pre>
+      </div>
     </section>
 
     <section class="band bounty-sources">
       <div class="section-head">
-        <p class="eyebrow">Source of targets</p>
-        <h2>Formal Conjectures gives Lemma exact Lean statements to point at.</h2>
+        <p class="eyebrow">Review gates</p>
+        <h2>High-value bounties need reproducible public evidence.</h2>
         <p>
-          Some entries are research solved: the mathematics is known, but a
-          clean Lean proof artifact can still be valuable work.
+          Before payout, Lemma should verify the proof in the pinned
+          environment, match the exact target hash, reject shortcuts such as
+          <code>sorry</code>, <code>admit</code>, new axioms, unsafe hooks, or
+          unauthorized imports, check that the proof was not public before the
+          bounty was created, and confirm claimant identity.
         </p>
         <p>
-          That makes the bounty simple: pick one harder statement, publish the
-          exact target, and reward a proof file that Lean accepts.
+          Future claim statuses are:
+          <code>open</code>, <code>submitted</code>, <code>lemma_verified</code>,
+          <code>upstream_review</code>, <code>accepted_formal_proof</code>,
+          <code>paid</code>, <code>rejected</code>, and <code>disputed</code>.
         </p>
         <p>
-          Formal Conjectures code is Apache 2.0. Other materials may be CC-BY
-          4.0 or covered by source-specific third-party licenses.
+          Normal proof bounties should exclude targets that already had a
+          Formal Conjectures <code>formal_proof</code> at bounty creation.
+          Those targets can only be offered as explicit proof-porting or
+          simplification work.
         </p>
       </div>
       <div class="source-list">
