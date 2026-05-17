@@ -22,10 +22,11 @@ const terminalLine = document.querySelector("[data-terminal-line]");
 
 if (terminalLine && !reduceMotion) {
   const lines = [
-    "fetch target registry",
-    "pin Lean and mathlib toolchain",
+    "fetch pinned target",
     "check Submission.lean",
-    "result: verified",
+    "record validator attestation",
+    "publish proof artifact",
+    "prepare upstream PR candidate",
   ];
   let index = 0;
 

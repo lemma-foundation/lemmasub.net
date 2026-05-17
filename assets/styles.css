@@ -133,6 +133,9 @@ nav a:focus-visible {
 .section-copy,
 .proof-flow,
 .metadata-card,
+.diff-card,
+.artifact-grid,
+.guardrail-grid,
 .contrast-grid,
 .role-grid,
 .lifecycle,
@@ -239,7 +242,10 @@ h3 {
 
 .proof-console,
 .metadata-card,
+.diff-card,
 .proof-flow article,
+.artifact-grid article,
+.guardrail-grid article,
 .contrast-grid article,
 .role-grid article,
 .lifecycle article,
@@ -311,7 +317,7 @@ h3 {
 .pipeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.65rem;
   margin-top: 1rem;
   overflow: hidden;
@@ -332,7 +338,7 @@ h3 {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 25%;
+  width: 16.666%;
   height: 0.18rem;
   border-radius: var(--radius);
   background: var(--gold);
@@ -340,6 +346,7 @@ h3 {
 }
 
 .section {
+  scroll-margin-top: 5rem;
   padding: 5.5rem 0;
   border-top: 1px solid var(--line);
 }
@@ -358,8 +365,10 @@ h3 {
 .section-heading p,
 .section-copy p,
 .proof-flow p,
+.guardrail-grid p,
 .contrast-grid p,
 .lifecycle p,
+.role-grid p,
 .role-grid li,
 .site-footer p {
   color: var(--muted);
@@ -374,7 +383,7 @@ h3 {
 
 .proof-flow {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -402,6 +411,66 @@ h3 {
 
 .metadata-card {
   padding: 1.3rem;
+}
+
+.diff-card,
+.artifact-grid article,
+.guardrail-grid article {
+  min-width: 0;
+  padding: 1.3rem;
+}
+
+.diff-card pre,
+.json-card pre {
+  overflow-x: auto;
+  margin: 0;
+  color: #ddffe8;
+  line-height: 1.75;
+}
+
+.terminal code,
+.diff-card code,
+.json-card code,
+.code-block code {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.diff-remove {
+  color: #ffb1a8;
+}
+
+.diff-add {
+  color: var(--green);
+}
+
+.artifact-grid,
+.guardrail-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.artifact-grid {
+  grid-template-columns: minmax(0, 0.85fr) minmax(330px, 1fr);
+}
+
+.artifact-grid ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.artifact-grid li + li {
+  margin-top: 0.45rem;
+}
+
+.json-card {
+  background: #050704;
+}
+
+.guardrail-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .metadata-card dl {
@@ -541,12 +610,24 @@ h3 {
     transform: translateX(0);
   }
 
-  33% {
+  17% {
     transform: translateX(100%);
   }
 
-  66% {
+  34% {
     transform: translateX(200%);
+  }
+
+  51% {
+    transform: translateX(300%);
+  }
+
+  68% {
+    transform: translateX(400%);
+  }
+
+  85% {
+    transform: translateX(500%);
   }
 }
 
@@ -558,8 +639,13 @@ h3 {
   }
 
   .proof-flow,
-  .lifecycle {
+  .lifecycle,
+  .guardrail-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .artifact-grid {
+    grid-template-columns: 1fr;
   }
 
   h1 {
@@ -600,6 +686,8 @@ h3 {
 
   .contrast-grid,
   .role-grid,
+  .guardrail-grid,
+  .artifact-grid,
   .proof-flow,
   .lifecycle,
   .pipeline {
