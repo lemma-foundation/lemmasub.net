@@ -8,12 +8,12 @@
       "source_url": "/bounties/",
       "statement_sha256": "pending",
       "status": "open",
-      "title": "Two plus two",
+      "title": "Easy bounty: two plus two",
       "upstream_commit": "pending",
       "upstream_repo": "spacetime-tao/lemma"
     }
   ],
   "generated_unix": 1778918400,
-  "reward_mode": "manual_demo_no_payout",
+  "reward_mode": "manual_no_payout",
   "schema_version": 1
 }

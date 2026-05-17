@@ -1006,6 +1006,21 @@ h3 {
   font-size: 13px;
 }
 
+.bounty-cli {
+  grid-column: 1 / -1;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.bounty-cli p {
+  max-width: 720px;
+}
+
+.bounty-cli .lean-statement {
+  max-width: 760px;
+  font-size: 14px;
+}
+
 .bounty-sources h2 {
   max-width: 760px;
   font-size: 32px;

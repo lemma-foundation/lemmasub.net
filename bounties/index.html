@@ -52,42 +52,45 @@
 
     <section class="band starter-bounty" aria-labelledby="starter-bounty-title">
       <div class="section-head">
-        <p class="eyebrow">Open bounty</p>
-        <h2 id="starter-bounty-title">Prove a tiny Lean theorem.</h2>
+        <p class="eyebrow">Easy bounty</p>
+        <h2 id="starter-bounty-title">Prove an easy Lean theorem.</h2>
         <p>
-          This bounty publishes a complete Lean target and accepts any
-          submission file that proves <code>(2 : Nat) + 2 = 4</code>.
+          This bounty publishes a complete Lean target. Write a
+          <code>Submission.lean</code> proof for <code>(2 : Nat) + 2 = 4</code>,
+          then submit it with the Lemma CLI.
         </p>
       </div>
       <article class="bounty-card">
         <div class="bounty-card-main">
-          <p class="label">Open bounty</p>
+          <p class="label">Easy bounty</p>
           <h3>two_plus_two_eq_four</h3>
           <p>Lean target:</p>
           <pre class="lean-statement"><code>theorem two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by
   sorry</code></pre>
-          <p>Accepted proof:</p>
-          <pre class="lean-statement"><code>import Mathlib
-
-namespace Submission
-
-theorem two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by
-  rfl
-
-end Submission</code></pre>
         </div>
         <div class="bounty-card-side">
           <dl>
             <dt>Bounty id</dt>
             <dd><code>starter.two_plus_two</code></dd>
+            <dt>Difficulty</dt>
+            <dd>Easy</dd>
             <dt>Status</dt>
             <dd>Open</dd>
             <dt>Reward</dt>
             <dd>No payout</dd>
           </dl>
-          <p>Try it from the Lemma repo:</p>
+        </div>
+        <div class="bounty-cli">
+          <p class="label">Submit with Lemma CLI</p>
+          <p>Put your proof in <code>Submission.lean</code>, then run:</p>
           <pre class="lean-statement"><code>uv run lemma bounty show starter.two_plus_two
-uv run lemma bounty verify starter.two_plus_two --submission Submission.lean</code></pre>
+
+uv run lemma bounty verify starter.two_plus_two \
+  --submission Submission.lean
+
+uv run lemma bounty submit starter.two_plus_two \
+  --submission Submission.lean \
+  --payout &lt;SS58&gt;</code></pre>
         </div>
       </article>
     </section>
