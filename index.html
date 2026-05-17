@@ -3,128 +3,263 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a proof formalization subnet for Lean-verified mathematics.">
-  <title>Lemma</title>
+  <meta name="description" content="Lemma is a Bittensor subnet for Lean-verified proof discovery on formal conjecture targets.">
+  <title>Lemma - Lean-verified proof discovery</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header">
-    <a class="brand" href="./">Lemma</a>
-    <nav aria-label="Primary">
-      <a href="#targets">Targets</a>
-      <a href="#verify">Verification</a>
+    <a class="brand" href="./" aria-label="Lemma home">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span>Lemma</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#how">How it works</a>
+      <a href="#formal-conjectures">Formal Conjectures</a>
+      <a href="#roles">Roles</a>
       <a href="#use">Use</a>
       <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Proof formalization for Lean</p>
-        <h1 id="hero-title">Lemma</h1>
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow">Bittensor subnet for formal proof discovery</p>
+        <h1 id="hero-title">A market for Lean-verified proofs.</h1>
         <p class="lede">
-          Lemma publishes formal proof targets and rewards miners who produce Lean-verified proofs.
-          Correctness is checked by Lean: pass or fail.
+          Lemma publishes formal conjecture targets, miners search for proofs, validators check submissions with Lean,
+          and verified proofs become eligible for rewards.
         </p>
-        <div class="actions">
-          <a class="button primary" href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Open Repo</a>
-          <a class="button secondary" href="#use">Run CLI</a>
+        <div class="actions" aria-label="Primary actions">
+          <a class="button primary" href="#how">See the proof loop</a>
+          <a class="button secondary" href="#use">Run the CLI</a>
+          <a class="button quiet" href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Open repo</a>
         </div>
+        <p class="proof-score">The proof is the score.</p>
       </div>
-      <div class="proof-rail" aria-label="Proof formalization flow">
-        <div class="rail-row">
-          <span>01</span>
-          <strong>Formal target</strong>
-          <p>A published Lean statement defines exactly what must be proved.</p>
+
+      <div class="proof-console" aria-label="Proof verification preview" data-reveal>
+        <div class="console-topline">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>verifier</span>
         </div>
-        <div class="rail-row">
-          <span>02</span>
-          <strong>Lean proof</strong>
-          <p>The solver submits a <code>Submission.lean</code> file for the exact target.</p>
-        </div>
-        <div class="rail-row">
-          <span>03</span>
-          <strong>Binary check</strong>
-          <p>Lean accepts the proof or rejects it. There is no subjective score.</p>
-        </div>
-        <div class="rail-row">
-          <span>04</span>
-          <strong>Reward plumbing</strong>
-          <p>Payout custody happens behind the scenes after the proof path passes.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="band" id="targets">
-      <div class="section-copy">
-        <p class="eyebrow">What miners work on</p>
-        <h2>Published formal targets, not subjective prompts.</h2>
-        <p>
-          A Lemma task is a precise Lean problem with a statement, target hash, toolchain, and
-          submission policy. Miners write the proof; Lean decides whether it is accepted.
-        </p>
-      </div>
-      <div class="fact-grid">
-        <article>
-          <h3>Exact statement</h3>
-          <p>The target fixes the theorem, imports, namespace, and allowed submission shape.</p>
-        </article>
-        <article>
-          <h3>Lean check</h3>
-          <p>The same verifier path checks every submitted <code>Submission.lean</code> file.</p>
-        </article>
-        <article>
-          <h3>Reward handling</h3>
-          <p>The CLI prepares the proof and payout package while custody details stay secondary.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="band verify-band" id="verify">
-      <div class="section-copy">
-        <p class="eyebrow">How proof verification works</p>
-        <h2>Proof correctness is binary.</h2>
-        <p>
-          The live reward path cares about one question: does Lean accept the proof for the exact published
-          statement under the published policy? If yes, it passes. If not, it fails.
-        </p>
-      </div>
-      <pre class="code-sample"><code>import Mathlib
-
-namespace Submission
-
-theorem target : True := by
-  trivial
-
-end Submission</code></pre>
-    </section>
-
-    <section class="band" id="use">
-      <div class="section-copy">
-        <p class="eyebrow">Use the repo</p>
-        <h2>The public CLI has four commands.</h2>
-        <p>
-          The repo contains the target registry client, Lean verifier, payout helpers, contract, and minimal CLI.
-        </p>
-      </div>
-      <div>
-        <div class="command-grid">
-          <pre><code>uv sync
-uv run lemma setup
-uv run lemma status</code></pre>
-          <pre><code>uv run lemma mine
-uv run lemma mine &lt;target-id&gt;
+        <pre class="terminal"><code><span class="muted">$</span> uv run lemma mine fc.target \
   --submission Submission.lean
-uv run lemma validate --check</code></pre>
+<span data-terminal-line>fetch target registry</span>
+<span>pin Lean and mathlib toolchain</span>
+<span class="terminal-result">result: verified</span></code></pre>
+        <div class="pipeline" aria-hidden="true">
+          <span>target</span>
+          <span>proof</span>
+          <span>Lean</span>
+          <span>reward</span>
+          <i></i>
         </div>
-        <a class="text-link" href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">github.com/spacetime-tao/lemma</a>
       </div>
     </section>
 
-    <section class="closing-band" aria-label="Protocol boundary">
-      <p>Formal targets. Lean verification. Minimal CLI.</p>
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="section-heading" data-reveal>
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title">Miners search. Validators verify. Lean arbitrates.</h2>
+        <p>
+          Lemma turns exact formal statements into executable proof challenges. The verifier does not care how a proof
+          was found. It checks whether the submitted proof passes the published target and policy.
+        </p>
+        <p>
+          In Bittensor terms, miners produce work and validators measure it. In Lemma, the work is a Lean proof and the
+          measurement is deterministic verification.
+        </p>
+      </div>
+
+      <div class="proof-flow" data-reveal>
+        <article>
+          <span>01</span>
+          <h3>Target</h3>
+          <p>A published Lean statement defines exactly what must be proved.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Search</h3>
+          <p>Miners use models, tactics, retrieval, or human insight to build a proof.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Submit</h3>
+          <p>The artifact is a <code>Submission.lean</code> file for the exact target.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Verify</h3>
+          <p>Validators run the pinned Lean and mathlib checker. Pass or fail.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split" id="formal-conjectures" aria-labelledby="formal-title">
+      <div class="section-copy" data-reveal>
+        <p class="eyebrow">Formal Conjectures focus</p>
+        <h2 id="formal-title">From public conjectures to executable targets.</h2>
+        <p>
+          Lemma is being centered on Formal Conjectures, a public Lean 4 and mathlib repository of formalized
+          mathematical statements. Lemma pins selected statements, publishes them as targets, and invites proof search
+          under a reproducible checker.
+        </p>
+        <p class="notice">
+          Lemma is independent and is not endorsed by Google DeepMind or the Formal Conjectures authors.
+        </p>
+      </div>
+
+      <article class="metadata-card" data-reveal>
+        <div class="console-topline">
+          <span class="status-dot cyan" aria-hidden="true"></span>
+          <span>target metadata</span>
+        </div>
+        <dl>
+          <div>
+            <dt>source</dt>
+            <dd>google-deepmind/formal-conjectures</dd>
+          </div>
+          <div>
+            <dt>target</dt>
+            <dd>pinned Lean theorem statement</dd>
+          </div>
+          <div>
+            <dt>policy</dt>
+            <dd>restricted helpers</dd>
+          </div>
+          <div>
+            <dt>verdict</dt>
+            <dd>Lean accepted or rejected</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="section contrast-section" aria-labelledby="why-title">
+      <div class="section-heading narrow" data-reveal>
+        <p class="eyebrow">Why formal verification</p>
+        <h2 id="why-title">Plausible is not enough.</h2>
+        <p>
+          Many AI evaluations ask whether an answer sounds reasonable. Lemma asks whether a proof checks against an
+          exact formal statement. The live correctness signal is mechanical.
+        </p>
+      </div>
+      <div class="contrast-grid" data-reveal>
+        <article class="soft-card">
+          <span class="pill">informal</span>
+          <h3>Plausible text</h3>
+          <p>Useful, but it still depends on human judgment.</p>
+        </article>
+        <article class="strong-card">
+          <span class="pill accepted">Lean</span>
+          <h3>Checked proof</h3>
+          <p>Accepted or rejected by the same deterministic verifier.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="roles" aria-labelledby="roles-title">
+      <div class="section-heading" data-reveal>
+        <p class="eyebrow">Participants</p>
+        <h2 id="roles-title">Two jobs, one standard.</h2>
+      </div>
+
+      <div class="role-grid">
+        <article data-reveal>
+          <h3>Miners search.</h3>
+          <ul>
+            <li>Pick a target from the registry.</li>
+            <li>Generate or write <code>Submission.lean</code>.</li>
+            <li>Verify locally before publishing an artifact.</li>
+            <li>Build payout packages only for live reward-backed targets.</li>
+          </ul>
+        </article>
+        <article data-reveal>
+          <h3>Validators verify.</h3>
+          <ul>
+            <li>Fetch the exact target and registry hash.</li>
+            <li>Run the pinned Lean verifier.</li>
+            <li>Score verified proofs, not explanations.</li>
+            <li>Keep reward plumbing separate from correctness.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="lifecycle-title">
+      <div class="section-heading" data-reveal>
+        <p class="eyebrow">Target lifecycle</p>
+        <h2 id="lifecycle-title">A target moves from statement to verified artifact.</h2>
+      </div>
+
+      <div class="lifecycle" data-reveal>
+        <article>
+          <span>candidate</span>
+          <p>Source metadata, toolchain, policy, and target hash are staged.</p>
+        </article>
+        <article>
+          <span>live</span>
+          <p>Reward custody is confirmed and the target opens for reward claims.</p>
+        </article>
+        <article>
+          <span>submitted</span>
+          <p>A miner publishes a proof artifact for the exact target.</p>
+        </article>
+        <article>
+          <span>verified</span>
+          <p>Validators run the pinned Lean checker.</p>
+        </article>
+        <article>
+          <span>rewarded</span>
+          <p>Verified proofs become eligible under the subnet rules.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split quickstart" id="use" aria-labelledby="use-title">
+      <div class="section-copy" data-reveal>
+        <p class="eyebrow">Use the repo</p>
+        <h2 id="use-title">Start with the CLI.</h2>
+        <p>
+          The public surface stays small: set up configuration, list or inspect targets, verify a proof, and check
+          validator readiness.
+        </p>
+        <div class="actions compact">
+          <a class="button primary" href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Open Lemma repo</a>
+          <a class="button secondary" href="https://github.com/spacetime-tao/lemma/tree/main/docs" target="_blank" rel="noopener noreferrer">Read docs</a>
+        </div>
+      </div>
+
+      <pre class="code-block" data-reveal><code>uv sync
+uv run lemma setup
+uv run lemma status
+
+uv run lemma mine
+uv run lemma mine &lt;target-id&gt;
+uv run lemma mine &lt;target-id&gt; --submission Submission.lean
+
+uv run lemma validate --check</code></pre>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <p><strong>Lemma</strong> - formal targets, Lean verification, reward plumbing.</p>
+    <p>
+      Lemma is independent and is not endorsed by Google DeepMind or the Formal Conjectures authors. Lean verification
+      checks the published formal target; it does not guarantee that an upstream informal conjecture was perfectly
+      formalized.
+    </p>
+    <p>
+      <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Lemma repo</a>
+      <a href="https://github.com/spacetime-tao/lemmasub.net" target="_blank" rel="noopener noreferrer">Site repo</a>
+      <a href="https://github.com/google-deepmind/formal-conjectures" target="_blank" rel="noopener noreferrer">Formal Conjectures</a>
+    </p>
+  </footer>
+
+  <script src="assets/site.js"></script>
 </body>
 </html>
