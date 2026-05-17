@@ -123,8 +123,8 @@ nav a:focus-visible {
   grid-template-columns: minmax(0, 1fr) minmax(330px, 0.86fr);
   gap: 4rem;
   align-items: center;
-  min-height: 82svh;
-  padding: 6rem 0 5rem;
+  min-height: 78svh;
+  padding: 4.25rem 0 2rem;
 }
 
 .hero-copy,
@@ -136,6 +136,7 @@ nav a:focus-visible {
 .diff-card,
 .artifact-grid,
 .guardrail-grid,
+.active-card,
 .contrast-grid,
 .role-grid,
 .lifecycle,
@@ -161,10 +162,10 @@ p {
 }
 
 h1 {
-  max-width: 11ch;
+  max-width: 13ch;
   margin-bottom: 1.2rem;
-  font-size: 6.25rem;
-  line-height: 0.92;
+  font-size: 5.15rem;
+  line-height: 0.96;
   letter-spacing: 0;
 }
 
@@ -243,6 +244,7 @@ h3 {
 .proof-console,
 .metadata-card,
 .diff-card,
+.active-card,
 .proof-flow article,
 .artifact-grid article,
 .guardrail-grid article,
@@ -317,7 +319,7 @@ h3 {
 .pipeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.65rem;
   margin-top: 1rem;
   overflow: hidden;
@@ -338,11 +340,11 @@ h3 {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 16.666%;
+  width: 12.5%;
   height: 0.18rem;
   border-radius: var(--radius);
   background: var(--gold);
-  animation: proofPath 5s ease-in-out infinite;
+  animation: proofPath 7s ease-in-out infinite;
 }
 
 .section {
@@ -383,7 +385,7 @@ h3 {
 
 .proof-flow {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -414,6 +416,7 @@ h3 {
 }
 
 .diff-card,
+.active-card,
 .artifact-grid article,
 .guardrail-grid article {
   min-width: 0;
@@ -479,6 +482,15 @@ h3 {
   margin: 0;
 }
 
+.active-card p {
+  margin-bottom: 0.75rem;
+  color: var(--muted);
+}
+
+.active-card p:last-child {
+  margin-bottom: 0;
+}
+
 .metadata-card div {
   display: grid;
   grid-template-columns: 7rem minmax(0, 1fr);
@@ -507,6 +519,10 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.role-grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .contrast-grid article,
@@ -610,24 +626,32 @@ h3 {
     transform: translateX(0);
   }
 
-  17% {
+  13% {
     transform: translateX(100%);
   }
 
-  34% {
+  26% {
     transform: translateX(200%);
   }
 
-  51% {
+  39% {
     transform: translateX(300%);
   }
 
-  68% {
+  52% {
     transform: translateX(400%);
   }
 
-  85% {
+  65% {
     transform: translateX(500%);
+  }
+
+  78% {
+    transform: translateX(600%);
+  }
+
+  91% {
+    transform: translateX(700%);
   }
 }
 
@@ -640,7 +664,8 @@ h3 {
 
   .proof-flow,
   .lifecycle,
-  .guardrail-grid {
+  .guardrail-grid,
+  .role-grid-three {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -649,7 +674,7 @@ h3 {
   }
 
   h1 {
-    font-size: 4.8rem;
+    font-size: 4.2rem;
   }
 
   h2 {
@@ -669,11 +694,11 @@ h3 {
 
   .hero {
     min-height: auto;
-    padding: 4rem 0;
+    padding: 2.5rem 0 2rem;
   }
 
   h1 {
-    font-size: 3.65rem;
+    font-size: 2.75rem;
   }
 
   h2 {
@@ -681,7 +706,7 @@ h3 {
   }
 
   .lede {
-    font-size: 1.2rem;
+    font-size: 1.12rem;
   }
 
   .contrast-grid,
@@ -714,7 +739,7 @@ h3 {
 
 @media (max-width: 420px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.38rem;
   }
 
   h2 {

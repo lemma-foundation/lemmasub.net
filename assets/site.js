@@ -22,11 +22,11 @@ const terminalLine = document.querySelector("[data-terminal-line]");
 
 if (terminalLine && !reduceMotion) {
   const lines = [
-    "fetch pinned target",
-    "check Submission.lean",
-    "record validator attestation",
-    "publish proof artifact",
-    "prepare upstream PR candidate",
+    "open Lean theorem becomes active bounty",
+    "miner submits proof",
+    "validators check with Lean",
+    "solver can claim bounty",
+    "prepare upstream pull request",
   ];
   let index = 0;
 
