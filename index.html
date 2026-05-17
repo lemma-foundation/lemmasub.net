@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is an escrow-backed Lean proof bounty system.">
+  <meta name="description" content="Lemma is a proof formalization subnet for Lean-verified mathematics.">
   <title>Lemma</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -11,7 +11,7 @@
   <header class="site-header">
     <a class="brand" href="./">Lemma</a>
     <nav aria-label="Primary">
-      <a href="#escrow">Escrow</a>
+      <a href="#targets">Targets</a>
       <a href="#verify">Verification</a>
       <a href="#use">Use</a>
       <a href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -21,22 +21,22 @@
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Escrow-backed Lean proof bounties</p>
+        <p class="eyebrow">Proof formalization for Lean</p>
         <h1 id="hero-title">Lemma</h1>
         <p class="lede">
-          Lemma posts formal proof targets, verifies submissions with Lean, and pays only through funded
-          <code>LemmaBountyEscrow</code> bounties.
+          Lemma publishes formal proof targets and rewards miners who produce Lean-verified proofs.
+          Correctness is checked by Lean: pass or fail.
         </p>
         <div class="actions">
           <a class="button primary" href="https://github.com/spacetime-tao/lemma" target="_blank" rel="noopener noreferrer">Open Repo</a>
           <a class="button secondary" href="#use">Run CLI</a>
         </div>
       </div>
-      <div class="proof-rail" aria-label="Proof bounty flow">
+      <div class="proof-rail" aria-label="Proof formalization flow">
         <div class="rail-row">
           <span>01</span>
-          <strong>Funded escrow</strong>
-          <p>A reward is live only after escrow funding is confirmed on chain.</p>
+          <strong>Formal target</strong>
+          <p>A published Lean statement defines exactly what must be proved.</p>
         </div>
         <div class="rail-row">
           <span>02</span>
@@ -50,33 +50,33 @@
         </div>
         <div class="rail-row">
           <span>04</span>
-          <strong>Contract payout</strong>
-          <p>The escrow contract releases funds under fixed commitment and reveal rules.</p>
+          <strong>Reward plumbing</strong>
+          <p>Payout custody happens behind the scenes after the proof path passes.</p>
         </div>
       </div>
     </section>
 
-    <section class="band" id="escrow">
+    <section class="band" id="targets">
       <div class="section-copy">
-        <p class="eyebrow">What escrow means</p>
-        <h2>No funded escrow, no reward promise.</h2>
+        <p class="eyebrow">What miners work on</p>
+        <h2>Published formal targets, not subjective prompts.</h2>
         <p>
-          A Lemma bounty is a public registry row connected to a funded Bittensor EVM escrow bounty.
-          Candidate targets can exist before funding, but they are not live rewards.
+          A Lemma task is a precise Lean problem with a statement, target hash, toolchain, and
+          submission policy. Miners write the proof; Lean decides whether it is accepted.
         </p>
       </div>
       <div class="fact-grid">
         <article>
-          <h3>Registry row</h3>
-          <p>Defines the theorem, target hash, policy version, toolchain, source metadata, and escrow identifiers.</p>
+          <h3>Exact statement</h3>
+          <p>The target fixes the theorem, imports, namespace, and allowed submission shape.</p>
         </article>
         <article>
-          <h3>Escrow contract</h3>
-          <p>Holds the bounty funds and accepts commit, reveal, attestation, and finalization calls.</p>
+          <h3>Lean check</h3>
+          <p>The same verifier path checks every submitted <code>Submission.lean</code> file.</p>
         </article>
         <article>
-          <h3>Local packages</h3>
-          <p>The CLI builds unsigned transaction data so solvers can inspect and submit with their own wallet flow.</p>
+          <h3>Reward handling</h3>
+          <p>The CLI prepares the proof and payout package while custody details stay secondary.</p>
         </article>
       </div>
     </section>
@@ -105,7 +105,7 @@ end Submission</code></pre>
         <p class="eyebrow">Use the repo</p>
         <h2>The public CLI has four commands.</h2>
         <p>
-          The repo contains the bounty registry client, Lean verifier, escrow helpers, contract, and minimal CLI.
+          The repo contains the target registry client, Lean verifier, payout helpers, contract, and minimal CLI.
         </p>
       </div>
       <div>
@@ -114,7 +114,7 @@ end Submission</code></pre>
 uv run lemma setup
 uv run lemma status</code></pre>
           <pre><code>uv run lemma mine
-uv run lemma mine &lt;bounty-id&gt;
+uv run lemma mine &lt;target-id&gt;
   --submission Submission.lean
 uv run lemma validate --check</code></pre>
         </div>
@@ -123,7 +123,7 @@ uv run lemma validate --check</code></pre>
     </section>
 
     <section class="closing-band" aria-label="Protocol boundary">
-      <p>Lean verifier. Funded escrow. Minimal CLI.</p>
+      <p>Formal targets. Lean verification. Minimal CLI.</p>
     </section>
   </main>
 </body>
