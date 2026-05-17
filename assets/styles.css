@@ -953,13 +953,13 @@ h3 {
   padding-left: 0;
 }
 
-.smoke-bounty {
+.starter-bounty {
   padding-right: 0;
   padding-left: 0;
   border-top: 1px solid var(--line);
 }
 
-.smoke-bounty .section-head {
+.starter-bounty .section-head {
   max-width: 760px;
 }
 

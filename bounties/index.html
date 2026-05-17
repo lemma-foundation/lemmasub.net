@@ -50,19 +50,18 @@
       </div>
     </section>
 
-    <section class="band smoke-bounty" aria-labelledby="smoke-bounty-title">
+    <section class="band starter-bounty" aria-labelledby="starter-bounty-title">
       <div class="section-head">
-        <p class="eyebrow">Smoke test</p>
-        <h2 id="smoke-bounty-title">Start with a tiny Lean theorem.</h2>
+        <p class="eyebrow">Open bounty</p>
+        <h2 id="starter-bounty-title">Prove a tiny Lean theorem.</h2>
         <p>
-          This demo bounty exists so people can test the bounty flow before
-          touching harder targets. It is a no-payout smoke test: prove that
-          <code>(2 : Nat) + 2 = 4</code>.
+          This bounty publishes a complete Lean target and accepts any
+          submission file that proves <code>(2 : Nat) + 2 = 4</code>.
         </p>
       </div>
       <article class="bounty-card">
         <div class="bounty-card-main">
-          <p class="label">Open demo bounty</p>
+          <p class="label">Open bounty</p>
           <h3>two_plus_two_eq_four</h3>
           <p>Lean target:</p>
           <pre class="lean-statement"><code>theorem two_plus_two_eq_four : (2 : Nat) + 2 = 4 := by
@@ -80,15 +79,15 @@ end Submission</code></pre>
         <div class="bounty-card-side">
           <dl>
             <dt>Bounty id</dt>
-            <dd><code>smoke.two_plus_two</code></dd>
+            <dd><code>starter.two_plus_two</code></dd>
             <dt>Status</dt>
             <dd>Open</dd>
             <dt>Reward</dt>
-            <dd>Demo / no payout</dd>
+            <dd>No payout</dd>
           </dl>
           <p>Try it from the Lemma repo:</p>
-          <pre class="lean-statement"><code>uv run lemma bounty show smoke.two_plus_two
-uv run lemma bounty verify smoke.two_plus_two --submission Submission.lean</code></pre>
+          <pre class="lean-statement"><code>uv run lemma bounty show starter.two_plus_two
+uv run lemma bounty verify starter.two_plus_two --submission Submission.lean</code></pre>
         </div>
       </article>
     </section>

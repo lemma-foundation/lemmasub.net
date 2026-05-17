@@ -2,13 +2,13 @@
   "campaigns": [
     {
       "declaration": "Submission.two_plus_two_eq_four",
-      "id": "smoke.two_plus_two",
+      "id": "starter.two_plus_two",
       "lean_file": "Submission.lean",
-      "reward_label": "Demo / no payout",
+      "reward_label": "No payout",
       "source_url": "/bounties/",
       "statement_sha256": "pending",
       "status": "open",
-      "title": "Smoke test: two plus two",
+      "title": "Two plus two",
       "upstream_commit": "pending",
       "upstream_repo": "spacetime-tao/lemma"
     }
