@@ -458,19 +458,39 @@ h3 {
 }
 
 .copy-block {
+  display: block;
   position: relative;
+  max-width: 100%;
 }
 
 .copy-block > pre,
 .copy-block > code {
-  padding-right: 46px;
+  margin: 0 !important;
+  padding-right: 56px;
+}
+
+.copy-block-lean {
+  margin: 14px 0;
+}
+
+.statement-label + .copy-block-lean {
+  margin-top: 0;
+}
+
+.proof-target .copy-block-lean {
+  margin-bottom: 0;
+}
+
+.bounty-card .copy-block-lean {
+  margin: 8px 0 16px;
 }
 
 .copy-button {
   appearance: none;
   position: absolute;
-  top: 9px;
-  right: 9px;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
   width: 30px;
   height: 30px;
   padding: 0;
@@ -828,10 +848,13 @@ h3 {
 
 .proof-map-full > .copy-block {
   align-self: stretch;
+  margin: 0;
 }
 
 .proof-full-code {
   height: 100%;
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 .proof-map article {

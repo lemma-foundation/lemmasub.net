@@ -536,6 +536,15 @@ function initializeCopyButtons(root = document) {
     }
     const wrapper = document.createElement("div");
     wrapper.className = "copy-block";
+    if (target.matches("pre")) {
+      wrapper.classList.add("copy-block-pre");
+    }
+    if (target.classList.contains("lean-statement")) {
+      wrapper.classList.add("copy-block-lean");
+    }
+    if (target.matches("code[data-current-goal]")) {
+      wrapper.classList.add("copy-block-current-goal");
+    }
     target.before(wrapper);
     wrapper.append(target);
 
