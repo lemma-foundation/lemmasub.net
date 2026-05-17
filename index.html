@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma rewards correct mathematical proofs. AI systems produce Lean proof files, validators check them, and each proof passes or fails.">
+  <meta name="description" content="Lemma rewards correct mathematical proofs through Lean verification and trustless escrow-backed bounties.">
   <title>Lemma</title>
   <script>
     (() => {
@@ -40,8 +40,9 @@
       <div class="hero-copy">
         <h1>Using AI to Prove Mathematical Theorems</h1>
         <p class="lede">
-          Lemma posts theorem challenges. Miners use AI to write proofs. Valid
-          proofs earn rewards.
+          Lemma posts theorem challenges and funded bounty targets. Miners use
+          AI to write proofs. Valid proofs can earn rewards only under public
+          verifier rules and escrow-backed custody.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="dashboard/index.html">View Dashboard</a>
@@ -116,7 +117,7 @@
         <article>
           <span>03</span>
           <h3>Reward</h3>
-          <p>Miners with valid proofs are rewarded. Miners with invalid proofs are not.</p>
+          <p>Valid proofs can earn reward weight or an escrow-backed bounty payout. Invalid proofs do not.</p>
         </article>
       </div>
     </section>
@@ -216,8 +217,8 @@ end Submission</code></pre>
     <section class="band proof-lanes-band">
       <div class="section-head">
         <p class="eyebrow">Two proof lanes</p>
-        <h2>Timed theorem rounds keep the subnet moving. Bounties aim at harder targets.</h2>
-        <p>Lemma needs both: a steady cadence where miners compete under the same timer, and a planned manual bounty lane for selected Lean statements that need more time and attention.</p>
+        <h2>Timed theorem rounds keep the subnet moving. Trustless bounties aim at harder targets.</h2>
+        <p>Lemma needs both: a steady cadence where miners compete under the same timer, and escrow-funded bounties for selected Lean statements that need more time and attention.</p>
       </div>
       <div class="proof-lanes">
         <article>
@@ -226,7 +227,7 @@ end Submission</code></pre>
         </article>
         <article>
           <h3><a class="title-link" href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Formal Conjectures</a> bounties</h3>
-          <p>Bounties are not live yet. The intended lane is manual and review-based, using selected Formal Conjectures targets with pinned statements, reproducible Lean verification, and a structured claimant record before any payout.</p>
+          <p>A bounty is live only when its reward is funded in Bittensor EVM escrow. Solvers commit and reveal on-chain, validators attest after Lean verification, and the contract releases payout under fixed rules.</p>
           <p class="source-note">Note: Lemma is not affiliated with or partnered with Google DeepMind.</p>
         </article>
       </div>
@@ -241,7 +242,7 @@ end Submission</code></pre>
           validators check proofs with Lean, and valid work can be rewarded.
           Over time, Lemma can steadily increase cadence difficulty and use
           selected <a class="text-link" href="https://google-deepmind.github.io/formal-conjectures/" target="_blank" rel="noopener noreferrer">Formal Conjectures</a>
-          targets as harder manual bounty work, so miners have to build stronger
+          targets as harder escrow-backed bounty work, so miners have to build stronger
           proving systems.
         </p>
       </div>

@@ -113,3 +113,10 @@ proof scripts, Droplet details, SSH usernames, or Lean worker endpoints.
 
 UID, coldkey, and hotkey links stay empty until a public explorer URL template is
 chosen for the live network.
+
+## Public Bounty Data
+
+The bounty page may show candidate targets, but `active_bounties` must contain
+only rows backed by funded `LemmaBountyEscrow` state on Bittensor EVM. Unfunded
+targets stay candidates or drafts. Do not publish proof text, salts, private
+validator data, custody keys, or any manual-payout promise in the static feed.

@@ -1,6 +1,15 @@
 {
-  "campaigns": [],
+  "active_bounties": [],
+  "candidate_bounties": [
+    {
+      "id": "starter.two_plus_two",
+      "source": "Formal Conjectures starter target",
+      "status": "candidate",
+      "reason_not_live": "Escrow funding is not confirmed on-chain."
+    }
+  ],
   "generated_unix": 1778918400,
-  "reward_mode": "not_live",
-  "schema_version": 1
+  "notes": "Only funded Bittensor EVM escrow rows may appear in active_bounties.",
+  "reward_custody": "evm_escrow",
+  "schema_version": 2
 }
