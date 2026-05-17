@@ -1,6 +1,6 @@
 # lemmasub.net
 
-Static public site for Lemma, a Bittensor subnet for producing Lean-verified proof data for mathematical AI.
+Static public site for Lemma, a Bittensor subnet for training the best open mathematical prover with Lean-verified proof data.
 
 ## Local Preview
 
@@ -21,6 +21,7 @@ The page is dependency-free and can also be opened directly from `index.html`.
 - Mention Google DeepMind Formal Conjectures as a frontier benchmark, not as the v1 paid work stream or an endorsement.
 - Do not use smart-contract, escrow, custody, or owner-emission framing on the homepage.
 - Keep the site static, calm, low-jargon, and readable on mobile.
+- Use the headline “Train the best open mathematical prover.”
 
 ## Deployment
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a Bittensor subnet for producing Lean-verified proof data for mathematical AI.">
-  <title>Lemma - verified proof data for mathematical AI</title>
+  <meta name="description" content="Lemma is a Bittensor subnet where miners create Lean-verified theorem/proof data for training mathematical AI.">
+  <title>Lemma - train the best open mathematical prover</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -13,10 +13,12 @@
     <a class="brand" href="./">Lemma</a>
     <nav aria-label="Primary navigation">
       <a href="#how">How it works</a>
+      <a href="#lean">Why Lean</a>
       <a href="#corpus">Corpus</a>
       <a href="#mining">Mining</a>
       <a href="#validation">Validation</a>
       <a href="#benchmarks">Benchmarks</a>
+      <a href="#start">Start</a>
       <a href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
     </nav>
   </header>
@@ -24,8 +26,8 @@
   <main id="main">
     <section class="hero">
       <p class="eyebrow">Bittensor subnet for mathematical AI</p>
-      <h1>Verified proof data for mathematical AI.</h1>
-      <p class="lede">Lemma is a Bittensor subnet where miners produce Lean proofs, validators check them, and every accepted proof becomes public training data.</p>
+      <h1>Train the best open mathematical prover.</h1>
+      <p class="lede">Lemma is a Bittensor subnet where miners create Lean-verified theorem/proof data. Validators check every proof with the Lean kernel. The resulting open corpus trains stronger AI provers, which can be tested against frontier benchmarks like Google DeepMind's Formal Conjectures.</p>
       <p class="lockup">AI can guess. Lean can check. Lemma pays for the checked data.</p>
       <p class="actions">
         <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
@@ -43,6 +45,12 @@
         <li><strong>Check</strong><span>Validators accept only proofs that build in Lean.</span></li>
         <li><strong>Data</strong><span>Accepted proofs become training examples.</span></li>
       </ol>
+    </section>
+
+    <section id="lean" class="section">
+      <p class="eyebrow">Why Lean</p>
+      <h2>Lean turns guesses into checked data.</h2>
+      <p>A model can produce a proof that looks plausible. Lean checks whether it actually follows from the theorem statement and allowed imports. Lemma uses that pass/fail boundary as the reward signal.</p>
     </section>
 
     <section id="corpus" class="section split">
@@ -79,6 +87,16 @@ uv run lemma validate --once --no-set-weights</code></pre>
       <p class="eyebrow">Benchmarks</p>
       <h2>Frontier problems measure progress.</h2>
       <p>Google DeepMind Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are benchmarks for provers trained on Lemma data. They are evaluation targets, not the v1 reward path.</p>
+    </section>
+
+    <section id="start" class="section">
+      <p class="eyebrow">Get started</p>
+      <h2>Run the proof-data loop locally.</h2>
+      <p>Start by listing active tasks, checking one theorem, and running one miner or validator iteration.</p>
+      <pre><code>uv sync --extra btcli
+uv run lemma setup
+uv run lemma tasks list
+uv run lemma task show lemma.sample.true_intro</code></pre>
     </section>
   </main>
 
