@@ -1,8 +1,8 @@
 {
   "block_time_sec_estimate": 12.0,
-  "chain_head_block": 7138486,
+  "chain_head_block": 7138501,
   "correct_count_window_hours": 24.0,
-  "generated_at": "2026-05-17T02:33:07Z",
+  "generated_at": "2026-05-17T02:36:11Z",
   "miners": [
     {
       "coldkey": "5Fmrq7XtfS9BV2WsQnh2JacXdqpaLowVYVwYWfw4TDASfJwS",
@@ -103,8 +103,8 @@
   ],
   "netuid": 467,
   "network": "test",
-  "problem_seed": 7138400,
-  "problem_seed_chain_head": 7138486,
+  "problem_seed": 7138500,
+  "problem_seed_chain_head": 7138501,
   "problem_seed_mode": "quantize",
   "problem_seed_quantize_blocks": 100,
   "problem_seed_tag": "quantize",
@@ -113,20 +113,8 @@
   "score_source": "metagraph_incentive",
   "theorems": {
     "current": {
-      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "label": "current",
-      "name": "curated_list_append_nil_induction",
-      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
-      "seed": 7138400,
-      "source_lane": "catalog",
-      "split": "medium",
-      "theorem_id": "curated/foundations/list_append_nil_induction",
-      "topic": "foundations.recursion",
-      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
-    },
-    "next": {
       "explanation": "Prove that image preserves subset containment under a function.",
-      "label": "next",
+      "label": "current",
       "name": "curated_set_image_mono",
       "plain_english": "Prove that image preserves subset containment under a function.",
       "seed": 7138500,
@@ -136,17 +124,29 @@
       "topic": "set_theory.finite_sets",
       "type_expr": "\u2200 (f : Nat \u2192 Nat) (A B : Set Nat), A \u2286 B \u2192 f '' A \u2286 f '' B"
     },
-    "previous": {
-      "explanation": "Prove that image preserves subset containment under a function on Fin 5.",
-      "label": "previous",
-      "name": "t_4cadb96",
-      "plain_english": "Prove that image preserves subset containment under a function on Fin 5.",
-      "seed": 7138300,
-      "source_lane": "generated",
+    "next": {
+      "explanation": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
+      "label": "next",
+      "name": "curated_matrix_zero_add",
+      "plain_english": "Prove that adding the zero matrix on the left leaves a matrix unchanged.",
+      "seed": 7138600,
+      "source_lane": "catalog",
       "split": "hard",
-      "theorem_id": "gen/7138300",
-      "topic": "set_theory.finite_sets",
-      "type_expr": "\u2200 (f : Fin 5 \u2192 Fin 5) (A B : Set (Fin 5)), A \u2286 B \u2192 f '' A \u2286 f '' B"
+      "theorem_id": "curated/matrix/zero_add",
+      "topic": "linear_algebra.matrix",
+      "type_expr": "\u2200 A : Matrix (Fin 2) (Fin 2) \u2124, 0 + A = A"
+    },
+    "previous": {
+      "explanation": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "label": "previous",
+      "name": "curated_list_append_nil_induction",
+      "plain_english": "Prove by induction that appending the empty list leaves a list unchanged.",
+      "seed": 7138400,
+      "source_lane": "catalog",
+      "split": "medium",
+      "theorem_id": "curated/foundations/list_append_nil_induction",
+      "topic": "foundations.recursion",
+      "type_expr": "\u2200 xs : List Nat, xs ++ [] = xs"
     }
   },
   "validator_score_source": "difficulty_weighted_rolling_validator_score"
