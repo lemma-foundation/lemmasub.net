@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a Bittensor subnet for training open mathematical AI with Lean-verified proof data.">
-  <title>Lemma — verified proof data for mathematical AI</title>
+  <meta name="description" content="Lemma is a Bittensor subnet for producing Lean-verified proof data for mathematical AI.">
+  <title>Lemma - verified proof data for mathematical AI</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -12,101 +12,79 @@
   <header class="site-header">
     <a class="brand" href="./">Lemma</a>
     <nav aria-label="Primary navigation">
-      <a href="#loop">How it works</a>
+      <a href="#how">How it works</a>
       <a href="#corpus">Corpus</a>
+      <a href="#mining">Mining</a>
+      <a href="#validation">Validation</a>
       <a href="#benchmarks">Benchmarks</a>
-      <a href="#cli">CLI</a>
-      <a href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
+      <a href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
     </nav>
   </header>
 
   <main id="main">
     <section class="hero">
-      <div class="hero-copy" data-reveal>
-        <p class="eyebrow">Bittensor subnet for mathematical AI</p>
-        <h1>Train the best open mathematical prover.</h1>
-        <p class="lede">Lemma pays miners to create Lean-verified theorem/proof data. Validators check every proof with the Lean kernel. The public corpus trains stronger AI provers.</p>
-        <div class="actions">
-          <a class="button primary" href="#loop">See the loop</a>
-          <a class="button" href="#cli">Run the CLI</a>
-        </div>
-      </div>
-      <div class="proof-card" data-reveal>
-        <p class="card-label">The Lemma loop</p>
-        <div class="loop-line" aria-hidden="true">
-          <span>Task</span><i></i><span>Proof</span><i></i><span>Lean check</span><i></i><span>Corpus</span>
-          <b></b>
-        </div>
-        <pre><code>$ lemma verify task-042 --submission Submission.lean
-result: accepted
-row: corpus/epoch-1024.jsonl</code></pre>
-      </div>
+      <p class="eyebrow">Bittensor subnet for mathematical AI</p>
+      <h1>Verified proof data for mathematical AI.</h1>
+      <p class="lede">Lemma is a Bittensor subnet where miners produce Lean proofs, validators check them, and every accepted proof becomes public training data.</p>
+      <p class="lockup">AI can guess. Lean can check. Lemma pays for the checked data.</p>
+      <p class="actions">
+        <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <a class="button" href="#how">How it works</a>
+      </p>
     </section>
 
-    <section id="loop" class="section">
-      <div class="section-heading" data-reveal>
-        <p class="eyebrow">How it works</p>
-        <h2>AI can guess. Lean can check.</h2>
-        <p>Miners search for proofs. Validators run the checker. Correct proofs become training data. The reward is tied to the verified artifact, not to prose or claimed effort.</p>
-      </div>
-      <div class="grid six" data-reveal>
-        <article><span>01</span><h3>Task</h3><p>Lemma publishes exact Lean theorem tasks.</p></article>
-        <article><span>02</span><h3>Search</h3><p>Miners use models, tactics, retrieval, or human insight.</p></article>
-        <article><span>03</span><h3>Submit</h3><p>The artifact is a Lean proof for the exact task.</p></article>
-        <article><span>04</span><h3>Verify</h3><p>Validators run the pinned Lean environment.</p></article>
-        <article><span>05</span><h3>Reward</h3><p>Accepted proofs receive normal Bittensor miner credit.</p></article>
-        <article><span>06</span><h3>Train</h3><p>The proof enters the open corpus for future provers.</p></article>
-      </div>
+    <section id="how" class="section">
+      <p class="eyebrow">The loop</p>
+      <h2>Task -> Proof -> Lean check -> Reward -> Corpus</h2>
+      <p>Miners search for proofs. Validators run the Lean checker. Correct proofs receive normal Bittensor miner credit and become rows in an open corpus.</p>
+      <ol class="steps">
+        <li><strong>Task</strong><span>Lemma publishes exact Lean theorem targets.</span></li>
+        <li><strong>Proof</strong><span>Miners use any prover stack they want.</span></li>
+        <li><strong>Check</strong><span>Validators accept only proofs that build in Lean.</span></li>
+        <li><strong>Data</strong><span>Accepted proofs become training examples.</span></li>
+      </ol>
     </section>
 
     <section id="corpus" class="section split">
-      <div data-reveal>
-        <p class="eyebrow">Public dataset</p>
+      <div>
+        <p class="eyebrow">Corpus</p>
         <h2>The corpus is the product.</h2>
-        <p>Every accepted proof becomes a replayable dataset row: theorem statement, imports, toolchain, proof, hashes, verifier result, and solver attribution.</p>
-        <p>A lemma is a stepping stone to a larger proof. Lemma creates many of those stepping stones for mathematical AI.</p>
+        <p>Each row records the theorem statement, imports, toolchain, proof, hashes, verifier result, source metadata, and attribution needed to replay the check later.</p>
       </div>
-      <pre class="code" data-reveal><code>{
-  "task_id": "lemma.generated.042",
-  "lean_toolchain": "leanprover/lean4",
-  "proof_sha256": "...",
-  "solver_hotkey": "...",
+      <pre><code>{
+  "task_id": "lemma.sample.true_intro",
+  "proof_sha256": "14ae...",
+  "source_license": "CC-BY-4.0",
   "verification": { "passed": true }
 }</code></pre>
     </section>
 
-    <section id="benchmarks" class="section">
-      <div class="section-heading" data-reveal>
-        <p class="eyebrow">Frontier benchmarks</p>
-        <h2>Hard problems measure progress.</h2>
-        <p>Google DeepMind's Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are benchmarks for the provers trained on Lemma data. They are not the v1 reward stream.</p>
-      </div>
-      <div class="grid" data-reveal>
-        <article><h3>Formal Conjectures</h3><p>Open Lean conjectures from Google DeepMind's public repository.</p></article>
-        <article><h3>lean-eval</h3><p>A leaderboard of hard Lean formalization problems.</p></article>
-        <article><h3>PutnamBench</h3><p>Formal theorem-proving benchmark based on Putnam problems.</p></article>
-      </div>
+    <section id="mining" class="section">
+      <p class="eyebrow">Mining</p>
+      <h2>Miners produce checked proof artifacts.</h2>
+      <p>Miners can use local models, hosted APIs, tactics, retrieval, search, or human-written proofs. Lemma only cares whether the final `Submission.lean` passes the pinned verifier.</p>
+      <pre><code>uv run lemma setup
+uv run lemma mine --once</code></pre>
     </section>
 
-    <section id="cli" class="section split">
-      <div data-reveal>
-        <p class="eyebrow">Use Lemma</p>
-        <h2>Simple commands, exact proofs.</h2>
-        <p>The CLI should make tasks, verification, submissions, and corpus replay easy to inspect.</p>
-      </div>
-      <pre class="code" data-reveal><code>uv sync
-uv run lemma setup
-uv run lemma tasks list
-uv run lemma tasks inspect &lt;task-id&gt;
-uv run lemma verify &lt;task-id&gt; --submission Submission.lean
-uv run lemma corpus replay corpus.jsonl</code></pre>
+    <section id="validation" class="section">
+      <p class="eyebrow">Validation</p>
+      <h2>Validators check, score, and publish.</h2>
+      <p>Validators reject invalid targets, duplicate proof identities, and failed Lean builds. They score the first accepted unique proof for each task and publish corpus rows after the scoring window.</p>
+      <pre><code>uv run lemma worker --check
+uv run lemma validate --once --no-set-weights</code></pre>
+    </section>
+
+    <section id="benchmarks" class="section">
+      <p class="eyebrow">Benchmarks</p>
+      <h2>Frontier problems measure progress.</h2>
+      <p>Google DeepMind Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are benchmarks for provers trained on Lemma data. They are evaluation targets, not the v1 reward path.</p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Lemma is independent. Google DeepMind's Formal Conjectures is referenced as a public benchmark; no endorsement is implied.</p>
+    <p>Lemma is independent. Google DeepMind Formal Conjectures is referenced as a public benchmark; no endorsement is implied.</p>
     <p><a href="https://github.com/spacetime-tao/lemma">Lemma repo</a> <a href="https://github.com/spacetime-tao/lemmasub.net">Site repo</a></p>
   </footer>
-  <script src="assets/site.js"></script>
 </body>
 </html>
