@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a verifier-grounded data subnet. Lean theorem proving is the first production domain.">
+  <meta name="description" content="Lemma v1 is a Lean-only proof-data subnet with a graph-shaped corpus substrate.">
   <title>Lemma - verifier-grounded training data</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -16,7 +16,7 @@
       <a href="#why">Lean first</a>
       <a href="#corpus">Corpus</a>
       <a href="#models">Models</a>
-      <a href="#domains">Domains</a>
+      <a href="#graph">Graph</a>
       <a href="#validation">Validation</a>
       <a href="#benchmarks">Benchmarks</a>
       <a href="#research">Research</a>
@@ -28,7 +28,7 @@
     <section class="hero">
       <p class="eyebrow">Verifier-grounded data subnet</p>
       <h1>Verifier-grounded training data.</h1>
-      <p class="lede">Lemma is a Bittensor subnet where miners produce artifacts accepted by deterministic verifiers, and validators publish those accepted artifacts as open training corpora. Lean theorem proving is the first production domain.</p>
+      <p class="lede">Lemma v1 is a Bittensor subnet where miners produce Lean proofs accepted by a deterministic verifier, and validators publish those accepted proofs as graph-shaped public training data.</p>
       <p class="lockup">AI can guess. Verifiers can check. Lemma pays for checked data.</p>
       <p class="actions">
         <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
@@ -38,13 +38,13 @@
 
     <section id="loop" class="section">
       <p class="eyebrow">The mechanism</p>
-      <h2>Tasks, artifacts, deterministic checks, public rows.</h2>
-      <p>Lemma turns artifact search into public training data: publish tasks, search for accepted artifacts, check them with pinned verifiers, reward verified units, publish corpus rows, and use that data to train stronger reasoning models.</p>
+      <h2>Tasks, proofs, deterministic checks, public graph rows.</h2>
+      <p>Lemma turns Lean proof search into public training data: publish theorem tasks, search for accepted proofs, check them with a pinned verifier, reward verified units, publish graph-shaped corpus rows, and use that data to train stronger reasoning models.</p>
       <ol class="steps">
-        <li><strong>Tasks</strong><span>Validators expose exact verifier targets.</span></li>
-        <li><strong>Artifacts</strong><span>Miners use any search stack they want.</span></li>
+        <li><strong>Tasks</strong><span>Validators expose exact Lean theorem targets.</span></li>
+        <li><strong>Proofs</strong><span>Miners use any search stack they want.</span></li>
         <li><strong>Checks</strong><span>The verifier decides pass or fail.</span></li>
-        <li><strong>Data</strong><span>Accepted artifacts become public rows.</span></li>
+        <li><strong>Data</strong><span>Accepted proofs become public graph rows.</span></li>
       </ol>
     </section>
 
@@ -57,16 +57,20 @@
     <section id="corpus" class="section split">
       <div>
         <p class="eyebrow">Corpus</p>
-        <h2>The corpus is the product.</h2>
-        <p>Each accepted row records the domain, verifier, prompt, accepted artifact, hashes, attribution, source metadata, reward status, and replay information. The current public corpus is the Lean domain corpus.</p>
+        <h2>The graph-shaped corpus is the product.</h2>
+        <p>Each accepted row records the Lean task, verifier, proof, identity, source, license, attribution, quality gates, dependencies, and replay information. The graph structure is foundational even while v1 rewards stay Lean-only.</p>
       </div>
       <pre><code>{
   "schema_version": 2,
   "task_id": "lemma.sample.true_intro",
   "domain_id": "lean",
   "verifier_id": "lake-build",
-  "task_type": "theorem_proving",
-  "accepted_artifact": { "proof": "trivial" },
+  "accepted_artifact": {
+    "proof": "trivial",
+    "proof_identity_strength": "strong"
+  },
+  "dependencies": { "mathlib_imports": ["Mathlib"] },
+  "graph": { "node_ids": { "task": "...", "proof": "..." } },
   "verification": { "accepted": true }
 }</code></pre>
     </section>
@@ -81,22 +85,22 @@
   --out data/lean_corpus.jsonl</code></pre>
     </section>
 
-    <section id="domains" class="section">
-      <p class="eyebrow">Mechanism class</p>
-      <h2>Any deterministic verifier can become a domain.</h2>
-      <p>Lean remains the only production domain today. The adapter architecture is built for future domains such as Verus/Rust verification, SAT/SMT certificates, optimization certificates, and cryptanalysis witnesses.</p>
+    <section id="graph" class="section">
+      <p class="eyebrow">Graph substrate</p>
+      <h2>Every mechanism should build on the graph.</h2>
+      <p>Lean is the only production launch domain. The substrate shape is already graph-native: tasks, proofs, sources, licenses, proof identities, verifier runs, solver attribution, validator attribution, imports, and future row dependencies are linked instead of treated as isolated JSON records.</p>
       <ol class="steps">
-        <li><strong>Lean</strong><span>Theorem-proof pairs.</span></li>
-        <li><strong>Verus</strong><span>Rust code, specs, proof annotations.</span></li>
-        <li><strong>SAT/SMT</strong><span>Formulas and certificates.</span></li>
-        <li><strong>Optimization</strong><span>Primal and dual certificates.</span></li>
+        <li><strong>Identity</strong><span>Duplicate families and reward eligibility.</span></li>
+        <li><strong>Source</strong><span>License and provenance paths.</span></li>
+        <li><strong>Quality</strong><span>Difficulty, novelty, and usefulness gates.</span></li>
+        <li><strong>Reuse</strong><span>Future proof dependencies and retrieval.</span></li>
       </ol>
     </section>
 
     <section id="validation" class="section">
       <p class="eyebrow">Validation</p>
       <h2>Validators check artifacts, not claims.</h2>
-      <p>Validators enforce task binding, dispatch to the domain verifier, reject duplicates, score the first accepted unique artifact for each active slot, and publish replayable corpus rows. Unsolved-slot value is not redistributed to current solvers.</p>
+      <p>Validators enforce Lean task binding, dispatch to the pinned Lean verifier, reject duplicates, score the first accepted unique proof for each active slot, and publish replayable graph rows. Unsolved-slot value is not redistributed to current solvers.</p>
       <pre><code>uv run lemma worker --check
 uv run lemma validate --once --no-set-weights</code></pre>
     </section>
@@ -121,7 +125,7 @@ uv run lemma validate --once --no-set-weights</code></pre>
   </main>
 
   <footer class="site-footer">
-    <p>Lemma is independent. AlphaProof, Google DeepMind Formal Conjectures, miniF2F, PutnamBench, LeanDojo, LeanNavigator, Affine, Verus, and the IMO Grand Challenge are referenced as research context, integration context, or evaluation targets only. No endorsement is implied.</p>
+    <p>Lemma is independent. AlphaProof, Google DeepMind Formal Conjectures, miniF2F, PutnamBench, LeanDojo, LeanNavigator, Affine, Verus, and the IMO Grand Challenge are referenced as research context, integration context, roadmap context, or evaluation targets only. No endorsement is implied.</p>
     <p><a href="https://github.com/spacetime-tao/lemma">Lemma repo</a> <a href="https://github.com/spacetime-tao/lemmasub.net">Site repo</a></p>
   </footer>
 </body>
