@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a Bittensor subnet where miners create Lean-verified theorem/proof data for training mathematical AI.">
+  <meta name="description" content="Lemma is an open AlphaProof-style proof-data engine for Lean.">
   <title>Lemma - train the best open mathematical prover</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -12,96 +12,100 @@
   <header class="site-header">
     <a class="brand" href="./">Lemma</a>
     <nav aria-label="Primary navigation">
-      <a href="#how">How it works</a>
-      <a href="#lean">Why Lean</a>
+      <a href="#loop">Loop</a>
+      <a href="#why">Why Lean</a>
       <a href="#corpus">Corpus</a>
       <a href="#mining">Mining</a>
       <a href="#validation">Validation</a>
       <a href="#benchmarks">Benchmarks</a>
-      <a href="#start">Start</a>
+      <a href="#research">Research</a>
       <a href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
     </nav>
   </header>
 
   <main id="main">
     <section class="hero">
-      <p class="eyebrow">Bittensor subnet for mathematical AI</p>
+      <p class="eyebrow">Open proof-data flywheel for Lean</p>
       <h1>Train the best open mathematical prover.</h1>
-      <p class="lede">Lemma is a Bittensor subnet where miners create Lean-verified theorem/proof data. Validators check every proof with the Lean kernel. The resulting open corpus trains stronger AI provers, which can be tested against frontier benchmarks like Google DeepMind's Formal Conjectures.</p>
+      <p class="lede">Lemma is a Bittensor subnet building public Lean proof data. Miners generate machine-checkable proofs. Validators verify them with the Lean kernel. Every accepted proof becomes replayable training data for future mathematical provers.</p>
       <p class="lockup">AI can guess. Lean can check. Lemma pays for the checked data.</p>
       <p class="actions">
         <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <a class="button" href="#how">How it works</a>
+        <a class="button" href="#loop">How it works</a>
       </p>
     </section>
 
-    <section id="how" class="section">
+    <section id="loop" class="section">
       <p class="eyebrow">The loop</p>
-      <h2>Task -> Proof -> Lean check -> Reward -> Corpus</h2>
-      <p>Miners search for proofs. Validators run the Lean checker. Correct proofs receive normal Bittensor miner credit and become rows in an open corpus.</p>
+      <h2>Generate tasks, prove them, publish the corpus.</h2>
+      <p>Lemma turns proof search into public training data: generate Lean theorem tasks, search for proofs, check them with Lean, reward proof units, publish corpus rows, and use that data to train stronger provers.</p>
       <ol class="steps">
-        <li><strong>Task</strong><span>Lemma publishes exact Lean theorem targets.</span></li>
-        <li><strong>Proof</strong><span>Miners use any prover stack they want.</span></li>
-        <li><strong>Check</strong><span>Validators accept only proofs that build in Lean.</span></li>
-        <li><strong>Data</strong><span>Accepted proofs become training examples.</span></li>
+        <li><strong>Tasks</strong><span>Validators expose exact Lean theorem targets.</span></li>
+        <li><strong>Proofs</strong><span>Miners use any prover stack they want.</span></li>
+        <li><strong>Checks</strong><span>Lean decides pass or fail.</span></li>
+        <li><strong>Data</strong><span>Accepted proofs become public rows.</span></li>
       </ol>
     </section>
 
-    <section id="lean" class="section">
+    <section id="why" class="section">
       <p class="eyebrow">Why Lean</p>
-      <h2>Lean turns guesses into checked data.</h2>
-      <p>A model can produce a proof that looks plausible. Lean checks whether it actually follows from the theorem statement and allowed imports. Lemma uses that pass/fail boundary as the reward signal.</p>
+      <h2>Lean turns plausible text into checked artifacts.</h2>
+      <p>A model can write something that looks like a proof. Lean checks whether it really follows from the theorem statement and allowed imports. Lemma uses that mechanical boundary as the reward signal.</p>
     </section>
 
     <section id="corpus" class="section split">
       <div>
         <p class="eyebrow">Corpus</p>
         <h2>The corpus is the product.</h2>
-        <p>Each row records the theorem statement, imports, toolchain, proof, hashes, verifier result, source metadata, and attribution needed to replay the check later.</p>
+        <p>Each accepted row records the theorem, imports, toolchain, Mathlib revision, proof, source metadata, hashes, attribution, reward status, and replay information.</p>
       </div>
       <pre><code>{
   "task_id": "lemma.sample.true_intro",
-  "proof_sha256": "14ae...",
-  "source_license": "CC-BY-4.0",
-  "verification": { "passed": true }
+  "source_stream": "mathlib_snapshot",
+  "proof_identity_source": "lean_proof_term",
+  "verification": { "passed": true },
+  "rewarded": true
 }</code></pre>
     </section>
 
     <section id="mining" class="section">
       <p class="eyebrow">Mining</p>
       <h2>Miners produce checked proof artifacts.</h2>
-      <p>Miners can use local models, hosted APIs, tactics, retrieval, search, or human-written proofs. Lemma only cares whether the final `Submission.lean` passes the pinned verifier.</p>
-      <pre><code>uv run lemma setup
+      <p>Miners can use retrieval, tactics, local models, hosted APIs, tree search, reinforcement learning, or human-written proof strategies. Lemma only scores the final proof artifact that passes the pinned verifier.</p>
+      <pre><code>uv sync --extra btcli
+uv run lemma setup
 uv run lemma mine --once</code></pre>
     </section>
 
     <section id="validation" class="section">
       <p class="eyebrow">Validation</p>
-      <h2>Validators check, score, and publish.</h2>
-      <p>Validators reject invalid targets, duplicate proof identities, and failed Lean builds. They score the first accepted unique proof for each task and publish corpus rows after the scoring window.</p>
+      <h2>Validators check artifacts, not claims.</h2>
+      <p>Validators enforce task binding, run the Lean verifier, reject duplicates, score the first accepted unique proof for each active slot, and publish replayable corpus rows. Unsolved-slot value is not redistributed to current solvers.</p>
       <pre><code>uv run lemma worker --check
 uv run lemma validate --once --no-set-weights</code></pre>
     </section>
 
     <section id="benchmarks" class="section">
       <p class="eyebrow">Benchmarks</p>
-      <h2>Frontier problems measure progress.</h2>
-      <p>Google DeepMind Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are benchmarks for provers trained on Lemma data. They are evaluation targets, not the v1 reward path.</p>
+      <h2>Benchmarks measure progress. They are not the product.</h2>
+      <p>The corpus trains provers. Benchmarks show whether those provers improve. Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are evaluation targets, not the v1 reward path.</p>
     </section>
 
-    <section id="start" class="section">
-      <p class="eyebrow">Get started</p>
-      <h2>Run the proof-data loop locally.</h2>
-      <p>Start by listing active tasks, checking one theorem, and running one miner or validator iteration.</p>
-      <pre><code>uv sync --extra btcli
-uv run lemma setup
-uv run lemma tasks list
-uv run lemma task show lemma.sample.true_intro</code></pre>
+    <section id="research" class="section">
+      <p class="eyebrow">Research context</p>
+      <h2>AlphaProof-style ideas, open corpus mechanics.</h2>
+      <p>AlphaProof-style systems showed the power of large formal curricula and Lean-grounded feedback. Lemma takes the data flywheel open: a market for verified Lean proof data, not a closed lab dataset.</p>
+      <ul class="links">
+        <li><a href="https://www.nature.com/articles/s41586-025-09833-y" rel="noopener noreferrer" target="_blank">AlphaProof and AlphaGeometry research</a></li>
+        <li><a href="https://arxiv.org/html/2503.04772v1" rel="noopener noreferrer" target="_blank">LeanNavigator state-graph generation</a></li>
+        <li><a href="https://arxiv.org/abs/2506.22005" rel="noopener noreferrer" target="_blank">LeanConjecturer</a></li>
+        <li><a href="https://leandojo.org/leandojo.html" rel="noopener noreferrer" target="_blank">LeanDojo</a></li>
+      </ul>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Lemma is independent. Google DeepMind Formal Conjectures is referenced as a public benchmark; no endorsement is implied.</p>
+    <p>Lemma is independent. AlphaProof, Google DeepMind Formal Conjectures, miniF2F, PutnamBench, LeanDojo, LeanNavigator, and the IMO Grand Challenge are referenced as research context or evaluation targets only. No endorsement is implied.</p>
     <p><a href="https://github.com/spacetime-tao/lemma">Lemma repo</a> <a href="https://github.com/spacetime-tao/lemmasub.net">Site repo</a></p>
   </footer>
 </body>
