@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is an open AlphaProof-style proof-data engine for Lean.">
-  <title>Lemma - train the best open mathematical prover</title>
+  <meta name="description" content="Lemma is a verifier-grounded data subnet. Lean theorem proving is the first production domain.">
+  <title>Lemma - verifier-grounded training data</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -12,10 +12,11 @@
   <header class="site-header">
     <a class="brand" href="./">Lemma</a>
     <nav aria-label="Primary navigation">
-      <a href="#loop">Loop</a>
-      <a href="#why">Why Lean</a>
+      <a href="#loop">Mechanism</a>
+      <a href="#why">Lean first</a>
       <a href="#corpus">Corpus</a>
-      <a href="#mining">Mining</a>
+      <a href="#models">Models</a>
+      <a href="#domains">Domains</a>
       <a href="#validation">Validation</a>
       <a href="#benchmarks">Benchmarks</a>
       <a href="#research">Research</a>
@@ -25,10 +26,10 @@
 
   <main id="main">
     <section class="hero">
-      <p class="eyebrow">Open proof-data flywheel for Lean</p>
-      <h1>Train the best open mathematical prover.</h1>
-      <p class="lede">Lemma is a Bittensor subnet building public Lean proof data. Miners generate machine-checkable proofs. Validators verify them with the Lean kernel. Every accepted proof becomes replayable training data for future mathematical provers.</p>
-      <p class="lockup">AI can guess. Lean can check. Lemma pays for the checked data.</p>
+      <p class="eyebrow">Verifier-grounded data subnet</p>
+      <h1>Verifier-grounded training data.</h1>
+      <p class="lede">Lemma is a Bittensor subnet where miners produce artifacts accepted by deterministic verifiers, and validators publish those accepted artifacts as open training corpora. Lean theorem proving is the first production domain.</p>
+      <p class="lockup">AI can guess. Verifiers can check. Lemma pays for checked data.</p>
       <p class="actions">
         <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
         <a class="button" href="#loop">How it works</a>
@@ -36,51 +37,66 @@
     </section>
 
     <section id="loop" class="section">
-      <p class="eyebrow">The loop</p>
-      <h2>Generate tasks, prove them, publish the corpus.</h2>
-      <p>Lemma turns proof search into public training data: generate Lean theorem tasks, search for proofs, check them with Lean, reward proof units, publish corpus rows, and use that data to train stronger provers.</p>
+      <p class="eyebrow">The mechanism</p>
+      <h2>Tasks, artifacts, deterministic checks, public rows.</h2>
+      <p>Lemma turns artifact search into public training data: publish tasks, search for accepted artifacts, check them with pinned verifiers, reward verified units, publish corpus rows, and use that data to train stronger reasoning models.</p>
       <ol class="steps">
-        <li><strong>Tasks</strong><span>Validators expose exact Lean theorem targets.</span></li>
-        <li><strong>Proofs</strong><span>Miners use any prover stack they want.</span></li>
-        <li><strong>Checks</strong><span>Lean decides pass or fail.</span></li>
-        <li><strong>Data</strong><span>Accepted proofs become public rows.</span></li>
+        <li><strong>Tasks</strong><span>Validators expose exact verifier targets.</span></li>
+        <li><strong>Artifacts</strong><span>Miners use any search stack they want.</span></li>
+        <li><strong>Checks</strong><span>The verifier decides pass or fail.</span></li>
+        <li><strong>Data</strong><span>Accepted artifacts become public rows.</span></li>
       </ol>
     </section>
 
     <section id="why" class="section">
-      <p class="eyebrow">Why Lean</p>
-      <h2>Lean turns plausible text into checked artifacts.</h2>
-      <p>A model can write something that looks like a proof. Lean checks whether it really follows from the theorem statement and allowed imports. Lemma uses that mechanical boundary as the reward signal.</p>
+      <p class="eyebrow">Lean first</p>
+      <h2>Math is the wedge. Verified data is the product.</h2>
+      <p>Lean is the first clean instance because its verifier is deterministic, mature, and backed by Mathlib. A model can write something that looks like a proof. Lean checks whether it really follows from the theorem statement and allowed imports.</p>
     </section>
 
     <section id="corpus" class="section split">
       <div>
         <p class="eyebrow">Corpus</p>
         <h2>The corpus is the product.</h2>
-        <p>Each accepted row records the theorem, imports, toolchain, Mathlib revision, proof, source metadata, hashes, attribution, reward status, and replay information.</p>
+        <p>Each accepted row records the domain, verifier, prompt, accepted artifact, hashes, attribution, source metadata, reward status, and replay information. The current public corpus is the Lean domain corpus.</p>
       </div>
       <pre><code>{
+  "schema_version": 2,
   "task_id": "lemma.sample.true_intro",
-  "source_stream": "mathlib_snapshot",
-  "proof_identity_source": "lean_proof_term",
-  "verification": { "passed": true },
-  "rewarded": true
+  "domain_id": "lean",
+  "verifier_id": "lake-build",
+  "task_type": "theorem_proving",
+  "accepted_artifact": { "proof": "trivial" },
+  "verification": { "accepted": true }
 }</code></pre>
     </section>
 
-    <section id="mining" class="section">
-      <p class="eyebrow">Mining</p>
-      <h2>Miners produce checked proof artifacts.</h2>
-      <p>Miners can use retrieval, tactics, local models, hosted APIs, tree search, reinforcement learning, or human-written proof strategies. Lemma only scores the final proof artifact that passes the pinned verifier.</p>
-      <pre><code>uv sync --extra btcli
-uv run lemma setup
-uv run lemma mine --once</code></pre>
+    <section id="models" class="section">
+      <p class="eyebrow">Model miners</p>
+      <h2>Lemma data feeds model competition.</h2>
+      <p>Affine-style model miners can train on Lemma's public corpora. Affine rewards model dominance; Lemma produces the verifier-grounded corpora that help reasoning models improve.</p>
+      <pre><code>uv run lemma export-corpus \
+  --domain lean \
+  --format jsonl \
+  --out data/lean_corpus.jsonl</code></pre>
+    </section>
+
+    <section id="domains" class="section">
+      <p class="eyebrow">Mechanism class</p>
+      <h2>Any deterministic verifier can become a domain.</h2>
+      <p>Lean remains the only production domain today. The adapter architecture is built for future domains such as Verus/Rust verification, SAT/SMT certificates, optimization certificates, and cryptanalysis witnesses.</p>
+      <ol class="steps">
+        <li><strong>Lean</strong><span>Theorem-proof pairs.</span></li>
+        <li><strong>Verus</strong><span>Rust code, specs, proof annotations.</span></li>
+        <li><strong>SAT/SMT</strong><span>Formulas and certificates.</span></li>
+        <li><strong>Optimization</strong><span>Primal and dual certificates.</span></li>
+      </ol>
     </section>
 
     <section id="validation" class="section">
       <p class="eyebrow">Validation</p>
       <h2>Validators check artifacts, not claims.</h2>
-      <p>Validators enforce task binding, run the Lean verifier, reject duplicates, score the first accepted unique proof for each active slot, and publish replayable corpus rows. Unsolved-slot value is not redistributed to current solvers.</p>
+      <p>Validators enforce task binding, dispatch to the domain verifier, reject duplicates, score the first accepted unique artifact for each active slot, and publish replayable corpus rows. Unsolved-slot value is not redistributed to current solvers.</p>
       <pre><code>uv run lemma worker --check
 uv run lemma validate --once --no-set-weights</code></pre>
     </section>
@@ -88,13 +104,13 @@ uv run lemma validate --once --no-set-weights</code></pre>
     <section id="benchmarks" class="section">
       <p class="eyebrow">Benchmarks</p>
       <h2>Benchmarks measure progress. They are not the product.</h2>
-      <p>The corpus trains provers. Benchmarks show whether those provers improve. Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are evaluation targets, not the v1 reward path.</p>
+      <p>The corpus trains models. Benchmarks show whether those models improve. Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are evaluation targets, not the v1 reward path.</p>
     </section>
 
     <section id="research" class="section">
       <p class="eyebrow">Research context</p>
       <h2>AlphaProof-style ideas, open corpus mechanics.</h2>
-      <p>AlphaProof-style systems showed the power of large formal curricula and Lean-grounded feedback. Lemma takes the data flywheel open: a market for verified Lean proof data, not a closed lab dataset.</p>
+      <p>AlphaProof-style systems showed the power of large formal curricula and verifier-grounded feedback. Lemma takes the data flywheel open: a market for verified training data, not a closed lab dataset.</p>
       <ul class="links">
         <li><a href="https://www.nature.com/articles/s41586-025-09833-y" rel="noopener noreferrer" target="_blank">AlphaProof and AlphaGeometry research</a></li>
         <li><a href="https://arxiv.org/html/2503.04772v1" rel="noopener noreferrer" target="_blank">LeanNavigator state-graph generation</a></li>
@@ -105,7 +121,7 @@ uv run lemma validate --once --no-set-weights</code></pre>
   </main>
 
   <footer class="site-footer">
-    <p>Lemma is independent. AlphaProof, Google DeepMind Formal Conjectures, miniF2F, PutnamBench, LeanDojo, LeanNavigator, and the IMO Grand Challenge are referenced as research context or evaluation targets only. No endorsement is implied.</p>
+    <p>Lemma is independent. AlphaProof, Google DeepMind Formal Conjectures, miniF2F, PutnamBench, LeanDojo, LeanNavigator, Affine, Verus, and the IMO Grand Challenge are referenced as research context, integration context, or evaluation targets only. No endorsement is implied.</p>
     <p><a href="https://github.com/spacetime-tao/lemma">Lemma repo</a> <a href="https://github.com/spacetime-tao/lemmasub.net">Site repo</a></p>
   </footer>
 </body>

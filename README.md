@@ -1,6 +1,6 @@
 # lemmasub.net
 
-Static public site for Lemma, an open AlphaProof-style proof-data engine for Lean.
+Static public site for Lemma, a verifier-grounded data subnet with Lean theorem proving as its first production domain.
 
 ## Local Preview
 
@@ -14,15 +14,18 @@ The page is dependency-free and can also be opened directly from `index.html`.
 
 ## Content Principles
 
-- Explain Lemma in plain language before Bittensor or Lean details.
-- Say that miners create Lean-verified theorem/proof data.
-- Say that validators check proofs with Lean and score verified contributions.
-- Make the public corpus the product.
+- Explain Lemma in plain language before Bittensor or verifier details.
+- Say that miners create artifacts accepted by deterministic verifiers.
+- Say that Lean theorem proving is the first production domain.
+- Say that validators check artifacts and score verified contributions.
+- Make the public corpus the product, with the current corpus described as the Lean domain corpus.
+- Explain that Affine-style model miners can consume Lemma corpora, while Affine rewards model dominance and Lemma produces verifier-grounded data.
+- Mention future domains only as adapter-roadmap examples: Verus/Rust, SAT/SMT, optimization certificates, and cryptanalysis witnesses.
 - Mention AlphaProof-style systems and frontier benchmarks as research context, not as endorsement or the v1 paid work stream.
 - Say that unsolved-slot value is not redistributed to current solvers.
 - Do not use smart-contract, escrow, custody, or owner-emission framing on the homepage.
 - Keep the site static, calm, low-jargon, and readable on mobile.
-- Use the headline “Train the best open mathematical prover.”
+- Use the headline “Verifier-grounded training data.”
 
 ## Deployment
 
