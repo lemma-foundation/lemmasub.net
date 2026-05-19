@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma collects verified proofs, then turns accepted proofs into open training data for better reasoning models.">
+  <meta name="description" content="Lemma is a permissionless market for growing open, machine-verified mathematics.">
   <meta name="theme-color" content="#f6f3ec">
-  <meta property="og:title" content="Lemma - Verified proofs for better training data">
-  <meta property="og:description" content="Miners submit proofs. Lemma verifies them. Accepted proofs become open examples for training reasoning models.">
+  <meta property="og:title" content="Lemma - Machine-verified mathematics">
+  <meta property="og:description" content="Miners submit Lean proofs. Validators verify them. Accepted theorems become part of an open corpus of machine-verified mathematics.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lemmasub.net/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Lemma - Verified proofs for better training data">
-  <meta name="twitter:description" content="A plain-language introduction to Lemma: miners submit proofs, Lemma verifies them, accepted work becomes useful data.">
+  <meta name="twitter:title" content="Lemma - Machine-verified mathematics">
+  <meta name="twitter:description" content="A permissionless incentive network for growing open, machine-verified mathematics.">
   <link rel="canonical" href="https://lemmasub.net/">
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/site.js" defer></script>
-  <title>Lemma - Verified proofs for better training data</title>
+  <title>Lemma - Machine-verified mathematics</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -27,6 +27,7 @@
     <nav aria-label="Primary navigation">
       <a href="#plain">What it is</a>
       <a href="#flow">How it works</a>
+      <a href="#why-math">Why math</a>
       <a href="#example">Example</a>
       <a href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
@@ -43,37 +44,37 @@
     <section class="hero">
       <div class="wrap hero-layout">
         <div class="hero-copy">
-          <p class="eyebrow">Verified reasoning data</p>
-          <h1>Miners submit proofs. Lemma verifies them.</h1>
-          <p class="lede">Lemma is a way to build training data that does not rely on a guess. A miner sends in a proof, a validator runs a verifier, and a passing proof becomes a public example that models can learn from.</p>
+          <p class="eyebrow">Machine-verified mathematics</p>
+          <h1>Machine-verified mathematics, grown by an open market.</h1>
+          <p class="lede">Lemma is a permissionless market for expanding open formal mathematics. Miners submit Lean proofs, validators verify them, and accepted theorems become part of a public, citation-structured mathematical corpus.</p>
           <p class="actions" aria-label="Primary actions">
             <a class="button primary" href="#flow">Learn how it works</a>
             <a class="button" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
           </p>
         </div>
 
-        <div class="flow-card" aria-label="Problem to proof to verifier to data">
+        <div class="flow-card" aria-label="Theorem to proof to verifier to corpus">
           <p class="flow-label">Proof flow</p>
           <ol class="flow">
             <li>
-              <span class="flow-step">Problem</span>
-              <strong>Show a task</strong>
-              <p>A theorem or reasoning problem is posted.</p>
+              <span class="flow-step">Theorem</span>
+              <strong>Select a statement</strong>
+              <p>A Lean theorem enters the active pool.</p>
             </li>
             <li>
               <span class="flow-step">Proof</span>
-              <strong>Submit an answer</strong>
-              <p>A miner sends proof text that should solve it.</p>
+              <strong>Submit Lean</strong>
+              <p>A miner sends a task-bound proof.</p>
             </li>
             <li>
               <span class="flow-step">Verifier</span>
-              <strong>Run the verifier</strong>
-              <p>Software decides pass or fail.</p>
+              <strong>Run Lean</strong>
+              <p>Validators use the pinned Lean toolchain.</p>
             </li>
             <li>
-              <span class="flow-step">Dataset</span>
-              <strong>Keep what passed</strong>
-              <p>Accepted proofs become open training examples.</p>
+              <span class="flow-step">Corpus</span>
+              <strong>Save the theorem</strong>
+              <p>Accepted work joins the open mathematical record.</p>
             </li>
           </ol>
         </div>
@@ -84,11 +85,11 @@
       <div class="wrap two-col">
         <div>
           <p class="eyebrow">What it is</p>
-          <h2>A filter for useful reasoning work.</h2>
+          <h2>An incentive layer for formal math.</h2>
         </div>
         <div class="copy">
-          <p>A lot of AI output sounds right. That is not the same as being right. Lemma focuses on work that can be verified by software.</p>
-          <p>The simple rule is: if the proof passes, it can be kept. If it fails, it does not become training data.</p>
+          <p>Mathlib showed that machine-verified mathematics can become shared public infrastructure. Lemma adds an open market around that process: contributors compete to add Lean proofs, validators check them, and accepted results become reusable mathematical building blocks.</p>
+          <p>The simple rule is: if the proof passes in the pinned Lean environment, it can become part of the corpus. If it fails, it earns nothing.</p>
         </div>
       </div>
     </section>
@@ -97,31 +98,45 @@
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">How it works</p>
-          <h2>Four steps, no mystery layer.</h2>
-          <p>Miners can use any method they want to find proofs. Validators only care whether the final proof passes the verifier.</p>
+          <h2>Four steps, one verifier.</h2>
+          <p>Miners can use any method they want to search for proofs. Validators only care whether the final Lean proof passes the pinned verifier.</p>
         </div>
         <ol class="steps">
           <li>
             <span>1</span>
-            <strong>A task is posted</strong>
-            <p>It says what needs to be proved.</p>
+            <strong>A theorem enters the active pool</strong>
+            <p>It gives the exact Lean statement to prove.</p>
           </li>
           <li>
             <span>2</span>
-            <strong>A miner submits a proof</strong>
-            <p>The proof is the thing being judged.</p>
+            <strong>A miner submits a Lean proof</strong>
+            <p>The submission is bound to that theorem.</p>
           </li>
           <li>
             <span>3</span>
-            <strong>A validator verifies it</strong>
-            <p>The verifier gives a clean pass or fail.</p>
+            <strong>Validators verify the proof</strong>
+            <p>Lean gives a clean pass or fail.</p>
           </li>
           <li>
             <span>4</span>
-            <strong>The good proof is saved</strong>
-            <p>It becomes part of an open dataset.</p>
+            <strong>The accepted theorem is saved</strong>
+            <p>It becomes part of the open mathematical corpus.</p>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <section id="why-math" class="section">
+      <div class="wrap two-col">
+        <div>
+          <p class="eyebrow">Why math</p>
+          <h2>Formal math has a clean reward signal.</h2>
+        </div>
+        <div class="copy">
+          <p>A Lean proof either verifies or it does not. That gives Lemma a simple commodity: correct, machine-checkable mathematical work.</p>
+          <p>Math is also deep enough to stand on its own. Algebra, analysis, number theory, topology, probability, logic, and computer science already give the network years of useful work before it needs to broaden.</p>
+          <p>Downstream users can train theorem provers and reasoning models on the accepted corpus, but the core mission is simpler: grow open formal mathematics.</p>
+        </div>
       </div>
     </section>
 
@@ -129,22 +144,22 @@
       <div class="wrap example-grid">
         <div>
           <p class="eyebrow">Tiny example</p>
-          <h2>A proof can be short. Verification is what matters.</h2>
-          <p>The point is not that every proof is this easy. The point is that the answer can be verified by software instead of judged by vibes.</p>
+          <h2>A proof can be short. Lean still decides.</h2>
+          <p>This is a small example. Real tasks are harder, but the rule is the same: the Lean kernel accepts the proof or it does not.</p>
         </div>
         <div class="proof-box" aria-label="Tiny verified proof example">
           <div class="proof-row">
-            <span>Problem</span>
-            <code>theorem one_eq_one : 1 = 1 := by</code>
+            <span>Statement</span>
+            <code>theorem add_zero_example (n : Nat) : n + 0 = n := by</code>
           </div>
           <div class="proof-row">
             <span>Proof</span>
-            <code>  rfl</code>
+            <code>  exact Nat.add_zero n</code>
           </div>
           <div class="proof-result">
             <span class="status-dot" aria-hidden="true"></span>
             <strong>Pass</strong>
-            <p>The verifier accepts it, so the example can be kept.</p>
+            <p>Lean accepts it, so the theorem/proof record can be kept.</p>
           </div>
         </div>
       </div>
@@ -154,8 +169,8 @@
       <div class="wrap final-layout">
         <div>
           <p class="eyebrow">Developer entrypoint</p>
-          <h2>Read the code when you are ready for the machinery.</h2>
-          <p>The site explains the idea first. The repo has the task, submission, verification, and data-export pieces.</p>
+          <h2>Build the open proof engine.</h2>
+          <p>The repo contains the miner, validator, Lean verification, task supply, scoring, and corpus export machinery.</p>
         </div>
         <p class="actions">
           <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
@@ -170,7 +185,7 @@
       <a class="brand" href="./" aria-label="Lemma home">
         <span>Lemma</span>
       </a>
-      <p>Lemma collects verified proofs and turns accepted work into open training data.</p>
+      <p>Lemma grows an open library of machine-verified mathematics.</p>
     </div>
   </footer>
 </body>

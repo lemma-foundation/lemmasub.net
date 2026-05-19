@@ -14,9 +14,12 @@ The site has no build step and can also be opened directly from `index.html`.
 
 ## Content Notes
 
-- Explain Lemma in plain language before introducing Lean, Bittensor, or corpus.
+- Explain Lemma in plain language as an incentive layer for open formal mathematics.
 - Primary CTA: `Learn how it works`.
-- Keep the homepage centered on: miners submit proofs, Lemma verifies them, accepted proofs become open training data.
+- Keep the homepage centered on: miners submit Lean proofs, validators verify them, and accepted theorems expand an open corpus of machine-verified mathematics.
+- Model-training value is a downstream use case, not the hero framing.
+- Do not broaden the homepage beyond formal mathematics.
+- Do not use internal shorthand as public copy.
 - Keep one small proof example so visitors can see what is being verified.
 - Include a small day/night toggle without adding a build step or dependency.
 - Avoid legacy payment, ownership, and crypto-first framing.
