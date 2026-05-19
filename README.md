@@ -16,7 +16,7 @@ The site has no build step and can also be opened directly from `index.html`.
 
 - Explain Lemma in plain language as an incentive layer for open formal mathematics.
 - Primary CTA: `Learn how it works`.
-- Keep the homepage centered on: miners submit Lean proofs, validators verify them, and accepted theorems expand an open corpus of machine-verified mathematics.
+- Keep the homepage centered on: miners submit Lean proofs, validators verify them, and accepted proofs become replayable theorem/proof records in an open corpus of machine-verified mathematics.
 - Model-training value is a downstream use case, not the hero framing.
 - Do not broaden the homepage beyond formal mathematics.
 - Do not use internal shorthand as public copy.
