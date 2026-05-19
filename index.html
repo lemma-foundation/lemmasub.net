@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is a Lean-only proof-data subnet with a graph-shaped corpus substrate.">
-  <title>Lemma - verifier-grounded training data</title>
+  <meta name="description" content="Lemma is a Verified Reasoning Network that turns hard reasoning tasks into checkable training data for stronger AI.">
+  <title>Lemma - Verified Reasoning Network</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -12,53 +12,57 @@
   <header class="site-header">
     <a class="brand" href="./">Lemma</a>
     <nav aria-label="Primary navigation">
-      <a href="#loop">Mechanism</a>
-      <a href="#why">Lean first</a>
-      <a href="#corpus">Corpus</a>
-      <a href="#models">Models</a>
-      <a href="#graph">Graph</a>
-      <a href="#validation">Validation</a>
-      <a href="#benchmarks">Benchmarks</a>
-      <a href="#research">Research</a>
+      <a href="#how">How it works</a>
+      <a href="#why">Why verified</a>
+      <a href="#lean">Lean first</a>
+      <a href="#data">Data</a>
+      <a href="#network">Network</a>
+      <a href="#roadmap">Roadmap</a>
       <a href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
     </nav>
   </header>
 
   <main id="main">
     <section class="hero">
-      <p class="eyebrow">Verifier-grounded data subnet</p>
-      <h1>Verifier-grounded training data.</h1>
-      <p class="lede">Lemma is a Bittensor subnet where miners produce Lean proofs accepted by a deterministic verifier, and validators publish those accepted proofs as graph-shaped public training data.</p>
-      <p class="lockup">AI can guess. Verifiers can check. Lemma pays for checked data.</p>
+      <p class="eyebrow">Verified Reasoning Network</p>
+      <h1>Reasoning AI can prove, not just say.</h1>
+      <p class="lede">Lemma is a network for producing verified reasoning data. Miners solve hard reasoning tasks, validators check the answers with deterministic verifiers, and accepted solutions become open training data for stronger AI.</p>
+      <p class="lockup">AI can guess. Verifiers can check. Lemma pays for checked reasoning.</p>
       <p class="actions">
-        <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <a class="button" href="#loop">How it works</a>
+        <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">Start building</a>
+        <a class="button" href="#how">How it works</a>
       </p>
     </section>
 
-    <section id="loop" class="section">
-      <p class="eyebrow">The mechanism</p>
-      <h2>Tasks, proofs, deterministic checks, public graph rows.</h2>
-      <p>Lemma turns Lean proof search into public training data: publish theorem tasks, search for accepted proofs, check them with a pinned verifier, reward verified units, publish graph-shaped corpus rows, and use that data to train stronger reasoning models.</p>
+    <section id="how" class="section">
+      <p class="eyebrow">How it works</p>
+      <h2>Miners solve. Validators verify. The network publishes checked reasoning data.</h2>
+      <p>Lemma turns reasoning tasks into verified training examples. A miner searches for a proof, a validator runs the checker, and an accepted solution becomes part of the public corpus.</p>
       <ol class="steps">
-        <li><strong>Tasks</strong><span>Validators expose exact Lean theorem targets.</span></li>
-        <li><strong>Proofs</strong><span>Miners use any search stack they want.</span></li>
-        <li><strong>Checks</strong><span>The verifier decides pass or fail.</span></li>
-        <li><strong>Data</strong><span>Accepted proofs become public graph rows.</span></li>
+        <li><strong>Tasks</strong><span>Validators expose formal reasoning targets.</span></li>
+        <li><strong>Solutions</strong><span>Miners search for proofs using any stack they want.</span></li>
+        <li><strong>Verification</strong><span>A deterministic verifier decides pass or fail.</span></li>
+        <li><strong>Data</strong><span>Accepted solutions become public training data.</span></li>
       </ol>
     </section>
 
     <section id="why" class="section">
-      <p class="eyebrow">Lean first</p>
-      <h2>Math is the wedge. Verified data is the product.</h2>
-      <p>Lean is the first clean instance because its verifier is deterministic, mature, and backed by Mathlib. A model can write something that looks like a proof. Lean checks whether it really follows from the theorem statement and allowed imports.</p>
+      <p class="eyebrow">Why verified reasoning?</p>
+      <h2>Fluent answers are not enough.</h2>
+      <p>Modern AI can produce answers that sound correct. Lemma focuses on answers that can be mechanically checked. A proof that passes a verifier is more useful than a claim that only sounds plausible.</p>
     </section>
 
-    <section id="corpus" class="section split">
+    <section id="lean" class="section">
+      <p class="eyebrow">Lean first</p>
+      <h2>Lean is the first production checker.</h2>
+      <p>In v1, Lemma uses Lean theorem proving because Lean gives the network a mature deterministic verifier. A submitted proof either passes in the pinned Lean environment or it does not.</p>
+    </section>
+
+    <section id="data" class="section split">
       <div>
-        <p class="eyebrow">Corpus</p>
-        <h2>The graph-shaped corpus is the product.</h2>
-        <p>Each accepted row records the Lean task, verifier, proof, identity, source, license, attribution, quality gates, dependencies, and replay information. The graph structure is foundational while rewards stay Lean-only.</p>
+        <p class="eyebrow">Verified data</p>
+        <h2>The product is an open library of checked reasoning.</h2>
+        <p>Each accepted row records the task, proof, verifier, source, license, attribution, dependencies, and replay metadata. The current production corpus is Lean proof data.</p>
       </div>
       <pre><code>{
   "schema_version": 2,
@@ -69,52 +73,37 @@
     "proof": "trivial",
     "proof_identity_strength": "strong"
   },
-  "dependencies": { "mathlib_imports": ["Mathlib"] },
-  "graph": { "node_ids": { "task": "...", "proof": "..." } },
-  "verification": { "accepted": true }
+  "verification": { "accepted": true },
+  "rewarded": true
 }</code></pre>
     </section>
 
-    <section id="models" class="section">
-      <p class="eyebrow">Model miners</p>
-      <h2>Lemma data feeds model competition.</h2>
-      <p>Affine-style model miners can train on Lemma's public corpora. Affine rewards model dominance; Lemma produces the verifier-grounded corpora that help reasoning models improve.</p>
+    <section id="network" class="section">
+      <p class="eyebrow">Network roles</p>
+      <h2>A market for checkable reasoning.</h2>
+      <p>Lemma runs as a network on Bittensor. Miners compete to solve active tasks, validators verify and score accepted work, and model builders can train on the public corpus.</p>
+      <ol class="steps">
+        <li><strong>Miners</strong><span>Find valid proofs for active tasks.</span></li>
+        <li><strong>Validators</strong><span>Run deterministic checks and score accepted work.</span></li>
+        <li><strong>Model builders</strong><span>Train on the public corpus.</span></li>
+        <li><strong>Future domains</strong><span>Attach new verifiers once they meet the same standards.</span></li>
+      </ol>
+    </section>
+
+    <section id="roadmap" class="section">
+      <p class="eyebrow">Roadmap</p>
+      <h2>From Lean proofs to broader verified reasoning.</h2>
+      <p>Lean theorem proving is the only production domain today. Future roadmap examples include Verus for Rust verification, SAT/SMT certificates, optimization certificates, and cryptanalysis witnesses.</p>
       <pre><code>uv run lemma export-corpus \
   --domain lean \
   --format jsonl \
   --out data/lean_corpus.jsonl</code></pre>
     </section>
 
-    <section id="graph" class="section">
-      <p class="eyebrow">Graph substrate</p>
-      <h2>Every mechanism should build on the graph.</h2>
-      <p>Lean is the only production domain for now. The substrate shape is already graph-native: tasks, proofs, sources, licenses, proof identities, verifier runs, solver attribution, validator attribution, imports, and future row dependencies are linked instead of treated as isolated JSON records.</p>
-      <ol class="steps">
-        <li><strong>Identity</strong><span>Duplicate families and reward eligibility.</span></li>
-        <li><strong>Source</strong><span>License and provenance paths.</span></li>
-        <li><strong>Quality</strong><span>Difficulty, novelty, and usefulness gates.</span></li>
-        <li><strong>Reuse</strong><span>Future proof dependencies and retrieval.</span></li>
-      </ol>
-    </section>
-
-    <section id="validation" class="section">
-      <p class="eyebrow">Validation</p>
-      <h2>Validators check artifacts, not claims.</h2>
-      <p>Validators enforce Lean task binding, dispatch to the pinned Lean verifier, reject duplicates, score the first accepted unique proof for each active slot, and publish replayable graph rows. Unsolved-slot value is not redistributed to current solvers.</p>
-      <pre><code>uv run lemma worker --check
-uv run lemma validate --once --no-set-weights</code></pre>
-    </section>
-
-    <section id="benchmarks" class="section">
-      <p class="eyebrow">Benchmarks</p>
-      <h2>Benchmarks measure progress. They are not the product.</h2>
-      <p>The corpus trains models. Benchmarks show whether those models improve. Formal Conjectures, lean-eval, miniF2F, PutnamBench, and the IMO Grand Challenge are evaluation targets, not the reward path.</p>
-    </section>
-
     <section id="research" class="section">
       <p class="eyebrow">Research context</p>
-      <h2>AlphaProof-style ideas, open corpus mechanics.</h2>
-      <p>AlphaProof-style systems showed the power of large formal curricula and verifier-grounded feedback. Lemma takes the data flywheel open: a market for verified training data, not a closed lab dataset.</p>
+      <h2>Benchmarks measure progress. They are not the product.</h2>
+      <p>AlphaProof-style systems, Google DeepMind Formal Conjectures, miniF2F, PutnamBench, LeanDojo, LeanNavigator, and the IMO Grand Challenge are research context or evaluation targets only. Lemma is independent; no endorsement is implied.</p>
       <ul class="links">
         <li><a href="https://www.nature.com/articles/s41586-025-09833-y" rel="noopener noreferrer" target="_blank">AlphaProof and AlphaGeometry research</a></li>
         <li><a href="https://arxiv.org/html/2503.04772v1" rel="noopener noreferrer" target="_blank">LeanNavigator state-graph generation</a></li>

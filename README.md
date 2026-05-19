@@ -1,6 +1,6 @@
 # lemmasub.net
 
-Static public site for Lemma, a Lean-only proof-data subnet with a graph-shaped corpus substrate.
+Static public site for Lemma, a Verified Reasoning Network.
 
 ## Local Preview
 
@@ -14,19 +14,18 @@ The page is dependency-free and can also be opened directly from `index.html`.
 
 ## Content Principles
 
-- Explain Lemma in plain language before Bittensor or verifier details.
-- Say that miners create Lean proofs accepted by a deterministic verifier.
-- Say that Lean theorem proving is the only production domain for now.
-- Say that graph-shaped rows are foundational for future mechanisms.
-- Say that validators check artifacts and score verified contributions.
+- Use the headline "Verified Reasoning Network."
+- Explain Lemma in plain language before mentioning Bittensor, Lean, or corpus schemas.
+- Lead with: miners solve, validators verify, accepted solutions become open training data.
+- Explain that Lean is the first production domain, not the whole long-term identity.
+- Say that validators check proofs and score verified contributions.
 - Make the public corpus the product, with the current corpus described as Lean proof data.
-- Explain that Affine-style model miners can consume Lemma corpora, while Affine rewards model dominance and Lemma produces verifier-grounded data.
+- Explain that Affine-style model miners can consume Lemma corpora, while Affine rewards model dominance and Lemma produces verified reasoning data.
 - Mention future domains only as adapter-roadmap examples: Verus/Rust, SAT/SMT, optimization certificates, and cryptanalysis witnesses.
 - Mention AlphaProof-style systems and frontier benchmarks as research context, not as endorsement or the paid work stream.
 - Say that unsolved-slot value is not redistributed to current solvers.
 - Do not use smart-contract, escrow, custody, or owner-emission framing on the homepage.
 - Keep the site static, calm, low-jargon, and readable on mobile.
-- Use the headline “Verifier-grounded training data.”
 
 ## Deployment
 
