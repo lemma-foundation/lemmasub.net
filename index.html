@@ -14,6 +14,7 @@
   <meta name="twitter:description" content="A plain-language introduction to Lemma: miners submit proofs, Lemma verifies them, accepted work becomes useful data.">
   <link rel="canonical" href="https://lemmasub.net/">
   <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
   <title>Lemma - Verified proofs for better training data</title>
 </head>
 <body>
@@ -21,15 +22,20 @@
 
   <header class="site-header">
     <a class="brand" href="./" aria-label="Lemma home">
-      <span class="brand-mark" aria-hidden="true">L</span>
       <span>Lemma</span>
     </a>
     <nav aria-label="Primary navigation">
       <a href="#plain">What it is</a>
       <a href="#flow">How it works</a>
       <a href="#example">Example</a>
-      <a href="#terms">Terms</a>
       <a href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-sun"></span>
+          <span class="theme-toggle-moon"></span>
+          <span class="theme-toggle-thumb"></span>
+        </span>
+      </button>
     </nav>
   </header>
 
@@ -144,29 +150,6 @@
       </div>
     </section>
 
-    <section id="terms" class="section quiet">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Names you will see</p>
-          <h2>The technical words, after the idea is clear.</h2>
-        </div>
-        <div class="terms">
-          <article>
-            <h3>Lean</h3>
-            <p>The proof verifier Lemma uses first. It can confirm whether a formal proof works.</p>
-          </article>
-          <article>
-            <h3>Bittensor</h3>
-            <p>The network layer that coordinates miners and validators.</p>
-          </article>
-          <article>
-            <h3>Corpus</h3>
-            <p>The public collection of accepted proof examples.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="section final-cta">
       <div class="wrap final-layout">
         <div>
@@ -185,11 +168,9 @@
   <footer class="site-footer">
     <div class="wrap footer-layout">
       <a class="brand" href="./" aria-label="Lemma home">
-        <span class="brand-mark" aria-hidden="true">L</span>
         <span>Lemma</span>
       </a>
       <p>Lemma collects verified proofs and turns accepted work into open training data.</p>
-      <a href="https://github.com/spacetime-tao/lemmasub.net" rel="noopener noreferrer" target="_blank">Site repo</a>
     </div>
   </footer>
 </body>
