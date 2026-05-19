@@ -3,201 +3,193 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma builds verifier-grounded training data for reasoning models, coordinated by Bittensor with Lean as the first production verifier domain.">
-  <meta name="theme-color" content="#101412">
-  <meta property="og:title" content="Lemma - Verifier-grounded training data">
-  <meta property="og:description" content="AI infrastructure for checked artifacts, open corpora, and incentivized generation and validation.">
+  <meta name="description" content="Lemma collects proofs that software can check, then turns accepted proofs into open training data for better reasoning models.">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:title" content="Lemma - Checked proofs for better training data">
+  <meta property="og:description" content="People submit proofs. Lemma checks them. Accepted proofs become open examples for training reasoning models.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lemmasub.net/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Lemma - Verifier-grounded training data">
-  <meta name="twitter:description" content="Bittensor coordinates the network incentives. Lean is the first production verifier domain.">
+  <meta name="twitter:title" content="Lemma - Checked proofs for better training data">
+  <meta name="twitter:description" content="A plain-language introduction to Lemma: proofs in, software checks them, accepted work becomes useful data.">
   <link rel="canonical" href="https://lemmasub.net/">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
-  <title>Lemma - Verifier-grounded training data</title>
+  <title>Lemma - Checked proofs for better training data</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <a class="brand" href="./" aria-label="Lemma home">
-      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-mark" aria-hidden="true">L</span>
       <span>Lemma</span>
     </a>
     <nav aria-label="Primary navigation">
-      <a href="#network">Architecture</a>
-      <a href="#how">How it works</a>
-      <a href="#data">Corpus</a>
-      <a href="#lean">Expansion</a>
+      <a href="#plain">What it is</a>
+      <a href="#flow">How it works</a>
+      <a href="#example">Example</a>
+      <a href="#terms">Terms</a>
       <a href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
     </nav>
-    <a class="header-cta" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
   </header>
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid" aria-hidden="true">
-        <span class="trace trace-a"></span>
-        <span class="trace trace-b"></span>
-        <span class="trace trace-c"></span>
-        <span class="signal signal-miner">Miners</span>
-        <span class="signal signal-verify">Lean verifier</span>
-        <span class="signal signal-corpus">Open corpus</span>
-        <span class="signal signal-model">Model builders</span>
-      </div>
+    <section class="hero">
+      <div class="wrap hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">Checked reasoning data</p>
+          <h1>People submit proofs. Lemma checks them.</h1>
+          <p class="lede">Lemma is a way to build training data that does not rely on a guess. A miner sends in a proof, a validator runs a checker, and a passing proof becomes a public example that models can learn from.</p>
+          <p class="actions" aria-label="Primary actions">
+            <a class="button primary" href="#flow">Learn how it works</a>
+            <a class="button" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
+          </p>
+        </div>
 
-      <div class="wrap hero-content">
-        <p class="eyebrow">Bittensor subnet for verifier-grounded training data</p>
-        <h1 id="hero-title">Lemma builds verified training data for reasoning models.</h1>
-        <p class="lede">Miners generate candidate artifacts. Validators check them with deterministic verifiers. Accepted work becomes an open corpus for model builders. Lean is the first production domain.</p>
-        <div class="actions" aria-label="Primary actions">
-          <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
-          <a class="button" href="#network">Explore architecture</a>
+        <div class="flow-card" aria-label="Problem to proof to checker to data">
+          <p class="flow-label">Proof flow</p>
+          <ol class="flow">
+            <li>
+              <span class="flow-step">Problem</span>
+              <strong>Show a task</strong>
+              <p>A theorem or reasoning problem is posted.</p>
+            </li>
+            <li>
+              <span class="flow-step">Proof</span>
+              <strong>Submit an answer</strong>
+              <p>A miner sends proof text that should solve it.</p>
+            </li>
+            <li>
+              <span class="flow-step">Checker</span>
+              <strong>Run the test</strong>
+              <p>Software decides pass or fail.</p>
+            </li>
+            <li>
+              <span class="flow-step">Dataset</span>
+              <strong>Keep what passed</strong>
+              <p>Accepted proofs become open training examples.</p>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
-    <section id="why" class="band problem" aria-labelledby="problem-title">
-      <div class="wrap section-grid">
+    <section id="plain" class="section">
+      <div class="wrap two-col">
         <div>
-          <p class="eyebrow">The problem</p>
-          <h2 id="problem-title">AI can generate reasoning traces. Training data needs reliable checks.</h2>
+          <p class="eyebrow">What it is</p>
+          <h2>A filter for useful reasoning work.</h2>
         </div>
-        <div class="copy-stack">
-          <p>Fluent output is not enough for high-value reasoning data. Lemma focuses on artifacts that can be replayed, checked, and accepted or rejected by a verifier.</p>
-          <p>The result is a cleaner source of training signal: checked artifacts, open metadata, and a public corpus that can be reused outside the network.</p>
+        <div class="copy">
+          <p>A lot of AI output sounds right. That is not the same as being right. Lemma focuses on work that can be checked by software.</p>
+          <p>The simple rule is: if the proof passes, it can be kept. If it fails, it does not become training data.</p>
         </div>
       </div>
     </section>
 
-    <section id="network" class="band architecture" aria-labelledby="architecture-title">
+    <section id="flow" class="section warm">
       <div class="wrap">
-        <div class="section-header">
-          <p class="eyebrow">Architecture</p>
-          <h2 id="architecture-title">A proof-of-value loop for checked artifacts.</h2>
-          <p>Bittensor coordinates the incentives. Domain verifiers do the checking. The corpus is the output.</p>
-        </div>
-
-        <div class="architecture-diagram" role="img" aria-label="Miners generate candidate artifacts, validators verify them with Lean and domain verifiers, accepted artifacts enter the public corpus, and model builders train on the corpus. Bittensor coordinates network incentives.">
-          <div class="diagram-node">
-            <span class="node-kicker">01</span>
-            <h3>Miners</h3>
-            <p>Generate candidate proofs and other verifier-checkable artifacts.</p>
-          </div>
-          <div class="diagram-rail" aria-hidden="true"></div>
-          <div class="diagram-node">
-            <span class="node-kicker">02</span>
-            <h3>Validators</h3>
-            <p>Run Lean today, and future domain verifiers when they meet the same standard.</p>
-          </div>
-          <div class="diagram-rail" aria-hidden="true"></div>
-          <div class="diagram-node">
-            <span class="node-kicker">03</span>
-            <h3>Open corpus</h3>
-            <p>Accepted artifacts become reproducible training data with replay metadata.</p>
-          </div>
-          <div class="diagram-rail" aria-hidden="true"></div>
-          <div class="diagram-node">
-            <span class="node-kicker">04</span>
-            <h3>Model builders</h3>
-            <p>Train on checked data instead of relying only on plausible text.</p>
-          </div>
-        </div>
-
-        <div class="system-notes" aria-label="Architecture notes">
-          <p><strong>Bittensor</strong> coordinates incentivized generation and validation.</p>
-          <p><strong>Lean</strong> is the first production verifier domain.</p>
-          <p><strong>Corpus rows</strong> preserve the task, accepted artifact, verifier, source, and replay context.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" class="band" aria-labelledby="how-title">
-      <div class="wrap section-grid">
-        <div>
-          <p class="eyebrow">How Lemma works</p>
-          <h2 id="how-title">A simple miner, validator, corpus loop.</h2>
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>Four steps, no mystery layer.</h2>
+          <p>Miners can use any method they want to find proofs. Validators only care whether the final proof passes the checker.</p>
         </div>
         <ol class="steps">
           <li>
-            <strong>Tasks are exposed</strong>
-            <span>Validators publish active verifier-checkable work for the network.</span>
+            <span>1</span>
+            <strong>A task is posted</strong>
+            <p>It says what needs to be proved.</p>
           </li>
           <li>
-            <strong>Miners search</strong>
-            <span>Miners use any stack they want to produce candidate artifacts.</span>
+            <span>2</span>
+            <strong>A miner submits a proof</strong>
+            <p>The proof is the thing being judged.</p>
           </li>
           <li>
-            <strong>Validators check</strong>
-            <span>The verifier decides whether an artifact passes in the pinned environment.</span>
+            <span>3</span>
+            <strong>A validator checks it</strong>
+            <p>The checker gives a clean pass or fail.</p>
           </li>
           <li>
-            <strong>The corpus grows</strong>
-            <span>Accepted artifacts become open training data for reasoning models.</span>
+            <span>4</span>
+            <strong>The good proof is saved</strong>
+            <p>It becomes part of an open dataset.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section id="data" class="band corpus" aria-labelledby="data-title">
-      <div class="wrap section-grid">
+    <section id="example" class="section">
+      <div class="wrap example-grid">
         <div>
-          <p class="eyebrow">Open corpus</p>
-          <h2 id="data-title">Checked artifacts are the product.</h2>
-          <p>Lemma is not a generic proof leaderboard. The useful output is reusable verifier-grounded training data: open, replayable, and tied to the verifier that accepted it.</p>
+          <p class="eyebrow">Tiny example</p>
+          <h2>A proof can be short. The check is what matters.</h2>
+          <p>The point is not that every proof is this easy. The point is that the answer can be tested by software instead of judged by vibes.</p>
         </div>
-        <pre aria-label="Example corpus row"><code>{
-  "domain_id": "lean",
-  "verifier_id": "lake-build",
-  "task_id": "lemma.sample.true_intro",
-  "accepted_artifact": { "proof": "trivial" },
-  "verification": { "accepted": true },
-  "replay": { "environment": "pinned" }
-}</code></pre>
-      </div>
-    </section>
-
-    <section id="lean" class="band expansion" aria-labelledby="expansion-title">
-      <div class="wrap section-grid">
-        <span id="roadmap" class="anchor-alias" aria-hidden="true"></span>
-        <span id="research" class="anchor-alias" aria-hidden="true"></span>
-        <div>
-          <p class="eyebrow">Built for expansion</p>
-          <h2 id="expansion-title">Lean is the first production domain, not the final boundary.</h2>
-        </div>
-        <div class="copy-stack">
-          <p>Lean theorem proving gives Lemma a mature deterministic verifier today. A submitted proof either passes in the pinned Lean environment or it does not.</p>
-          <p>The same network pattern can extend to other verifier domains over time: Rust verification, SAT and SMT certificates, optimization certificates, or other checked artifacts. Those are future possibilities, not launch promises.</p>
+        <div class="proof-box" aria-label="Tiny checked proof example">
+          <div class="proof-row">
+            <span>Problem</span>
+            <code>theorem one_eq_one : 1 = 1 := by</code>
+          </div>
+          <div class="proof-row">
+            <span>Proof</span>
+            <code>  rfl</code>
+          </div>
+          <div class="proof-result">
+            <span class="status-dot" aria-hidden="true"></span>
+            <strong>Pass</strong>
+            <p>The checker accepts it, so the example can be kept.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="github" class="band final-cta" aria-labelledby="github-title">
+    <section id="terms" class="section quiet">
       <div class="wrap">
-        <p class="eyebrow">Developer entrypoint</p>
-        <h2 id="github-title">Build against the protocol, inspect the verifier path, or follow the corpus work on GitHub.</h2>
-        <div class="actions">
+        <div class="section-head">
+          <p class="eyebrow">Names you will see</p>
+          <h2>The technical words, after the idea is clear.</h2>
+        </div>
+        <div class="terms">
+          <article>
+            <h3>Lean</h3>
+            <p>The proof checker Lemma uses first. It can confirm whether a formal proof works.</p>
+          </article>
+          <article>
+            <h3>Bittensor</h3>
+            <p>The network layer that coordinates miners and validators.</p>
+          </article>
+          <article>
+            <h3>Corpus</h3>
+            <p>The public collection of accepted proof examples.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta">
+      <div class="wrap final-layout">
+        <div>
+          <p class="eyebrow">Developer entrypoint</p>
+          <h2>Read the code when you are ready for the machinery.</h2>
+          <p>The site explains the idea first. The repo has the task, submission, checking, and data-export pieces.</p>
+        </div>
+        <p class="actions">
           <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
           <a class="button" href="https://github.com/spacetime-tao/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Read docs</a>
-          <a class="button" href="https://github.com/spacetime-tao/lemmasub.net" rel="noopener noreferrer" target="_blank">Site repo</a>
-        </div>
+        </p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap footer-grid">
+    <div class="wrap footer-layout">
       <a class="brand" href="./" aria-label="Lemma home">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-mark" aria-hidden="true">L</span>
         <span>Lemma</span>
       </a>
-      <p>AI infrastructure for verifier-grounded training data. Bittensor coordinates the network incentives. Lean is the first production verifier domain.</p>
-      <nav aria-label="Footer navigation">
-        <a href="#network">Architecture</a>
-        <a href="#how">How it works</a>
-        <a href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
-      </nav>
+      <p>Lemma collects checked proofs and turns accepted work into open training data.</p>
+      <a href="https://github.com/spacetime-tao/lemmasub.net" rel="noopener noreferrer" target="_blank">Site repo</a>
     </div>
   </footer>
 </body>
