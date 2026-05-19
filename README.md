@@ -16,8 +16,8 @@ The site has no build step and can also be opened directly from `index.html`.
 
 - Explain Lemma in plain language before introducing Lean, Bittensor, or corpus.
 - Primary CTA: `Learn how it works`.
-- Keep the homepage centered on: people submit proofs, software checks them, accepted proofs become open training data.
-- Keep one small proof example so visitors can see what is being checked.
+- Keep the homepage centered on: miners submit proofs, Lemma verifies them, accepted proofs become open training data.
+- Keep one small proof example so visitors can see what is being verified.
 - Avoid legacy payment, ownership, and crypto-first framing.
 - Keep the site static, dependency-free, readable on mobile, and free of decorative background line patterns.
 

@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma collects proofs that software can check, then turns accepted proofs into open training data for better reasoning models.">
+  <meta name="description" content="Lemma collects verified proofs, then turns accepted proofs into open training data for better reasoning models.">
   <meta name="theme-color" content="#f6f3ec">
-  <meta property="og:title" content="Lemma - Checked proofs for better training data">
-  <meta property="og:description" content="People submit proofs. Lemma checks them. Accepted proofs become open examples for training reasoning models.">
+  <meta property="og:title" content="Lemma - Verified proofs for better training data">
+  <meta property="og:description" content="Miners submit proofs. Lemma verifies them. Accepted proofs become open examples for training reasoning models.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lemmasub.net/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Lemma - Checked proofs for better training data">
-  <meta name="twitter:description" content="A plain-language introduction to Lemma: proofs in, software checks them, accepted work becomes useful data.">
+  <meta name="twitter:title" content="Lemma - Verified proofs for better training data">
+  <meta name="twitter:description" content="A plain-language introduction to Lemma: miners submit proofs, Lemma verifies them, accepted work becomes useful data.">
   <link rel="canonical" href="https://lemmasub.net/">
   <link rel="stylesheet" href="assets/styles.css">
-  <title>Lemma - Checked proofs for better training data</title>
+  <title>Lemma - Verified proofs for better training data</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,16 +37,16 @@
     <section class="hero">
       <div class="wrap hero-layout">
         <div class="hero-copy">
-          <p class="eyebrow">Checked reasoning data</p>
-          <h1>People submit proofs. Lemma checks them.</h1>
-          <p class="lede">Lemma is a way to build training data that does not rely on a guess. A miner sends in a proof, a validator runs a checker, and a passing proof becomes a public example that models can learn from.</p>
+          <p class="eyebrow">Verified reasoning data</p>
+          <h1>Miners submit proofs. Lemma verifies them.</h1>
+          <p class="lede">Lemma is a way to build training data that does not rely on a guess. A miner sends in a proof, a validator runs a verifier, and a passing proof becomes a public example that models can learn from.</p>
           <p class="actions" aria-label="Primary actions">
             <a class="button primary" href="#flow">Learn how it works</a>
             <a class="button" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
           </p>
         </div>
 
-        <div class="flow-card" aria-label="Problem to proof to checker to data">
+        <div class="flow-card" aria-label="Problem to proof to verifier to data">
           <p class="flow-label">Proof flow</p>
           <ol class="flow">
             <li>
@@ -60,8 +60,8 @@
               <p>A miner sends proof text that should solve it.</p>
             </li>
             <li>
-              <span class="flow-step">Checker</span>
-              <strong>Run the test</strong>
+              <span class="flow-step">Verifier</span>
+              <strong>Run the verifier</strong>
               <p>Software decides pass or fail.</p>
             </li>
             <li>
@@ -81,7 +81,7 @@
           <h2>A filter for useful reasoning work.</h2>
         </div>
         <div class="copy">
-          <p>A lot of AI output sounds right. That is not the same as being right. Lemma focuses on work that can be checked by software.</p>
+          <p>A lot of AI output sounds right. That is not the same as being right. Lemma focuses on work that can be verified by software.</p>
           <p>The simple rule is: if the proof passes, it can be kept. If it fails, it does not become training data.</p>
         </div>
       </div>
@@ -92,7 +92,7 @@
         <div class="section-head">
           <p class="eyebrow">How it works</p>
           <h2>Four steps, no mystery layer.</h2>
-          <p>Miners can use any method they want to find proofs. Validators only care whether the final proof passes the checker.</p>
+          <p>Miners can use any method they want to find proofs. Validators only care whether the final proof passes the verifier.</p>
         </div>
         <ol class="steps">
           <li>
@@ -107,8 +107,8 @@
           </li>
           <li>
             <span>3</span>
-            <strong>A validator checks it</strong>
-            <p>The checker gives a clean pass or fail.</p>
+            <strong>A validator verifies it</strong>
+            <p>The verifier gives a clean pass or fail.</p>
           </li>
           <li>
             <span>4</span>
@@ -123,10 +123,10 @@
       <div class="wrap example-grid">
         <div>
           <p class="eyebrow">Tiny example</p>
-          <h2>A proof can be short. The check is what matters.</h2>
-          <p>The point is not that every proof is this easy. The point is that the answer can be tested by software instead of judged by vibes.</p>
+          <h2>A proof can be short. Verification is what matters.</h2>
+          <p>The point is not that every proof is this easy. The point is that the answer can be verified by software instead of judged by vibes.</p>
         </div>
-        <div class="proof-box" aria-label="Tiny checked proof example">
+        <div class="proof-box" aria-label="Tiny verified proof example">
           <div class="proof-row">
             <span>Problem</span>
             <code>theorem one_eq_one : 1 = 1 := by</code>
@@ -138,7 +138,7 @@
           <div class="proof-result">
             <span class="status-dot" aria-hidden="true"></span>
             <strong>Pass</strong>
-            <p>The checker accepts it, so the example can be kept.</p>
+            <p>The verifier accepts it, so the example can be kept.</p>
           </div>
         </div>
       </div>
@@ -153,7 +153,7 @@
         <div class="terms">
           <article>
             <h3>Lean</h3>
-            <p>The proof checker Lemma uses first. It can confirm whether a formal proof works.</p>
+            <p>The proof verifier Lemma uses first. It can confirm whether a formal proof works.</p>
           </article>
           <article>
             <h3>Bittensor</h3>
@@ -172,7 +172,7 @@
         <div>
           <p class="eyebrow">Developer entrypoint</p>
           <h2>Read the code when you are ready for the machinery.</h2>
-          <p>The site explains the idea first. The repo has the task, submission, checking, and data-export pieces.</p>
+          <p>The site explains the idea first. The repo has the task, submission, verification, and data-export pieces.</p>
         </div>
         <p class="actions">
           <a class="button primary" href="https://github.com/spacetime-tao/lemma" rel="noopener noreferrer" target="_blank">View GitHub</a>
@@ -188,7 +188,7 @@
         <span class="brand-mark" aria-hidden="true">L</span>
         <span>Lemma</span>
       </a>
-      <p>Lemma collects checked proofs and turns accepted work into open training data.</p>
+      <p>Lemma collects verified proofs and turns accepted work into open training data.</p>
       <a href="https://github.com/spacetime-tao/lemmasub.net" rel="noopener noreferrer" target="_blank">Site repo</a>
     </div>
   </footer>
