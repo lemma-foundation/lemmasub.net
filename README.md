@@ -10,7 +10,15 @@ python3 -m http.server 8877 --bind localhost
 
 Open `http://localhost:8877/`.
 
-The site has no build step and can also be opened directly from `index.html`.
+The site has no build step. The homepage can also be opened directly from `index.html`; the dashboard data fetch needs the local preview server.
+
+## Dashboard Data
+
+`dashboard/index.html` renders `data/current-problems.json`. Generate that file from the Lemma checkout with:
+
+```bash
+uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemmasub.net
+```
 
 ## Content Notes
 

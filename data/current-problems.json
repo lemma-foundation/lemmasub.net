@@ -1,0 +1,81 @@
+{
+  "active_K": 20,
+  "active_queue_seed": "lemma-active-queue",
+  "frontier_depth": 0,
+  "generated_at": "2026-05-20T09:56:46Z",
+  "registry_sha256": "4b5a4f6fc6263b078076f0a5c3d33c96de53c788b63422697677e4e0570f1f67",
+  "registry_task_count": 3,
+  "schema_version": 1,
+  "task_count": 3,
+  "tasks": [
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 0,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 0,
+      "source_license": "CC-BY-4.0",
+      "source_ref": {
+        "kind": "dev_seed",
+        "name": "deterministic-dev-seed",
+        "path": "tasks/registry.json"
+      },
+      "source_stream": "generated",
+      "statement": "theorem generated_and_intro : True \u2227 True := by\n  sorry",
+      "target_sha256": "d48ef2ace650deff92beaaa99f7b08e22510c507dc139267ce32da1880a01411",
+      "task_id": "lemma.generated.and_intro",
+      "task_version": 1,
+      "theorem_name": "generated_and_intro",
+      "title": "Generated conjunction",
+      "type_expr": "True \u2227 True"
+    },
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 0,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 1,
+      "source_license": "CC-BY-4.0",
+      "source_ref": {
+        "kind": "dev_seed",
+        "name": "lemma-dev-smoke",
+        "path": "tasks/registry.json"
+      },
+      "source_stream": "human_curated",
+      "statement": "theorem true_intro_sample : True := by\n  sorry",
+      "target_sha256": "9b4bfc3ff8964ed0bb150c9775d9e974b5ce81560c47c33f38f73b0597a670a9",
+      "task_id": "lemma.sample.true_intro",
+      "task_version": 1,
+      "theorem_name": "true_intro_sample",
+      "title": "Smoke-test True",
+      "type_expr": "True"
+    },
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 0,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 2,
+      "source_license": "CC-BY-4.0",
+      "source_ref": {
+        "kind": "dev_seed",
+        "name": "deterministic-dev-seed",
+        "path": "tasks/registry.json"
+      },
+      "source_stream": "generated",
+      "statement": "theorem generated_nat_zero_add : \u2200 n : Nat, 0 + n = n := by\n  sorry",
+      "target_sha256": "5c124b21b27d653f737a49a6377ffd56f61bf12984067325877af4849e16b596",
+      "task_id": "lemma.generated.nat_zero_add",
+      "task_version": 1,
+      "theorem_name": "generated_nat_zero_add",
+      "title": "Generated Nat zero-add",
+      "type_expr": "\u2200 n : Nat, 0 + n = n"
+    }
+  ]
+}

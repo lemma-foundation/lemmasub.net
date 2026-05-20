@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Active Lemma proof tasks currently open to miners.">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:title" content="Lemma dashboard - Current proof tasks">
+  <meta property="og:description" content="Active Lean proof tasks in the Lemma network.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lemmasub.net/dashboard/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lemma dashboard - Current proof tasks">
+  <meta name="twitter:description" content="Active Lean proof tasks in the Lemma network.">
+  <link rel="canonical" href="https://lemmasub.net/dashboard/">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/site.js" defer></script>
+  <title>Lemma dashboard - Current proof tasks</title>
+</head>
+<body data-page="dashboard">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="../" aria-label="Lemma home">
+      <span>Lemma</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../#plain">What it is</a>
+      <a href="../#flow">How it works</a>
+      <a href="./" aria-current="page">Dashboard</a>
+      <a href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
+      <a href="https://github.com/lemma-foundation/lemma-corpus" rel="noopener noreferrer" target="_blank">Corpus</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-sun"></span>
+          <span class="theme-toggle-moon"></span>
+          <span class="theme-toggle-thumb"></span>
+        </span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="dashboard-hero">
+      <div class="wrap dashboard-intro">
+        <p class="eyebrow">Current proof tasks</p>
+        <h1>Problems open to miners right now.</h1>
+        <p class="lede">A public snapshot of the active Lean theorem window, exported from the validator task registry.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap problem-board" data-current-problems data-source="../data/current-problems.json">
+        <div class="dashboard-toolbar">
+          <div>
+            <p class="eyebrow">Live snapshot</p>
+            <h2>Active problems</h2>
+          </div>
+          <p class="problem-status" data-problem-status>Loading snapshot...</p>
+        </div>
+        <dl class="metric-grid" data-problem-summary></dl>
+        <div class="problem-list" data-problem-list></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-layout">
+      <a class="brand" href="../" aria-label="Lemma home">
+        <span>Lemma</span>
+      </a>
+      <p>Lemma grows an open library of machine-verified mathematics.</p>
+    </div>
+  </footer>
+</body>
+</html>
