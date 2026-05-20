@@ -3,6 +3,7 @@ const root = document.documentElement;
 const toggle = document.querySelector("[data-theme-toggle]");
 const themeMeta = document.querySelector('meta[name="theme-color"]');
 const problemBoard = document.querySelector("[data-current-problems]");
+const problemPollMs = 60_000;
 
 function chosenTheme() {
   return localStorage.getItem(storageKey) || "light";
@@ -97,7 +98,9 @@ function renderProblems(board, snapshot) {
 async function loadProblems(board) {
   const status = board.querySelector("[data-problem-status]");
   try {
-    const response = await fetch(board.dataset.source || "data/current-problems.json", { cache: "no-store" });
+    const source = new URL(board.dataset.source || "data/current-problems.json", window.location.href);
+    source.searchParams.set("t", Date.now().toString());
+    const response = await fetch(source, { cache: "no-store" });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
@@ -112,4 +115,5 @@ async function loadProblems(board) {
 
 if (problemBoard) {
   loadProblems(problemBoard);
+  setInterval(() => loadProblems(problemBoard), problemPollMs);
 }
