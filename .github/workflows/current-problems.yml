@@ -32,12 +32,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install exporter dependencies
-        run: python -m pip install pydantic pydantic-settings httpx
+      - name: Install Lemma
+        working-directory: lemma
+        run: python -m pip install .
 
       - name: Export current problems
         working-directory: lemma
-        run: PYTHONPATH=. python scripts/export_current_problems.py --output ../site/data/current-problems.json
+        run: python scripts/export_current_problems.py --output ../site/data/current-problems.json
 
       - name: Commit snapshot
         working-directory: site
