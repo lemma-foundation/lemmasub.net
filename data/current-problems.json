@@ -1,13 +1,13 @@
 {
   "active_K": 10,
-  "active_epoch_randomness_sha256": "c36f641b5d8a6381e4644ac56f96b1b4793a8e7338426123c7304bb43f3d363f",
+  "active_epoch_randomness_sha256": "241936c2bbd310e20fb747b2a0948d33c32af453f33e8fcea95f9419242eb4b7",
   "active_epoch_randomness_source": "chain_block_hash",
   "active_queue_seed": "lemma-active-queue",
   "active_seed_mode": "epoch_randomness",
-  "active_selection_seed_sha256": "6e96c0968c4cc69d8590e4a4c605d37d67e24f3337f2e86803689f560f6c3c55",
+  "active_selection_seed_sha256": "7a36343b30a1d7e271163e4814bb302bd34746c0921b0dfee676850df707b909",
   "active_tempo_seconds": 4320,
   "frontier_depth": 0,
-  "generated_at": "2026-05-21T08:51:41Z",
+  "generated_at": "2026-05-21T11:41:29Z",
   "registry_sha256": "da7f18b31b7cfa9445e31e092abd060c67d77ce9fa9b147c1e5c264543d0fb48",
   "registry_task_count": 10,
   "schema_version": 1,
@@ -25,17 +25,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-0441fe2b9a78df49",
-        "path": "Mathlib/Algebra/Ring/Associator.lean"
+        "name": "depth2-d4d1a3f6eaa0f2b6",
+        "path": "Mathlib/Algebra/Ring/AddAut.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_0441fe2b9a78df49 : (\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R), associator x y z = x * y * z - x * (y * z)) \u2228 False := by\n  sorry",
-      "target_sha256": "de2d238e249cbb93f8539d06d646911908fce09170581599f46b5c61aaeb3e32",
-      "task_id": "lemma.procedural.depth2.0441fe2b9a78df49c0481dbc",
+      "statement": "theorem lemma_procedural_d4d1a3f6eaa0f2b6 : (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) \u2227 (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) := by\n  sorry",
+      "target_sha256": "8dfdcd31d76225a9ac69bc35d9f8eb9d133dff522bc60a20d15c8408bcef2a2e",
+      "task_id": "lemma.procedural.depth2.d4d1a3f6eaa0f2b6c9af084a",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_0441fe2b9a78df49",
-      "title": "Procedural depth-2 associator_apply",
-      "type_expr": "(\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R), associator x y z = x * y * z - x * (y * z)) \u2228 False"
+      "theorem_name": "lemma_procedural_d4d1a3f6eaa0f2b6",
+      "title": "Procedural depth-2 AddAut.mulRight_apply",
+      "type_expr": "(\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) \u2227 (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u)"
     },
     {
       "difficulty_band": "easy",
@@ -49,17 +49,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-9bccad521297a9e2",
+        "name": "depth2-83d41b53f9c27862",
         "path": "Mathlib/Algebra/Ring/Associated.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_9bccad521297a9e2 : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated a (-b)) \u2227 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated a (-b)) := by\n  sorry",
-      "target_sha256": "9a994a6f2b81759905c5452db788203e56eed76a9e3dbdc5bf84d2b52359c351",
-      "task_id": "lemma.procedural.depth2.9bccad521297a9e254339e4e",
+      "statement": "theorem lemma_procedural_83d41b53f9c27862 : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b) \u2228 False := by\n  sorry",
+      "target_sha256": "c6af04935fda765b85d77a3ae7e8e8935e2fd0f071a4f26722c68bbd35bdcdf1",
+      "task_id": "lemma.procedural.depth2.83d41b53f9c278623337a0d8",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_9bccad521297a9e2",
-      "title": "Procedural depth-2 Associated.neg_right",
-      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated a (-b)) \u2227 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated a (-b))"
+      "theorem_name": "lemma_procedural_83d41b53f9c27862",
+      "title": "Procedural depth-2 Associated.neg_left",
+      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b) \u2228 False"
     },
     {
       "difficulty_band": "easy",
@@ -73,17 +73,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-2869b13206c8a934",
-        "path": "Mathlib/Algebra/Ring/Associator.lean"
+        "name": "depth2-6aea9a67195def3e",
+        "path": "Mathlib/Algebra/Ring/Associated.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_2869b13206c8a934 : (\u2200 {R : Type _} [NonUnitalRing R], associator = 0) \u2227 (\u2200 {R : Type _} [NonUnitalRing R], associator = 0) := by\n  sorry",
-      "target_sha256": "dc3f2654c5cc53dc7bcbdb22c0fe0e416777b50957c7dc01b45974148c5c4109",
-      "task_id": "lemma.procedural.depth2.2869b13206c8a93425828ad7",
+      "statement": "theorem lemma_procedural_6aea9a67195def3e : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) (-b)) \u2228 False := by\n  sorry",
+      "target_sha256": "2cfdfa9415fc631b210747c17058df909465e815ad4803abdfa0b91fa141e521",
+      "task_id": "lemma.procedural.depth2.6aea9a67195def3eda6214bc",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_2869b13206c8a934",
-      "title": "Procedural depth-2 associator_eq_zero",
-      "type_expr": "(\u2200 {R : Type _} [NonUnitalRing R], associator = 0) \u2227 (\u2200 {R : Type _} [NonUnitalRing R], associator = 0)"
+      "theorem_name": "lemma_procedural_6aea9a67195def3e",
+      "title": "Procedural depth-2 Associated.neg_neg",
+      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) (-b)) \u2228 False"
     },
     {
       "difficulty_band": "easy",
@@ -97,17 +97,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-37ecb73038f0bdd0",
-        "path": "Mathlib/Algebra/Ring/Associator.lean"
+        "name": "depth2-c5c21fb4d86169e1",
+        "path": "Mathlib/Algebra/Ring/AddAut.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_37ecb73038f0bdd0 : (\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R\u1d50\u1d52\u1d56), associator x y z = -MulOpposite.op (associator (MulOpposite.unop z) (MulOpposite.unop y) (MulOpposite.unop x))) \u2227 True := by\n  sorry",
-      "target_sha256": "fa4faae8d7c6b9e442fe75d70a6eace24fbcac2b2eb4f1ad0c2e639a928b7c8c",
-      "task_id": "lemma.procedural.depth2.37ecb73038f0bdd0ea05f6c6",
+      "statement": "theorem lemma_procedural_c5c21fb4d86169e1 : (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddEquiv.symm (AddAut.mulRight u)) x = x * \u2191u\u207b\u00b9) \u2227 True := by\n  sorry",
+      "target_sha256": "580ecaf02713cef7d50f82dce970d849b129705319b4127e02f4b5b096edbee1",
+      "task_id": "lemma.procedural.depth2.c5c21fb4d86169e14d74f2d9",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_37ecb73038f0bdd0",
-      "title": "Procedural depth-2 associator_op",
-      "type_expr": "(\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R\u1d50\u1d52\u1d56), associator x y z = -MulOpposite.op (associator (MulOpposite.unop z) (MulOpposite.unop y) (MulOpposite.unop x))) \u2227 True"
+      "theorem_name": "lemma_procedural_c5c21fb4d86169e1",
+      "title": "Procedural depth-2 AddAut.mulRight_symm_apply",
+      "type_expr": "(\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddEquiv.symm (AddAut.mulRight u)) x = x * \u2191u\u207b\u00b9) \u2227 True"
     },
     {
       "difficulty_band": "easy",
@@ -121,17 +121,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-7f371d9ac4f3f868",
-        "path": "Mathlib/Algebra/Ring/AddAut.lean"
+        "name": "depth2-2471bc37de6f8252",
+        "path": "Mathlib/Algebra/Ring/Associated.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_7f371d9ac4f3f868 : (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddEquiv.symm (AddAut.mulRight u)) x = x * \u2191u\u207b\u00b9) \u2227 (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddEquiv.symm (AddAut.mulRight u)) x = x * \u2191u\u207b\u00b9) := by\n  sorry",
-      "target_sha256": "5a855e07215e8b859a6a193101c6fe059647b4f488fde324e39713db213af600",
-      "task_id": "lemma.procedural.depth2.7f371d9ac4f3f868bf12209a",
+      "statement": "theorem lemma_procedural_2471bc37de6f8252 : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated a (-b)) \u2228 False := by\n  sorry",
+      "target_sha256": "9f90c54dfa8c5e1720a478e413cf8e4ac97b65ae8968be4fc0a909fe02be7221",
+      "task_id": "lemma.procedural.depth2.2471bc37de6f8252e19cb9ec",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_7f371d9ac4f3f868",
-      "title": "Procedural depth-2 AddAut.mulRight_symm_apply",
-      "type_expr": "(\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddEquiv.symm (AddAut.mulRight u)) x = x * \u2191u\u207b\u00b9) \u2227 (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddEquiv.symm (AddAut.mulRight u)) x = x * \u2191u\u207b\u00b9)"
+      "theorem_name": "lemma_procedural_2471bc37de6f8252",
+      "title": "Procedural depth-2 Associated.neg_right",
+      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated a (-b)) \u2228 False"
     },
     {
       "difficulty_band": "easy",
@@ -145,17 +145,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-c1410b826d80bf35",
-        "path": "Mathlib/Algebra/Ring/AddAut.lean"
+        "name": "depth2-efbcf03115602033",
+        "path": "Mathlib/Algebra/Ring/Associated.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_c1410b826d80bf35 : (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) \u2227 (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) := by\n  sorry",
-      "target_sha256": "14c96954d1f1a40daccab3b0a3b944fdb79c1a0503cc07eccb5b82938d2ed0ae",
-      "task_id": "lemma.procedural.depth2.c1410b826d80bf355d072790",
+      "statement": "theorem lemma_procedural_efbcf03115602033 : True \u2227 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated a (-b) \u2194 Associated a b) := by\n  sorry",
+      "target_sha256": "156a222b0d60c72a04f223eac69414fe7f1b301bf248981aae759b2690f9ddfd",
+      "task_id": "lemma.procedural.depth2.efbcf03115602033eebc5eef",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_c1410b826d80bf35",
-      "title": "Procedural depth-2 AddAut.mulRight_apply",
-      "type_expr": "(\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) \u2227 (\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u)"
+      "theorem_name": "lemma_procedural_efbcf03115602033",
+      "title": "Procedural depth-2 Associated.neg_right_iff",
+      "type_expr": "True \u2227 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated a (-b) \u2194 Associated a b)"
     },
     {
       "difficulty_band": "easy",
@@ -169,17 +169,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-e4cd164448a955bb",
-        "path": "Mathlib/Algebra/Ring/Associated.lean"
+        "name": "depth2-fad2965352cf7752",
+        "path": "Mathlib/Algebra/Ring/Associator.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_e4cd164448a955bb : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated a (-b) \u2194 Associated a b) \u2227 True := by\n  sorry",
-      "target_sha256": "2f741bb77edfeefa8322b21abd7017401da4938a4d83e979b79eefe64fc550d8",
-      "task_id": "lemma.procedural.depth2.e4cd164448a955bbffba5cb5",
+      "statement": "theorem lemma_procedural_fad2965352cf7752 : (\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R\u1d50\u1d52\u1d56), associator x y z = -MulOpposite.op (associator (MulOpposite.unop z) (MulOpposite.unop y) (MulOpposite.unop x))) \u2228 False := by\n  sorry",
+      "target_sha256": "44278030481abba947972f5b2011f3fe15a41fbcebbd95fcaf3ed42e8669eaed",
+      "task_id": "lemma.procedural.depth2.fad2965352cf77527a028033",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_e4cd164448a955bb",
-      "title": "Procedural depth-2 Associated.neg_right_iff",
-      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated a (-b) \u2194 Associated a b) \u2227 True"
+      "theorem_name": "lemma_procedural_fad2965352cf7752",
+      "title": "Procedural depth-2 associator_op",
+      "type_expr": "(\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R\u1d50\u1d52\u1d56), associator x y z = -MulOpposite.op (associator (MulOpposite.unop z) (MulOpposite.unop y) (MulOpposite.unop x))) \u2228 False"
     },
     {
       "difficulty_band": "easy",
@@ -193,17 +193,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-d6aabf7f6837a06f",
+        "name": "depth2-f3638587856e9790",
         "path": "Mathlib/Algebra/Ring/Associated.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_d6aabf7f6837a06f : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) (-b)) \u2228 False := by\n  sorry",
-      "target_sha256": "35766129832da27202a3a3929eeec281bec0435efc16e7390b2f308b0ebeaca9",
-      "task_id": "lemma.procedural.depth2.d6aabf7f6837a06f8591b8a4",
+      "statement": "theorem lemma_procedural_f3638587856e9790 : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated (-a) b \u2194 Associated a b) \u2228 False := by\n  sorry",
+      "target_sha256": "85260bb9dff885d782a1a2d229ddf24cbb3e6155114158a17586866d81fb31e4",
+      "task_id": "lemma.procedural.depth2.f3638587856e9790dde1c3c0",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_d6aabf7f6837a06f",
-      "title": "Procedural depth-2 Associated.neg_neg",
-      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) (-b)) \u2228 False"
+      "theorem_name": "lemma_procedural_f3638587856e9790",
+      "title": "Procedural depth-2 Associated.neg_left_iff",
+      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated (-a) b \u2194 Associated a b) \u2228 False"
     },
     {
       "difficulty_band": "easy",
@@ -217,17 +217,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-6bacb8fbbe000297",
-        "path": "Mathlib/Algebra/Ring/Associated.lean"
+        "name": "depth2-50ba3940b9c73e86",
+        "path": "Mathlib/Algebra/Ring/Associator.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_6bacb8fbbe000297 : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated (-a) b \u2194 Associated a b) \u2228 False := by\n  sorry",
-      "target_sha256": "8a7afc97f96404ccaa99b9ba21f5351de713ce98390c80fdcff02d18328cf742",
-      "task_id": "lemma.procedural.depth2.6bacb8fbbe000297eb7c6e66",
+      "statement": "theorem lemma_procedural_50ba3940b9c73e86 : (\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R), associator x y z = x * y * z - x * (y * z)) \u2227 True := by\n  sorry",
+      "target_sha256": "7666dea0adc2d8ffc7dfe44054d3fdfbb5b501d1293c0207a27dba3314432f32",
+      "task_id": "lemma.procedural.depth2.50ba3940b9c73e86fa64148f",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_6bacb8fbbe000297",
-      "title": "Procedural depth-2 Associated.neg_left_iff",
-      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated (-a) b \u2194 Associated a b) \u2228 False"
+      "theorem_name": "lemma_procedural_50ba3940b9c73e86",
+      "title": "Procedural depth-2 associator_apply",
+      "type_expr": "(\u2200 {R : Type _} [NonUnitalNonAssocRing R] (x y z : R), associator x y z = x * y * z - x * (y * z)) \u2227 True"
     },
     {
       "difficulty_band": "easy",
@@ -241,18 +241,18 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "depth2-5d874c8d5e5b265e",
-        "path": "Mathlib/Algebra/Ring/Associated.lean"
+        "name": "depth2-df24e801f9062ff7",
+        "path": "Mathlib/Algebra/Ring/Associator.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem lemma_procedural_5d874c8d5e5b265e : True \u2227 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b) := by\n  sorry",
-      "target_sha256": "08892b2196de41ffc8dfd3cecf91cccc3c22938c8d294a11b4915d06adf341af",
-      "task_id": "lemma.procedural.depth2.5d874c8d5e5b265eab224400",
+      "statement": "theorem lemma_procedural_df24e801f9062ff7 : True \u2227 (\u2200 {R : Type _} [NonUnitalRing R], associator = 0) := by\n  sorry",
+      "target_sha256": "d0330de337c640f1da633824980062c2c02c963071f90c2f9d655aa2b7fd80c8",
+      "task_id": "lemma.procedural.depth2.df24e801f9062ff715aced06",
       "task_version": 1,
-      "theorem_name": "lemma_procedural_5d874c8d5e5b265e",
-      "title": "Procedural depth-2 Associated.neg_left",
-      "type_expr": "True \u2227 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b)"
+      "theorem_name": "lemma_procedural_df24e801f9062ff7",
+      "title": "Procedural depth-2 associator_eq_zero",
+      "type_expr": "True \u2227 (\u2200 {R : Type _} [NonUnitalRing R], associator = 0)"
     }
   ],
-  "tempo": 19914
+  "tempo": 19916
 }
