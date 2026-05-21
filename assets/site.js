@@ -309,8 +309,11 @@ function renderProblems(board, snapshot, sourceKind) {
   const list = board.querySelector("[data-problem-list]");
   const tasks = snapshot.tasks || [];
   const overdue = refreshOverdue(snapshot);
+  const activeK = snapshot.active_K ?? snapshot.task_count ?? tasks.length;
+  const registryCount = snapshot.registry_task_count;
+  const openHint = registryCount ? `Active K ${activeK} from ${registryCount} registry tasks` : "Available now";
   summary.replaceChildren(
-    metric("Open problems", String(snapshot.task_count ?? tasks.length), "Available now"),
+    metric("Open problems", String(snapshot.task_count ?? tasks.length), openHint),
     metric("Last updated", localTime(snapshot.generated_at), "Your local time"),
     metric(overdue ? "Expected update" : "Next update", expectedRefresh(snapshot), refreshHint(snapshot), overdue ? "warning" : ""),
     metric("Data source", sourceLabel(sourceKind), sourceHint(sourceKind), sourceKind === "fallback" ? "warning" : "")

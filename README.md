@@ -14,7 +14,7 @@ The site has no build step. The homepage can also be opened directly from `index
 
 ## Dashboard Data
 
-`dashboard/index.html` renders `data/current-problems.json`. Generate that file from the Lemma checkout with:
+`dashboard/index.html` loads `https://api.lemmasub.net/current-problems.json` first and falls back to `data/current-problems.json` if the live API is unavailable. Generate the fallback file from the Lemma checkout with:
 
 ```bash
 uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemmasub.net
