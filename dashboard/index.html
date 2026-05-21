@@ -13,8 +13,8 @@
   <meta name="twitter:title" content="Lemma dashboard - Current proof tasks">
   <meta name="twitter:description" content="Active Lean proof tasks in the Lemma network.">
   <link rel="canonical" href="https://lemmasub.net/dashboard/">
-  <link rel="stylesheet" href="../assets/styles.css">
-  <script src="../assets/site.js" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260520b">
+  <script src="../assets/site.js?v=20260520b" defer></script>
   <title>Lemma dashboard - Current proof tasks</title>
 </head>
 <body data-page="dashboard">
@@ -25,8 +25,6 @@
       <span>Lemma</span>
     </a>
     <nav aria-label="Primary navigation">
-      <a href="../#plain">What it is</a>
-      <a href="../#flow">How it works</a>
       <a href="./" aria-current="page">Dashboard</a>
       <a href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
       <a href="https://github.com/lemma-foundation/lemma-corpus" rel="noopener noreferrer" target="_blank">Corpus</a>
@@ -45,7 +43,7 @@
       <div class="wrap dashboard-intro">
         <p class="eyebrow">Current proof tasks</p>
         <h1>Problems open to miners right now.</h1>
-        <p class="lede">A public snapshot of the active Lean theorem window, exported from the validator task registry.</p>
+        <p class="lede">A public snapshot of the Lean statements currently waiting for proofs.</p>
       </div>
     </section>
 
@@ -56,12 +54,109 @@
             <p class="eyebrow">Live snapshot</p>
             <h2>Active problems</h2>
           </div>
+          <div class="guide-actions" aria-label="Problem guides">
+            <button class="button guide-button" type="button" data-guide-open="testnet" aria-controls="testnet-guide">Testnet guide</button>
+            <button class="button guide-button" type="button" data-guide-open="mainnet" aria-controls="mainnet-guide">Mainnet guide</button>
+          </div>
           <p class="problem-status" data-problem-status>Loading snapshot...</p>
         </div>
         <dl class="metric-grid" data-problem-summary></dl>
         <div class="problem-list" data-problem-list></div>
       </div>
     </section>
+
+    <div class="guide-modal" data-guide-modal="testnet" hidden>
+      <div id="testnet-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="testnet-guide-title" tabindex="-1">
+        <button class="guide-close" type="button" data-guide-close aria-label="Close problem guide">Close</button>
+        <p class="eyebrow">Testnet problem guide</p>
+        <h2 id="testnet-guide-title">Current testnet sample</h2>
+        <p class="guide-intro">The current dashboard sample is a small testnet set used for smoke testing. It is useful for checking the site and verifier flow, but it is not the full paid mainnet supply.</p>
+
+        <div class="guide-layout">
+          <section class="guide-panel" aria-labelledby="testnet-topics-title">
+            <h3 id="testnet-topics-title" class="guide-section-title">Current testnet families</h3>
+            <ul class="guide-list" aria-label="Generated problem topics">
+              <li><strong>Logic</strong><span>True, False, implication, negation, and direct proof-from-assumption statements.</span></li>
+              <li><strong>And / or</strong><span>Building both sides, choosing one side, or unpacking assumptions.</span></li>
+              <li><strong>Equality</strong><span>Reflexivity, symmetry, and short equality chains over natural numbers.</span></li>
+              <li><strong>Natural numbers</strong><span>Zero, successors, addition, order, nonzero facts, and small identities.</span></li>
+              <li><strong>Lists</strong><span>Empty lists, list length, and append identities.</span></li>
+              <li><strong>Booleans</strong><span>Small true/false facts such as negating a boolean value.</span></li>
+              <li><strong>Existence</strong><span>Find an example and prove that it has the requested property.</span></li>
+            </ul>
+          </section>
+
+          <section class="guide-panel guide-panel-muted" aria-labelledby="testnet-difficulty-title">
+            <h3 id="testnet-difficulty-title" class="guide-section-title">Difficulty meaning</h3>
+            <p class="guide-note">This sample usually shows Easy because it is designed for smoke testing.</p>
+            <div class="difficulty-guide" aria-label="Testnet difficulty meanings">
+              <div>
+                <span class="difficulty">Easy</span>
+                <p>One direct idea: simplify, introduce, split, or use a standard fact.</p>
+              </div>
+              <div>
+                <span class="difficulty">Medium</span>
+                <p>A short sequence of proof steps or a few facts in the right order.</p>
+              </div>
+              <div>
+                <span class="difficulty">Hard</span>
+                <p>More structure, more search, or a less obvious proof path.</p>
+              </div>
+              <div>
+                <span class="difficulty">Frontier</span>
+                <p>The hardest active edge when easier patterns are being solved reliably.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-modal" data-guide-modal="mainnet" hidden>
+      <div id="mainnet-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="mainnet-guide-title" tabindex="-1">
+        <button class="guide-close" type="button" data-guide-close aria-label="Close problem guide">Close</button>
+        <p class="eyebrow">Mainnet problem guide</p>
+        <h2 id="mainnet-guide-title">Mainnet problems are generated</h2>
+        <p class="guide-intro">On mainnet, paid problems are procedurally generated. The active set is created automatically from approved mathematical sources in a repeatable way, then checked before it appears here.</p>
+
+        <div class="guide-layout">
+          <section class="guide-panel" aria-labelledby="mainnet-types-title">
+            <h3 id="mainnet-types-title" class="guide-section-title">What mainnet uses</h3>
+            <ul class="guide-list guide-list-mainnet" aria-label="Mainnet problem generation">
+              <li><strong>All paid problems are generated</strong><span>No one hand-picks the active paid set. The generator creates exact Lean statements for miners to prove.</span></li>
+              <li><strong>Built from approved sources</strong><span>The generator starts from pinned mathematical material, so the same public inputs produce the same problem set.</span></li>
+              <li><strong>Checked before activation</strong><span>A problem must be valid Lean, safe to publish, and not already solved by the basic checker.</span></li>
+              <li><strong>Practice sets stay separate</strong><span>Testnet, benchmark, and curriculum problems can exist, but they are not the paid mainnet problem set.</span></li>
+            </ul>
+
+            <a class="guide-doc-link" href="https://github.com/lemma-foundation/lemma/blob/main/docs/tasks.md" rel="noopener noreferrer" target="_blank">Read the technical problem-supply docs</a>
+          </section>
+
+          <section class="guide-panel guide-panel-muted" aria-labelledby="mainnet-difficulty-title">
+            <h3 id="mainnet-difficulty-title" class="guide-section-title">Difficulty bands</h3>
+            <p class="guide-note">Difficulty is a plain signal for how much proof work a miner should expect.</p>
+            <div class="difficulty-guide" aria-label="Mainnet difficulty meanings">
+              <div>
+                <span class="difficulty">Easy</span>
+                <p>A direct proof. Usually one obvious idea or standard simplification.</p>
+              </div>
+              <div>
+                <span class="difficulty">Medium</span>
+                <p>A short proof with a few connected steps or facts.</p>
+              </div>
+              <div>
+                <span class="difficulty">Hard</span>
+                <p>Needs planning, search, or less obvious theorem knowledge.</p>
+              </div>
+              <div>
+                <span class="difficulty">Frontier</span>
+                <p>The edge of the current set. Expect experimentation before a proof lands.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">

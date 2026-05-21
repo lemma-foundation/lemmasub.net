@@ -347,6 +347,7 @@ h3 {
 .actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: .75rem;
   margin: 1.35rem 0 0;
 }
@@ -361,9 +362,14 @@ h3 {
   background: var(--paper);
   color: var(--ink);
   padding: 0 1rem;
+  font: inherit;
   font-weight: 800;
   text-decoration: none;
   transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+button.button {
+  cursor: pointer;
 }
 
 .button.primary {
@@ -376,6 +382,17 @@ h3 {
   border-color: var(--blue);
   box-shadow: 0 10px 28px var(--shadow);
   transform: translateY(-1px);
+}
+
+.text-link {
+  color: var(--muted);
+  font-size: .94rem;
+  font-weight: 780;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  color: var(--ink);
 }
 
 .flow-card,
@@ -481,7 +498,7 @@ h3 {
 
 .dashboard-toolbar {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.4rem;
@@ -489,6 +506,18 @@ h3 {
 
 .dashboard-toolbar h2 {
   margin-bottom: 0;
+}
+
+.guide-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .5rem;
+  margin-left: auto;
+}
+
+.guide-button {
+  min-height: 2.45rem;
 }
 
 .problem-status {
@@ -507,25 +536,37 @@ h3 {
 }
 
 .metric {
+  display: grid;
+  align-content: start;
+  gap: .22rem;
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--card-bg);
-  padding: .85rem;
+  padding: .8rem;
 }
 
 .metric dt {
   color: var(--muted);
-  font-size: .76rem;
+  font-size: .68rem;
   font-weight: 850;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
 .metric dd {
-  margin: .2rem 0 0;
+  margin: 0;
   overflow-wrap: anywhere;
-  font-size: 1.1rem;
+  font-size: .96rem;
   font-weight: 850;
+  line-height: 1.25;
+}
+
+.metric p {
+  margin: .05rem 0 0;
+  color: var(--muted);
+  font-size: .76rem;
+  line-height: 1.3;
 }
 
 .problem-list {
@@ -533,7 +574,7 @@ h3 {
   gap: 1rem;
 }
 
-.problem-card {
+.problem-set {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -542,21 +583,307 @@ h3 {
   overflow: hidden;
 }
 
-.problem-card-head {
+.problem-set-toggle {
   display: flex;
-  align-items: start;
+  width: 100%;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
   padding: 1rem;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.problem-set-toggle strong,
+.problem-set-count {
+  display: block;
+}
+
+.problem-set-toggle strong {
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.problem-set-count {
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 720;
+}
+
+.problem-set-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 0 .8rem;
+  font-size: .82rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.problem-set-body {
+  display: grid;
+  gap: .75rem;
+  padding: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.problem-set-body[hidden] {
+  display: none;
+}
+
+.guide-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  background: rgba(16, 23, 18, .58);
+  backdrop-filter: blur(14px) saturate(1.08);
+  padding: 1rem;
+  animation: guide-backdrop-in .18s ease-out both;
+}
+
+.guide-modal.is-closing {
+  animation: guide-backdrop-out .18s ease-in both;
+}
+
+.guide-modal[hidden] {
+  display: none;
+}
+
+.guide-window {
+  position: relative;
+  width: min(72rem, 100%);
+  max-height: min(42rem, calc(100svh - 2rem));
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, var(--green) 38%, var(--line));
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .04), transparent 18rem),
+    var(--paper);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .22);
+  padding: 1.25rem;
+  animation: guide-window-in .22s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.guide-modal.is-closing .guide-window {
+  animation: guide-window-out .18s ease-in both;
+}
+
+.guide-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  min-height: 2.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card-soft);
+  color: var(--ink);
+  padding: 0 .75rem;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.guide-window h2 {
+  padding-right: 5.5rem;
+  margin-bottom: .55rem;
+}
+
+.guide-intro {
+  max-width: 48rem;
+  padding-right: 5.5rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+
+.guide-section-title {
+  margin: 1rem 0 .65rem;
+  color: var(--green);
+  font-size: .82rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.guide-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(18rem, .8fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.guide-panel {
+  min-width: 0;
+}
+
+.guide-panel-muted {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--card-soft) 82%, transparent);
+  padding: .8rem;
+}
+
+.guide-note {
+  margin: -.2rem 0 .75rem;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.45;
+}
+
+.guide-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .55rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.guide-list-mainnet {
+  grid-template-columns: 1fr;
+}
+
+.guide-list li,
+.difficulty-guide div {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card-soft);
+  padding: .7rem;
+}
+
+.guide-list strong {
+  display: block;
+  margin-bottom: .22rem;
+  font-size: .95rem;
+  line-height: 1.25;
+}
+
+.guide-list span {
+  display: block;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.4;
+}
+
+.guide-doc-link {
+  display: inline-flex;
+  margin-top: .8rem;
+  color: var(--green);
+  font-size: .88rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.guide-doc-link:hover {
+  color: var(--ink);
+}
+
+.difficulty-guide p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.4;
+}
+
+.difficulty-guide {
+  display: grid;
+  gap: .55rem;
+}
+
+.difficulty-guide .difficulty {
+  margin-bottom: .35rem;
+}
+
+@keyframes guide-backdrop-in {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(14px) saturate(1.08);
+  }
+}
+
+@keyframes guide-backdrop-out {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(14px) saturate(1.08);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes guide-window-in {
+  from {
+    opacity: 0;
+    transform: translateY(.75rem) scale(.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes guide-window-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(.55rem) scale(.985);
+  }
+}
+
+.problem-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.problem-card-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: .9rem;
+}
+
+.problem-card.is-open .problem-card-head {
   border-bottom: 1px solid var(--line);
 }
 
 .problem-id {
   margin-bottom: .35rem;
   color: var(--green);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: .82rem;
+  font-size: .78rem;
   font-weight: 800;
+  text-transform: uppercase;
+}
+
+.problem-card h3 {
+  margin-bottom: 0;
+}
+
+.problem-card-actions {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
 }
 
 .difficulty {
@@ -571,59 +898,39 @@ h3 {
   text-transform: uppercase;
 }
 
-.problem-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  padding: .8rem 1rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.problem-meta {
+.problem-toggle {
   display: inline-flex;
-  gap: .35rem;
-  min-width: 0;
-  border-radius: 999px;
-  background: var(--card-soft);
-  color: var(--muted);
-  padding: .22rem .55rem;
-  font-size: .8rem;
-  font-weight: 760;
-}
-
-.problem-meta span {
+  align-items: center;
+  justify-content: center;
+  min-height: 2.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
   color: var(--ink);
+  padding: 0 .75rem;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 820;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-.theorem-block {
-  display: grid;
-  gap: .45rem;
-  padding: 1rem;
-  border-bottom: 1px solid var(--line);
+.hide-text,
+.problem-card.is-open .show-text {
+  display: none;
 }
 
-.theorem-block span {
-  color: var(--muted);
-  font-size: .78rem;
-  font-weight: 850;
-  text-transform: uppercase;
+.problem-card.is-open .hide-text {
+  display: inline;
 }
 
-.theorem-block code,
 .statement {
+  margin: 1rem;
+  padding: 1rem;
   overflow-x: auto;
   border-radius: 7px;
   background: var(--code);
   color: var(--code-ink);
-}
-
-.theorem-block code {
-  padding: .75rem;
-}
-
-.statement {
-  margin: 0;
-  padding: 1rem;
   white-space: pre;
 }
 
@@ -823,16 +1130,12 @@ code {
   }
 
   nav {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
     margin-left: 0;
-    gap: .45rem .7rem;
-  }
-
-  .theme-toggle {
-    justify-self: end;
-    margin-top: .1rem;
+    gap: .55rem 1rem;
   }
 
   h1 {
@@ -858,6 +1161,11 @@ code {
 
   .button {
     width: 100%;
+  }
+
+  .text-link {
+    width: 100%;
+    text-align: center;
   }
 
   .section {
@@ -901,6 +1209,52 @@ code {
     display: grid;
   }
 
+  .guide-actions {
+    display: grid;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .problem-card-head {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-card-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .55rem;
+  }
+
+  .difficulty,
+  .problem-toggle,
+  .problem-set-action {
+    justify-self: start;
+  }
+
+  .problem-set-toggle {
+    display: grid;
+  }
+
+  .guide-window {
+    padding: 1rem;
+  }
+
+  .guide-window h2,
+  .guide-intro {
+    padding-right: 0;
+  }
+
+  .guide-close {
+    position: static;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .guide-layout,
+  .guide-list {
+    grid-template-columns: 1fr;
+  }
+
   .problem-status {
     text-align: left;
   }
@@ -922,6 +1276,7 @@ code {
   *,
   *::before,
   *::after {
+    animation: none !important;
     scroll-behavior: auto !important;
     transition: none !important;
   }
