@@ -127,6 +127,10 @@ function tempoMilliseconds(snapshot) {
 
 function expectedRefreshTime(snapshot) {
   const tempoMs = tempoMilliseconds(snapshot);
+  const tempo = Number(snapshot.tempo);
+  if (tempoMs && Number.isInteger(tempo) && tempo >= 0) {
+    return (tempo + 1) * tempoMs;
+  }
   const generated = new Date(snapshot.generated_at);
   if (!tempoMs || Number.isNaN(generated.valueOf())) {
     return undefined;
@@ -156,14 +160,14 @@ function snapshotProblem(snapshot) {
   if (!tasks.length) {
     return "No active problems are available yet.";
   }
-  if (snapshot.active_seed_mode !== "epoch_randomness" || snapshot.active_epoch_randomness_source !== "chain_block_hash") {
+  if (snapshot.active_seed_mode !== "epoch_randomness" || snapshot.active_epoch_randomness_source !== "chain_drand") {
     return "Waiting for the production problem selector.";
   }
   const hasDevSeed = tasks.some((task) => {
     const ref = task.source_ref || {};
     return ref.kind === "dev_seed" || /dev|smoke/i.test(ref.name || "");
   });
-  return hasDevSeed ? "Waiting for the production source pool." : "";
+  return hasDevSeed ? "Waiting for the production problem registry." : "";
 }
 
 function difficultyLabel(value) {
@@ -298,7 +302,7 @@ function renderProblemUnavailable(board, message, sourceKind) {
 
 function statusText(snapshot, sourceKind) {
   if (sourceKind === "fallback") {
-    return "Showing cached public snapshot while the live API is unavailable.";
+    return "Using fallback snapshot until the live API responds.";
   }
   return refreshOverdue(snapshot) ? "Snapshot overdue: waiting for the problem set to advance." : "Snapshot loaded.";
 }
