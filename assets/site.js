@@ -127,10 +127,6 @@ function tempoMilliseconds(snapshot) {
 
 function expectedRefreshTime(snapshot) {
   const tempoMs = tempoMilliseconds(snapshot);
-  const tempo = Number(snapshot.tempo);
-  if (tempoMs && Number.isInteger(tempo) && tempo >= 0) {
-    return (tempo + 1) * tempoMs;
-  }
   const generated = new Date(snapshot.generated_at);
   if (!tempoMs || Number.isNaN(generated.valueOf())) {
     return undefined;
@@ -302,7 +298,7 @@ function renderProblemUnavailable(board, message, sourceKind) {
 
 function statusText(snapshot, sourceKind) {
   if (sourceKind === "fallback") {
-    return "Using fallback snapshot until the live API responds.";
+    return "Showing cached public snapshot while the live API is unavailable.";
   }
   return refreshOverdue(snapshot) ? "Snapshot overdue: waiting for the problem set to advance." : "Snapshot loaded.";
 }
