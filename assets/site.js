@@ -155,6 +155,21 @@ function refreshHint(snapshot) {
   return refreshOverdue(snapshot) ? "Overdue; waiting for a fresh snapshot" : "Expected problem-set refresh";
 }
 
+function snapshotProblem(snapshot) {
+  const tasks = Array.isArray(snapshot?.tasks) ? snapshot.tasks : [];
+  if (!tasks.length) {
+    return "No active problems are available yet.";
+  }
+  if (snapshot.active_seed_mode !== "epoch_randomness" || snapshot.active_epoch_randomness_source !== "chain_drand") {
+    return "Waiting for the production problem selector.";
+  }
+  const hasDevSeed = tasks.some((task) => {
+    const ref = task.source_ref || {};
+    return ref.kind === "dev_seed" || /dev|smoke/i.test(ref.name || "");
+  });
+  return hasDevSeed ? "Waiting for the production problem registry." : "";
+}
+
 function difficultyLabel(value) {
   if (!value) {
     return "Open";
@@ -274,6 +289,17 @@ function renderProblemSet(tasks) {
   return section;
 }
 
+function renderProblemUnavailable(board, message, sourceKind) {
+  clearTimeout(problemRefreshTimer);
+  board.querySelector("[data-problem-summary]").replaceChildren();
+  board.querySelector("[data-problem-list]").replaceChildren(node("p", "empty-state", message));
+  const status = board.querySelector("[data-problem-status]");
+  status.hidden = false;
+  status.className = `problem-status ${sourceKind}`;
+  status.textContent = "Problem feed pending.";
+  problemRefreshTimer = setTimeout(() => loadProblems(board), updateRetryMs);
+}
+
 function statusText(snapshot, sourceKind) {
   if (sourceKind === "fallback") {
     return "Using fallback snapshot until the live API responds.";
@@ -300,6 +326,11 @@ function renderProblems(board, snapshot, sourceKind) {
   const summary = board.querySelector("[data-problem-summary]");
   const list = board.querySelector("[data-problem-list]");
   const tasks = snapshot.tasks || [];
+  const problem = snapshotProblem(snapshot);
+  if (problem) {
+    renderProblemUnavailable(board, problem, sourceKind);
+    return;
+  }
   const overdue = refreshOverdue(snapshot);
   summary.replaceChildren(
     metric("Open problems", String(snapshot.task_count ?? tasks.length), "Chosen for miners right now"),
