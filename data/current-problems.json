@@ -1,5 +1,5 @@
 {
-  "active_K": 20,
+  "active_K": 10,
   "active_epoch_randomness_sha256": "c36f641b5d8a6381e4644ac56f96b1b4793a8e7338426123c7304bb43f3d363f",
   "active_epoch_randomness_source": "chain_block_hash",
   "active_queue_seed": "lemma-active-queue",
@@ -7,7 +7,7 @@
   "active_selection_seed_sha256": "6e96c0968c4cc69d8590e4a4c605d37d67e24f3337f2e86803689f560f6c3c55",
   "active_tempo_seconds": 4320,
   "frontier_depth": 0,
-  "generated_at": "2026-05-21T08:43:44Z",
+  "generated_at": "2026-05-21T08:51:41Z",
   "registry_sha256": "da7f18b31b7cfa9445e31e092abd060c67d77ce9fa9b147c1e5c264543d0fb48",
   "registry_task_count": 10,
   "schema_version": 1,
