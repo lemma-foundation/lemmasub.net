@@ -160,14 +160,14 @@ function snapshotProblem(snapshot) {
   if (!tasks.length) {
     return "No active problems are available yet.";
   }
-  if (snapshot.active_seed_mode !== "epoch_randomness" || snapshot.active_epoch_randomness_source !== "chain_drand") {
+  if (snapshot.active_seed_mode !== "epoch_randomness" || snapshot.active_epoch_randomness_source !== "chain_block_hash") {
     return "Waiting for the production problem selector.";
   }
   const hasDevSeed = tasks.some((task) => {
     const ref = task.source_ref || {};
     return ref.kind === "dev_seed" || /dev|smoke/i.test(ref.name || "");
   });
-  return hasDevSeed ? "Waiting for the production problem registry." : "";
+  return hasDevSeed ? "Waiting for the production source pool." : "";
 }
 
 function difficultyLabel(value) {
