@@ -173,7 +173,7 @@ function metric(label, value, hint, variant) {
 
 function problemTitle(task) {
   const title = task.title || task.theorem_name || "Open theorem";
-  return title.replace(/^Generated\s+/i, "");
+  return title.replace(/^(Generated|Smoke-test)\s+/i, "");
 }
 
 function problemTopic(task) {
@@ -274,19 +274,11 @@ function renderProblemSet(tasks) {
   return section;
 }
 
-function sourceLabel(sourceKind) {
-  return sourceKind === "live" ? "Live API" : "Fallback JSON";
-}
-
-function sourceHint(sourceKind) {
-  return sourceKind === "live" ? "Fetched directly from the live exporter" : "Live API unavailable";
-}
-
 function statusText(snapshot, sourceKind) {
   if (sourceKind === "fallback") {
     return "Using fallback snapshot until the live API responds.";
   }
-  return refreshOverdue(snapshot) ? "Live snapshot overdue: waiting for the data source to advance." : "Live snapshot loaded.";
+  return refreshOverdue(snapshot) ? "Snapshot overdue: waiting for the problem set to advance." : "Snapshot loaded.";
 }
 
 function scheduleRefresh(board, snapshot, sourceKind) {
@@ -309,14 +301,10 @@ function renderProblems(board, snapshot, sourceKind) {
   const list = board.querySelector("[data-problem-list]");
   const tasks = snapshot.tasks || [];
   const overdue = refreshOverdue(snapshot);
-  const activeK = snapshot.active_K ?? snapshot.task_count ?? tasks.length;
-  const registryCount = snapshot.registry_task_count;
-  const openHint = registryCount ? `Active K ${activeK} from ${registryCount} registry tasks` : "Available now";
   summary.replaceChildren(
-    metric("Open problems", String(snapshot.task_count ?? tasks.length), openHint),
+    metric("Open problems", String(snapshot.task_count ?? tasks.length), "Chosen for miners right now"),
     metric("Last updated", localTime(snapshot.generated_at), "Your local time"),
-    metric(overdue ? "Expected update" : "Next update", expectedRefresh(snapshot), refreshHint(snapshot), overdue ? "warning" : ""),
-    metric("Data source", sourceLabel(sourceKind), sourceHint(sourceKind), sourceKind === "fallback" ? "warning" : "")
+    metric(overdue ? "Expected update" : "Next update", expectedRefresh(snapshot), refreshHint(snapshot), overdue ? "warning" : "")
   );
   list.replaceChildren(renderProblemSet(tasks));
   status.hidden = false;

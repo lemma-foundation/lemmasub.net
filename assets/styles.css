@@ -538,7 +538,7 @@ button.button {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .8rem;
   margin: 0 0 1.4rem;
 }
@@ -765,10 +765,6 @@ button.button {
   list-style: none;
 }
 
-.guide-list-mainnet {
-  grid-template-columns: 1fr;
-}
-
 .guide-list li,
 .difficulty-guide div {
   min-width: 0;
@@ -790,19 +786,6 @@ button.button {
   color: var(--muted);
   font-size: .84rem;
   line-height: 1.4;
-}
-
-.guide-doc-link {
-  display: inline-flex;
-  margin-top: .8rem;
-  color: var(--green);
-  font-size: .88rem;
-  font-weight: 850;
-  text-decoration: none;
-}
-
-.guide-doc-link:hover {
-  color: var(--ink);
 }
 
 .difficulty-guide p {

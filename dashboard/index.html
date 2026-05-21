@@ -14,7 +14,7 @@
   <meta name="twitter:description" content="Active Lean proof tasks in the Lemma network.">
   <link rel="canonical" href="https://lemmasub.net/dashboard/">
   <link rel="stylesheet" href="../assets/styles.css?v=20260521a">
-  <script src="../assets/site.js?v=20260521b" defer></script>
+  <script src="../assets/site.js?v=20260521c" defer></script>
   <title>Lemma dashboard - Current proof tasks</title>
 </head>
 <body data-page="dashboard">
@@ -54,9 +54,8 @@
             <p class="eyebrow">Live snapshot</p>
             <h2>Active problems</h2>
           </div>
-          <div class="guide-actions" aria-label="Problem guides">
-            <button class="button guide-button" type="button" data-guide-open="testnet" aria-controls="testnet-guide">Testnet guide</button>
-            <button class="button guide-button" type="button" data-guide-open="mainnet" aria-controls="mainnet-guide">Mainnet guide</button>
+          <div class="guide-actions" aria-label="Problem guide">
+            <button class="button guide-button" type="button" data-guide-open="problem" aria-controls="problem-guide">Problem guide</button>
           </div>
           <p class="problem-status" data-problem-status>Loading snapshot...</p>
         </div>
@@ -65,16 +64,16 @@
       </div>
     </section>
 
-    <div class="guide-modal" data-guide-modal="testnet" hidden>
-      <div id="testnet-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="testnet-guide-title" tabindex="-1">
+    <div class="guide-modal" data-guide-modal="problem" hidden>
+      <div id="problem-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="problem-guide-title" tabindex="-1">
         <button class="guide-close" type="button" data-guide-close aria-label="Close problem guide">Close</button>
-        <p class="eyebrow">Testnet problem guide</p>
-        <h2 id="testnet-guide-title">Current testnet problem set</h2>
-        <p class="guide-intro">Testnet now runs the production problem-selection rules against the testnet task supply. This dashboard shows the active set miners are working on right now.</p>
+        <p class="eyebrow">Problem guide</p>
+        <h2 id="problem-guide-title">How to read the active set</h2>
+        <p class="guide-intro">The dashboard shows the current Lean statements open for proofs. Miners work on these problems and submit exact proofs for verification.</p>
 
         <div class="guide-layout">
-          <section class="guide-panel" aria-labelledby="testnet-topics-title">
-            <h3 id="testnet-topics-title" class="guide-section-title">Current testnet families</h3>
+          <section class="guide-panel" aria-labelledby="problem-topics-title">
+            <h3 id="problem-topics-title" class="guide-section-title">Problem families</h3>
             <ul class="guide-list" aria-label="Generated problem topics">
               <li><strong>Logic</strong><span>True, False, implication, negation, and direct proof-from-assumption statements.</span></li>
               <li><strong>And / or</strong><span>Building both sides, choosing one side, or unpacking assumptions.</span></li>
@@ -86,10 +85,10 @@
             </ul>
           </section>
 
-          <section class="guide-panel guide-panel-muted" aria-labelledby="testnet-difficulty-title">
-            <h3 id="testnet-difficulty-title" class="guide-section-title">Difficulty meaning</h3>
-            <p class="guide-note">The current testnet supply may still show mostly Easy problems, but the difficulty bands use the same meaning as production.</p>
-            <div class="difficulty-guide" aria-label="Testnet difficulty meanings">
+          <section class="guide-panel guide-panel-muted" aria-labelledby="problem-difficulty-title">
+            <h3 id="problem-difficulty-title" class="guide-section-title">Difficulty meaning</h3>
+            <p class="guide-note">Difficulty is a plain signal for how much proof work a miner should expect.</p>
+            <div class="difficulty-guide" aria-label="Difficulty meanings">
               <div>
                 <span class="difficulty">Easy</span>
                 <p>One direct idea: simplify, introduce, split, or use a standard fact.</p>
@@ -105,52 +104,6 @@
               <div>
                 <span class="difficulty">Frontier</span>
                 <p>The hardest active edge when easier patterns are being solved reliably.</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-    </div>
-
-    <div class="guide-modal" data-guide-modal="mainnet" hidden>
-      <div id="mainnet-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="mainnet-guide-title" tabindex="-1">
-        <button class="guide-close" type="button" data-guide-close aria-label="Close problem guide">Close</button>
-        <p class="eyebrow">Mainnet problem guide</p>
-        <h2 id="mainnet-guide-title">Mainnet problems are generated</h2>
-        <p class="guide-intro">On mainnet, paid problems are procedurally generated. The active set is created automatically from approved mathematical sources in a repeatable way, then checked before it appears here.</p>
-
-        <div class="guide-layout">
-          <section class="guide-panel" aria-labelledby="mainnet-types-title">
-            <h3 id="mainnet-types-title" class="guide-section-title">What mainnet uses</h3>
-            <ul class="guide-list guide-list-mainnet" aria-label="Mainnet problem generation">
-              <li><strong>All paid problems are generated</strong><span>No one hand-picks the active paid set. The generator creates exact Lean statements for miners to prove.</span></li>
-              <li><strong>Built from approved sources</strong><span>The generator starts from pinned mathematical material, so the same public inputs produce the same problem set.</span></li>
-              <li><strong>Checked before activation</strong><span>A problem must be valid Lean, safe to publish, and not already solved by the basic checker.</span></li>
-              <li><strong>Practice sets stay separate</strong><span>Testnet, benchmark, and curriculum problems can exist, but they are not the paid mainnet problem set.</span></li>
-            </ul>
-
-            <a class="guide-doc-link" href="https://github.com/lemma-foundation/lemma/blob/main/docs/tasks.md" rel="noopener noreferrer" target="_blank">Read the technical problem-supply docs</a>
-          </section>
-
-          <section class="guide-panel guide-panel-muted" aria-labelledby="mainnet-difficulty-title">
-            <h3 id="mainnet-difficulty-title" class="guide-section-title">Difficulty bands</h3>
-            <p class="guide-note">Difficulty is a plain signal for how much proof work a miner should expect.</p>
-            <div class="difficulty-guide" aria-label="Mainnet difficulty meanings">
-              <div>
-                <span class="difficulty">Easy</span>
-                <p>A direct proof. Usually one obvious idea or standard simplification.</p>
-              </div>
-              <div>
-                <span class="difficulty">Medium</span>
-                <p>A short proof with a few connected steps or facts.</p>
-              </div>
-              <div>
-                <span class="difficulty">Hard</span>
-                <p>Needs planning, search, or less obvious theorem knowledge.</p>
-              </div>
-              <div>
-                <span class="difficulty">Frontier</span>
-                <p>The edge of the current set. Expect experimentation before a proof lands.</p>
               </div>
             </div>
           </section>
