@@ -528,6 +528,14 @@ button.button {
   text-align: right;
 }
 
+.problem-status.live {
+  color: var(--green);
+}
+
+.problem-status.fallback {
+  color: var(--gold);
+}
+
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

@@ -6,6 +6,7 @@ const problemBoard = document.querySelector("[data-current-problems]");
 const guideTriggers = document.querySelectorAll("[data-guide-open]");
 const guideModals = document.querySelectorAll("[data-guide-modal]");
 const updateRetryMs = 30_000;
+const liveFetchTimeoutMs = 5_000;
 const guideCloseMs = 180;
 let problemRefreshTimer;
 let activeGuide;
@@ -125,9 +126,13 @@ function tempoMilliseconds(snapshot) {
 }
 
 function expectedRefreshTime(snapshot) {
-  const generated = new Date(snapshot.generated_at);
   const tempoMs = tempoMilliseconds(snapshot);
-  if (Number.isNaN(generated.valueOf()) || !tempoMs) {
+  const tempo = Number(snapshot.tempo);
+  if (tempoMs && Number.isInteger(tempo) && tempo >= 0) {
+    return (tempo + 1) * tempoMs;
+  }
+  const generated = new Date(snapshot.generated_at);
+  if (!tempoMs || Number.isNaN(generated.valueOf())) {
     return undefined;
   }
   return generated.valueOf() + tempoMs;
@@ -148,23 +153,6 @@ function refreshOverdue(snapshot) {
 
 function refreshHint(snapshot) {
   return refreshOverdue(snapshot) ? "Overdue; waiting for a fresh snapshot" : "Expected problem-set refresh";
-}
-
-function plural(value, singular, pluralLabel = `${singular}s`) {
-  return `${value} ${value === 1 ? singular : pluralLabel}`;
-}
-
-function duration(seconds) {
-  const minutes = Math.round(seconds / 60);
-  return plural(minutes, "minute");
-}
-
-function checkLabel(snapshot) {
-  const tempoMs = tempoMilliseconds(snapshot);
-  if (!tempoMs) {
-    return "At update time";
-  }
-  return `Every ${duration(tempoMs / 1000)}`;
 }
 
 function difficultyLabel(value) {
@@ -286,19 +274,36 @@ function renderProblemSet(tasks) {
   return section;
 }
 
-function scheduleRefresh(board, snapshot) {
+function sourceLabel(sourceKind) {
+  return sourceKind === "live" ? "Live API" : "Fallback JSON";
+}
+
+function sourceHint(sourceKind) {
+  return sourceKind === "live" ? "Fetched directly from the live exporter" : "Live API unavailable";
+}
+
+function statusText(snapshot, sourceKind) {
+  if (sourceKind === "fallback") {
+    return "Using fallback snapshot until the live API responds.";
+  }
+  return refreshOverdue(snapshot) ? "Live snapshot overdue: waiting for the data source to advance." : "Live snapshot loaded.";
+}
+
+function scheduleRefresh(board, snapshot, sourceKind) {
   clearTimeout(problemRefreshTimer);
-  const generated = new Date(snapshot.generated_at);
-  const tempoMs = tempoMilliseconds(snapshot);
-  if (Number.isNaN(generated.valueOf()) || !tempoMs) {
+  if (sourceKind === "fallback") {
+    problemRefreshTimer = setTimeout(() => loadProblems(board), updateRetryMs);
     return;
   }
-  const next = generated.valueOf() + tempoMs;
+  const next = expectedRefreshTime(snapshot);
+  if (!next) {
+    return;
+  }
   const wait = next <= Date.now() ? updateRetryMs : next - Date.now() + 1000;
   problemRefreshTimer = setTimeout(() => loadProblems(board), wait);
 }
 
-function renderProblems(board, snapshot) {
+function renderProblems(board, snapshot, sourceKind) {
   const status = board.querySelector("[data-problem-status]");
   const summary = board.querySelector("[data-problem-summary]");
   const list = board.querySelector("[data-problem-list]");
@@ -308,26 +313,48 @@ function renderProblems(board, snapshot) {
     metric("Open problems", String(snapshot.task_count ?? tasks.length), "Available now"),
     metric("Last updated", localTime(snapshot.generated_at), "Your local time"),
     metric(overdue ? "Expected update" : "Next update", expectedRefresh(snapshot), refreshHint(snapshot), overdue ? "warning" : ""),
-    metric("Page checks", checkLabel(snapshot), overdue ? "Retrying until a fresh snapshot appears" : "Refreshes automatically")
+    metric("Data source", sourceLabel(sourceKind), sourceHint(sourceKind), sourceKind === "fallback" ? "warning" : "")
   );
   list.replaceChildren(renderProblemSet(tasks));
-  status.hidden = !overdue;
-  status.textContent = overdue ? "Snapshot overdue: the data source has not published a newer problem set yet." : "";
-  scheduleRefresh(board, snapshot);
+  status.hidden = false;
+  status.className = `problem-status ${sourceKind}`;
+  status.textContent = statusText(snapshot, sourceKind);
+  scheduleRefresh(board, snapshot, sourceKind);
+}
+
+async function fetchSnapshot(sourceUrl, timeoutMs = liveFetchTimeoutMs) {
+  const source = new URL(sourceUrl, window.location.href);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  source.searchParams.set("t", Date.now().toString());
+  try {
+    const response = await fetch(source, { cache: "no-store", signal: controller.signal });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    return response.json();
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 async function loadProblems(board) {
   const status = board.querySelector("[data-problem-status]");
+  const fallbackSource = board.dataset.source || "data/current-problems.json";
   try {
-    const source = new URL(board.dataset.source || "data/current-problems.json", window.location.href);
-    source.searchParams.set("t", Date.now().toString());
-    const response = await fetch(source, { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+    if (board.dataset.liveSource) {
+      try {
+        renderProblems(board, await fetchSnapshot(board.dataset.liveSource), "live");
+        return;
+      } catch (_error) {
+        renderProblems(board, await fetchSnapshot(fallbackSource), "fallback");
+        return;
+      }
     }
-    renderProblems(board, await response.json());
+    renderProblems(board, await fetchSnapshot(fallbackSource), "fallback");
   } catch (error) {
     status.hidden = false;
+    status.className = "problem-status fallback";
     status.textContent = "Snapshot unavailable";
     board.querySelector("[data-problem-list]").replaceChildren(
       node("p", "empty-state", "The current problem snapshot could not be loaded.")
