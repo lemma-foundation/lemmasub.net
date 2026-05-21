@@ -124,25 +124,30 @@ function tempoMilliseconds(snapshot) {
   return Number.isFinite(seconds) && seconds > 0 ? seconds * 1000 : undefined;
 }
 
-function nextRefreshTime(snapshot) {
+function expectedRefreshTime(snapshot) {
   const generated = new Date(snapshot.generated_at);
   const tempoMs = tempoMilliseconds(snapshot);
   if (Number.isNaN(generated.valueOf()) || !tempoMs) {
     return undefined;
   }
-  let next = generated.valueOf() + tempoMs;
-  while (next <= Date.now()) {
-    next += tempoMs;
-  }
-  return next;
+  return generated.valueOf() + tempoMs;
 }
 
 function expectedRefresh(snapshot) {
-  const next = nextRefreshTime(snapshot);
+  const next = expectedRefreshTime(snapshot);
   if (!next) {
     return "Unknown";
   }
   return localTime(next);
+}
+
+function refreshOverdue(snapshot) {
+  const next = expectedRefreshTime(snapshot);
+  return Boolean(next && next <= Date.now());
+}
+
+function refreshHint(snapshot) {
+  return refreshOverdue(snapshot) ? "Overdue; waiting for a fresh snapshot" : "Expected problem-set refresh";
 }
 
 function plural(value, singular, pluralLabel = `${singular}s`) {
@@ -169,8 +174,8 @@ function difficultyLabel(value) {
   return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
 }
 
-function metric(label, value, hint) {
-  const item = node("div", "metric");
+function metric(label, value, hint, variant) {
+  const item = node("div", variant ? `metric ${variant}` : "metric");
   item.append(node("dt", "", label), node("dd", "", value));
   if (hint) {
     item.append(node("p", "", hint));
@@ -298,15 +303,16 @@ function renderProblems(board, snapshot) {
   const summary = board.querySelector("[data-problem-summary]");
   const list = board.querySelector("[data-problem-list]");
   const tasks = snapshot.tasks || [];
+  const overdue = refreshOverdue(snapshot);
   summary.replaceChildren(
     metric("Open problems", String(snapshot.task_count ?? tasks.length), "Available now"),
     metric("Last updated", localTime(snapshot.generated_at), "Your local time"),
-    metric("Next update", expectedRefresh(snapshot), "Expected problem-set refresh"),
-    metric("Page checks", checkLabel(snapshot), "Refreshes automatically")
+    metric(overdue ? "Expected update" : "Next update", expectedRefresh(snapshot), refreshHint(snapshot), overdue ? "warning" : ""),
+    metric("Page checks", checkLabel(snapshot), overdue ? "Retrying until a fresh snapshot appears" : "Refreshes automatically")
   );
   list.replaceChildren(renderProblemSet(tasks));
-  status.hidden = true;
-  status.textContent = "";
+  status.hidden = !overdue;
+  status.textContent = overdue ? "Snapshot overdue: the data source has not published a newer problem set yet." : "";
   scheduleRefresh(board, snapshot);
 }
 
