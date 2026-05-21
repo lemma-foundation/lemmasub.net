@@ -72,8 +72,8 @@
   --paper: #16231c;
   --ink: #eef7f1;
   --muted: #a8b9af;
-  --line: #2b4035;
-  --soft: #1b2d23;
+  --line: #365346;
+  --soft: #203429;
   --green: #8ee6c8;
   --blue: #9dbaff;
   --gold: #e2ad65;
@@ -82,8 +82,8 @@
   --header-bg: rgba(16, 23, 18, .92);
   --hero-start: #101712;
   --hero-glow: rgba(142, 230, 200, .12);
-  --card-bg: rgba(22, 35, 28, .9);
-  --card-soft: #14231b;
+  --card-bg: rgba(25, 43, 33, .95);
+  --card-soft: #13241c;
   --section-warm: #111d17;
   --success-bg: #13241c;
   --footer-bg: #101712;
@@ -497,10 +497,10 @@ button.button {
 }
 
 .dashboard-toolbar {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: .85rem 1.25rem;
   margin-bottom: 1.4rem;
 }
 
@@ -513,14 +513,16 @@ button.button {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: .5rem;
-  margin-left: auto;
+  align-items: center;
 }
 
 .guide-button {
   min-height: 2.45rem;
+  min-width: 10rem;
 }
 
 .problem-status {
+  grid-column: 2;
   margin: 0;
   color: var(--muted);
   font-size: .92rem;
@@ -539,19 +541,20 @@ button.button {
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: .8rem;
-  margin: 0 0 1.4rem;
+  gap: 1rem;
+  margin: 0 0 1.2rem;
 }
 
 .metric {
   display: grid;
   align-content: start;
-  gap: .22rem;
+  gap: .26rem;
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--card-bg);
-  padding: .8rem;
+  padding: 1rem;
+  min-height: 7rem;
 }
 
 .metric dt {
@@ -596,7 +599,7 @@ button.button {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--card-bg);
-  box-shadow: 0 16px 42px var(--shadow);
+  box-shadow: 0 18px 48px var(--shadow);
   overflow: hidden;
 }
 
@@ -609,7 +612,7 @@ button.button {
   border: 0;
   background: transparent;
   color: var(--ink);
-  padding: 1rem;
+  padding: 1.05rem 1.2rem;
   font: inherit;
   text-align: left;
   cursor: pointer;
@@ -638,7 +641,7 @@ button.button {
   min-height: 2.15rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--paper);
+  background: var(--soft);
   padding: 0 .8rem;
   font-size: .82rem;
   font-weight: 850;
@@ -678,16 +681,14 @@ button.button {
 
 .guide-window {
   position: relative;
-  width: min(72rem, 100%);
+  width: min(var(--max), calc(100% - 2rem));
   max-height: min(42rem, calc(100svh - 2rem));
   overflow: auto;
   border: 1px solid color-mix(in srgb, var(--green) 38%, var(--line));
   border-radius: var(--radius);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, .04), transparent 18rem),
-    var(--paper);
+  background: var(--paper);
   box-shadow: 0 24px 70px rgba(0, 0, 0, .22);
-  padding: 1.25rem;
+  padding: 1.35rem;
   animation: guide-window-in .22s cubic-bezier(.2, .7, .2, 1) both;
 }
 
@@ -702,7 +703,7 @@ button.button {
   min-height: 2.15rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--card-soft);
+  background: var(--soft);
   color: var(--ink);
   padding: 0 .75rem;
   font: inherit;
@@ -734,7 +735,7 @@ button.button {
 .guide-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(18rem, .8fr);
-  gap: 1rem;
+  gap: 1.15rem;
   align-items: start;
 }
 
@@ -745,12 +746,12 @@ button.button {
 .guide-panel-muted {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--card-soft) 82%, transparent);
-  padding: .8rem;
+  background: var(--card-soft);
+  padding: .9rem;
 }
 
 .guide-note {
-  margin: -.2rem 0 .75rem;
+  margin: -.2rem 0 .65rem;
   color: var(--muted);
   font-size: .88rem;
   line-height: 1.45;
@@ -759,7 +760,7 @@ button.button {
 .guide-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: .55rem;
+  gap: .75rem;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -770,8 +771,8 @@ button.button {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--card-soft);
-  padding: .7rem;
+  background: var(--card-bg);
+  padding: .85rem;
 }
 
 .guide-list strong {
@@ -801,7 +802,11 @@ button.button {
 }
 
 .difficulty-guide .difficulty {
-  margin-bottom: .35rem;
+  margin-bottom: .25rem;
+}
+
+.difficulty-guide div {
+  padding: .7rem;
 }
 
 @keyframes guide-backdrop-in {
@@ -1209,10 +1214,15 @@ code {
     display: grid;
   }
 
+  .dashboard-toolbar {
+    grid-template-columns: 1fr;
+  }
+
   .guide-actions {
     display: grid;
+    grid-template-columns: 1fr;
+    justify-content: stretch;
     width: 100%;
-    margin-left: 0;
   }
 
   .problem-card-head {
@@ -1256,6 +1266,7 @@ code {
   }
 
   .problem-status {
+    grid-column: auto;
     text-align: left;
   }
 
