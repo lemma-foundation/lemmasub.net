@@ -6,12 +6,104 @@
   "active_selection_seed_sha256": "583f36885ecb9e94ae8c1684d0210483e3054b8f811d3d200087b42322b0e7c1",
   "active_tempo_seconds": 4320,
   "frontier_depth": 0,
-  "generated_at": "2026-05-22T11:53:18Z",
+  "generated_at": "2026-05-22T15:17:54Z",
   "registry_sha256": "c0f69a5c9dd0bb189e2095f1b3dcffdc062b62ed676ba538601e4d30c8eebcd8",
   "registry_task_count": 32,
   "schema_version": 1,
   "task_count": 20,
   "tasks": [
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 0,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 0,
+      "source_license": "CC-BY-4.0",
+      "source_ref": {
+        "kind": "dev_seed",
+        "name": "deterministic-dev-seed",
+        "path": "tasks/registry.json"
+      },
+      "source_stream": "generated",
+      "statement": "theorem generated_nat_one_add : \u2200 n : Nat, 1 + n = Nat.succ n := by\n  sorry",
+      "target_sha256": "712014f9badc5b87dce076e3f8ce575c695f9f724642c80a1be376db2aa8d972",
+      "task_id": "lemma.generated.nat_one_add",
+      "task_version": 1,
+      "theorem_name": "generated_nat_one_add",
+      "title": "Generated Nat one add",
+      "type_expr": "\u2200 n : Nat, 1 + n = Nat.succ n"
+    },
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 0,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 1,
+      "source_license": "CC-BY-4.0",
+      "source_ref": {
+        "kind": "dev_seed",
+        "name": "deterministic-dev-seed",
+        "path": "tasks/registry.json"
+      },
+      "source_stream": "generated",
+      "statement": "theorem generated_not_false : \u00ac False := by\n  sorry",
+      "target_sha256": "3eb5fd2bcc8c5fe82f8329d08fd0e52bcd267a779779c24eb18b14fae440582f",
+      "task_id": "lemma.generated.not_false",
+      "task_version": 1,
+      "theorem_name": "generated_not_false",
+      "title": "Generated not false",
+      "type_expr": "\u00ac False"
+    },
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 0,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 2,
+      "source_license": "CC-BY-4.0",
+      "source_ref": {
+        "kind": "dev_seed",
+        "name": "deterministic-dev-seed",
+        "path": "tasks/registry.json"
+      },
+      "source_stream": "generated",
+      "statement": "theorem generated_eq_symm_nat : \u2200 a b : Nat, a = b \u2192 b = a := by\n  sorry",
+      "target_sha256": "1dd8e04bfc70d0f16ee9fcb90360aca130320e702315a4cf159a58acb88b1bbd",
+      "task_id": "lemma.generated.eq_symm_nat",
+      "task_version": 1,
+      "theorem_name": "generated_eq_symm_nat",
+      "title": "Generated Nat equality symmetry",
+      "type_expr": "\u2200 a b : Nat, a = b \u2192 b = a"
+    },
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 0,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 3,
+      "source_license": "CC-BY-4.0",
+      "source_ref": {
+        "kind": "dev_seed",
+        "name": "deterministic-dev-seed",
+        "path": "tasks/registry.json"
+      },
+      "source_stream": "generated",
+      "statement": "theorem generated_zero_le : \u2200 n : Nat, 0 \u2264 n := by\n  sorry",
+      "target_sha256": "e8bd500e83767f96e82f3e4ae99bfaf66d8d8ae35b83693bda87613dc975998b",
+      "task_id": "lemma.generated.zero_le",
+      "task_version": 1,
+      "theorem_name": "generated_zero_le",
+      "title": "Generated zero le Nat",
+      "type_expr": "\u2200 n : Nat, 0 \u2264 n"
+    },
     {
       "difficulty_band": "easy",
       "frontier_depth": 0,
@@ -379,99 +471,7 @@
       "theorem_name": "generated_nat_zero_ne_succ",
       "title": "Generated Nat zero not succ",
       "type_expr": "\u2200 n : Nat, 0 \u2260 Nat.succ n"
-    },
-    {
-      "difficulty_band": "easy",
-      "frontier_depth": 0,
-      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
-      "mathlib_rev": "5450b53e5ddc",
-      "policy": "restricted_helpers",
-      "queue_depth": 0,
-      "queue_position": 20,
-      "source_license": "CC-BY-4.0",
-      "source_ref": {
-        "kind": "dev_seed",
-        "name": "deterministic-dev-seed",
-        "path": "tasks/registry.json"
-      },
-      "source_stream": "generated",
-      "statement": "theorem generated_pair_intro : \u2200 p q : Prop, p \u2192 q \u2192 p \u2227 q := by\n  sorry",
-      "target_sha256": "3bf9fc5c1b22efe89afc8706cda045192bd26cf17efa900a0905456de9685b49",
-      "task_id": "lemma.generated.pair_intro",
-      "task_version": 1,
-      "theorem_name": "generated_pair_intro",
-      "title": "Generated conjunction builder",
-      "type_expr": "\u2200 p q : Prop, p \u2192 q \u2192 p \u2227 q"
-    },
-    {
-      "difficulty_band": "easy",
-      "frontier_depth": 0,
-      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
-      "mathlib_rev": "5450b53e5ddc",
-      "policy": "restricted_helpers",
-      "queue_depth": 0,
-      "queue_position": 21,
-      "source_license": "CC-BY-4.0",
-      "source_ref": {
-        "kind": "dev_seed",
-        "name": "deterministic-dev-seed",
-        "path": "tasks/registry.json"
-      },
-      "source_stream": "generated",
-      "statement": "theorem generated_true_or_false : True \u2228 False := by\n  sorry",
-      "target_sha256": "6295461c998e0ab16c0c8f01b929ffb6f14b0e94a4f92bdc9d6f17b2b03263d0",
-      "task_id": "lemma.generated.true_or_false",
-      "task_version": 1,
-      "theorem_name": "generated_true_or_false",
-      "title": "Generated true or false",
-      "type_expr": "True \u2228 False"
-    },
-    {
-      "difficulty_band": "easy",
-      "frontier_depth": 0,
-      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
-      "mathlib_rev": "5450b53e5ddc",
-      "policy": "restricted_helpers",
-      "queue_depth": 0,
-      "queue_position": 22,
-      "source_license": "CC-BY-4.0",
-      "source_ref": {
-        "kind": "dev_seed",
-        "name": "deterministic-dev-seed",
-        "path": "tasks/registry.json"
-      },
-      "source_stream": "generated",
-      "statement": "theorem generated_false_implies : \u2200 p : Prop, False \u2192 p := by\n  sorry",
-      "target_sha256": "908797c912dcfe62c302aaaa54138ad2266a877e7caba9dc7781c093e78dd14d",
-      "task_id": "lemma.generated.false_implies",
-      "task_version": 1,
-      "theorem_name": "generated_false_implies",
-      "title": "Generated false elimination",
-      "type_expr": "\u2200 p : Prop, False \u2192 p"
-    },
-    {
-      "difficulty_band": "easy",
-      "frontier_depth": 0,
-      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
-      "mathlib_rev": "5450b53e5ddc",
-      "policy": "restricted_helpers",
-      "queue_depth": 0,
-      "queue_position": 23,
-      "source_license": "CC-BY-4.0",
-      "source_ref": {
-        "kind": "dev_seed",
-        "name": "lemma-dev-smoke",
-        "path": "tasks/registry.json"
-      },
-      "source_stream": "human_curated",
-      "statement": "theorem true_intro_sample : True := by\n  sorry",
-      "target_sha256": "9b4bfc3ff8964ed0bb150c9775d9e974b5ce81560c47c33f38f73b0597a670a9",
-      "task_id": "lemma.sample.true_intro",
-      "task_version": 1,
-      "theorem_name": "true_intro_sample",
-      "title": "Smoke-test True",
-      "type_expr": "True"
     }
   ],
-  "tempo": 411909
+  "tempo": 411912
 }
