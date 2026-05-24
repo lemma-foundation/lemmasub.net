@@ -1,16 +1,16 @@
 {
-  "active_K": 5,
+  "active_K": 6,
   "active_epoch_randomness_source": "chain_drand",
   "active_queue_seed": "lemma-active-queue",
   "active_seed_mode": "epoch_randomness",
   "active_tempo_seconds": 4320,
   "active_tempo_source": "chain",
   "frontier_depth": 2,
-  "generated_at": "2026-05-24T12:36:11Z",
-  "registry_sha256": "7376dc89630460adfb05946ec1b7c9cf1cae6f81a9009499967b3cacaac56426",
-  "registry_task_count": 5,
+  "generated_at": "2026-05-24T14:40:05Z",
+  "registry_sha256": "e05c99bd6919ecddf2846d396433254da163a4855826431bdc11ebdf2efbe91b",
+  "registry_task_count": 6,
   "schema_version": 1,
-  "task_count": 5,
+  "task_count": 6,
   "tasks": [
     {
       "difficulty_band": "easy",
@@ -24,17 +24,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-19977-seq-2",
-        "path": "Mathlib/Algebra/Ring/AddAut.lean"
+        "name": "tempo-19978-seq-4",
+        "path": "Mathlib/Algebra/Ring/Associated.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_AddAut_mulRight_apply_f7af0926c2e5 : \u2200 lemma_p1_p262a5f : Prop,\n  lemma_p1_p262a5f \u2192\n    ((\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) \u2227\n      (\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1)) := by\n  sorry",
-      "target_sha256": "91d1c843e2e07d92823aed5753c1cc8ba5d327e95f2e2c7249fefefdc53d8505",
-      "task_id": "lemma.procedural.f7af0926c2e5c2ac",
+      "statement": "theorem procedural_Associated_neg_right_iff_c8b8be0a3179 : (True \u2192 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated a (-b) \u2194 Associated a b)) \u2227\n  (\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonUnitalNonAssocSemiring (f i)]\n    [NonUnitalNonAssocSemiring \u03b3] (g : (i : I) \u2192 \u03b3 \u2192\u2099+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)),\n    Function.Injective \u21d1(Pi.nonUnitalRingHom g)) := by\n  sorry",
+      "target_sha256": "2642d1334f01496bfc899b73220d16ab5f8c2ce419382d2bcb9aa53d05e46407",
+      "task_id": "lemma.procedural.c8b8be0a3179de84",
       "task_version": 1,
-      "theorem_name": "procedural_AddAut_mulRight_apply_f7af0926c2e5",
-      "title": "Procedural AddAut.mulRight_apply",
-      "type_expr": "\u2200 lemma_p1_p262a5f : Prop,\n  lemma_p1_p262a5f \u2192\n    ((\u2200 {R : Type _} [Semiring R] (u : R\u02e3) (x : R), (AddAut.mulRight u) x = x * \u2191u) \u2227\n      (\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1))"
+      "theorem_name": "procedural_Associated_neg_right_iff_c8b8be0a3179",
+      "title": "Procedural Associated.neg_right_iff",
+      "type_expr": "(True \u2192 (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated a (-b) \u2194 Associated a b)) \u2227\n  (\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonUnitalNonAssocSemiring (f i)]\n    [NonUnitalNonAssocSemiring \u03b3] (g : (i : I) \u2192 \u03b3 \u2192\u2099+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)),\n    Function.Injective \u21d1(Pi.nonUnitalRingHom g))"
     },
     {
       "difficulty_band": "easy",
@@ -48,17 +48,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-19977-seq-3",
+        "name": "tempo-19978-seq-13",
         "path": "Mathlib/Algebra/Ring/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_NoZeroDivisors_to_isDomain_7512fa263bbf : ((\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1) \u2228 False) \u2227\n  (\u2200 {\u03b1 : Type _} {s : Finset \u03b1} {p q : \u03b1 \u2192 Prop} [DecidablePred p] [DecidablePred q],\n    Disjoint (Finset.filter p s) (Finset.filter q s) \u2194 \u2200 x \u2208 s, p x \u2192 \u00acq x) := by\n  sorry",
-      "target_sha256": "866e06cf83ec10937d8eb9f3d1a6dab82f16d5fe7bb71e6740f6227c2da528c5",
-      "task_id": "lemma.procedural.7512fa263bbff06f",
+      "statement": "theorem procedural_noZeroDivisors_tfae_7f7d87e3cf4d : (\u2200 {\u03b9 : Type _} {R : \u03b9 \u2192 Type _} {S : \u03b9 \u2192 Type _} [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (R i)]\n    [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (S i)] (e : (i : \u03b9) \u2192 R i \u2243+* S i),\n    (RingEquiv.piCongrRight e).symm = RingEquiv.piCongrRight fun i => (e i).symm) \u2192\n  ((\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n      [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE) \u2227\n    (\u2200 {R : Type _} [NonUnitalNonAssocRing R] {r : R},\n      IsRegular r \u2194 (\u2200 (x : R), r * x = 0 \u2192 x = 0) \u2227 \u2200 (x : R), x * r = 0 \u2192 x = 0)) := by\n  sorry",
+      "target_sha256": "6b259c7a0c911990c64faf8b25f88bbd103f2cee3b41bf842b922ed6493a0b0c",
+      "task_id": "lemma.procedural.7f7d87e3cf4d7112",
       "task_version": 1,
-      "theorem_name": "procedural_NoZeroDivisors_to_isDomain_7512fa263bbf",
-      "title": "Procedural NoZeroDivisors.to_isDomain",
-      "type_expr": "((\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1) \u2228 False) \u2227\n  (\u2200 {\u03b1 : Type _} {s : Finset \u03b1} {p q : \u03b1 \u2192 Prop} [DecidablePred p] [DecidablePred q],\n    Disjoint (Finset.filter p s) (Finset.filter q s) \u2194 \u2200 x \u2208 s, p x \u2192 \u00acq x)"
+      "theorem_name": "procedural_noZeroDivisors_tfae_7f7d87e3cf4d",
+      "title": "Procedural noZeroDivisors_tfae",
+      "type_expr": "(\u2200 {\u03b9 : Type _} {R : \u03b9 \u2192 Type _} {S : \u03b9 \u2192 Type _} [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (R i)]\n    [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (S i)] (e : (i : \u03b9) \u2192 R i \u2243+* S i),\n    (RingEquiv.piCongrRight e).symm = RingEquiv.piCongrRight fun i => (e i).symm) \u2192\n  ((\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n      [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE) \u2227\n    (\u2200 {R : Type _} [NonUnitalNonAssocRing R] {r : R},\n      IsRegular r \u2194 (\u2200 (x : R), r * x = 0 \u2192 x = 0) \u2227 \u2200 (x : R), x * r = 0 \u2192 x = 0))"
     },
     {
       "difficulty_band": "easy",
@@ -72,41 +72,41 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-19977-seq-15",
+        "name": "tempo-19978-seq-9",
         "path": "Mathlib/Algebra/Ring/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_isDomain_iff_noZeroDivisors_and_nontrivial_192138131b2c : True \u2192 ((\u2200 (\u03b1 : Type _) [Ring \u03b1], IsDomain \u03b1 \u2194 NoZeroDivisors \u03b1 \u2227 Nontrivial \u03b1) \u2228 False) := by\n  sorry",
-      "target_sha256": "4844518088c20d72d6d0001e5f0bbe4b40086cba9a3db489f51501299813ffc3",
-      "task_id": "lemma.procedural.192138131b2cab03",
+      "statement": "theorem procedural_AddMonoidHom_map_mul_iff_8907d69589ab : (\u2200 {R : Type _} [AddCommMonoid R] [Mul R] {\u03b9 : Type _} (I : Finset \u03b9) {x : \u03b9 \u2192 R} (hx : \u2200 i \u2208 I, IsSquare (x i)),\n    IsSumSq (\u2211 i \u2208 I, x i)) \u2192\n  (\u2200 lemma_p0_p3d5fe1 : Prop,\n    lemma_p0_p3d5fe1 \u2192\n      (\u2200 {R : Type _} {S : Type _} [NonUnitalNonAssocSemiring R] [NonUnitalNonAssocSemiring S] (f : R \u2192+ S),\n        (\u2200 (x y : R), f (x * y) = f x * f y) \u2194 AddMonoidHom.mul.compr\u2082 f = (AddMonoidHom.mul.comp f).compl\u2082 f)) := by\n  sorry",
+      "target_sha256": "3aae5aadf48b05db6219410c3c44e0329b6339c7ccd10b7f7d08a1e8f333cf30",
+      "task_id": "lemma.procedural.8907d69589ab9ba5",
       "task_version": 1,
-      "theorem_name": "procedural_isDomain_iff_noZeroDivisors_and_nontrivial_192138131b2c",
-      "title": "Procedural isDomain_iff_noZeroDivisors_and_nontrivial",
-      "type_expr": "True \u2192 ((\u2200 (\u03b1 : Type _) [Ring \u03b1], IsDomain \u03b1 \u2194 NoZeroDivisors \u03b1 \u2227 Nontrivial \u03b1) \u2228 False)"
+      "theorem_name": "procedural_AddMonoidHom_map_mul_iff_8907d69589ab",
+      "title": "Procedural AddMonoidHom.map_mul_iff",
+      "type_expr": "(\u2200 {R : Type _} [AddCommMonoid R] [Mul R] {\u03b9 : Type _} (I : Finset \u03b9) {x : \u03b9 \u2192 R} (hx : \u2200 i \u2208 I, IsSquare (x i)),\n    IsSumSq (\u2211 i \u2208 I, x i)) \u2192\n  (\u2200 lemma_p0_p3d5fe1 : Prop,\n    lemma_p0_p3d5fe1 \u2192\n      (\u2200 {R : Type _} {S : Type _} [NonUnitalNonAssocSemiring R] [NonUnitalNonAssocSemiring S] (f : R \u2192+ S),\n        (\u2200 (x y : R), f (x * y) = f x * f y) \u2194 AddMonoidHom.mul.compr\u2082 f = (AddMonoidHom.mul.comp f).compl\u2082 f))"
     },
     {
-      "difficulty_band": "easy",
+      "difficulty_band": "medium",
       "frontier_depth": 2,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
       "policy": "restricted_helpers",
-      "queue_depth": 1,
+      "queue_depth": 2,
       "queue_position": 3,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-19977-seq-7",
-        "path": "Mathlib/Algebra/Ring/Basic.lean"
+        "name": "tempo-19978-seq-19",
+        "path": "Mathlib/Algebra/Ring/Invertible.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_isRegular_iff_eq_zero_of_mul_369ab4febc1c : True \u2192\n  ((\u2200 {R : Type _} [NonUnitalNonAssocRing R] {r : R},\n      IsRegular r \u2194 (\u2200 (x : R), r * x = 0 \u2192 x = 0) \u2227 \u2200 (x : R), x * r = 0 \u2192 x = 0) \u2227\n    (\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n      [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE)) := by\n  sorry",
-      "target_sha256": "04852a252a0e1709f5843188cc1c705415d429f949e3b002db721089559f837d",
-      "task_id": "lemma.procedural.369ab4febc1ca7e5",
+      "statement": "theorem procedural_eq_of_invOf_add_eq_invOf_add_invOf_2e373c1bbcaa : (\u2200 lemma_p0_p01ce62 : Prop,\n    lemma_p0_p01ce62 \u2192\n      (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n        a * \u215fb * a = b * \u215fa * b)) \u2227\n  (\u2200 {\u03b1 : Type _} {\u03b2 : Type _} {\u03b3 : Type _} [BooleanRing \u03b1] [BooleanRing \u03b2] [BooleanRing \u03b3] (g : \u03b2 \u2192+* \u03b3) (f : \u03b1 \u2192+* \u03b2),\n    (g.comp f).asBoolAlg = g.asBoolAlg.comp f.asBoolAlg) := by\n  sorry",
+      "target_sha256": "0b7bfb8d170763c315a4b895b570c1ba9aa6d6005dffbe22dbdef55457ae3559",
+      "task_id": "lemma.procedural.2e373c1bbcaab985",
       "task_version": 1,
-      "theorem_name": "procedural_isRegular_iff_eq_zero_of_mul_369ab4febc1c",
-      "title": "Procedural isRegular_iff_eq_zero_of_mul",
-      "type_expr": "True \u2192\n  ((\u2200 {R : Type _} [NonUnitalNonAssocRing R] {r : R},\n      IsRegular r \u2194 (\u2200 (x : R), r * x = 0 \u2192 x = 0) \u2227 \u2200 (x : R), x * r = 0 \u2192 x = 0) \u2227\n    (\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n      [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE))"
+      "theorem_name": "procedural_eq_of_invOf_add_eq_invOf_add_invOf_2e373c1bbcaa",
+      "title": "Procedural eq_of_invOf_add_eq_invOf_add_invOf",
+      "type_expr": "(\u2200 lemma_p0_p01ce62 : Prop,\n    lemma_p0_p01ce62 \u2192\n      (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n        a * \u215fb * a = b * \u215fa * b)) \u2227\n  (\u2200 {\u03b1 : Type _} {\u03b2 : Type _} {\u03b3 : Type _} [BooleanRing \u03b1] [BooleanRing \u03b2] [BooleanRing \u03b3] (g : \u03b2 \u2192+* \u03b3) (f : \u03b1 \u2192+* \u03b2),\n    (g.comp f).asBoolAlg = g.asBoolAlg.comp f.asBoolAlg)"
     },
     {
       "difficulty_band": "medium",
@@ -120,18 +120,42 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-19977-seq-11",
+        "name": "tempo-19978-seq-2",
         "path": "Mathlib/Algebra/Ring/SumsOfSquares.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_IsSumSq_sum_isSquare_4de8139cc852 : True \u2192\n  ((\u2200 {R : Type _} [AddCommMonoid R] [Mul R] {\u03b9 : Type _} (I : Finset \u03b9) {x : \u03b9 \u2192 R} (hx : \u2200 i \u2208 I, IsSquare (x i)),\n      IsSumSq (\u2211 i \u2208 I, x i)) \u2227\n    (\u2200 {\u03b1 : Type _} {s : Finset \u03b1} {p q : \u03b1 \u2192 Prop} [DecidablePred p] [DecidablePred q],\n      Disjoint (Finset.filter p s) (Finset.filter q s) \u2194 \u2200 x \u2208 s, p x \u2192 \u00acq x)) := by\n  sorry",
-      "target_sha256": "305b1e16627d106a24c732de8a8ed80d8a9972c8ac5d25b8337a990d7ef1fa67",
-      "task_id": "lemma.procedural.4de8139cc852718c",
+      "statement": "theorem procedural_IsSumSq_sum_isSquare_92d11b41520e : (True \u2192\n    (\u2200 {R : Type _} [AddCommMonoid R] [Mul R] {\u03b9 : Type _} (I : Finset \u03b9) {x : \u03b9 \u2192 R} (hx : \u2200 i \u2208 I, IsSquare (x i)),\n      IsSumSq (\u2211 i \u2208 I, x i))) \u2227\n  (\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonAssocSemiring (f i)] [NonAssocSemiring \u03b3]\n    (g : (i : I) \u2192 \u03b3 \u2192+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)), Function.Injective \u21d1(Pi.ringHom g)) := by\n  sorry",
+      "target_sha256": "774cc5864e1f766dcefda72ac85a51726c208d0da2e893cd243133796108eead",
+      "task_id": "lemma.procedural.92d11b41520ec27d",
       "task_version": 1,
-      "theorem_name": "procedural_IsSumSq_sum_isSquare_4de8139cc852",
+      "theorem_name": "procedural_IsSumSq_sum_isSquare_92d11b41520e",
       "title": "Procedural IsSumSq.sum_isSquare",
-      "type_expr": "True \u2192\n  ((\u2200 {R : Type _} [AddCommMonoid R] [Mul R] {\u03b9 : Type _} (I : Finset \u03b9) {x : \u03b9 \u2192 R} (hx : \u2200 i \u2208 I, IsSquare (x i)),\n      IsSumSq (\u2211 i \u2208 I, x i)) \u2227\n    (\u2200 {\u03b1 : Type _} {s : Finset \u03b1} {p q : \u03b1 \u2192 Prop} [DecidablePred p] [DecidablePred q],\n      Disjoint (Finset.filter p s) (Finset.filter q s) \u2194 \u2200 x \u2208 s, p x \u2192 \u00acq x))"
+      "type_expr": "(True \u2192\n    (\u2200 {R : Type _} [AddCommMonoid R] [Mul R] {\u03b9 : Type _} (I : Finset \u03b9) {x : \u03b9 \u2192 R} (hx : \u2200 i \u2208 I, IsSquare (x i)),\n      IsSumSq (\u2211 i \u2208 I, x i))) \u2227\n  (\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonAssocSemiring (f i)] [NonAssocSemiring \u03b3]\n    (g : (i : I) \u2192 \u03b3 \u2192+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)), Function.Injective \u21d1(Pi.ringHom g))"
+    },
+    {
+      "difficulty_band": "medium",
+      "frontier_depth": 2,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
+      "policy": "restricted_helpers",
+      "queue_depth": 2,
+      "queue_position": 5,
+      "source_license": "Apache-2.0",
+      "source_ref": {
+        "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
+        "kind": "procedural",
+        "name": "tempo-19978-seq-5",
+        "path": "Mathlib/Data/Finset/Basic.lean"
+      },
+      "source_stream": "procedural",
+      "statement": "theorem procedural_Finset_disjoint_filter_0d6c7034c042 : (True \u2192\n    (\u2200 {\u03b1 : Type _} {s : Finset \u03b1} {p q : \u03b1 \u2192 Prop} [DecidablePred p] [DecidablePred q],\n      Disjoint (Finset.filter p s) (Finset.filter q s) \u2194 \u2200 x \u2208 s, p x \u2192 \u00acq x)) \u2227\n  (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b) := by\n  sorry",
+      "target_sha256": "0763303f7928b9628db29711f5e4e937d962a6cff8f05cd61d0fd320f0b80e81",
+      "task_id": "lemma.procedural.0d6c7034c042777d",
+      "task_version": 1,
+      "theorem_name": "procedural_Finset_disjoint_filter_0d6c7034c042",
+      "title": "Procedural Finset.disjoint_filter",
+      "type_expr": "(True \u2192\n    (\u2200 {\u03b1 : Type _} {s : Finset \u03b1} {p q : \u03b1 \u2192 Prop} [DecidablePred p] [DecidablePred q],\n      Disjoint (Finset.filter p s) (Finset.filter q s) \u2194 \u2200 x \u2208 s, p x \u2192 \u00acq x)) \u2227\n  (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b)"
     }
   ],
-  "tempo": 19977
+  "tempo": 19978
 }
