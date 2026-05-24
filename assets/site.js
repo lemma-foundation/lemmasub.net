@@ -126,6 +126,9 @@ function tempoMilliseconds(snapshot) {
 }
 
 function expectedRefreshTime(snapshot) {
+  if (snapshot.active_tempo_source === "chain") {
+    return undefined;
+  }
   const tempoMs = tempoMilliseconds(snapshot);
   const tempo = Number(snapshot.tempo);
   if (tempoMs && Number.isInteger(tempo) && tempo >= 0) {
@@ -139,6 +142,9 @@ function expectedRefreshTime(snapshot) {
 }
 
 function expectedRefresh(snapshot) {
+  if (snapshot.active_tempo_source === "chain") {
+    return "Chain epoch";
+  }
   const next = expectedRefreshTime(snapshot);
   if (!next) {
     return "Unknown";
@@ -152,6 +158,9 @@ function refreshOverdue(snapshot) {
 }
 
 function refreshHint(snapshot) {
+  if (snapshot.active_tempo_source === "chain") {
+    return "Chain blocks decide the next problem-set refresh";
+  }
   return refreshOverdue(snapshot) ? "Overdue; waiting for a fresh snapshot" : "Expected problem-set refresh";
 }
 
