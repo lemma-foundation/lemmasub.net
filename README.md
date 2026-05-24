@@ -25,7 +25,7 @@ uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemm
 - Explain Lemma in plain language as an open competition for formal proof.
 - Primary CTA: `View live dashboard`.
 - Keep the homepage centered on: miners run proof-search agents, validators verify Lean submissions, and verified solutions earn credit.
-- Treat proof records, corpus snapshots, and training-data value as supporting publication surfaces, not the hero framing.
+- Keep proof records, corpus snapshots, and training-data value off the hero path unless they clarify that they are byproducts of verified proof work.
 - Keep the homepage focused on formal mathematics.
 - Do not make the homepage crypto-first.
 - Do not imply humans manually proving lemmas is the main scaling path.
