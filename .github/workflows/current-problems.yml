@@ -21,24 +21,13 @@ jobs:
         with:
           path: site
 
-      - name: Checkout Lemma
-        uses: actions/checkout@v4
-        with:
-          repository: lemma-foundation/lemma
-          path: lemma
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install Lemma
-        working-directory: lemma
-        run: python -m pip install .
-
       - name: Export current problems
-        working-directory: lemma
-        run: python scripts/export_current_problems.py --output ../site/data/current-problems.json
+        working-directory: site
+        env:
+          CURRENT_PROBLEMS_URL: https://api.lemmasub.net/current-problems.json
+        run: |
+          curl --fail --silent --show-error --location "$CURRENT_PROBLEMS_URL" --output data/current-problems.json
+          python -m json.tool data/current-problems.json >/dev/null
 
       - name: Commit snapshot
         working-directory: site
