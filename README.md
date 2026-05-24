@@ -22,15 +22,16 @@ uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemm
 
 ## Content Notes
 
-- Explain Lemma in plain language as an incentive layer for open formal mathematics.
+- Explain Lemma in plain language as an open competition for formal proof.
 - Primary CTA: `View live dashboard`.
-- Keep the homepage centered on: miners submit Lean proofs, validators verify them, and accepted proofs become replayable theorem/proof records in an open corpus of machine-verified mathematics.
-- Model-training value is a downstream use case, not the hero framing.
+- Keep the homepage centered on: miners run proof-search agents, validators verify Lean submissions, verified solutions are rewarded, and accepted proofs become reusable proof data.
+- The corpus / training-data value is a byproduct of verified proof competition, not the standalone hero framing.
 - Do not broaden the homepage beyond formal mathematics.
+- Do not make the homepage crypto-first.
+- Do not imply humans manually proving lemmas is the main scaling path.
 - Do not use internal shorthand as public copy.
 - Keep one small proof example so visitors can see what is being verified.
 - Include a small day/night toggle without adding a build step or dependency.
-- Avoid legacy payment, ownership, and crypto-first framing.
 - Keep the site static, dependency-free, readable on mobile, and free of decorative background line patterns.
 
 ## Deployment
