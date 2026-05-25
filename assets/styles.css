@@ -577,7 +577,7 @@ button.button {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   margin: 0 0 1.2rem;
 }
@@ -794,7 +794,7 @@ button.button {
 }
 
 .guide-list li,
-.difficulty-guide div {
+.depth-guide div {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -816,23 +816,23 @@ button.button {
   line-height: 1.4;
 }
 
-.difficulty-guide p {
+.depth-guide p {
   margin: 0;
   color: var(--muted);
   font-size: .84rem;
   line-height: 1.4;
 }
 
-.difficulty-guide {
+.depth-guide {
   display: grid;
   gap: .55rem;
 }
 
-.difficulty-guide .difficulty {
+.depth-guide .depth-pill {
   margin-bottom: .25rem;
 }
 
-.difficulty-guide div {
+.depth-guide div {
   padding: .7rem;
 }
 
@@ -936,7 +936,7 @@ button.button {
   gap: .65rem;
 }
 
-.difficulty {
+.depth-pill {
   flex: 0 0 auto;
   border: 1px solid var(--line);
   border-radius: 999px;

@@ -6,6 +6,9 @@
   "active_tempo_blocks": 360,
   "active_tempo_seconds": 4320,
   "active_tempo_source": "chain",
+  "base_task_cost_s": 0.0,
+  "cost_budget_s": 0.0,
+  "depth_cost_multiplier": 2.0,
   "epoch_start_block": 7198200,
   "epoch_started_at": "2026-05-25T09:37:00Z",
   "estimated_next_epoch_starts_at": "2026-05-25T10:49:00Z",
@@ -16,6 +19,7 @@
   "registry_task_count": 6,
   "schema_version": 1,
   "task_count": 6,
+  "validator_capacity": 0,
   "tasks": [
     {
       "difficulty_band": "easy",

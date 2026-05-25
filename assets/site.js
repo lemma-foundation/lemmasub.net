@@ -332,11 +332,12 @@ function snapshotProblem(snapshot) {
   return "";
 }
 
-function difficultyLabel(value) {
-  if (!value) {
-    return "Open";
+function taskDepthLabel(task) {
+  const depth = numberOrNull(task?.queue_depth);
+  if (depth === null) {
+    return "Depth pending";
   }
-  return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
+  return `Depth ${depth}`;
 }
 
 function taskNameSeed(task) {
@@ -385,6 +386,24 @@ function metric(label, value, hint, variant) {
     item.append(node("p", "", hint));
   }
   return item;
+}
+
+function numberOrNull(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function frontierLabel(snapshot) {
+  const frontier = numberOrNull(snapshot?.frontier_depth);
+  return frontier === null ? "Pending" : `Depth ${frontier}`;
+}
+
+function taskCapHint(snapshot) {
+  const costCap = numberOrNull(snapshot?.cost_limited_K);
+  if (costCap !== null) {
+    return `Cost cap ${costCap} at this frontier`;
+  }
+  return "Max paid tasks this epoch";
 }
 
 function updateCountdowns(scope = document) {
@@ -499,7 +518,7 @@ function renderProblem(task, index) {
     node("p", "problem-id", `Task ${index + 1} · ${topic}`),
     node("h3", "", name),
   );
-  actions.append(node("span", "difficulty", difficultyLabel(task.difficulty_band)), indicator);
+  actions.append(node("span", "depth-pill", taskDepthLabel(task)), indicator);
   header.append(title, actions);
 
   article.append(header, statement);
@@ -590,7 +609,8 @@ function renderProblems(board, snapshot, sourceKind) {
       String(snapshot.task_count ?? tasks.length),
       overdue ? "Last published set" : "Open to miners right now",
     ),
-    metric(overdue ? "Shown set" : "Started", currentEpochLabel(snapshot), currentEpochHint(snapshot)),
+    metric("Frontier", frontierLabel(snapshot), "Difficulty moves from recent solve rate"),
+    metric("Task cap", `${snapshot.active_K ?? tasks.length} tasks`, taskCapHint(snapshot)),
     nextMetric,
   );
   list.replaceChildren(renderProblemSet(tasks, snapshot));

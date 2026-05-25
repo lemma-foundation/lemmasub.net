@@ -85,25 +85,21 @@
             </ul>
           </section>
 
-          <section class="guide-panel guide-panel-muted" aria-labelledby="problem-difficulty-title">
-            <h3 id="problem-difficulty-title" class="guide-section-title">Difficulty meaning</h3>
-            <p class="guide-note">Difficulty is a plain signal for how much proof work a miner should expect.</p>
-            <div class="difficulty-guide" aria-label="Difficulty meanings">
+          <section class="guide-panel guide-panel-muted" aria-labelledby="problem-depth-title">
+            <h3 id="problem-depth-title" class="guide-section-title">How depth changes</h3>
+            <p class="guide-note">Depth is the live frontier for task difficulty. It moves from recent solve rate, while the task cap keeps validation cheap.</p>
+            <div class="depth-guide" aria-label="Depth and task cap meanings">
               <div>
-                <span class="difficulty">Easy</span>
-                <p>One direct idea: simplify, introduce, split, or use a standard fact.</p>
+                <span class="depth-pill">Task depth</span>
+                <p>Each card shows the task's queue depth. Deeper tasks sit farther along the theorem frontier.</p>
               </div>
               <div>
-                <span class="difficulty">Medium</span>
-                <p>A short sequence of proof steps or a few facts in the right order.</p>
+                <span class="depth-pill">Current frontier</span>
+                <p>The validator can choose tasks up to the current frontier depth.</p>
               </div>
               <div>
-                <span class="difficulty">Hard</span>
-                <p>More structure, more search, or a less obvious proof path.</p>
-              </div>
-              <div>
-                <span class="difficulty">Frontier</span>
-                <p>The hardest active edge when easier patterns are being solved reliably.</p>
+                <span class="depth-pill">Task cap</span>
+                <p>The cap can shrink at deeper frontiers so a normal validator can keep up with the epoch.</p>
               </div>
             </div>
           </section>
