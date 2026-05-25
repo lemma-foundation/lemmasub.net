@@ -577,7 +577,7 @@ button.button {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin: 0 0 1.2rem;
 }
@@ -672,9 +672,8 @@ button.button {
 }
 
 .problem-set-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .25rem .85rem;
+  display: grid;
+  gap: .12rem;
   margin-top: .22rem;
   color: var(--muted);
   font-size: .78rem;
@@ -930,15 +929,6 @@ button.button {
 
 .problem-card h3 {
   margin-bottom: 0;
-}
-
-.problem-name {
-  max-width: 54rem;
-  margin: .22rem 0 0;
-  color: var(--muted);
-  font-size: .9rem;
-  font-weight: 690;
-  line-height: 1.35;
 }
 
 .problem-card-actions {

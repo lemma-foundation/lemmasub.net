@@ -275,15 +275,30 @@ function remainingTime(value) {
 function nextEpochHint(snapshot) {
   const next = nextEpochTime(snapshot);
   if (!next) {
-    return "Waiting for epoch timing";
+    return blockLabel(nextEpochBlock(snapshot));
   }
   const estimated = !validDate(snapshot.next_epoch_starts_at);
-  return `${estimated ? "About " : ""}${remainingTime(next)}; ${estimated ? "around " : ""}${localTime(next)}`;
+  const remaining = remainingTime(next);
+  return `${estimated && remaining !== "Due now" ? "About " : ""}${remaining} · ${blockLabel(nextEpochBlock(snapshot))}`;
 }
 
 function currentEpochHint(snapshot) {
   const started = epochStartTime(snapshot);
-  return started ? `Started ${localTime(started)}` : "Start time unavailable";
+  return started ? blockLabel(epochStartBlock(snapshot)) : "Start time pending";
+}
+
+function currentEpochLabel(snapshot) {
+  const started = epochStartTime(snapshot);
+  return started ? localTime(started) : "Start time pending";
+}
+
+function nextEpochLabel(snapshot) {
+  const next = nextEpochTime(snapshot);
+  if (!next) {
+    return "Timing pending";
+  }
+  const estimated = !validDate(snapshot.next_epoch_starts_at);
+  return `${estimated ? "Around " : ""}${localTime(next)}`;
 }
 
 function snapshotProblem(snapshot) {
@@ -372,25 +387,6 @@ function problemTopic(task) {
   return "Logic";
 }
 
-function readableProblemName(task) {
-  const raw = task.title || task.theorem_name || "";
-  const clean = raw
-    .replace(/^(Generated|Smoke-test|Procedural)\s+/i, "")
-    .replace(/^procedural[_-]*/i, "")
-    .replace(/_[0-9a-f]{8,}$/i, "")
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .replace(/[._-]+/g, " ")
-    .replace(/\biff\b/gi, "if and only if")
-    .replace(/\btfae\b/gi, "equivalent conditions")
-    .replace(/\bmul\b/gi, "multiplication")
-    .replace(/\bmem\b/gi, "membership")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase()
-    .replace(/\bcancel multiplication zero\b/g, "cancel multiplication by zero");
-  return clean ? `${clean.slice(0, 1).toUpperCase()}${clean.slice(1)}` : "Lean theorem statement";
-}
-
 function renderProblem(task, index) {
   const article = node("article", "problem-card");
   const header = node("div", "problem-card-head");
@@ -424,9 +420,8 @@ function renderProblem(task, index) {
   });
   const topic = problemTopic(task);
   title.append(
-    node("p", "problem-id", `Task ${index + 1} / ${topic}`),
-    node("h3", "", `${topic} proof task`),
-    node("p", "problem-name", readableProblemName(task)),
+    node("p", "problem-id", `Task ${index + 1}`),
+    node("h3", "", `${topic} task`),
   );
   actions.append(node("span", "difficulty", difficultyLabel(task.difficulty_band)), toggle);
   header.append(title, actions);
@@ -439,14 +434,14 @@ function renderProblemSet(tasks, snapshot) {
   const section = node("section", "problem-set");
   const toggle = node("button", "problem-set-toggle");
   const copy = node("span", "");
-  const count = node("span", "problem-set-count", `${tasks.length} proof tasks selected for this epoch`);
+  const count = node("span", "problem-set-count", `${tasks.length} tasks open to miners`);
   const meta = node("span", "problem-set-meta");
   const body = node("div", "problem-set-body");
 
   body.hidden = true;
   meta.append(
+    node("span", "", `Started ${currentEpochLabel(snapshot)}`),
     node("span", "", blockLabel(epochStartBlock(snapshot))),
-    node("span", "", currentEpochHint(snapshot)),
   );
   copy.append(node("strong", "", "Current task set"), count, meta);
   toggle.type = "button";
@@ -510,10 +505,9 @@ function renderProblems(board, snapshot, sourceKind) {
   }
   const overdue = refreshOverdue(snapshot);
   summary.replaceChildren(
-    metric("Open tasks", String(snapshot.task_count ?? tasks.length), "Chosen for miners right now"),
-    metric("Current task set", blockLabel(epochStartBlock(snapshot)), currentEpochHint(snapshot)),
-    metric("Next epoch", blockLabel(nextEpochBlock(snapshot)), nextEpochHint(snapshot), overdue ? "warning" : ""),
-    metric("Last updated", localTime(snapshot.generated_at), "Your local time"),
+    metric("Open tasks", String(snapshot.task_count ?? tasks.length), "Open to miners right now"),
+    metric("Started", currentEpochLabel(snapshot), currentEpochHint(snapshot)),
+    metric("Next change", nextEpochLabel(snapshot), nextEpochHint(snapshot), overdue ? "warning" : ""),
   );
   list.replaceChildren(renderProblemSet(tasks, snapshot));
   status.hidden = false;
