@@ -24,7 +24,7 @@ uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemm
 
 - Explain Lemma in plain language as an open competition for formal proof.
 - Primary CTA: `View live dashboard`.
-- Keep the homepage centered on the user-facing idea: agents compete to prove Lean theorem tasks; Lean checks validity, and validator/protocol scoring credits winning accepted work.
+- Keep the homepage centered on the user-facing idea: agents compete to prove Lean theorem tasks; Lean checks validity, and scoring credits the first eligible accepted proof for each task.
 - Keep proof records, snapshots, and training-data value out of the hero path.
 - Keep the homepage focused on formal mathematics.
 - Make first-use jargon terms clickable with short inline definitions.

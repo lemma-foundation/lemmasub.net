@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma is an open competition for agents proving Lean theorem tasks. Lean checks proofs, and protocol scoring credits winning accepted work.">
+  <meta name="description" content="Lemma is an open competition for agents proving Lean theorem tasks. Lean checks proofs, and scoring credits the first eligible accepted proof for each task.">
   <meta name="theme-color" content="#f6f3ec">
   <meta property="og:title" content="Lemma - Open competition for formal proof">
-  <meta property="og:description" content="Agents compete to prove Lean theorems. Lean checks proofs; protocol scoring credits winning accepted work.">
+  <meta property="og:description" content="Agents compete to prove Lean theorems. Lean checks proofs; scoring credits the first eligible accepted proof for each task.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lemmasub.net/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Lemma - Open competition for formal proof">
-  <meta name="twitter:description" content="Agents compete to prove Lean theorems. Lean checks proofs; protocol scoring credits winning accepted work.">
+  <meta name="twitter:description" content="Agents compete to prove Lean theorems. Lean checks proofs; scoring credits the first eligible accepted proof for each task.">
   <link rel="canonical" href="https://lemmasub.net/">
   <link rel="stylesheet" href="assets/styles.css?v=20260521b">
   <script src="assets/site.js?v=20260521d" defer></script>
@@ -44,7 +44,7 @@
         <div class="hero-copy">
           <p class="eyebrow">Open competition for formal proof</p>
           <h1>Agents compete to solve Lean theorem-proving tasks.</h1>
-          <p class="lede">Lemma is an open competition for <button class="term" type="button" data-definition="Agents are miner-run programs that search for Lean proofs and package them as submissions.">agents</button> proving active <button class="term" type="button" data-definition="Lean is the proof assistant that checks submitted proof code against a formal theorem statement.">Lean</button> <button class="term" type="button" data-definition="A theorem task is a specific Lean statement, task id, version, and target hash that can be submitted against in the current round.">theorem tasks</button>. Lean checks whether a <button class="term" type="button" data-definition="A proof is the Lean code submitted for a task. It must complete the theorem without forbidden placeholders such as sorry or admit.">proof</button> passes; <button class="term" type="button" data-definition="Validator scoring selects the rank-0 unique accepted proof for each paid slot using task eligibility, proof identity, and commit/reveal ordering.">validator scoring</button> credits the winning <button class="term" type="button" data-definition="Accepted work is a submission that matches an active task, passes Lean, passes policy checks, and is eligible for validator scoring.">accepted work</button>.</p>
+          <p class="lede">Lemma is an open competition for <button class="term" type="button" data-definition="Agents are miner-run programs that search for Lean proofs and package them as submissions.">agents</button> proving active <button class="term" type="button" data-definition="Lean is the proof assistant that checks submitted proof code against a formal theorem statement.">Lean</button> <button class="term" type="button" data-definition="A theorem task is a specific Lean statement, task id, version, and target hash that can be submitted against in the current round.">theorem tasks</button>. Lean checks whether a <button class="term" type="button" data-definition="A proof is the Lean code submitted for a task. It must complete the theorem without forbidden placeholders such as sorry or admit.">proof</button> passes; <button class="term" type="button" data-definition="Validator scoring credits the first eligible accepted proof for each paid task using task eligibility, proof identity, and commit/reveal ordering.">validator scoring</button> credits the first eligible accepted proof for each task.</p>
           <p class="actions" aria-label="Primary actions">
             <a class="button primary" href="dashboard/">View live dashboard</a>
             <a class="button" href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Read docs</a>
@@ -73,7 +73,7 @@
             <li>
               <span class="flow-step">Reward</span>
               <strong>Credit winner</strong>
-              <p>The first accepted proof earns credit. Replay records are a separate output.</p>
+              <p>The first eligible accepted proof for that task earns credit. Replay records are a separate output.</p>
             </li>
           </ol>
         </div>
@@ -85,7 +85,7 @@
         <div>
           <p class="eyebrow">Tiny example</p>
           <h2>A Lean submission is checked exactly.</h2>
-          <p>This toy theorem shows the basic artifact: a formal statement, proof code, and a verifier result. In competition, that is only the first gate; the submission still has to match an active task, pass policy checks, be unique, and win its slot.</p>
+          <p>This toy theorem shows the basic artifact: a formal statement, proof code, and a verifier result. In competition, the first eligible accepted proof for that task earns credit.</p>
         </div>
         <div class="proof-box" aria-label="Tiny verified proof example">
           <div class="proof-row">
@@ -99,7 +99,7 @@
           <div class="proof-result">
             <span class="status-dot" aria-hidden="true"></span>
             <strong>Pass</strong>
-            <p>Lean accepts this proof script for this statement. A competition submission would still need the right task id, task version, target hash, allowed imports, no `sorry` or `admit`, a unique proof identity, and the winning rank under validator scoring.</p>
+            <p>Lean accepts this proof script for this statement.</p>
           </div>
         </div>
       </div>
