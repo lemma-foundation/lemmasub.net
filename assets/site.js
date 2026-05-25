@@ -332,14 +332,6 @@ function snapshotProblem(snapshot) {
   return "";
 }
 
-function taskDepthLabel(task) {
-  const depth = numberOrNull(task?.queue_depth);
-  if (depth === null) {
-    return "Depth pending";
-  }
-  return `Depth ${depth}`;
-}
-
 function taskNameSeed(task) {
   return (task.title || task.theorem_name || "")
     .replace(/^Procedural\s+/i, "")
@@ -388,22 +380,9 @@ function metric(label, value, hint, variant) {
   return item;
 }
 
-function numberOrNull(value) {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
-}
-
-function frontierLabel(snapshot) {
-  const frontier = numberOrNull(snapshot?.frontier_depth);
-  return frontier === null ? "Pending" : `Depth ${frontier}`;
-}
-
-function taskCapHint(snapshot) {
-  const costCap = numberOrNull(snapshot?.cost_limited_K);
-  if (costCap !== null) {
-    return `Cost cap ${costCap} at this frontier`;
-  }
-  return "Max paid tasks this epoch";
+function generatedLabel(snapshot) {
+  const generated = validDate(snapshot?.generated_at);
+  return generated ? localTime(generated) : "Pending";
 }
 
 function updateCountdowns(scope = document) {
@@ -489,7 +468,6 @@ function renderProblem(task, index) {
   const article = node("article", "problem-card");
   const header = node("button", "problem-card-head");
   const title = node("div");
-  const actions = node("div", "problem-card-actions");
   const indicator = node("span", "statement-indicator", "+");
   const statementId = `statement-${task.task_id.replace(/[^a-z0-9]+/gi, "-")}`;
   const topic = problemTopic(task);
@@ -518,8 +496,7 @@ function renderProblem(task, index) {
     node("p", "problem-id", `Task ${index + 1} · ${topic}`),
     node("h3", "", name),
   );
-  actions.append(node("span", "depth-pill", taskDepthLabel(task)), indicator);
-  header.append(title, actions);
+  header.append(title, indicator);
 
   article.append(header, statement);
   return article;
@@ -607,10 +584,9 @@ function renderProblems(board, snapshot, sourceKind) {
     metric(
       overdue ? "Tasks shown" : "Open tasks",
       String(snapshot.task_count ?? tasks.length),
-      overdue ? "Last published set" : "Open to miners right now",
+      overdue ? "Last published task set" : "Tasks miners can try now",
     ),
-    metric("Frontier", frontierLabel(snapshot), "Difficulty moves from recent solve rate"),
-    metric("Task cap", `${snapshot.active_K ?? tasks.length} tasks`, taskCapHint(snapshot)),
+    metric("Last updated", generatedLabel(snapshot), "When this snapshot was built"),
     nextMetric,
   );
   list.replaceChildren(renderProblemSet(tasks, snapshot));

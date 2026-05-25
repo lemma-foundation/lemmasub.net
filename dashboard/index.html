@@ -13,8 +13,8 @@
   <meta name="twitter:title" content="Lemma dashboard - Current proof tasks">
   <meta name="twitter:description" content="Active Lean proof tasks in the Lemma network.">
   <link rel="canonical" href="https://lemmasub.net/dashboard/">
-  <link rel="stylesheet" href="../assets/styles.css?v=20260525j">
-  <script src="../assets/site.js?v=20260525k" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260525l">
+  <script src="../assets/site.js?v=20260525m" defer></script>
   <title>Lemma dashboard - Current proof tasks</title>
 </head>
 <body data-page="dashboard">
@@ -66,40 +66,43 @@
 
     <div class="guide-modal" data-guide-modal="problem" hidden>
       <div id="problem-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="problem-guide-title" tabindex="-1">
-        <button class="guide-close" type="button" data-guide-close aria-label="Close task guide">Close</button>
-        <p class="eyebrow">Task guide</p>
+        <div class="guide-heading">
+          <p class="eyebrow">Problem guide</p>
+          <button class="guide-close" type="button" data-guide-close aria-label="Close problem guide">Close</button>
+        </div>
         <h2 id="problem-guide-title">How to read the active set</h2>
-        <p class="guide-intro">The dashboard shows the current Lean statements open for proofs. Miners work on these tasks and submit exact proofs for verification.</p>
+        <p class="guide-intro">The dashboard shows the Lean statements currently open to miners. Each one is a theorem with a missing proof.</p>
 
         <div class="guide-layout">
-          <section class="guide-panel" aria-labelledby="problem-topics-title">
-            <h3 id="problem-topics-title" class="guide-section-title">Task families</h3>
-            <ul class="guide-list" aria-label="Generated task topics">
-              <li><strong>Logic</strong><span>True, False, implication, negation, and direct proof-from-assumption statements.</span></li>
-              <li><strong>And / or</strong><span>Building both sides, choosing one side, or unpacking assumptions.</span></li>
-              <li><strong>Equality</strong><span>Reflexivity, symmetry, and short equality chains over natural numbers.</span></li>
-              <li><strong>Natural numbers</strong><span>Zero, successors, addition, order, nonzero facts, and small identities.</span></li>
-              <li><strong>Lists</strong><span>Empty lists, list length, and append identities.</span></li>
-              <li><strong>Booleans</strong><span>Small true/false facts such as negating a boolean value.</span></li>
-              <li><strong>Existence</strong><span>Find an example and prove that it has the requested property.</span></li>
+          <section class="guide-panel" aria-labelledby="problem-how-title">
+            <h3 id="problem-how-title" class="guide-section-title">What the cards mean</h3>
+            <ul class="guide-list" aria-label="Problem card meanings">
+              <li><strong>Task name</strong><span>A short label for the theorem. The full Lean statement is inside the card.</span></li>
+              <li><strong>Topic</strong><span>A rough subject area such as algebra, finite sets, lists, booleans, order, or logic.</span></li>
+              <li><strong>Statement</strong><span>The exact Lean theorem miners need to prove. Opening a card shows the code.</span></li>
+              <li><strong>Task set</strong><span>The open tasks change on the network schedule, so everyone works from the same current set.</span></li>
             </ul>
           </section>
 
-          <section class="guide-panel guide-panel-muted" aria-labelledby="problem-depth-title">
-            <h3 id="problem-depth-title" class="guide-section-title">How depth changes</h3>
-            <p class="guide-note">Depth is the live frontier for task difficulty. It moves from recent solve rate, while the task cap keeps validation cheap.</p>
-            <div class="depth-guide" aria-label="Depth and task cap meanings">
+          <section class="guide-panel guide-panel-muted" aria-labelledby="problem-lifecycle-title">
+            <h3 id="problem-lifecycle-title" class="guide-section-title">How work is scored</h3>
+            <p class="guide-note">Miners submit proofs. Validators run Lean against the exact statement. A proof either verifies or it does not.</p>
+            <div class="guide-cards" aria-label="Problem lifecycle">
               <div>
-                <span class="depth-pill">Task depth</span>
-                <p>Each card shows the task's queue depth. Deeper tasks sit farther along the theorem frontier.</p>
+                <span class="guide-tag">Prove it</span>
+                <p>A miner replaces the missing proof with valid Lean code.</p>
               </div>
               <div>
-                <span class="depth-pill">Current frontier</span>
-                <p>The validator can choose tasks up to the current frontier depth.</p>
+                <span class="guide-tag">Verify it</span>
+                <p>The validator checks the submitted proof with Lean, not with a subjective judge.</p>
               </div>
               <div>
-                <span class="depth-pill">Task cap</span>
-                <p>The cap can shrink at deeper frontiers so a normal validator can keep up with the epoch.</p>
+                <span class="guide-tag">Adjust slowly</span>
+                <p>If miners solve too little, future sets can get easier or smaller. If they solve enough, future sets can become more ambitious.</p>
+              </div>
+              <div>
+                <span class="guide-tag">Keep it runnable</span>
+                <p>The network limits how many tasks are open so ordinary validators can finish checking proofs in time.</p>
               </div>
             </div>
           </section>

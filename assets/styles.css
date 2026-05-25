@@ -577,7 +577,7 @@ button.button {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin: 0 0 1.2rem;
 }
@@ -723,10 +723,26 @@ button.button {
   animation: guide-window-out .18s ease-in both;
 }
 
+.guide-heading {
+  position: sticky;
+  top: -1.35rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: -1.35rem -1.35rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  padding: 1rem 1.35rem .8rem;
+}
+
+.guide-heading .eyebrow {
+  margin: 0;
+}
+
 .guide-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  flex: 0 0 auto;
   min-height: 2.15rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -740,13 +756,11 @@ button.button {
 }
 
 .guide-window h2 {
-  padding-right: 5.5rem;
   margin-bottom: .55rem;
 }
 
 .guide-intro {
   max-width: 48rem;
-  padding-right: 5.5rem;
   margin-bottom: 1rem;
   color: var(--muted);
 }
@@ -794,7 +808,7 @@ button.button {
 }
 
 .guide-list li,
-.depth-guide div {
+.guide-cards div {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -816,23 +830,23 @@ button.button {
   line-height: 1.4;
 }
 
-.depth-guide p {
+.guide-cards p {
   margin: 0;
   color: var(--muted);
   font-size: .84rem;
   line-height: 1.4;
 }
 
-.depth-guide {
+.guide-cards {
   display: grid;
   gap: .55rem;
 }
 
-.depth-guide .depth-pill {
+.guide-cards .guide-tag {
   margin-bottom: .25rem;
 }
 
-.depth-guide div {
+.guide-cards div {
   padding: .7rem;
 }
 
@@ -930,13 +944,9 @@ button.button {
   margin-bottom: 0;
 }
 
-.problem-card-actions {
-  display: flex;
-  align-items: center;
-  gap: .65rem;
-}
-
-.depth-pill {
+.guide-tag {
+  display: inline-flex;
+  width: max-content;
   flex: 0 0 auto;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1272,12 +1282,6 @@ code {
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .problem-card-actions {
-    align-items: center;
-    flex-direction: row;
-    gap: .45rem;
-  }
-
   .problem-set-action {
     justify-self: start;
   }
@@ -1290,15 +1294,10 @@ code {
     padding: 1rem;
   }
 
-  .guide-window h2,
-  .guide-intro {
-    padding-right: 0;
-  }
-
-  .guide-close {
-    position: static;
-    width: 100%;
-    margin-bottom: 1rem;
+  .guide-heading {
+    top: -1rem;
+    margin: -1rem -1rem 1rem;
+    padding: .9rem 1rem .75rem;
   }
 
   .guide-layout,
