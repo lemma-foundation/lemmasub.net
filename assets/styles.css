@@ -657,20 +657,8 @@ button.button {
 
 .problem-set-toggle strong {
   display: block;
-}
-
-.problem-set-toggle strong {
   font-size: 1.05rem;
   line-height: 1.25;
-}
-
-.problem-set-meta {
-  display: grid;
-  gap: .12rem;
-  margin-top: .22rem;
-  color: var(--muted);
-  font-size: .78rem;
-  font-weight: 760;
 }
 
 .problem-set-action {

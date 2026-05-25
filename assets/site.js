@@ -506,17 +506,10 @@ function renderProblemSet(tasks, snapshot) {
   const toggle = node("button", "problem-set-toggle");
   const copy = node("span", "");
   const isOverdue = refreshOverdue(snapshot);
-  const meta = node("span", "problem-set-meta");
   const body = node("div", "problem-set-body");
 
   body.hidden = true;
-  const started = epochStartTime(snapshot);
-  const overdue = started && isOverdue;
-  meta.append(
-    node("span", "", overdue ? `Last set started ${localTime(started)}` : `Started ${currentEpochLabel(snapshot)}`),
-    node("span", "", blockLabel(epochStartBlock(snapshot))),
-  );
-  copy.append(node("strong", "", isOverdue ? "Latest task set" : "Current task set"), meta);
+  copy.append(node("strong", "", isOverdue ? "Latest task set" : "Current task set"));
   toggle.type = "button";
   toggle.setAttribute("aria-expanded", "false");
   toggle.append(copy, node("span", "problem-set-action", "Open"));
