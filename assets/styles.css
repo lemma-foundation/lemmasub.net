@@ -772,8 +772,12 @@ button.button {
 
 .guide-intro {
   max-width: 48rem;
-  margin-bottom: 1rem;
+  margin-bottom: .85rem;
   color: var(--muted);
+}
+
+.guide-doc-link {
+  margin-bottom: 1rem;
 }
 
 .guide-section-title {

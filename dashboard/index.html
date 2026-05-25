@@ -13,8 +13,8 @@
   <meta name="twitter:title" content="Lemma dashboard - Current proof tasks">
   <meta name="twitter:description" content="Active Lean proof tasks in the Lemma network.">
   <link rel="canonical" href="https://lemmasub.net/dashboard/">
-  <link rel="stylesheet" href="../assets/styles.css?v=20260525m">
-  <script src="../assets/site.js?v=20260525n" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260525n">
+  <script src="../assets/site.js?v=20260525o" defer></script>
   <title>Lemma dashboard - Current proof tasks</title>
 </head>
 <body data-page="dashboard">
@@ -67,11 +67,12 @@
     <div class="guide-modal" data-guide-modal="problem" hidden>
       <div id="problem-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="problem-guide-title" tabindex="-1">
         <div class="guide-heading">
-          <p class="eyebrow">Problem guide</p>
-          <button class="guide-close" type="button" data-guide-close aria-label="Close problem guide">Close</button>
+          <p class="eyebrow">Task guide</p>
+          <button class="guide-close" type="button" data-guide-close aria-label="Close task guide">Close</button>
         </div>
         <h2 id="problem-guide-title">How to read the active set</h2>
         <p class="guide-intro">The dashboard shows the Lean statements currently open to miners. Each one is a theorem with a missing proof.</p>
+        <a class="button guide-doc-link" href="https://github.com/lemma-foundation/lemma/blob/main/docs/tasks.md" rel="noopener noreferrer" target="_blank">Task generation docs</a>
 
         <div class="guide-layout">
           <section class="guide-panel" aria-labelledby="problem-how-title">
@@ -102,7 +103,7 @@
               </div>
               <div>
                 <span class="guide-tag">Keep it runnable</span>
-                <p>The network limits how many tasks are open so ordinary validators can finish checking proofs in time.</p>
+                <p>The network limits how many tasks are open so validators can finish checking proofs in time.</p>
               </div>
             </div>
           </section>
