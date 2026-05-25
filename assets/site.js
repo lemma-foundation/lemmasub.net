@@ -310,7 +310,7 @@ function nextEpochLabel(snapshot) {
     return "Timing pending";
   }
   if (next.valueOf() <= Date.now()) {
-    return "Updating now";
+    return "Building next set";
   }
   const estimated = !validDate(snapshot.next_epoch_starts_at);
   return `${estimated ? "Around " : ""}${localTime(next)}`;
@@ -540,7 +540,7 @@ function statusText(snapshot, sourceKind) {
   if (sourceKind === "fallback") {
     return "Using backup task list.";
   }
-  return refreshOverdue(snapshot) ? "Waiting for new tasks." : "Live tasks loaded.";
+  return refreshOverdue(snapshot) ? "Building next task set." : "Live tasks loaded.";
 }
 
 function scheduleRefresh(board, snapshot, sourceKind) {
