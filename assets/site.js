@@ -10,6 +10,7 @@ const termPopover = document.querySelector("[data-term-popover]");
 const updateRetryMs = 30_000;
 const liveFetchTimeoutMs = 5_000;
 const guideCloseMs = 180;
+const chainBlockSeconds = 12;
 let problemRefreshTimer;
 let activeGuide;
 let guideReturnFocus;
@@ -176,36 +177,67 @@ function localTime(value) {
   }).format(date);
 }
 
-function tempoMilliseconds(snapshot) {
+function positiveInteger(value) {
+  const number = Number(value);
+  return Number.isInteger(number) && number > 0 ? number : undefined;
+}
+
+function nonnegativeInteger(value) {
+  const number = Number(value);
+  return Number.isInteger(number) && number >= 0 ? number : undefined;
+}
+
+function epochBlockCount(snapshot) {
+  const explicit = positiveInteger(snapshot.active_tempo_blocks ?? snapshot.epoch_blocks);
+  if (explicit) {
+    return explicit;
+  }
   const seconds = Number(snapshot.active_tempo_seconds);
-  return Number.isFinite(seconds) && seconds > 0 ? seconds * 1000 : undefined;
+  return Number.isFinite(seconds) && seconds > 0 ? Math.round(seconds / chainBlockSeconds) : undefined;
+}
+
+function epochIndex(snapshot) {
+  return nonnegativeInteger(snapshot.tempo ?? snapshot.epoch);
+}
+
+function epochStartBlock(snapshot) {
+  const explicit = nonnegativeInteger(snapshot.epoch_start_block);
+  if (explicit !== undefined) {
+    return explicit;
+  }
+  const index = epochIndex(snapshot);
+  const blocks = epochBlockCount(snapshot);
+  return index !== undefined && blocks ? index * blocks : undefined;
+}
+
+function nextEpochBlock(snapshot) {
+  const explicit = nonnegativeInteger(snapshot.next_epoch_start_block);
+  if (explicit !== undefined) {
+    return explicit;
+  }
+  const start = epochStartBlock(snapshot);
+  const blocks = epochBlockCount(snapshot);
+  return start !== undefined && blocks ? start + blocks : undefined;
+}
+
+function validDate(value) {
+  if (value === undefined || value === null || value === "") {
+    return undefined;
+  }
+  const date = new Date(value);
+  return Number.isNaN(date.valueOf()) ? undefined : date;
+}
+
+function epochStartTime(snapshot) {
+  return validDate(snapshot.epoch_started_at);
+}
+
+function nextEpochTime(snapshot) {
+  return validDate(snapshot.next_epoch_starts_at) || validDate(snapshot.estimated_next_epoch_starts_at);
 }
 
 function expectedRefreshTime(snapshot) {
-  if (snapshot.active_tempo_source === "chain") {
-    return undefined;
-  }
-  const tempoMs = tempoMilliseconds(snapshot);
-  const tempo = Number(snapshot.tempo);
-  if (tempoMs && Number.isInteger(tempo) && tempo >= 0) {
-    return (tempo + 1) * tempoMs;
-  }
-  const generated = new Date(snapshot.generated_at);
-  if (!tempoMs || Number.isNaN(generated.valueOf())) {
-    return undefined;
-  }
-  return generated.valueOf() + tempoMs;
-}
-
-function expectedRefresh(snapshot) {
-  if (snapshot.active_tempo_source === "chain") {
-    return "Chain epoch";
-  }
-  const next = expectedRefreshTime(snapshot);
-  if (!next) {
-    return "Unknown";
-  }
-  return localTime(next);
+  return nextEpochTime(snapshot)?.valueOf();
 }
 
 function refreshOverdue(snapshot) {
@@ -213,17 +245,51 @@ function refreshOverdue(snapshot) {
   return Boolean(next && next <= Date.now());
 }
 
-function refreshHint(snapshot) {
-  if (snapshot.active_tempo_source === "chain") {
-    return "Chain blocks decide the next problem-set refresh";
+function blockLabel(block) {
+  if (block === undefined) {
+    return "Block unknown";
   }
-  return refreshOverdue(snapshot) ? "Overdue; waiting for a fresh snapshot" : "Expected problem-set refresh";
+  return `Block ${new Intl.NumberFormat().format(block)}`;
+}
+
+function remainingTime(value) {
+  if (!value || Number.isNaN(value.valueOf())) {
+    return "Time remaining unavailable";
+  }
+  const totalMinutes = Math.ceil((value.valueOf() - Date.now()) / 60_000);
+  if (totalMinutes <= 0) {
+    return "Due now";
+  }
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+  if (days) {
+    return `${days}d ${hours}h remaining`;
+  }
+  if (hours) {
+    return `${hours}h ${minutes}m remaining`;
+  }
+  return `${minutes}m remaining`;
+}
+
+function nextEpochHint(snapshot) {
+  const next = nextEpochTime(snapshot);
+  if (!next) {
+    return "Waiting for epoch timing";
+  }
+  const estimated = !validDate(snapshot.next_epoch_starts_at);
+  return `${estimated ? "About " : ""}${remainingTime(next)}; ${estimated ? "around " : ""}${localTime(next)}`;
+}
+
+function currentEpochHint(snapshot) {
+  const started = epochStartTime(snapshot);
+  return started ? `Started ${localTime(started)}` : "Start time unavailable";
 }
 
 function snapshotProblem(snapshot) {
   const tasks = Array.isArray(snapshot?.tasks) ? snapshot.tasks : [];
   if (!tasks.length) {
-    return "No active problems are available yet.";
+    return "No active tasks are available yet.";
   }
   return "";
 }
@@ -244,15 +310,39 @@ function metric(label, value, hint, variant) {
   return item;
 }
 
-function problemTitle(task) {
-  const title = task.title || task.theorem_name || "Open theorem";
-  return title.replace(/^(Generated|Smoke-test)\s+/i, "");
+function sourcePathTopic(path = "") {
+  if (path.includes("/Algebra/") || path.includes("/Ring/") || path.includes("/GroupTheory/")) {
+    return "Algebra";
+  }
+  if (path.includes("/Data/Finset/")) {
+    return "Finite sets";
+  }
+  if (path.includes("/Data/List/")) {
+    return "Lists";
+  }
+  if (path.includes("/Data/Bool/")) {
+    return "Booleans";
+  }
+  if (path.includes("/Data/Nat/") || path.includes("/Init/Data/Nat/") || path.includes("/NumberTheory/")) {
+    return "Natural numbers";
+  }
+  if (path.includes("/Order/")) {
+    return "Order";
+  }
+  if (path.includes("/Logic/")) {
+    return "Logic";
+  }
+  return "";
 }
 
 function problemTopic(task) {
   const explicit = task.topic || task.metadata?.topic;
   if (explicit) {
     return explicit;
+  }
+  const sourceTopic = sourcePathTopic(task.source_ref?.path);
+  if (sourceTopic) {
+    return sourceTopic;
   }
   const text = [task.title, task.theorem_name, task.task_id, task.type_expr].join(" ").toLowerCase();
   if (text.includes("list")) {
@@ -282,7 +372,26 @@ function problemTopic(task) {
   return "Logic";
 }
 
-function renderProblem(task) {
+function readableProblemName(task) {
+  const raw = task.title || task.theorem_name || "";
+  const clean = raw
+    .replace(/^(Generated|Smoke-test|Procedural)\s+/i, "")
+    .replace(/^procedural[_-]*/i, "")
+    .replace(/_[0-9a-f]{8,}$/i, "")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/[._-]+/g, " ")
+    .replace(/\biff\b/gi, "if and only if")
+    .replace(/\btfae\b/gi, "equivalent conditions")
+    .replace(/\bmul\b/gi, "multiplication")
+    .replace(/\bmem\b/gi, "membership")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase()
+    .replace(/\bcancel multiplication zero\b/g, "cancel multiplication by zero");
+  return clean ? `${clean.slice(0, 1).toUpperCase()}${clean.slice(1)}` : "Lean theorem statement";
+}
+
+function renderProblem(task, index) {
   const article = node("article", "problem-card");
   const header = node("div", "problem-card-head");
   const title = node("div");
@@ -313,7 +422,12 @@ function renderProblem(task) {
     hideText.hidden = !nextOpen;
     statement.hidden = !nextOpen;
   });
-  title.append(node("p", "problem-id", `Topic: ${problemTopic(task)}`), node("h3", "", problemTitle(task)));
+  const topic = problemTopic(task);
+  title.append(
+    node("p", "problem-id", `Task ${index + 1} / ${topic}`),
+    node("h3", "", `${topic} proof task`),
+    node("p", "problem-name", readableProblemName(task)),
+  );
   actions.append(node("span", "difficulty", difficultyLabel(task.difficulty_band)), toggle);
   header.append(title, actions);
 
@@ -321,15 +435,20 @@ function renderProblem(task) {
   return article;
 }
 
-function renderProblemSet(tasks) {
+function renderProblemSet(tasks, snapshot) {
   const section = node("section", "problem-set");
   const toggle = node("button", "problem-set-toggle");
   const copy = node("span", "");
-  const count = node("span", "problem-set-count", "Showing all theorem statements");
+  const count = node("span", "problem-set-count", `${tasks.length} proof tasks selected for this epoch`);
+  const meta = node("span", "problem-set-meta");
   const body = node("div", "problem-set-body");
 
   body.hidden = true;
-  copy.append(node("strong", "", "View current problem set"), count);
+  meta.append(
+    node("span", "", blockLabel(epochStartBlock(snapshot))),
+    node("span", "", currentEpochHint(snapshot)),
+  );
+  copy.append(node("strong", "", "Current task set"), count, meta);
   toggle.type = "button";
   toggle.setAttribute("aria-expanded", "false");
   toggle.append(copy, node("span", "problem-set-action", "Open"));
@@ -354,7 +473,7 @@ function renderProblemUnavailable(board, message, sourceKind) {
   const status = board.querySelector("[data-problem-status]");
   status.hidden = false;
   status.className = `problem-status ${sourceKind}`;
-  status.textContent = "Problem feed pending.";
+  status.textContent = "Task feed pending.";
   problemRefreshTimer = setTimeout(() => loadProblems(board), updateRetryMs);
 }
 
@@ -362,7 +481,7 @@ function statusText(snapshot, sourceKind) {
   if (sourceKind === "fallback") {
     return "Using fallback snapshot until the live API responds.";
   }
-  return refreshOverdue(snapshot) ? "Snapshot overdue: waiting for the problem set to advance." : "Snapshot loaded.";
+  return refreshOverdue(snapshot) ? "Snapshot overdue: waiting for the task set to advance." : "Snapshot loaded.";
 }
 
 function scheduleRefresh(board, snapshot, sourceKind) {
@@ -391,11 +510,12 @@ function renderProblems(board, snapshot, sourceKind) {
   }
   const overdue = refreshOverdue(snapshot);
   summary.replaceChildren(
-    metric("Open problems", String(snapshot.task_count ?? tasks.length), "Chosen for miners right now"),
+    metric("Open tasks", String(snapshot.task_count ?? tasks.length), "Chosen for miners right now"),
+    metric("Current task set", blockLabel(epochStartBlock(snapshot)), currentEpochHint(snapshot)),
+    metric("Next epoch", blockLabel(nextEpochBlock(snapshot)), nextEpochHint(snapshot), overdue ? "warning" : ""),
     metric("Last updated", localTime(snapshot.generated_at), "Your local time"),
-    metric(overdue ? "Expected update" : "Next update", expectedRefresh(snapshot), refreshHint(snapshot), overdue ? "warning" : "")
   );
-  list.replaceChildren(renderProblemSet(tasks));
+  list.replaceChildren(renderProblemSet(tasks, snapshot));
   status.hidden = false;
   status.className = `problem-status ${sourceKind}`;
   status.textContent = statusText(snapshot, sourceKind);
@@ -437,7 +557,7 @@ async function loadProblems(board) {
     status.className = "problem-status fallback";
     status.textContent = "Snapshot unavailable";
     board.querySelector("[data-problem-list]").replaceChildren(
-      node("p", "empty-state", "The current problem snapshot could not be loaded.")
+      node("p", "empty-state", "The current task snapshot could not be loaded.")
     );
   }
 }

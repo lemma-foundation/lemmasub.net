@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Active Lemma proof tasks currently open to miners.">
+  <meta name="description" content="Current Lemma proof tasks open to miners.">
   <meta name="theme-color" content="#f6f3ec">
   <meta property="og:title" content="Lemma dashboard - Current proof tasks">
   <meta property="og:description" content="Active Lean proof tasks in the Lemma network.">
@@ -13,8 +13,8 @@
   <meta name="twitter:title" content="Lemma dashboard - Current proof tasks">
   <meta name="twitter:description" content="Active Lean proof tasks in the Lemma network.">
   <link rel="canonical" href="https://lemmasub.net/dashboard/">
-  <link rel="stylesheet" href="../assets/styles.css?v=20260521b">
-  <script src="../assets/site.js?v=20260524a" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260525a">
+  <script src="../assets/site.js?v=20260525a" defer></script>
   <title>Lemma dashboard - Current proof tasks</title>
 </head>
 <body data-page="dashboard">
@@ -42,7 +42,7 @@
     <section class="dashboard-hero">
       <div class="wrap dashboard-intro">
         <p class="eyebrow">Current proof tasks</p>
-        <h1>Problems open to miners right now.</h1>
+        <h1>Proof tasks open to miners right now.</h1>
         <p class="lede">A public snapshot of the Lean statements currently waiting for proofs.</p>
       </div>
     </section>
@@ -52,10 +52,10 @@
         <div class="dashboard-toolbar">
           <div>
             <p class="eyebrow">Live snapshot</p>
-            <h2>Active problems</h2>
+            <h2>Active tasks</h2>
           </div>
-          <div class="guide-actions" aria-label="Problem guide">
-            <button class="button guide-button" type="button" data-guide-open="problem" aria-controls="problem-guide">Problem guide</button>
+          <div class="guide-actions" aria-label="Task guide">
+            <button class="button guide-button" type="button" data-guide-open="problem" aria-controls="problem-guide">Task guide</button>
           </div>
           <p class="problem-status" data-problem-status>Loading snapshot...</p>
         </div>
@@ -66,15 +66,15 @@
 
     <div class="guide-modal" data-guide-modal="problem" hidden>
       <div id="problem-guide" class="guide-window" role="dialog" aria-modal="true" aria-labelledby="problem-guide-title" tabindex="-1">
-        <button class="guide-close" type="button" data-guide-close aria-label="Close problem guide">Close</button>
-        <p class="eyebrow">Problem guide</p>
+        <button class="guide-close" type="button" data-guide-close aria-label="Close task guide">Close</button>
+        <p class="eyebrow">Task guide</p>
         <h2 id="problem-guide-title">How to read the active set</h2>
-        <p class="guide-intro">The dashboard shows the current Lean statements open for proofs. Miners work on these problems and submit exact proofs for verification.</p>
+        <p class="guide-intro">The dashboard shows the current Lean statements open for proofs. Miners work on these tasks and submit exact proofs for verification.</p>
 
         <div class="guide-layout">
           <section class="guide-panel" aria-labelledby="problem-topics-title">
-            <h3 id="problem-topics-title" class="guide-section-title">Problem families</h3>
-            <ul class="guide-list" aria-label="Generated problem topics">
+            <h3 id="problem-topics-title" class="guide-section-title">Task families</h3>
+            <ul class="guide-list" aria-label="Generated task topics">
               <li><strong>Logic</strong><span>True, False, implication, negation, and direct proof-from-assumption statements.</span></li>
               <li><strong>And / or</strong><span>Building both sides, choosing one side, or unpacking assumptions.</span></li>
               <li><strong>Equality</strong><span>Reflexivity, symmetry, and short equality chains over natural numbers.</span></li>
