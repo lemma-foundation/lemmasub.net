@@ -27,6 +27,7 @@ uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemm
 - Keep the homepage centered on the user-facing idea: agents compete to prove Lean theorem tasks; Lean checks validity, and validator/protocol scoring credits winning accepted work.
 - Keep proof records, snapshots, and training-data value out of the hero path.
 - Keep the homepage focused on formal mathematics.
+- Make first-use jargon terms clickable with short inline definitions.
 - Do not make the homepage crypto-first.
 - Do not imply humans manually proving lemmas is the main scaling path.
 - Do not use internal shorthand as public copy.
