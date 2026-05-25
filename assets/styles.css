@@ -966,17 +966,20 @@ button.button {
 .statement {
   margin: 1rem;
   padding: 1rem;
-  overflow-x: hidden;
+  overflow-x: auto;
   border-radius: 7px;
   background: var(--code);
   color: var(--code-ink);
   line-height: 1.45;
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
+  overflow-wrap: normal;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
 }
 
 .statement code {
-  overflow-wrap: inherit;
+  display: block;
+  min-width: max-content;
+  overflow-wrap: normal;
   white-space: inherit;
 }
 
