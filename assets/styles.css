@@ -891,13 +891,31 @@ button.button {
 .problem-card-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
+  width: 100%;
   align-items: center;
   gap: 1rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
   padding: .9rem;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.problem-card-head:hover,
+.problem-card-head:focus-visible {
+  background: var(--card-soft);
+}
+
+.problem-card-head:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--green) 65%, transparent);
+  outline-offset: -2px;
 }
 
 .problem-card.is-open .problem-card-head {
   border-bottom: 1px solid var(--line);
+  background: var(--card-soft);
 }
 
 .problem-id {
@@ -930,40 +948,36 @@ button.button {
   text-transform: uppercase;
 }
 
-.problem-toggle {
+.statement-indicator {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 2.15rem;
   min-height: 2.15rem;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--paper);
+  border-radius: 999px;
+  background: var(--soft);
   color: var(--ink);
-  padding: 0 .75rem;
-  font: inherit;
-  font-size: .8rem;
-  font-weight: 820;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.hide-text,
-.problem-card.is-open .show-text {
-  display: none;
-}
-
-.problem-card.is-open .hide-text {
-  display: inline;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .statement {
   margin: 1rem;
   padding: 1rem;
-  overflow-x: auto;
+  overflow-x: hidden;
   border-radius: 7px;
   background: var(--code);
   color: var(--code-ink);
-  white-space: pre;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.statement code {
+  overflow-wrap: inherit;
+  white-space: inherit;
 }
 
 .empty-state {
@@ -1236,8 +1250,7 @@ code {
     padding: 3rem 0 2.4rem;
   }
 
-  .dashboard-toolbar,
-  .problem-card-head {
+  .dashboard-toolbar {
     display: grid;
   }
 
@@ -1253,17 +1266,15 @@ code {
   }
 
   .problem-card-head {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .problem-card-actions {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: .55rem;
+    align-items: center;
+    flex-direction: row;
+    gap: .45rem;
   }
 
-  .difficulty,
-  .problem-toggle,
   .problem-set-action {
     justify-self: start;
   }

@@ -460,41 +460,38 @@ function problemTopic(task) {
 
 function renderProblem(task, index) {
   const article = node("article", "problem-card");
-  const header = node("div", "problem-card-head");
+  const header = node("button", "problem-card-head");
   const title = node("div");
   const actions = node("div", "problem-card-actions");
-  const toggle = node("button", "problem-toggle");
-  const showText = node("span", "show-text", "Show statement");
-  const hideText = node("span", "hide-text", "Hide statement");
+  const indicator = node("span", "statement-indicator", "+");
   const statementId = `statement-${task.task_id.replace(/[^a-z0-9]+/gi, "-")}`;
-  hideText.hidden = true;
-  toggle.type = "button";
-  toggle.setAttribute("aria-label", "Show statement");
-  toggle.setAttribute("aria-controls", statementId);
-  toggle.setAttribute("aria-expanded", "false");
-  toggle.append(showText, hideText);
+  const topic = problemTopic(task);
+  const name = compactTaskName(task);
+
+  header.type = "button";
+  header.setAttribute("aria-label", `Show statement for ${name}`);
+  header.setAttribute("aria-controls", statementId);
+  header.setAttribute("aria-expanded", "false");
 
   const statement = node("pre", "statement");
   statement.id = statementId;
   statement.hidden = true;
   statement.append(node("code", "", task.statement));
 
-  toggle.addEventListener("click", () => {
-    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+  header.addEventListener("click", () => {
+    const isOpen = header.getAttribute("aria-expanded") === "true";
     const nextOpen = !isOpen;
-    toggle.setAttribute("aria-expanded", String(nextOpen));
-    toggle.setAttribute("aria-label", nextOpen ? "Hide statement" : "Show statement");
+    header.setAttribute("aria-expanded", String(nextOpen));
+    header.setAttribute("aria-label", `${nextOpen ? "Hide" : "Show"} statement for ${name}`);
     article.classList.toggle("is-open", nextOpen);
-    showText.hidden = nextOpen;
-    hideText.hidden = !nextOpen;
+    indicator.textContent = nextOpen ? "-" : "+";
     statement.hidden = !nextOpen;
   });
-  const topic = problemTopic(task);
   title.append(
     node("p", "problem-id", `Task ${index + 1} · ${topic}`),
-    node("h3", "", compactTaskName(task)),
+    node("h3", "", name),
   );
-  actions.append(node("span", "difficulty", difficultyLabel(task.difficulty_band)), toggle);
+  actions.append(node("span", "difficulty", difficultyLabel(task.difficulty_band)), indicator);
   header.append(title, actions);
 
   article.append(header, statement);
