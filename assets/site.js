@@ -12,6 +12,7 @@ const liveFetchTimeoutMs = 5_000;
 const guideCloseMs = 180;
 const chainBlockSeconds = 12;
 let problemRefreshTimer;
+let countdownTimer;
 let activeGuide;
 let guideReturnFocus;
 let activeTerm;
@@ -264,25 +265,33 @@ function remainingTime(value) {
   const hours = Math.floor((totalMinutes % 1440) / 60);
   const minutes = totalMinutes % 60;
   if (days) {
-    return `${days}d ${hours}h remaining`;
+    return `${days} day ${hours} hr remaining`;
   }
   if (hours) {
-    return `${hours}h ${minutes}m remaining`;
+    return `${hours} hr ${minutes} min remaining`;
   }
-  return `${minutes}m remaining`;
+  return `${minutes} min remaining`;
+}
+
+function nextEpochHintText(next, block, estimated) {
+  if (!next || Number.isNaN(next.valueOf())) {
+    return blockLabel(block);
+  }
+  if (next.valueOf() <= Date.now()) {
+    return `Expected ${localTime(next)} · ${blockLabel(block)}`;
+  }
+  const remaining = remainingTime(next);
+  return `${estimated && remaining !== "Due now" ? "About " : ""}${remaining} · ${blockLabel(block)}`;
 }
 
 function nextEpochHint(snapshot) {
   const next = nextEpochTime(snapshot);
+  const block = nextEpochBlock(snapshot);
   if (!next) {
     return blockLabel(nextEpochBlock(snapshot));
   }
-  if (next.valueOf() <= Date.now()) {
-    return `Expected ${localTime(next)} · ${blockLabel(nextEpochBlock(snapshot))}`;
-  }
   const estimated = !validDate(snapshot.next_epoch_starts_at);
-  const remaining = remainingTime(next);
-  return `${estimated && remaining !== "Due now" ? "About " : ""}${remaining} · ${blockLabel(nextEpochBlock(snapshot))}`;
+  return nextEpochHintText(next, block, estimated);
 }
 
 function currentEpochHint(snapshot) {
@@ -328,43 +337,42 @@ function difficultyLabel(value) {
   return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
 }
 
-function taskTitleSeed(task) {
-  const title = task.title || task.theorem_name || "";
-  const theorem = task.theorem_name || "";
-  return (title || theorem)
+function taskNameSeed(task) {
+  return (task.title || task.theorem_name || "")
     .replace(/^Procedural\s+/i, "")
     .replace(/^procedural_/i, "")
     .replace(/_[a-f0-9]{12,}$/i, "");
 }
 
-function readableTaskTitle(task) {
-  const replacements = new Map([
-    ["iff", "if and only if"],
-    ["tfae", "equivalent conditions"],
-    ["mul", "multiplication"],
-    ["add", "addition"],
-    ["sub", "subtraction"],
-    ["pow", "power"],
-    ["coe", "coercion"],
-    ["mem", "membership"],
-    ["hom", "homomorphism"],
-    ["finset", "finite set"],
-  ]);
-  const words = taskTitleSeed(task)
-    .replace(/isCancelMulZero/g, "is cancel multiplication by zero")
-    .replace(/CancelMulZero/g, "cancel multiplication by zero")
-    .replace(/cancelMulZero/g, "cancel multiplication by zero")
-    .replace(/noZeroDivisors/g, "no zero divisors")
+function compactTaskName(task) {
+  const seed = taskNameSeed(task);
+  const patterns = [
+    [/isDomain.*cancelMulZero/i, "Domain cancellation"],
+    [/noZeroDivisors/i, "Zero divisors"],
+    [/isCancelMulZero/i, "Cancel-zero condition"],
+    [/AddMonoidHom.*map_mul/i, "Map multiplication"],
+    [/Pi.*RingHom.*injective/i, "Ring hom injectivity"],
+    [/invOf.*add/i, "Inverse addition"],
+    [/Finset.*disjoint_filter/i, "Filtered sets"],
+    [/Set.*centralizer/i, "Centralizer addition"],
+    [/associator.*cocycle/i, "Associator cocycle"],
+    [/IsIdempotentElem.*sub/i, "Idempotent subtraction"],
+  ];
+  const matched = patterns.find(([pattern]) => pattern.test(seed));
+  if (matched) {
+    return matched[1];
+  }
+  const words = seed
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
     .replace(/[._]+/g, " ")
     .trim()
     .split(/\s+/)
-    .filter(Boolean)
-    .map((word) => replacements.get(word.toLowerCase()) || word.toLowerCase());
+    .filter((word) => !/^(iff|tfae|eq|of|and|or|is)$/i.test(word))
+    .slice(0, 3);
   if (!words.length) {
     return "Lean proof task";
   }
-  const label = words.join(" ");
+  const label = words.join(" ").toLowerCase();
   return `${label.slice(0, 1).toUpperCase()}${label.slice(1)}`;
 }
 
@@ -375,6 +383,23 @@ function metric(label, value, hint, variant) {
     item.append(node("p", "", hint));
   }
   return item;
+}
+
+function updateCountdowns(scope = document) {
+  scope.querySelectorAll("[data-countdown-at]").forEach((item) => {
+    const next = validDate(item.dataset.countdownAt);
+    const block = item.dataset.countdownBlock === "" ? undefined : nonnegativeInteger(item.dataset.countdownBlock);
+    const estimated = item.dataset.countdownEstimated === "true";
+    item.textContent = nextEpochHintText(next, block, estimated);
+  });
+}
+
+function startCountdown(board) {
+  clearInterval(countdownTimer);
+  updateCountdowns(board);
+  if (board.querySelector("[data-countdown-at]")) {
+    countdownTimer = setInterval(() => updateCountdowns(board), 10_000);
+  }
 }
 
 function sourcePathTopic(path = "") {
@@ -473,7 +498,7 @@ function renderProblem(task, index) {
   const topic = problemTopic(task);
   title.append(
     node("p", "problem-id", `Task ${index + 1} · ${topic}`),
-    node("h3", "", readableTaskTitle(task)),
+    node("h3", "", compactTaskName(task)),
   );
   actions.append(node("span", "difficulty", difficultyLabel(task.difficulty_band)), toggle);
   header.append(title, actions);
@@ -522,6 +547,7 @@ function renderProblemSet(tasks, snapshot) {
 
 function renderProblemUnavailable(board, message, sourceKind) {
   clearTimeout(problemRefreshTimer);
+  clearInterval(countdownTimer);
   board.querySelector("[data-problem-summary]").replaceChildren();
   board.querySelector("[data-problem-list]").replaceChildren(node("p", "empty-state", message));
   const status = board.querySelector("[data-problem-status]");
@@ -563,6 +589,14 @@ function renderProblems(board, snapshot, sourceKind) {
     return;
   }
   const overdue = refreshOverdue(snapshot);
+  const nextMetric = metric("Next change", nextEpochLabel(snapshot), nextEpochHint(snapshot), overdue ? "warning" : "");
+  const next = nextEpochTime(snapshot);
+  const hint = nextMetric.querySelector("p");
+  if (hint && next && next.valueOf() > Date.now()) {
+    hint.dataset.countdownAt = next.toISOString();
+    hint.dataset.countdownBlock = String(nextEpochBlock(snapshot) ?? "");
+    hint.dataset.countdownEstimated = String(!validDate(snapshot.next_epoch_starts_at));
+  }
   summary.replaceChildren(
     metric(
       overdue ? "Tasks shown" : "Open tasks",
@@ -570,12 +604,13 @@ function renderProblems(board, snapshot, sourceKind) {
       overdue ? "Last published set" : "Open to miners right now",
     ),
     metric(overdue ? "Task set" : "Started", currentEpochLabel(snapshot), currentEpochHint(snapshot)),
-    metric("Next change", nextEpochLabel(snapshot), nextEpochHint(snapshot), overdue ? "warning" : ""),
+    nextMetric,
   );
   list.replaceChildren(renderProblemSet(tasks, snapshot));
   status.hidden = false;
   status.className = `problem-status ${sourceKind}`;
   status.textContent = statusText(snapshot, sourceKind);
+  startCountdown(board);
   scheduleRefresh(board, snapshot, sourceKind);
 }
 
