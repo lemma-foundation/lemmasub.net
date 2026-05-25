@@ -277,6 +277,9 @@ function nextEpochHint(snapshot) {
   if (!next) {
     return blockLabel(nextEpochBlock(snapshot));
   }
+  if (next.valueOf() <= Date.now()) {
+    return `Expected ${localTime(next)} · ${blockLabel(nextEpochBlock(snapshot))}`;
+  }
   const estimated = !validDate(snapshot.next_epoch_starts_at);
   const remaining = remainingTime(next);
   return `${estimated && remaining !== "Due now" ? "About " : ""}${remaining} · ${blockLabel(nextEpochBlock(snapshot))}`;
@@ -284,11 +287,17 @@ function nextEpochHint(snapshot) {
 
 function currentEpochHint(snapshot) {
   const started = epochStartTime(snapshot);
+  if (started && refreshOverdue(snapshot)) {
+    return `Last set started ${localTime(started)} · ${blockLabel(epochStartBlock(snapshot))}`;
+  }
   return started ? blockLabel(epochStartBlock(snapshot)) : "Start time pending";
 }
 
 function currentEpochLabel(snapshot) {
   const started = epochStartTime(snapshot);
+  if (started && refreshOverdue(snapshot)) {
+    return "Waiting for new tasks";
+  }
   return started ? localTime(started) : "Start time pending";
 }
 
@@ -296,6 +305,9 @@ function nextEpochLabel(snapshot) {
   const next = nextEpochTime(snapshot);
   if (!next) {
     return "Timing pending";
+  }
+  if (next.valueOf() <= Date.now()) {
+    return "Waiting for new tasks";
   }
   const estimated = !validDate(snapshot.next_epoch_starts_at);
   return `${estimated ? "Around " : ""}${localTime(next)}`;
@@ -314,6 +326,46 @@ function difficultyLabel(value) {
     return "Open";
   }
   return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
+}
+
+function taskTitleSeed(task) {
+  const title = task.title || task.theorem_name || "";
+  const theorem = task.theorem_name || "";
+  return (title || theorem)
+    .replace(/^Procedural\s+/i, "")
+    .replace(/^procedural_/i, "")
+    .replace(/_[a-f0-9]{12,}$/i, "");
+}
+
+function readableTaskTitle(task) {
+  const replacements = new Map([
+    ["iff", "if and only if"],
+    ["tfae", "equivalent conditions"],
+    ["mul", "multiplication"],
+    ["add", "addition"],
+    ["sub", "subtraction"],
+    ["pow", "power"],
+    ["coe", "coercion"],
+    ["mem", "membership"],
+    ["hom", "homomorphism"],
+    ["finset", "finite set"],
+  ]);
+  const words = taskTitleSeed(task)
+    .replace(/isCancelMulZero/g, "is cancel multiplication by zero")
+    .replace(/CancelMulZero/g, "cancel multiplication by zero")
+    .replace(/cancelMulZero/g, "cancel multiplication by zero")
+    .replace(/noZeroDivisors/g, "no zero divisors")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/[._]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) => replacements.get(word.toLowerCase()) || word.toLowerCase());
+  if (!words.length) {
+    return "Lean proof task";
+  }
+  const label = words.join(" ");
+  return `${label.slice(0, 1).toUpperCase()}${label.slice(1)}`;
 }
 
 function metric(label, value, hint, variant) {
@@ -420,8 +472,8 @@ function renderProblem(task, index) {
   });
   const topic = problemTopic(task);
   title.append(
-    node("p", "problem-id", `Task ${index + 1}`),
-    node("h3", "", `${topic} task`),
+    node("p", "problem-id", `Task ${index + 1} · ${topic}`),
+    node("h3", "", readableTaskTitle(task)),
   );
   actions.append(node("span", "difficulty", difficultyLabel(task.difficulty_band)), toggle);
   header.append(title, actions);
@@ -434,16 +486,23 @@ function renderProblemSet(tasks, snapshot) {
   const section = node("section", "problem-set");
   const toggle = node("button", "problem-set-toggle");
   const copy = node("span", "");
-  const count = node("span", "problem-set-count", `${tasks.length} tasks open to miners`);
+  const isOverdue = refreshOverdue(snapshot);
+  const count = node(
+    "span",
+    "problem-set-count",
+    isOverdue ? `${tasks.length} tasks shown` : `${tasks.length} tasks open to miners`,
+  );
   const meta = node("span", "problem-set-meta");
   const body = node("div", "problem-set-body");
 
   body.hidden = true;
+  const started = epochStartTime(snapshot);
+  const overdue = started && isOverdue;
   meta.append(
-    node("span", "", `Started ${currentEpochLabel(snapshot)}`),
+    node("span", "", overdue ? `Last set started ${localTime(started)}` : `Started ${currentEpochLabel(snapshot)}`),
     node("span", "", blockLabel(epochStartBlock(snapshot))),
   );
-  copy.append(node("strong", "", "Current task set"), count, meta);
+  copy.append(node("strong", "", isOverdue ? "Latest task set" : "Current task set"), count, meta);
   toggle.type = "button";
   toggle.setAttribute("aria-expanded", "false");
   toggle.append(copy, node("span", "problem-set-action", "Open"));
@@ -474,9 +533,9 @@ function renderProblemUnavailable(board, message, sourceKind) {
 
 function statusText(snapshot, sourceKind) {
   if (sourceKind === "fallback") {
-    return "Using fallback snapshot until the live API responds.";
+    return "Using backup task list.";
   }
-  return refreshOverdue(snapshot) ? "Snapshot overdue: waiting for the task set to advance." : "Snapshot loaded.";
+  return refreshOverdue(snapshot) ? "Waiting for new tasks." : "Live tasks loaded.";
 }
 
 function scheduleRefresh(board, snapshot, sourceKind) {
@@ -505,8 +564,12 @@ function renderProblems(board, snapshot, sourceKind) {
   }
   const overdue = refreshOverdue(snapshot);
   summary.replaceChildren(
-    metric("Open tasks", String(snapshot.task_count ?? tasks.length), "Open to miners right now"),
-    metric("Started", currentEpochLabel(snapshot), currentEpochHint(snapshot)),
+    metric(
+      overdue ? "Tasks shown" : "Open tasks",
+      String(snapshot.task_count ?? tasks.length),
+      overdue ? "Last published set" : "Open to miners right now",
+    ),
+    metric(overdue ? "Task set" : "Started", currentEpochLabel(snapshot), currentEpochHint(snapshot)),
     metric("Next change", nextEpochLabel(snapshot), nextEpochHint(snapshot), overdue ? "warning" : ""),
   );
   list.replaceChildren(renderProblemSet(tasks, snapshot));
