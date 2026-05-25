@@ -9,20 +9,20 @@
   "base_task_cost_s": 0.0,
   "cost_budget_s": 0.0,
   "depth_cost_multiplier": 2.0,
-  "epoch_start_block": 7200360,
-  "epoch_started_at": "2026-05-25T16:49:00Z",
-  "estimated_next_epoch_starts_at": "2026-05-25T18:01:00Z",
-  "frontier_depth": 12,
-  "generated_at": "2026-05-25T17:15:08Z",
-  "next_epoch_start_block": 7200720,
-  "registry_sha256": "98a394a6f93bed914bce4a393f5c20431e05ac3d0a258816c2c13e3e09148896",
+  "epoch_start_block": 7201080,
+  "epoch_started_at": "2026-05-25T19:13:00Z",
+  "estimated_next_epoch_starts_at": "2026-05-25T20:25:00Z",
+  "frontier_depth": 13,
+  "generated_at": "2026-05-25T19:55:35Z",
+  "next_epoch_start_block": 7201440,
+  "registry_sha256": "63aa63c64fcbf52a4eb84086d140a9dea66e364b0de659bad85f8fb6c62ab20d",
   "registry_task_count": 6,
   "schema_version": 1,
   "task_count": 6,
   "tasks": [
     {
       "difficulty_band": "easy",
-      "frontier_depth": 12,
+      "frontier_depth": 13,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
       "policy": "restricted_helpers",
@@ -32,21 +32,21 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-20001-seq-1",
-        "path": "Mathlib/Algebra/Ring/Basic.lean"
+        "name": "tempo-20003-seq-12",
+        "path": "Mathlib/Algebra/Ring/Center.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_NoZeroDivisors_to_isDomain_700bd587a72a : ((\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1) \u2228 False) \u2227\n  (\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonUnitalNonAssocSemiring (f i)]\n    [NonUnitalNonAssocSemiring \u03b3] (g : (i : I) \u2192 \u03b3 \u2192\u2099+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)),\n    Function.Injective \u21d1(Pi.nonUnitalRingHom g)) := by\n  sorry",
-      "target_sha256": "e7d3b0c6e6501e4c0ab568f3c3097bcde010bad726e08be6bfa2adeb26cb5ac8",
-      "task_id": "lemma.procedural.700bd587a72ac62a",
+      "statement": "theorem procedural_Set_ofNat_mem_center_97bd3f053b7d : (\u2200 lemma_p0_p01fd3d : Prop,\n    lemma_p0_p01fd3d \u2192 (\u2200 (M : Type _) [NonAssocSemiring M] (n : \u2115) [n.AtLeastTwo], OfNat.ofNat n \u2208 Set.center M)) \u2227\n  (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n    a * \u215fb * a = b * \u215fa * b) := by\n  sorry",
+      "target_sha256": "9cf5708166fb191a83573976c94b4ac6846016e5162268ff1f4881d1162b606d",
+      "task_id": "lemma.procedural.97bd3f053b7d5c69",
       "task_version": 1,
-      "theorem_name": "procedural_NoZeroDivisors_to_isDomain_700bd587a72a",
-      "title": "Procedural NoZeroDivisors.to_isDomain",
-      "type_expr": "((\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1) \u2228 False) \u2227\n  (\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonUnitalNonAssocSemiring (f i)]\n    [NonUnitalNonAssocSemiring \u03b3] (g : (i : I) \u2192 \u03b3 \u2192\u2099+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)),\n    Function.Injective \u21d1(Pi.nonUnitalRingHom g))"
+      "theorem_name": "procedural_Set_ofNat_mem_center_97bd3f053b7d",
+      "title": "Procedural Set.ofNat_mem_center",
+      "type_expr": "(\u2200 lemma_p0_p01fd3d : Prop,\n    lemma_p0_p01fd3d \u2192 (\u2200 (M : Type _) [NonAssocSemiring M] (n : \u2115) [n.AtLeastTwo], OfNat.ofNat n \u2208 Set.center M)) \u2227\n  (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n    a * \u215fb * a = b * \u215fa * b)"
     },
     {
       "difficulty_band": "easy",
-      "frontier_depth": 12,
+      "frontier_depth": 13,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
       "policy": "restricted_helpers",
@@ -56,21 +56,21 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-20001-seq-4",
-        "path": "Mathlib/Algebra/Ring/Associator.lean"
+        "name": "tempo-20003-seq-7",
+        "path": "Mathlib/Algebra/Ring/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_associator_cocycle_33b40466fffa : ((\u2200 {R : Type _} [NonUnitalNonAssocRing R] (a b c d : R),\n      a * associator b c d - associator (a * b) c d + associator a (b * c) d - associator a b (c * d) +\n          associator a b c * d =\n        0) \u2228\n    False) \u2227\n  (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n    a * \u215fb * a = b * \u215fa * b) := by\n  sorry",
-      "target_sha256": "9f99fdadad756405813300207a3afdc0e93a00a702465d611852837a8445c697",
-      "task_id": "lemma.procedural.33b40466fffad479",
+      "statement": "theorem procedural_NoZeroDivisors_to_isDomain_e6363a0fa23a : (\u2200 lemma_p0_p22b88f : Prop,\n    lemma_p0_p22b88f \u2192 (\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1)) \u2228\n  False := by\n  sorry",
+      "target_sha256": "a1ea932c8c80127389aa378d949ec6049659a99c74e30b6ee80c5ee5b59b5989",
+      "task_id": "lemma.procedural.e6363a0fa23afdee",
       "task_version": 1,
-      "theorem_name": "procedural_associator_cocycle_33b40466fffa",
-      "title": "Procedural associator_cocycle",
-      "type_expr": "((\u2200 {R : Type _} [NonUnitalNonAssocRing R] (a b c d : R),\n      a * associator b c d - associator (a * b) c d + associator a (b * c) d - associator a b (c * d) +\n          associator a b c * d =\n        0) \u2228\n    False) \u2227\n  (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n    a * \u215fb * a = b * \u215fa * b)"
+      "theorem_name": "procedural_NoZeroDivisors_to_isDomain_e6363a0fa23a",
+      "title": "Procedural NoZeroDivisors.to_isDomain",
+      "type_expr": "(\u2200 lemma_p0_p22b88f : Prop,\n    lemma_p0_p22b88f \u2192 (\u2200 (\u03b1 : Type _) [Ring \u03b1] [h : Nontrivial \u03b1] [NoZeroDivisors \u03b1], IsDomain \u03b1)) \u2228\n  False"
     },
     {
       "difficulty_band": "easy",
-      "frontier_depth": 12,
+      "frontier_depth": 13,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
       "policy": "restricted_helpers",
@@ -80,21 +80,21 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-20001-seq-8",
+        "name": "tempo-20003-seq-20",
         "path": "Mathlib/Algebra/Ring/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_isDomain_iff_noZeroDivisors_and_nontrivial_fc2ae8bfdf5b : True \u2192\n  (\u2200 lemma_p0_p332e48 : Prop,\n    lemma_p0_p332e48 \u2192 (\u2200 (\u03b1 : Type _) [Ring \u03b1], IsDomain \u03b1 \u2194 NoZeroDivisors \u03b1 \u2227 Nontrivial \u03b1)) := by\n  sorry",
-      "target_sha256": "330b5d28f8a519fbb8cb108c6de1f6961be23ae9277d7aedd07221a2dc88354f",
-      "task_id": "lemma.procedural.fc2ae8bfdf5b6749",
+      "statement": "theorem procedural_noZeroDivisors_iff_isDomain_or_subsingleton_b0fc3f10621b : (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b) \u2192\n  ((\u2200 (\u03b1 : Type _) [Ring \u03b1], NoZeroDivisors \u03b1 \u2194 IsDomain \u03b1 \u2228 Subsingleton \u03b1) \u2228 False) := by\n  sorry",
+      "target_sha256": "750704b1674994ec57c1e7e8ef3a47717f9d65fb6ab0ffe729dab2dfd72eada4",
+      "task_id": "lemma.procedural.b0fc3f10621ba7db",
       "task_version": 1,
-      "theorem_name": "procedural_isDomain_iff_noZeroDivisors_and_nontrivial_fc2ae8bfdf5b",
-      "title": "Procedural isDomain_iff_noZeroDivisors_and_nontrivial",
-      "type_expr": "True \u2192\n  (\u2200 lemma_p0_p332e48 : Prop,\n    lemma_p0_p332e48 \u2192 (\u2200 (\u03b1 : Type _) [Ring \u03b1], IsDomain \u03b1 \u2194 NoZeroDivisors \u03b1 \u2227 Nontrivial \u03b1))"
+      "theorem_name": "procedural_noZeroDivisors_iff_isDomain_or_subsingleton_b0fc3f10621b",
+      "title": "Procedural noZeroDivisors_iff_isDomain_or_subsingleton",
+      "type_expr": "(\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M} (h : Associated a b), Associated (-a) b) \u2192\n  ((\u2200 (\u03b1 : Type _) [Ring \u03b1], NoZeroDivisors \u03b1 \u2194 IsDomain \u03b1 \u2228 Subsingleton \u03b1) \u2228 False)"
     },
     {
       "difficulty_band": "easy",
-      "frontier_depth": 12,
+      "frontier_depth": 13,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
       "policy": "restricted_helpers",
@@ -104,45 +104,45 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-20001-seq-6",
+        "name": "tempo-20003-seq-19",
         "path": "Mathlib/Algebra/Ring/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_AddMonoidHom_map_mul_iff_96be87cb57b7 : ((\u2200 {R : Type _} [NonUnitalNonAssocRing R] {r : R},\n      IsRegular r \u2194 (\u2200 (x : R), r * x = 0 \u2192 x = 0) \u2227 \u2200 (x : R), x * r = 0 \u2192 x = 0) \u2192\n    (\u2200 {R : Type _} {S : Type _} [NonUnitalNonAssocSemiring R] [NonUnitalNonAssocSemiring S] (f : R \u2192+ S),\n      (\u2200 (x y : R), f (x * y) = f x * f y) \u2194 AddMonoidHom.mul.compr\u2082 f = (AddMonoidHom.mul.comp f).compl\u2082 f)) \u2227\n  (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated (-a) b \u2194 Associated a b) := by\n  sorry",
-      "target_sha256": "8a523df255fa24adb5649932dc717c04bfdded7957235391f9170b6b13c049de",
-      "task_id": "lemma.procedural.96be87cb57b765d9",
+      "statement": "theorem procedural_isCancelMulZero_iff_isDomain_or_subsingleton_f5c6eafabc07 : True \u2192 ((\u2200 (\u03b1 : Type _) [Semiring \u03b1], IsCancelMulZero \u03b1 \u2194 IsDomain \u03b1 \u2228 Subsingleton \u03b1)) := by\n  sorry",
+      "target_sha256": "d4eac3fe2f74a31e96dff4ba5443bf3ec8393c2e986a3c02580e4dcdf2ae85c7",
+      "task_id": "lemma.procedural.f5c6eafabc07ac12",
       "task_version": 1,
-      "theorem_name": "procedural_AddMonoidHom_map_mul_iff_96be87cb57b7",
-      "title": "Procedural AddMonoidHom.map_mul_iff",
-      "type_expr": "((\u2200 {R : Type _} [NonUnitalNonAssocRing R] {r : R},\n      IsRegular r \u2194 (\u2200 (x : R), r * x = 0 \u2192 x = 0) \u2227 \u2200 (x : R), x * r = 0 \u2192 x = 0) \u2192\n    (\u2200 {R : Type _} {S : Type _} [NonUnitalNonAssocSemiring R] [NonUnitalNonAssocSemiring S] (f : R \u2192+ S),\n      (\u2200 (x y : R), f (x * y) = f x * f y) \u2194 AddMonoidHom.mul.compr\u2082 f = (AddMonoidHom.mul.comp f).compl\u2082 f)) \u2227\n  (\u2200 {M : Type _} [Monoid M] [HasDistribNeg M] {a b : M}, Associated (-a) b \u2194 Associated a b)"
+      "theorem_name": "procedural_isCancelMulZero_iff_isDomain_or_subsingleton_f5c6eafabc07",
+      "title": "Procedural isCancelMulZero_iff_isDomain_or_subsingleton",
+      "type_expr": "True \u2192 ((\u2200 (\u03b1 : Type _) [Semiring \u03b1], IsCancelMulZero \u03b1 \u2194 IsDomain \u03b1 \u2228 Subsingleton \u03b1))"
     },
     {
-      "difficulty_band": "easy",
-      "frontier_depth": 12,
+      "difficulty_band": "medium",
+      "frontier_depth": 13,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
       "policy": "restricted_helpers",
-      "queue_depth": 1,
+      "queue_depth": 2,
       "queue_position": 4,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-20001-seq-14",
-        "path": "Mathlib/Algebra/Ring/Basic.lean"
+        "name": "tempo-20003-seq-14",
+        "path": "Mathlib/Algebra/Ring/Pi.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_isDomain_iff_cancelMulZero_and_nontrivial_5c97e26c1dae : (\u2200 lemma_p0_cb680a : Prop,\n    lemma_p0_cb680a \u2192 (\u2200 (\u03b1 : Type _) [Semiring \u03b1], IsDomain \u03b1 \u2194 IsCancelMulZero \u03b1 \u2227 Nontrivial \u03b1)) \u2227\n  (\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n    [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE) := by\n  sorry",
-      "target_sha256": "821412cbf0ba28927312814057a85cf8f1296cb677ee3b4ece0ea053f3a4cc0d",
-      "task_id": "lemma.procedural.5c97e26c1daeab91",
+      "statement": "theorem procedural_Pi_nonUnitalRingHom_injective_5963f03bec60 : ((\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonUnitalNonAssocSemiring (f i)]\n      [NonUnitalNonAssocSemiring \u03b3] (g : (i : I) \u2192 \u03b3 \u2192\u2099+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)),\n      Function.Injective \u21d1(Pi.nonUnitalRingHom g)) \u2228\n    False) \u2228\n  False := by\n  sorry",
+      "target_sha256": "0ac7e2f0528f301496634ab67ebc871a6f5f6d9a5d09bb8870fb2a673fff7426",
+      "task_id": "lemma.procedural.5963f03bec609f3a",
       "task_version": 1,
-      "theorem_name": "procedural_isDomain_iff_cancelMulZero_and_nontrivial_5c97e26c1dae",
-      "title": "Procedural isDomain_iff_cancelMulZero_and_nontrivial",
-      "type_expr": "(\u2200 lemma_p0_cb680a : Prop,\n    lemma_p0_cb680a \u2192 (\u2200 (\u03b1 : Type _) [Semiring \u03b1], IsDomain \u03b1 \u2194 IsCancelMulZero \u03b1 \u2227 Nontrivial \u03b1)) \u2227\n  (\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n    [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE)"
+      "theorem_name": "procedural_Pi_nonUnitalRingHom_injective_5963f03bec60",
+      "title": "Procedural Pi.nonUnitalRingHom_injective",
+      "type_expr": "((\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonUnitalNonAssocSemiring (f i)]\n      [NonUnitalNonAssocSemiring \u03b3] (g : (i : I) \u2192 \u03b3 \u2192\u2099+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)),\n      Function.Injective \u21d1(Pi.nonUnitalRingHom g)) \u2228\n    False) \u2228\n  False"
     },
     {
       "difficulty_band": "medium",
-      "frontier_depth": 12,
+      "frontier_depth": 13,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
       "policy": "restricted_helpers",
@@ -152,19 +152,19 @@
       "source_ref": {
         "commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
         "kind": "procedural",
-        "name": "tempo-20001-seq-2",
-        "path": "Mathlib/Algebra/Ring/Equiv.lean"
+        "name": "tempo-20003-seq-18",
+        "path": "Mathlib/Algebra/Ring/Pi.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_RingEquiv_piCongrRight_trans_4e41919a63e8 : (True \u2192\n    (\u2200 {\u03b9 : Type _} {R : \u03b9 \u2192 Type _} {S : \u03b9 \u2192 Type _} {T : \u03b9 \u2192 Type _} [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (R i)]\n      [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (S i)] [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (T i)]\n      (e : (i : \u03b9) \u2192 R i \u2243+* S i) (f : (i : \u03b9) \u2192 S i \u2243+* T i),\n      (RingEquiv.piCongrRight e).trans (RingEquiv.piCongrRight f) =\n        RingEquiv.piCongrRight fun i => (e i).trans (f i))) \u2227\n  (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n    a * \u215fb * a = b * \u215fa * b) := by\n  sorry",
-      "target_sha256": "988e44a5fb5c481142ffc8fd091030654a0df9c2e3ed8d01b72e40f3241b0a75",
-      "task_id": "lemma.procedural.4e41919a63e80a93",
+      "statement": "theorem procedural_Pi_ringHom_injective_49f602040e68 : ((\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonAssocSemiring (f i)] [NonAssocSemiring \u03b3]\n      (g : (i : I) \u2192 \u03b3 \u2192+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)), Function.Injective \u21d1(Pi.ringHom g)) \u2228\n    False) \u2227\n  (\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n    [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE) := by\n  sorry",
+      "target_sha256": "191e58c238981025c01197b2e29c05ce95ca434d77c1f47110734836a097fd7b",
+      "task_id": "lemma.procedural.49f602040e681724",
       "task_version": 1,
-      "theorem_name": "procedural_RingEquiv_piCongrRight_trans_4e41919a63e8",
-      "title": "Procedural RingEquiv.piCongrRight_trans",
-      "type_expr": "(True \u2192\n    (\u2200 {\u03b9 : Type _} {R : \u03b9 \u2192 Type _} {S : \u03b9 \u2192 Type _} {T : \u03b9 \u2192 Type _} [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (R i)]\n      [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (S i)] [(i : \u03b9) \u2192 NonUnitalNonAssocSemiring (T i)]\n      (e : (i : \u03b9) \u2192 R i \u2243+* S i) (f : (i : \u03b9) \u2192 S i \u2243+* T i),\n      (RingEquiv.piCongrRight e).trans (RingEquiv.piCongrRight f) =\n        RingEquiv.piCongrRight fun i => (e i).trans (f i))) \u2227\n  (\u2200 {R : Type _} [Ring R] {a b : R} [Invertible a] [Invertible b] [Invertible (a + b)] (h : \u215f(a + b) = \u215fa + \u215fb),\n    a * \u215fb * a = b * \u215fa * b)"
+      "theorem_name": "procedural_Pi_ringHom_injective_49f602040e68",
+      "title": "Procedural Pi.ringHom_injective",
+      "type_expr": "((\u2200 {I : Type _} {f : I \u2192 Type _} {\u03b3 : Type _} [Nonempty I] [(i : I) \u2192 NonAssocSemiring (f i)] [NonAssocSemiring \u03b3]\n      (g : (i : I) \u2192 \u03b3 \u2192+* f i) (hg : \u2200 (i : I), Function.Injective \u21d1(g i)), Function.Injective \u21d1(Pi.ringHom g)) \u2228\n    False) \u2227\n  (\u2200 {R : Type _} [NonUnitalNonAssocRing R],\n    [NoZeroDivisors R, IsLeftCancelMulZero R, IsRightCancelMulZero R, IsCancelMulZero R].TFAE)"
     }
   ],
-  "tempo": 20001,
+  "tempo": 20003,
   "validator_capacity": 6
 }
