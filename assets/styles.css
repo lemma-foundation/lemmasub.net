@@ -655,20 +655,13 @@ button.button {
   cursor: pointer;
 }
 
-.problem-set-toggle strong,
-.problem-set-count {
+.problem-set-toggle strong {
   display: block;
 }
 
 .problem-set-toggle strong {
   font-size: 1.05rem;
   line-height: 1.25;
-}
-
-.problem-set-count {
-  color: var(--muted);
-  font-size: .86rem;
-  font-weight: 720;
 }
 
 .problem-set-meta {

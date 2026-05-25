@@ -506,11 +506,6 @@ function renderProblemSet(tasks, snapshot) {
   const toggle = node("button", "problem-set-toggle");
   const copy = node("span", "");
   const isOverdue = refreshOverdue(snapshot);
-  const count = node(
-    "span",
-    "problem-set-count",
-    isOverdue ? `${tasks.length} tasks shown` : `${tasks.length} tasks open to miners`,
-  );
   const meta = node("span", "problem-set-meta");
   const body = node("div", "problem-set-body");
 
@@ -521,7 +516,7 @@ function renderProblemSet(tasks, snapshot) {
     node("span", "", overdue ? `Last set started ${localTime(started)}` : `Started ${currentEpochLabel(snapshot)}`),
     node("span", "", blockLabel(epochStartBlock(snapshot))),
   );
-  copy.append(node("strong", "", isOverdue ? "Latest task set" : "Current task set"), count, meta);
+  copy.append(node("strong", "", isOverdue ? "Latest task set" : "Current task set"), meta);
   toggle.type = "button";
   toggle.setAttribute("aria-expanded", "false");
   toggle.append(copy, node("span", "problem-set-action", "Open"));
