@@ -234,7 +234,11 @@ function epochStartTime(snapshot) {
 }
 
 function nextEpochTime(snapshot) {
-  return validDate(snapshot.next_epoch_starts_at) || validDate(snapshot.estimated_next_epoch_starts_at);
+  return confirmedNextEpochTime(snapshot) || validDate(snapshot.estimated_next_epoch_starts_at);
+}
+
+function confirmedNextEpochTime(snapshot) {
+  return validDate(snapshot.next_epoch_starts_at);
 }
 
 function expectedRefreshTime(snapshot) {
@@ -242,7 +246,7 @@ function expectedRefreshTime(snapshot) {
 }
 
 function refreshOverdue(snapshot) {
-  const next = expectedRefreshTime(snapshot);
+  const next = confirmedNextEpochTime(snapshot)?.valueOf();
   return Boolean(next && next <= Date.now());
 }
 
@@ -278,7 +282,7 @@ function nextEpochHintText(next, block, estimated) {
     return blockLabel(block);
   }
   if (next.valueOf() <= Date.now()) {
-    return blockLabel(block);
+    return estimated ? `Estimated ${localTime(next)} · ${blockLabel(block)}` : blockLabel(block);
   }
   const remaining = remainingTime(next);
   return `${estimated && remaining !== "Due now" ? "About " : ""}${remaining} · ${blockLabel(block)}`;
@@ -309,10 +313,14 @@ function nextEpochLabel(snapshot) {
   if (!next) {
     return "Timing pending";
   }
-  if (next.valueOf() <= Date.now()) {
+  const confirmed = confirmedNextEpochTime(snapshot);
+  if (confirmed && confirmed.valueOf() <= Date.now()) {
     return "Building next set";
   }
-  const estimated = !validDate(snapshot.next_epoch_starts_at);
+  if (!confirmed && next.valueOf() <= Date.now()) {
+    return "Waiting for block";
+  }
+  const estimated = !confirmed;
   return `${estimated ? "Around " : ""}${localTime(next)}`;
 }
 
