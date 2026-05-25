@@ -16,6 +16,7 @@ let countdownTimer;
 let activeGuide;
 let guideReturnFocus;
 let activeTerm;
+let guideScrollY = 0;
 
 function chosenTheme() {
   return localStorage.getItem(storageKey) || "light";
@@ -72,6 +73,24 @@ function positionTermPopover(trigger) {
   termPopover.style.top = `${Math.max(16, top)}px`;
 }
 
+function lockGuideScroll() {
+  if (document.body.classList.contains("guide-scroll-lock")) {
+    return;
+  }
+  guideScrollY = window.scrollY;
+  document.body.style.top = `-${guideScrollY}px`;
+  document.body.classList.add("guide-scroll-lock");
+}
+
+function unlockGuideScroll() {
+  if (!document.body.classList.contains("guide-scroll-lock")) {
+    return;
+  }
+  document.body.classList.remove("guide-scroll-lock");
+  document.body.style.top = "";
+  window.scrollTo(0, guideScrollY);
+}
+
 termTriggers.forEach((trigger) => {
   trigger.setAttribute("aria-expanded", "false");
   trigger.addEventListener("click", (event) => {
@@ -98,6 +117,7 @@ function openGuide(modal) {
   }
   guideReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : undefined;
   activeGuide = modal;
+  lockGuideScroll();
   modal.hidden = false;
   modal.classList.remove("is-closing");
   modal.querySelector("[role='dialog']").focus();
@@ -109,6 +129,7 @@ function finishGuideClose(modal) {
   if (activeGuide === modal) {
     activeGuide = undefined;
   }
+  unlockGuideScroll();
   if (guideReturnFocus) {
     guideReturnFocus.focus();
     guideReturnFocus = undefined;

@@ -112,6 +112,13 @@ body {
   transition: background-color .22s ease, color .22s ease;
 }
 
+body.guide-scroll-lock {
+  position: fixed;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+}
+
 a { color: inherit; }
 
 a:focus-visible,
@@ -695,6 +702,7 @@ button.button {
   background: rgba(16, 23, 18, .58);
   backdrop-filter: blur(14px) saturate(1.08);
   padding: 1rem;
+  overscroll-behavior: contain;
   animation: guide-backdrop-in .18s ease-out both;
 }
 
@@ -711,6 +719,9 @@ button.button {
   width: min(var(--max), calc(100% - 2rem));
   max-height: min(42rem, calc(100svh - 2rem));
   overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid color-mix(in srgb, var(--green) 38%, var(--line));
   border-radius: var(--radius);
   background: var(--paper);
