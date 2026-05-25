@@ -278,7 +278,7 @@ function nextEpochHintText(next, block, estimated) {
     return blockLabel(block);
   }
   if (next.valueOf() <= Date.now()) {
-    return `Expected ${localTime(next)} · ${blockLabel(block)}`;
+    return blockLabel(block);
   }
   const remaining = remainingTime(next);
   return `${estimated && remaining !== "Due now" ? "About " : ""}${remaining} · ${blockLabel(block)}`;
@@ -296,17 +296,11 @@ function nextEpochHint(snapshot) {
 
 function currentEpochHint(snapshot) {
   const started = epochStartTime(snapshot);
-  if (started && refreshOverdue(snapshot)) {
-    return `Last set started ${localTime(started)} · ${blockLabel(epochStartBlock(snapshot))}`;
-  }
   return started ? blockLabel(epochStartBlock(snapshot)) : "Start time pending";
 }
 
 function currentEpochLabel(snapshot) {
   const started = epochStartTime(snapshot);
-  if (started && refreshOverdue(snapshot)) {
-    return "Waiting for new tasks";
-  }
   return started ? localTime(started) : "Start time pending";
 }
 
@@ -316,7 +310,7 @@ function nextEpochLabel(snapshot) {
     return "Timing pending";
   }
   if (next.valueOf() <= Date.now()) {
-    return "Waiting for new tasks";
+    return "Updating now";
   }
   const estimated = !validDate(snapshot.next_epoch_starts_at);
   return `${estimated ? "Around " : ""}${localTime(next)}`;
@@ -603,7 +597,7 @@ function renderProblems(board, snapshot, sourceKind) {
       String(snapshot.task_count ?? tasks.length),
       overdue ? "Last published set" : "Open to miners right now",
     ),
-    metric(overdue ? "Task set" : "Started", currentEpochLabel(snapshot), currentEpochHint(snapshot)),
+    metric(overdue ? "Shown set" : "Started", currentEpochLabel(snapshot), currentEpochHint(snapshot)),
     nextMetric,
   );
   list.replaceChildren(renderProblemSet(tasks, snapshot));
