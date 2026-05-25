@@ -738,10 +738,6 @@ button.button {
   position: sticky;
   top: -1.35rem;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
   margin: -1.35rem -1.35rem 1rem;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
@@ -753,7 +749,10 @@ button.button {
 }
 
 .guide-close {
-  flex: 0 0 auto;
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + .85rem);
+  right: calc(env(safe-area-inset-right, 0px) + .85rem);
+  z-index: 31;
   min-height: 2.15rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
