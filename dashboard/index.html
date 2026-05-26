@@ -13,8 +13,8 @@
   <meta name="twitter:title" content="Lemma dashboard - Current proof tasks">
   <meta name="twitter:description" content="Active Lean proof tasks in the Lemma network.">
   <link rel="canonical" href="https://lemmasub.net/dashboard/">
-  <link rel="stylesheet" href="../assets/styles.css?v=20260525o">
-  <script src="../assets/site.js?v=20260525o" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260525p">
+  <script src="../assets/site.js?v=20260525p" defer></script>
   <title>Lemma dashboard - Current proof tasks</title>
 </head>
 <body data-page="dashboard">
@@ -81,7 +81,8 @@
               <li><strong>Task name</strong><span>A short label for the theorem. The full Lean statement is inside the card.</span></li>
               <li><strong>Topic</strong><span>A rough subject area such as algebra, finite sets, lists, booleans, order, or logic.</span></li>
               <li><strong>Statement</strong><span>The exact Lean theorem miners need to prove. Opening a card shows the code.</span></li>
-              <li><strong>Task set</strong><span>The open tasks change on the network schedule, so everyone works from the same current set.</span></li>
+              <li><strong>Task set</strong><span>The start time is shown first. The block number underneath is the chain anchor for the same set.</span></li>
+              <li><strong>Next change</strong><span>Harder or larger sets can get longer windows, so miners are not forced into one fixed timer.</span></li>
             </ul>
           </section>
 
@@ -99,7 +100,7 @@
               </div>
               <div>
                 <span class="guide-tag">Adjust slowly</span>
-                <p>If miners solve too little, future sets can get easier or smaller. If they solve enough, future sets can become more ambitious.</p>
+                <p>If miners solve too little, future sets can get easier, smaller, or longer. If they solve enough, future sets can become more ambitious.</p>
               </div>
               <div>
                 <span class="guide-tag">Keep it runnable</span>

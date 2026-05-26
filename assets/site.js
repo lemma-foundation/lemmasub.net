@@ -210,7 +210,7 @@ function nonnegativeInteger(value) {
 }
 
 function epochBlockCount(snapshot) {
-  const explicit = positiveInteger(snapshot.active_tempo_blocks ?? snapshot.epoch_blocks);
+  const explicit = positiveInteger(snapshot.active_tempo_blocks ?? snapshot.active_window_blocks ?? snapshot.epoch_blocks);
   if (explicit) {
     return explicit;
   }
@@ -329,6 +329,15 @@ function currentEpochLabel(snapshot) {
   return started ? localTime(started) : "Start time pending";
 }
 
+function currentSetHint(snapshot) {
+  const block = blockLabel(epochStartBlock(snapshot));
+  const windowBlocks = epochBlockCount(snapshot);
+  if (!windowBlocks) {
+    return block;
+  }
+  return `${block} · ${new Intl.NumberFormat().format(windowBlocks)} block window`;
+}
+
 function nextEpochLabel(snapshot) {
   const next = nextEpochTime(snapshot);
   if (!next) {
@@ -399,11 +408,6 @@ function metric(label, value, hint, variant) {
     item.append(node("p", "", hint));
   }
   return item;
-}
-
-function generatedLabel(snapshot) {
-  const generated = validDate(snapshot?.generated_at);
-  return generated ? localTime(generated) : "Pending";
 }
 
 function updateCountdowns(scope = document) {
@@ -607,7 +611,7 @@ function renderProblems(board, snapshot, sourceKind) {
       String(snapshot.task_count ?? tasks.length),
       overdue ? "Last published task set" : "Tasks miners can try now",
     ),
-    metric("Last updated", generatedLabel(snapshot), "When this snapshot was built"),
+    metric("Task set", currentEpochLabel(snapshot), currentSetHint(snapshot)),
     nextMetric,
   );
   list.replaceChildren(renderProblemSet(tasks, snapshot));
