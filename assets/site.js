@@ -331,11 +331,11 @@ function currentEpochLabel(snapshot) {
 
 function currentSetHint(snapshot) {
   const block = blockLabel(epochStartBlock(snapshot));
-  const windowBlocks = epochBlockCount(snapshot);
-  if (!windowBlocks) {
+  const epochBlocks = epochBlockCount(snapshot);
+  if (!epochBlocks) {
     return block;
   }
-  return `${block} · ${new Intl.NumberFormat().format(windowBlocks)} block window`;
+  return `${block} · ${new Intl.NumberFormat().format(epochBlocks)} block epoch`;
 }
 
 function nextEpochLabel(snapshot) {
