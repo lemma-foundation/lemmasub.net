@@ -362,6 +362,10 @@ function snapshotProblem(snapshot) {
   return "";
 }
 
+function snapshotHasTasks(snapshot) {
+  return Array.isArray(snapshot?.tasks) && snapshot.tasks.length > 0;
+}
+
 function taskNameSeed(task) {
   return (task.title || task.theorem_name || "")
     .replace(/^Procedural\s+/i, "")
@@ -638,20 +642,51 @@ async function fetchSnapshot(sourceUrl, timeoutMs = liveFetchTimeoutMs) {
   }
 }
 
+async function fetchBackupSnapshot(...sources) {
+  let emptySnapshot;
+  for (const source of sources) {
+    if (!source) {
+      continue;
+    }
+    try {
+      const snapshot = await fetchSnapshot(source);
+      if (snapshotHasTasks(snapshot)) {
+        return snapshot;
+      }
+      emptySnapshot ||= snapshot;
+    } catch (_error) {
+      // Try the next backup source.
+    }
+  }
+  if (emptySnapshot) {
+    return emptySnapshot;
+  }
+  throw new Error("Snapshot unavailable");
+}
+
 async function loadProblems(board) {
   const status = board.querySelector("[data-problem-status]");
   const fallbackSource = board.dataset.source || "data/current-problems.json";
+  const backupSource = board.dataset.backupSource;
   try {
     if (board.dataset.liveSource) {
       try {
-        renderProblems(board, await fetchSnapshot(board.dataset.liveSource), "live");
+        const liveSnapshot = await fetchSnapshot(board.dataset.liveSource);
+        if (!snapshotHasTasks(liveSnapshot)) {
+          const fallbackSnapshot = await fetchBackupSnapshot(fallbackSource, backupSource);
+          if (snapshotHasTasks(fallbackSnapshot)) {
+            renderProblems(board, fallbackSnapshot, "fallback");
+            return;
+          }
+        }
+        renderProblems(board, liveSnapshot, "live");
         return;
       } catch (_error) {
-        renderProblems(board, await fetchSnapshot(fallbackSource), "fallback");
+        renderProblems(board, await fetchBackupSnapshot(fallbackSource, backupSource), "fallback");
         return;
       }
     }
-    renderProblems(board, await fetchSnapshot(fallbackSource), "fallback");
+    renderProblems(board, await fetchBackupSnapshot(fallbackSource, backupSource), "fallback");
   } catch (error) {
     status.hidden = false;
     status.className = "problem-status fallback";

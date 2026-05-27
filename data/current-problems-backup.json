@@ -1,0 +1,50 @@
+{
+  "active_K": 6,
+  "active_epoch_randomness_source": "chain_drand",
+  "active_queue_seed": "lemma-active-queue",
+  "active_seed_mode": "epoch_randomness",
+  "active_tempo_blocks": 360,
+  "active_tempo_seconds": 4320,
+  "active_tempo_source": "chain",
+  "base_task_cost_s": 0.0,
+  "cost_budget_s": 0.0,
+  "depth_cost_multiplier": 2.0,
+  "epoch_start_block": 7215480,
+  "epoch_started_at": "2026-05-27T19:13:00Z",
+  "estimated_next_epoch_starts_at": "2026-05-27T20:25:00Z",
+  "frontier_depth": 16,
+  "generated_at": "2026-05-27T19:57:53Z",
+  "next_epoch_start_block": 7215840,
+  "registry_sha256": "8957e5c405ba1653cac3335b2fa24088df7bb965d5c79a33bb63c75c44004574",
+  "registry_task_count": 1,
+  "schema_version": 1,
+  "task_count": 1,
+  "tasks": [
+    {
+      "difficulty_band": "easy",
+      "frontier_depth": 16,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+      "mathlib_rev": "5450b53e5ddc",
+      "policy": "restricted_helpers",
+      "queue_depth": 0,
+      "queue_position": 0,
+      "source_license": "Apache-2.0",
+      "source_ref": {
+        "commit": "5450b53e5ddc",
+        "kind": "procedural",
+        "name": "tempo-20043-seq-4",
+        "path": "Mathlib/Data/Bool/Basic.lean"
+      },
+      "source_stream": "procedural",
+      "statement": "theorem procedural_Bool_bool_eq_false_5a7f04096595 : \u2200 lemma_p1_973904 : Prop, lemma_p1_973904 \u2192 (\u2200 {b : Bool}, \u00acb \u2192 false = b) := by\n  sorry",
+      "target_sha256": "8c102d5a8933e10a7a1b8144a3c5a0f02b8925cdc9251b35de62e55fb4b5df0b",
+      "task_id": "lemma.procedural.5a7f040965951845",
+      "task_version": 1,
+      "theorem_name": "procedural_Bool_bool_eq_false_5a7f04096595",
+      "title": "Procedural Bool.bool_eq_false",
+      "type_expr": "\u2200 lemma_p1_973904 : Prop, lemma_p1_973904 \u2192 (\u2200 {b : Bool}, \u00acb \u2192 false = b)"
+    }
+  ],
+  "tempo": 20043,
+  "validator_capacity": 6
+}
