@@ -9,13 +9,13 @@
   "base_task_cost_s": 0.0,
   "cost_budget_s": 0.0,
   "depth_cost_multiplier": 2.0,
-  "epoch_start_block": 7216200,
-  "epoch_started_at": "2026-05-27T21:37:00Z",
-  "estimated_next_epoch_starts_at": "2026-05-27T22:49:00Z",
+  "epoch_start_block": 7216920,
+  "epoch_started_at": "2026-05-28T00:01:00Z",
+  "estimated_next_epoch_starts_at": "2026-05-28T01:13:00Z",
   "frontier_depth": 16,
-  "generated_at": "2026-05-27T22:04:13Z",
-  "next_epoch_start_block": 7216560,
-  "registry_sha256": "59226698efb5778fb1d1c0d7853ed40d0513d22ff14cb0808073365371e54c74",
+  "generated_at": "2026-05-28T00:09:20Z",
+  "next_epoch_start_block": 7217280,
+  "registry_sha256": "2fa79869723d8e95045488722c780103d8ef98a58eda4e3387b2ebb031c6141e",
   "registry_task_count": 1,
   "schema_version": 1,
   "task_count": 1,
@@ -32,19 +32,19 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20045-seq-0",
+        "name": "tempo-20047-seq-0",
         "path": "Mathlib/Data/Bool/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Bool_decide_false_iff_1f6e5f70355c : \u2200 lemma_p1_506967 : Prop, lemma_p1_506967 \u2192 (\u2200 (p : Prop) {_ : Decidable p}, \u00acp \u2194 decide p = false) := by\n  sorry",
-      "target_sha256": "8d6eef77a331902776204f166ba3bcaf3864436f715b89dbce20eded514a0f7d",
-      "task_id": "lemma.procedural.1f6e5f70355cc7e9",
+      "statement": "theorem procedural_Bool_or_eq_true_eq_eq_true_or_eq_true_4dc0c46c1a73 : \u2200 lemma_p1_ad9aee : Prop, lemma_p1_ad9aee \u2192 (\u2200 (a b : Bool), (a = true \u2228 b = true) = ((a || b) = true)) := by\n  sorry",
+      "target_sha256": "a4e326feebf76a04f24981993a749553f1838edfd079a213a25cf0caf00f14a5",
+      "task_id": "lemma.procedural.4dc0c46c1a73159f",
       "task_version": 1,
-      "theorem_name": "procedural_Bool_decide_false_iff_1f6e5f70355c",
-      "title": "Procedural Bool.decide_false_iff",
-      "type_expr": "\u2200 lemma_p1_506967 : Prop, lemma_p1_506967 \u2192 (\u2200 (p : Prop) {_ : Decidable p}, \u00acp \u2194 decide p = false)"
+      "theorem_name": "procedural_Bool_or_eq_true_eq_eq_true_or_eq_true_4dc0c46c1a73",
+      "title": "Procedural Bool.or_eq_true_eq_eq_true_or_eq_true",
+      "type_expr": "\u2200 lemma_p1_ad9aee : Prop, lemma_p1_ad9aee \u2192 (\u2200 (a b : Bool), (a = true \u2228 b = true) = ((a || b) = true))"
     }
   ],
-  "tempo": 20045,
+  "tempo": 20047,
   "validator_capacity": 6
 }
