@@ -672,13 +672,6 @@ async function loadProblems(board) {
     if (board.dataset.liveSource) {
       try {
         const liveSnapshot = await fetchSnapshot(board.dataset.liveSource);
-        if (!snapshotHasTasks(liveSnapshot)) {
-          const fallbackSnapshot = await fetchBackupSnapshot(fallbackSource, backupSource);
-          if (snapshotHasTasks(fallbackSnapshot)) {
-            renderProblems(board, fallbackSnapshot, "fallback");
-            return;
-          }
-        }
         renderProblems(board, liveSnapshot, "live");
         return;
       } catch (_error) {
