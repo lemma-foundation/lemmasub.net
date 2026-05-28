@@ -29,6 +29,7 @@ uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemm
 - Keep the homepage focused on formal mathematics.
 - Make first-use jargon terms clickable with short inline definitions.
 - Dashboard timing should show local task-set time first and block numbers second.
+- Dashboard frontier depth should display the public `frontier_depth` plainly, with simple K context: K is how many tasks are live, and frontier depth is how deep the task pool is open.
 - Do not make the homepage crypto-first.
 - Do not imply humans manually proving lemmas is the main scaling path.
 - Do not use internal shorthand as public copy.

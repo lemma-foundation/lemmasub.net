@@ -338,6 +338,19 @@ function currentSetHint(snapshot) {
   return `${block} · ${new Intl.NumberFormat().format(epochBlocks)} block epoch`;
 }
 
+function frontierReference(snapshot) {
+  const frontier = nonnegativeInteger(snapshot.frontier_depth);
+  return frontier === undefined ? "Pending" : new Intl.NumberFormat().format(frontier);
+}
+
+function frontierHint(snapshot) {
+  const active = positiveInteger(snapshot.active_K ?? snapshot.task_count);
+  if (!active) {
+    return "How deep the task pool is open";
+  }
+  return `K picks ${new Intl.NumberFormat().format(active)} live tasks from this pool`;
+}
+
 function nextEpochLabel(snapshot) {
   const next = nextEpochTime(snapshot);
   if (!next) {
@@ -438,6 +451,9 @@ function sourcePathTopic(path = "") {
   if (path.includes("/Data/Finset/")) {
     return "Finite sets";
   }
+  if (path.includes("/Data/Fin/")) {
+    return "Finite types";
+  }
   if (path.includes("/Data/List/")) {
     return "Lists";
   }
@@ -461,11 +477,17 @@ function problemTopic(task) {
   if (explicit) {
     return explicit;
   }
+  const text = [task.title, task.theorem_name, task.task_id, task.type_expr].join(" ").toLowerCase();
+  if (text.includes("finset")) {
+    return "Finite sets";
+  }
+  if (/(^|[._\s])fin([._\s]|$)/.test(text)) {
+    return "Finite types";
+  }
   const sourceTopic = sourcePathTopic(task.source_ref?.path);
   if (sourceTopic) {
     return sourceTopic;
   }
-  const text = [task.title, task.theorem_name, task.task_id, task.type_expr].join(" ").toLowerCase();
   if (text.includes("list")) {
     return "Lists";
   }
@@ -613,8 +635,9 @@ function renderProblems(board, snapshot, sourceKind) {
     metric(
       overdue ? "Tasks shown" : "Open tasks",
       String(snapshot.task_count ?? tasks.length),
-      overdue ? "Last published task set" : "Tasks miners can try now",
+      overdue ? "Last published task set" : `K=${new Intl.NumberFormat().format(snapshot.active_K ?? snapshot.task_count ?? tasks.length)} live tasks this epoch`,
     ),
+    metric("Frontier depth", frontierReference(snapshot), frontierHint(snapshot)),
     metric("Task set", currentEpochLabel(snapshot), currentSetHint(snapshot)),
     nextMetric,
   );
