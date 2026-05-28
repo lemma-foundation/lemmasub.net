@@ -675,11 +675,20 @@ async function loadProblems(board) {
         renderProblems(board, liveSnapshot, "live");
         return;
       } catch (_error) {
-        renderProblems(board, await fetchBackupSnapshot(fallbackSource, backupSource), "fallback");
-        return;
+        try {
+          renderProblems(board, await fetchBackupSnapshot(fallbackSource), "live");
+          return;
+        } catch (_fallbackError) {
+          renderProblems(board, await fetchBackupSnapshot(backupSource), "fallback");
+          return;
+        }
       }
     }
-    renderProblems(board, await fetchBackupSnapshot(fallbackSource, backupSource), "fallback");
+    try {
+      renderProblems(board, await fetchBackupSnapshot(fallbackSource), "live");
+    } catch (_fallbackError) {
+      renderProblems(board, await fetchBackupSnapshot(backupSource), "fallback");
+    }
   } catch (error) {
     status.hidden = false;
     status.className = "problem-status fallback";
