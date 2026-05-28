@@ -9,13 +9,13 @@
   "base_task_cost_s": 0.0,
   "cost_budget_s": 0.0,
   "depth_cost_multiplier": 2.0,
-  "epoch_start_block": 7223400,
-  "epoch_started_at": "2026-05-28T21:37:00Z",
-  "estimated_next_epoch_starts_at": "2026-05-28T22:49:00Z",
+  "epoch_start_block": 7223760,
+  "epoch_started_at": "2026-05-28T22:49:00Z",
+  "estimated_next_epoch_starts_at": "2026-05-29T00:01:00Z",
   "frontier_depth": 16,
-  "generated_at": "2026-05-28T22:18:13Z",
-  "next_epoch_start_block": 7223760,
-  "registry_sha256": "31e2491e1f1ea113f1dfc618bf05affbb19954aa4afd0b07c531de99bdd81b1e",
+  "generated_at": "2026-05-28T23:47:19Z",
+  "next_epoch_start_block": 7224120,
+  "registry_sha256": "c5e6bfc8c6a4544853737ceb827e2277dc8c15a008ada140570898d77e2acceb",
   "registry_task_count": 6,
   "schema_version": 1,
   "task_count": 6,
@@ -32,17 +32,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20065-seq-60",
-        "path": "Mathlib/Data/Nat/SuccPred.lean"
+        "name": "tempo-20066-seq-64",
+        "path": "Mathlib/Data/Fin/SuccPredOrder.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Fin_covBy_iff_2afc26f6b112 : \u2200 {a b : Fin (5 : \u2115)}, (a : \u2115) \u22d6 b \u2194 a \u22d6 b := by\n  sorry",
-      "target_sha256": "537b772b567d64a6bfff236f407619b4f84f97b3dad52dd8811bc392b4b3e1d8",
-      "task_id": "lemma.procedural.2afc26f6b112420e",
+      "statement": "theorem procedural_Fin_orderPred_succ_4dec3201d261 : \u2200 (i : Fin (11 : \u2115)), i.castSucc = Order.pred i.succ := by\n  sorry",
+      "target_sha256": "93f9fba7fa13fcd315f979adaeab6410554065d1c63da0a51464789a263b6fe1",
+      "task_id": "lemma.procedural.4dec3201d2619164",
       "task_version": 1,
-      "theorem_name": "procedural_Fin_covBy_iff_2afc26f6b112",
-      "title": "Fin.covBy_iff",
-      "type_expr": "\u2200 {a b : Fin (5 : \u2115)}, (a : \u2115) \u22d6 b \u2194 a \u22d6 b"
+      "theorem_name": "procedural_Fin_orderPred_succ_4dec3201d261",
+      "title": "Fin.orderPred_succ",
+      "type_expr": "\u2200 (i : Fin (11 : \u2115)), i.castSucc = Order.pred i.succ"
     },
     {
       "difficulty_band": "easy",
@@ -56,17 +56,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20065-seq-20",
-        "path": "Mathlib/Data/Fin/SuccPred.lean"
+        "name": "tempo-20066-seq-14",
+        "path": "Mathlib/Data/Nat/Prime/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Fin_succ_succAbove_succ_2cb828975245 : \u2200 (i : Fin ((3 : \u2115) + 1)) (j : Fin (3 : \u2115)), (i.succAbove j).succ = i.succ.succAbove j.succ := by\n  sorry",
-      "target_sha256": "c123ac98b3170119e1e731a89df26ba156d855ac067dbd55db5e731a75a83671",
-      "task_id": "lemma.procedural.2cb82897524528ce",
+      "statement": "theorem procedural_Prime_eq_one_of_pow_6686004736ef : \u2200 {n : \u2115} (h : ((11 : \u2115) ^ n).Prime), 1 = n := by\n  sorry",
+      "target_sha256": "b7947ce612f1ca3e34f8046ac1258798c0ee3e7a366387bb2822489a70eaf134",
+      "task_id": "lemma.procedural.6686004736ef27b8",
       "task_version": 1,
-      "theorem_name": "procedural_Fin_succ_succAbove_succ_2cb828975245",
-      "title": "Fin.succ_succAbove_succ",
-      "type_expr": "\u2200 (i : Fin ((3 : \u2115) + 1)) (j : Fin (3 : \u2115)), (i.succAbove j).succ = i.succ.succAbove j.succ"
+      "theorem_name": "procedural_Prime_eq_one_of_pow_6686004736ef",
+      "title": "Prime.eq_one_of_pow",
+      "type_expr": "\u2200 {n : \u2115} (h : ((11 : \u2115) ^ n).Prime), 1 = n"
     },
     {
       "difficulty_band": "easy",
@@ -74,23 +74,23 @@
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "policy": "restricted_helpers",
-      "queue_depth": 1,
+      "queue_depth": 0,
       "queue_position": 2,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20065-seq-19",
-        "path": "Mathlib/Data/Nat/Factors.lean"
+        "name": "tempo-20066-seq-29",
+        "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_eq_prime_pow_of_unique_prime_dvd_ad2183430c44 : \u2200 {p : \u2115} (hpos : (3 : \u2115) \u2260 0) (h : \u2200 {d}, Nat.Prime d \u2192 d \u2223 (3 : \u2115) \u2192 d = p), p ^ (3 : \u2115).primeFactorsList.length = (3 : \u2115) := by\n  sorry",
-      "target_sha256": "cfd374081d008769ab45ccae337789ef81699426f94e54fd377b93b4213aa72d",
-      "task_id": "lemma.procedural.ad2183430c44053f",
+      "statement": "theorem procedural_Nat_dvd_iff_div_factorization_eq_tsub_c9727407d8fe : \u2200 {n : \u2115} (hd : (11 : \u2115) \u2260 0) (hdn : (11 : \u2115) \u2264 n), (n / (11 : \u2115)).factorization = n.factorization - (11 : \u2115).factorization \u2194 (11 : \u2115) \u2223 n := by\n  sorry",
+      "target_sha256": "ce5bb983c02b7ec09aec5310f5480e35f5f67fbd81ca701b9146b047028373f0",
+      "task_id": "lemma.procedural.c9727407d8feed16",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_eq_prime_pow_of_unique_prime_dvd_ad2183430c44",
-      "title": "Nat.eq_prime_pow_of_unique_prime_dvd",
-      "type_expr": "\u2200 {p : \u2115} (hpos : (3 : \u2115) \u2260 0) (h : \u2200 {d}, Nat.Prime d \u2192 d \u2223 (3 : \u2115) \u2192 d = p), p ^ (3 : \u2115).primeFactorsList.length = (3 : \u2115)"
+      "theorem_name": "procedural_Nat_dvd_iff_div_factorization_eq_tsub_c9727407d8fe",
+      "title": "Nat.dvd_iff_div_factorization_eq_tsub",
+      "type_expr": "\u2200 {n : \u2115} (hd : (11 : \u2115) \u2260 0) (hdn : (11 : \u2115) \u2264 n), (n / (11 : \u2115)).factorization = n.factorization - (11 : \u2115).factorization \u2194 (11 : \u2115) \u2223 n"
     },
     {
       "difficulty_band": "easy",
@@ -104,17 +104,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20065-seq-57",
-        "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
+        "name": "tempo-20066-seq-65",
+        "path": "Mathlib/Data/Nat/GCD/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_ordCompl_eq_self_iff_zero_or_not_dvd_6b1efe2f5638 : \u2200 {p : \u2115} (hp : Prime p), (11 : \u2115) = 0 \u2228 \u00acp \u2223 (11 : \u2115) \u2194 ordCompl[p] (11 : \u2115) = (11 : \u2115) := by\n  sorry",
-      "target_sha256": "763eaab81610e61ebd11aef8ac4e09cdb2def90c2321a60111c2cef772186f07",
-      "task_id": "lemma.procedural.6b1efe2f56386967",
+      "statement": "theorem procedural_Nat_gcd_greatest_2d53b901bc18 : \u2200 {b d : \u2115} (hda : d \u2223 (2 : \u2115)) (hdb : d \u2223 b) (hd : \u2200 e : \u2115, e \u2223 (2 : \u2115) \u2192 e \u2223 b \u2192 e \u2223 d), (2 : \u2115).gcd b = d := by\n  sorry",
+      "target_sha256": "bb5d693ca1a77770ff5d2cd2001d1aea19a038211dd61430f85e11eb0913d84d",
+      "task_id": "lemma.procedural.2d53b901bc18a6fd",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_ordCompl_eq_self_iff_zero_or_not_dvd_6b1efe2f5638",
-      "title": "Nat.ordCompl_eq_self_iff_zero_or_not_dvd",
-      "type_expr": "\u2200 {p : \u2115} (hp : Prime p), (11 : \u2115) = 0 \u2228 \u00acp \u2223 (11 : \u2115) \u2194 ordCompl[p] (11 : \u2115) = (11 : \u2115)"
+      "theorem_name": "procedural_Nat_gcd_greatest_2d53b901bc18",
+      "title": "Nat.gcd_greatest",
+      "type_expr": "\u2200 {b d : \u2115} (hda : d \u2223 (2 : \u2115)) (hdb : d \u2223 b) (hd : \u2200 e : \u2115, e \u2223 (2 : \u2115) \u2192 e \u2223 b \u2192 e \u2223 d), (2 : \u2115).gcd b = d"
     },
     {
       "difficulty_band": "easy",
@@ -128,17 +128,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20065-seq-16",
+        "name": "tempo-20066-seq-55",
         "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_factorization_ordCompl_8052be6857e0 : \u2200 (p : \u2115), (11 : \u2115).factorization.erase p = (ordCompl[p] (11 : \u2115)).factorization := by\n  sorry",
-      "target_sha256": "47f562882475171b607447c8d27d40fbd2dbf72f64b3932415a78d33f4d59992",
-      "task_id": "lemma.procedural.8052be6857e03f51",
+      "statement": "theorem procedural_Nat_ordProj_mul_ordCompl_eq_self_148120109174 : \u2200 (p : \u2115), (5 : \u2115) = ordProj[p] (5 : \u2115) * ordCompl[p] (5 : \u2115) := by\n  sorry",
+      "target_sha256": "6f492a1bd9af17b5bf87b68828fab5c42e77a64aca42cbd335f13dcbab12b50f",
+      "task_id": "lemma.procedural.1481201091749ea2",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_factorization_ordCompl_8052be6857e0",
-      "title": "Nat.factorization_ordCompl",
-      "type_expr": "\u2200 (p : \u2115), (11 : \u2115).factorization.erase p = (ordCompl[p] (11 : \u2115)).factorization"
+      "theorem_name": "procedural_Nat_ordProj_mul_ordCompl_eq_self_148120109174",
+      "title": "Nat.ordProj_mul_ordCompl_eq_self",
+      "type_expr": "\u2200 (p : \u2115), (5 : \u2115) = ordProj[p] (5 : \u2115) * ordCompl[p] (5 : \u2115)"
     },
     {
       "difficulty_band": "easy",
@@ -152,19 +152,19 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20065-seq-59",
-        "path": "Mathlib/Data/Nat/Factorization/PrimePow.lean"
+        "name": "tempo-20066-seq-13",
+        "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_exists_ordCompl_eq_one_iff_isPrimePow_d111ce920e6a : \u2200 (hn : (7 : \u2115) \u2260 1), \u2203 p : \u2115, p.Prime \u2227 ordCompl[p] (7 : \u2115) = 1 \u2194 IsPrimePow (7 : \u2115) := by\n  sorry",
-      "target_sha256": "6827f2b6df6128394be1becbb0492b4d98cf61941d5e85252a158f71bd25a7b6",
-      "task_id": "lemma.procedural.d111ce920e6ac12c",
+      "statement": "theorem procedural_Nat_ordCompl_div_pow_of_dvd_18cc7b470b53 : \u2200 {x p : \u2115} (hp : p.Prime) (hx : p ^ (3 : \u2115) \u2223 x), ordCompl[p] x = ordCompl[p] (x / p ^ (3 : \u2115)) := by\n  sorry",
+      "target_sha256": "72d3796d82e3085cb876d37012c7199e098048cba5373b47f50efdb7c77f0581",
+      "task_id": "lemma.procedural.18cc7b470b53798a",
       "task_version": 1,
-      "theorem_name": "procedural_exists_ordCompl_eq_one_iff_isPrimePow_d111ce920e6a",
-      "title": "exists_ordCompl_eq_one_iff_isPrimePow",
-      "type_expr": "\u2200 (hn : (7 : \u2115) \u2260 1), \u2203 p : \u2115, p.Prime \u2227 ordCompl[p] (7 : \u2115) = 1 \u2194 IsPrimePow (7 : \u2115)"
+      "theorem_name": "procedural_Nat_ordCompl_div_pow_of_dvd_18cc7b470b53",
+      "title": "Nat.ordCompl_div_pow_of_dvd",
+      "type_expr": "\u2200 {x p : \u2115} (hp : p.Prime) (hx : p ^ (3 : \u2115) \u2223 x), ordCompl[p] x = ordCompl[p] (x / p ^ (3 : \u2115))"
     }
   ],
-  "tempo": 20065,
+  "tempo": 20066,
   "validator_capacity": 6
 }
