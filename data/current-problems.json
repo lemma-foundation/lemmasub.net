@@ -9,13 +9,13 @@
   "base_task_cost_s": 0.0,
   "cost_budget_s": 0.0,
   "depth_cost_multiplier": 2.0,
-  "epoch_start_block": 7228080,
-  "epoch_started_at": "2026-05-29T13:13:00Z",
-  "estimated_next_epoch_starts_at": "2026-05-29T14:25:00Z",
+  "epoch_start_block": 7229160,
+  "epoch_started_at": "2026-05-29T16:49:00Z",
+  "estimated_next_epoch_starts_at": "2026-05-29T18:01:00Z",
   "frontier_depth": 17,
-  "generated_at": "2026-05-29T13:49:33Z",
-  "next_epoch_start_block": 7228440,
-  "registry_sha256": "b552e53c3e685e9c74a693db46e447ea56e6b3880e593a05cc14a379b191bf4f",
+  "generated_at": "2026-05-29T17:30:51Z",
+  "next_epoch_start_block": 7229520,
+  "registry_sha256": "51bb48593b0230e4949af3b1171c2093a5b092e2d8487748004e30f7d6537159",
   "registry_task_count": 6,
   "schema_version": 1,
   "task_count": 6,
@@ -32,17 +32,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20078-seq-6",
-        "path": "Mathlib/Data/Nat/Choose/Basic.lean"
+        "name": "tempo-20081-seq-11",
+        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_choose_symm_of_eq_add_c1080ec7c12d : \u2200 {a b : \u2115} (h : (3 : \u2115) = a + b), Nat.choose (3 : \u2115) b = Nat.choose (3 : \u2115) a := by\n  sorry",
-      "target_sha256": "43178b4be7d2e4a6b09146105db11c991bf129554632f6f9e027c2754e48e72a",
-      "task_id": "lemma.procedural.c1080ec7c12d6d3b",
+      "statement": "theorem procedural_Equiv_embeddingFinSucc_fst_7f702292fedd : \u2200 {\u03b9 : Type*} (e : Fin ((3 : \u2115) + 1) \u21aa \u03b9), e \u2218 Fin.succ = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9 e).1 : Fin (3 : \u2115) \u2192 \u03b9) := by\n  sorry",
+      "target_sha256": "d81af8566ae1d79f65fb893d4605e19c902a79796c1108e6972ee8600fd0093e",
+      "task_id": "lemma.procedural.7f702292feddcba6",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_choose_symm_of_eq_add_c1080ec7c12d",
-      "title": "Nat.choose_symm_of_eq_add",
-      "type_expr": "\u2200 {a b : \u2115} (h : (3 : \u2115) = a + b), Nat.choose (3 : \u2115) b = Nat.choose (3 : \u2115) a"
+      "theorem_name": "procedural_Equiv_embeddingFinSucc_fst_7f702292fedd",
+      "title": "Equiv.embeddingFinSucc_fst",
+      "type_expr": "\u2200 {\u03b9 : Type*} (e : Fin ((3 : \u2115) + 1) \u21aa \u03b9), e \u2218 Fin.succ = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9 e).1 : Fin (3 : \u2115) \u2192 \u03b9)"
     },
     {
       "difficulty_band": "easy",
@@ -56,17 +56,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20078-seq-11",
-        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
+        "name": "tempo-20081-seq-24",
+        "path": "Mathlib/Data/Nat/Factors.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Equiv_embeddingFinSucc_fst_ce2df801d258 : \u2200 {\u03b9 : Type*} (e : Fin ((3 : \u2115) + 1) \u21aa \u03b9), e \u2218 Fin.succ = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9 e).1 : Fin (3 : \u2115) \u2192 \u03b9) := by\n  sorry",
-      "target_sha256": "f4fbd867d50d33fda2e40ccedfa730ac0aee708642113bc96145e5ce71627215",
-      "task_id": "lemma.procedural.ce2df801d258913e",
+      "statement": "theorem procedural_Nat_primeFactorsList_prime_ae6fa2b23c11 : \u2200 (hp : Nat.Prime (5 : \u2115)), [(5 : \u2115)] = (5 : \u2115).primeFactorsList := by\n  sorry",
+      "target_sha256": "52f7da34d9244cf0d7dbf921439857e7927ccebb1164ca2ab94832592366fc22",
+      "task_id": "lemma.procedural.ae6fa2b23c115b4c",
       "task_version": 1,
-      "theorem_name": "procedural_Equiv_embeddingFinSucc_fst_ce2df801d258",
-      "title": "Equiv.embeddingFinSucc_fst",
-      "type_expr": "\u2200 {\u03b9 : Type*} (e : Fin ((3 : \u2115) + 1) \u21aa \u03b9), e \u2218 Fin.succ = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9 e).1 : Fin (3 : \u2115) \u2192 \u03b9)"
+      "theorem_name": "procedural_Nat_primeFactorsList_prime_ae6fa2b23c11",
+      "title": "Nat.primeFactorsList_prime",
+      "type_expr": "\u2200 (hp : Nat.Prime (5 : \u2115)), [(5 : \u2115)] = (5 : \u2115).primeFactorsList"
     },
     {
       "difficulty_band": "easy",
@@ -74,23 +74,23 @@
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "policy": "restricted_helpers",
-      "queue_depth": 0,
+      "queue_depth": 1,
       "queue_position": 2,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20078-seq-56",
-        "path": "Mathlib/Data/Nat/Factorization/Defs.lean"
+        "name": "tempo-20081-seq-5",
+        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_eq_of_factorization_eq_18395c7a6acf : \u2200 {b : \u2115} (ha : (2 : \u2115) \u2260 0) (hb : b \u2260 0) (h : (2 : \u2115).factorization = b.factorization), b = (2 : \u2115) := by\n  sorry",
-      "target_sha256": "673bdccf1b907ec7608c936b1b33c3def0bc2386e9000a251ce2fd9fa61f59dd",
-      "task_id": "lemma.procedural.18395c7a6acf51bb",
+      "statement": "theorem procedural_Equiv_coe_embeddingFinSucc_symm_ef7ad17cf504 : \u2200 {\u03b9 : Type*} (f : \u03a3 (e : Fin (11 : \u2115) \u21aa \u03b9), {i // i \u2209 Set.range e}), Fin.cons f.2.1 f.1 = ((Equiv.embeddingFinSucc (11 : \u2115) \u03b9).symm f : Fin ((11 : \u2115) + 1) \u2192 \u03b9) := by\n  sorry",
+      "target_sha256": "3e3b6b12818c677de957ca72f85c76c8837e41d54355c965652dc8126bb125aa",
+      "task_id": "lemma.procedural.ef7ad17cf50448d6",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_eq_of_factorization_eq_18395c7a6acf",
-      "title": "Nat.eq_of_factorization_eq'",
-      "type_expr": "\u2200 {b : \u2115} (ha : (2 : \u2115) \u2260 0) (hb : b \u2260 0) (h : (2 : \u2115).factorization = b.factorization), b = (2 : \u2115)"
+      "theorem_name": "procedural_Equiv_coe_embeddingFinSucc_symm_ef7ad17cf504",
+      "title": "Equiv.coe_embeddingFinSucc_symm",
+      "type_expr": "\u2200 {\u03b9 : Type*} (f : \u03a3 (e : Fin (11 : \u2115) \u21aa \u03b9), {i // i \u2209 Set.range e}), Fin.cons f.2.1 f.1 = ((Equiv.embeddingFinSucc (11 : \u2115) \u03b9).symm f : Fin ((11 : \u2115) + 1) \u2192 \u03b9)"
     },
     {
       "difficulty_band": "easy",
@@ -98,23 +98,23 @@
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "policy": "restricted_helpers",
-      "queue_depth": 0,
+      "queue_depth": 1,
       "queue_position": 3,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20078-seq-17",
-        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
+        "name": "tempo-20081-seq-63",
+        "path": "Mathlib/Data/Fin/SuccPred.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Equiv_embeddingFinSucc_snd_e3c55a43d66b : \u2200 {\u03b9 : Type*} (e : Fin ((5 : \u2115) + 1) \u21aa \u03b9), e 0 = ((Equiv.embeddingFinSucc (5 : \u2115) \u03b9 e).2 : \u03b9) := by\n  sorry",
-      "target_sha256": "beb588577434831b02118d115aa5513bdd5097a3aec2a0d4bbcf70f86b634b96",
-      "task_id": "lemma.procedural.e3c55a43d66b44ca",
+      "statement": "theorem procedural_Fin_succAbove_succAbove_succAbove_predAbove_9a36da9d3d93 : \u2200 (i : Fin ((2 : \u2115) + 2)) (j : Fin ((2 : \u2115) + 1)) (k : Fin (2 : \u2115)), i.succAbove (j.succAbove k) = (i.succAbove j).succAbove ((j.predAbove i).succAbove k) := by\n  sorry",
+      "target_sha256": "8f1f243b3d2132904c459079f6e3222f3bd41f968d6692501a8de4d68e65b57c",
+      "task_id": "lemma.procedural.9a36da9d3d934a53",
       "task_version": 1,
-      "theorem_name": "procedural_Equiv_embeddingFinSucc_snd_e3c55a43d66b",
-      "title": "Equiv.embeddingFinSucc_snd",
-      "type_expr": "\u2200 {\u03b9 : Type*} (e : Fin ((5 : \u2115) + 1) \u21aa \u03b9), e 0 = ((Equiv.embeddingFinSucc (5 : \u2115) \u03b9 e).2 : \u03b9)"
+      "theorem_name": "procedural_Fin_succAbove_succAbove_succAbove_predAbove_9a36da9d3d93",
+      "title": "Fin.succAbove_succAbove_succAbove_predAbove",
+      "type_expr": "\u2200 (i : Fin ((2 : \u2115) + 2)) (j : Fin ((2 : \u2115) + 1)) (k : Fin (2 : \u2115)), i.succAbove (j.succAbove k) = (i.succAbove j).succAbove ((j.predAbove i).succAbove k)"
     },
     {
       "difficulty_band": "easy",
@@ -128,17 +128,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20078-seq-12",
-        "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
+        "name": "tempo-20081-seq-6",
+        "path": "Mathlib/Data/Nat/Lattice.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_ordCompl_self_pow_mul_114d90a1df50 : \u2200 (k : \u2115) {p : \u2115} (hp : Prime p), ordCompl[p] (11 : \u2115) = ordCompl[p] (p ^ k * (11 : \u2115)) := by\n  sorry",
-      "target_sha256": "cf84881d22e2839444337eed657c7c13efc53938cf362c48847f716b0ce4f05a",
-      "task_id": "lemma.procedural.114d90a1df500e2e",
+      "statement": "theorem procedural_Nat_sInf_add_ec4b3fdd5323 : \u2200 {p : \u2115 \u2192 Prop} (h : 0 < sInf { m | p m }), sInf { m | p (m - (5 : \u2115)) } = sInf { m | p m } + (5 : \u2115) := by\n  sorry",
+      "target_sha256": "1e21e66c352a348471e7a1f3bfe2a29ee726a867ce18954dc4080ed70617ddfe",
+      "task_id": "lemma.procedural.ec4b3fdd53235413",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_ordCompl_self_pow_mul_114d90a1df50",
-      "title": "Nat.ordCompl_self_pow_mul",
-      "type_expr": "\u2200 (k : \u2115) {p : \u2115} (hp : Prime p), ordCompl[p] (11 : \u2115) = ordCompl[p] (p ^ k * (11 : \u2115))"
+      "theorem_name": "procedural_Nat_sInf_add_ec4b3fdd5323",
+      "title": "Nat.sInf_add'",
+      "type_expr": "\u2200 {p : \u2115 \u2192 Prop} (h : 0 < sInf { m | p m }), sInf { m | p (m - (5 : \u2115)) } = sInf { m | p m } + (5 : \u2115)"
     },
     {
       "difficulty_band": "easy",
@@ -152,19 +152,19 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20078-seq-5",
-        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
+        "name": "tempo-20081-seq-29",
+        "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Equiv_coe_embeddingFinSucc_symm_a1d91d2ba259 : \u2200 {\u03b9 : Type*} (f : \u03a3 (e : Fin (2 : \u2115) \u21aa \u03b9), {i // i \u2209 Set.range e}), Fin.cons f.2.1 f.1 = ((Equiv.embeddingFinSucc (2 : \u2115) \u03b9).symm f : Fin ((2 : \u2115) + 1) \u2192 \u03b9) := by\n  sorry",
-      "target_sha256": "7db2f37e3ceb4ced67f4456311bd8fe74d8abe89c1f8f3637a734956d82e3bbf",
-      "task_id": "lemma.procedural.a1d91d2ba2592365",
+      "statement": "theorem procedural_Nat_ordCompl_mul_9862fd5ea1ec : \u2200 (b p : \u2115), ordCompl[p] (3 : \u2115) * ordCompl[p] b = ordCompl[p] ((3 : \u2115) * b) := by\n  sorry",
+      "target_sha256": "bf1aecc0c24bff01306a466e3ba73964e92bef3789211dd971d1a48b331ca440",
+      "task_id": "lemma.procedural.9862fd5ea1ec5d3a",
       "task_version": 1,
-      "theorem_name": "procedural_Equiv_coe_embeddingFinSucc_symm_a1d91d2ba259",
-      "title": "Equiv.coe_embeddingFinSucc_symm",
-      "type_expr": "\u2200 {\u03b9 : Type*} (f : \u03a3 (e : Fin (2 : \u2115) \u21aa \u03b9), {i // i \u2209 Set.range e}), Fin.cons f.2.1 f.1 = ((Equiv.embeddingFinSucc (2 : \u2115) \u03b9).symm f : Fin ((2 : \u2115) + 1) \u2192 \u03b9)"
+      "theorem_name": "procedural_Nat_ordCompl_mul_9862fd5ea1ec",
+      "title": "Nat.ordCompl_mul",
+      "type_expr": "\u2200 (b p : \u2115), ordCompl[p] (3 : \u2115) * ordCompl[p] b = ordCompl[p] ((3 : \u2115) * b)"
     }
   ],
-  "tempo": 20078,
+  "tempo": 20081,
   "validator_capacity": 6
 }
