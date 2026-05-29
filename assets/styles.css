@@ -946,12 +946,36 @@ button.button {
   background: var(--card-soft);
 }
 
-.problem-id {
-  margin-bottom: .35rem;
-  color: var(--green);
-  font-size: .78rem;
+.problem-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .35rem;
+  margin: 0 0 .45rem;
+  color: var(--muted);
+  font-size: .72rem;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.problem-meta-index {
+  color: var(--green);
+}
+
+.problem-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .12rem .44rem;
+  background: var(--card-soft);
+  color: var(--muted);
+}
+
+.problem-chip.level {
+  border-color: color-mix(in srgb, var(--green) 38%, var(--line));
+  color: var(--green);
 }
 
 .problem-card h3 {

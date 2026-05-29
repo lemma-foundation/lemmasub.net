@@ -338,9 +338,14 @@ function currentSetHint(snapshot) {
   return `${block} · ${new Intl.NumberFormat().format(epochBlocks)} blocks`;
 }
 
-function difficultyLimit(snapshot) {
+function displayLevel(depth) {
+  const value = nonnegativeInteger(depth);
+  return value === undefined ? undefined : value + 1;
+}
+
+function levelLimit(snapshot) {
   const limit = nonnegativeInteger(snapshot.frontier_depth);
-  return limit === undefined ? "Pending" : new Intl.NumberFormat().format(limit);
+  return limit === undefined ? "Pending" : new Intl.NumberFormat().format(limit + 1);
 }
 
 function nextEpochLabel(snapshot) {
@@ -507,12 +512,9 @@ function problemTopic(task) {
   return "Logic";
 }
 
-function difficultyLabel(task) {
-  const depth = nonnegativeInteger(task.queue_depth);
-  const band = task.difficulty_band
-    ? `${String(task.difficulty_band).slice(0, 1).toUpperCase()}${String(task.difficulty_band).slice(1)}`
-    : "Difficulty";
-  return depth === undefined ? band : `${band} · Difficulty ${new Intl.NumberFormat().format(depth)}`;
+function taskLevel(task) {
+  const level = displayLevel(task.queue_depth);
+  return level === undefined ? "Level pending" : `Level ${new Intl.NumberFormat().format(level)}`;
 }
 
 function renderProblem(task, index) {
@@ -523,6 +525,7 @@ function renderProblem(task, index) {
   const statementId = `statement-${task.task_id.replace(/[^a-z0-9]+/gi, "-")}`;
   const topic = problemTopic(task);
   const name = compactTaskName(task);
+  const meta = node("p", "problem-meta");
 
   header.type = "button";
   header.setAttribute("aria-label", `Show statement for ${name}`);
@@ -543,10 +546,12 @@ function renderProblem(task, index) {
     indicator.textContent = nextOpen ? "-" : "+";
     statement.hidden = !nextOpen;
   });
-  title.append(
-    node("p", "problem-id", `Task ${index + 1} · ${difficultyLabel(task)} · ${topic}`),
-    node("h3", "", name),
+  meta.append(
+    node("span", "problem-meta-index", `Task ${index + 1}`),
+    node("span", "problem-chip level", taskLevel(task)),
+    node("span", "problem-chip", topic),
   );
+  title.append(meta, node("h3", "", name));
   header.append(title, indicator);
 
   article.append(header, statement);
@@ -640,9 +645,9 @@ function renderProblems(board, snapshot, sourceKind) {
       overdue ? "Last published task set." : "",
     ),
     metric(
-      "Difficulty Limit",
-      difficultyLimit(snapshot),
-      "Open tasks can be this difficulty or lower. Each task card shows its own difficulty.",
+      "Level Cap",
+      levelLimit(snapshot),
+      "Open tasks can be this level or lower. Each task card shows its own level.",
     ),
     metric("Task set", currentEpochLabel(snapshot), currentSetHint(snapshot)),
     nextMetric,
