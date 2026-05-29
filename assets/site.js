@@ -338,9 +338,9 @@ function currentSetHint(snapshot) {
   return `${block} · ${new Intl.NumberFormat().format(epochBlocks)} blocks`;
 }
 
-function difficultyReference(snapshot) {
-  const difficulty = nonnegativeInteger(snapshot.frontier_depth);
-  return difficulty === undefined ? "Pending" : new Intl.NumberFormat().format(difficulty);
+function difficultyLimit(snapshot) {
+  const limit = nonnegativeInteger(snapshot.frontier_depth);
+  return limit === undefined ? "Pending" : new Intl.NumberFormat().format(limit);
 }
 
 function nextEpochLabel(snapshot) {
@@ -640,9 +640,9 @@ function renderProblems(board, snapshot, sourceKind) {
       overdue ? "Last published task set." : "",
     ),
     metric(
-      "Difficulty",
-      difficultyReference(snapshot),
-      "Difficulty is the current challenge setting for open tasks. Higher means harder tasks.",
+      "Difficulty Limit",
+      difficultyLimit(snapshot),
+      "Open tasks can be this difficulty or lower. Each task card shows its own difficulty.",
     ),
     metric("Task set", currentEpochLabel(snapshot), currentSetHint(snapshot)),
     nextMetric,
