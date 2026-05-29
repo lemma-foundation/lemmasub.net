@@ -507,6 +507,14 @@ function problemTopic(task) {
   return "Logic";
 }
 
+function difficultyLabel(task) {
+  const depth = nonnegativeInteger(task.queue_depth);
+  const band = task.difficulty_band
+    ? `${String(task.difficulty_band).slice(0, 1).toUpperCase()}${String(task.difficulty_band).slice(1)}`
+    : "Difficulty";
+  return depth === undefined ? band : `${band} · Difficulty ${new Intl.NumberFormat().format(depth)}`;
+}
+
 function renderProblem(task, index) {
   const article = node("article", "problem-card");
   const header = node("button", "problem-card-head");
@@ -536,7 +544,7 @@ function renderProblem(task, index) {
     statement.hidden = !nextOpen;
   });
   title.append(
-    node("p", "problem-id", `Task ${index + 1} · ${topic}`),
+    node("p", "problem-id", `Task ${index + 1} · ${difficultyLabel(task)} · ${topic}`),
     node("h3", "", name),
   );
   header.append(title, indicator);

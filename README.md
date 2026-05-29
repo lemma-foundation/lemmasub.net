@@ -30,6 +30,7 @@ uv run python scripts/refresh_site_current_problems.py --site-repo /path/to/lemm
 - Make first-use jargon terms clickable with short inline definitions.
 - Dashboard timing should show local task-set time first and block numbers second.
 - Dashboard difficulty should display the public `frontier_depth` plainly: it is the current challenge setting for open tasks, and higher means harder tasks.
+- Dashboard task cards should show each task's own difficulty marker from `difficulty_band` and `queue_depth`.
 - Do not use `K`, `epoch`, or pool-size language in public dashboard copy.
 - Do not make the homepage crypto-first.
 - Do not imply humans manually proving lemmas is the main scaling path.
