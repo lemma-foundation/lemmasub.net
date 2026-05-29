@@ -335,20 +335,12 @@ function currentSetHint(snapshot) {
   if (!epochBlocks) {
     return block;
   }
-  return `${block} · ${new Intl.NumberFormat().format(epochBlocks)} block epoch`;
+  return `${block} · ${new Intl.NumberFormat().format(epochBlocks)} blocks`;
 }
 
-function frontierReference(snapshot) {
-  const frontier = nonnegativeInteger(snapshot.frontier_depth);
-  return frontier === undefined ? "Pending" : new Intl.NumberFormat().format(frontier);
-}
-
-function frontierHint(snapshot) {
-  const active = positiveInteger(snapshot.active_K ?? snapshot.task_count);
-  if (!active) {
-    return "How deep the task pool is open";
-  }
-  return `K picks ${new Intl.NumberFormat().format(active)} live tasks from this pool`;
+function difficultyReference(snapshot) {
+  const difficulty = nonnegativeInteger(snapshot.frontier_depth);
+  return difficulty === undefined ? "Pending" : new Intl.NumberFormat().format(difficulty);
 }
 
 function nextEpochLabel(snapshot) {
@@ -623,6 +615,8 @@ function renderProblems(board, snapshot, sourceKind) {
     return;
   }
   const overdue = refreshOverdue(snapshot);
+  const taskCount = snapshot.task_count ?? tasks.length;
+  const taskCopy = taskCount === 1 ? "task is" : "tasks are";
   const nextMetric = metric("Next change", nextEpochLabel(snapshot), nextEpochHint(snapshot), overdue ? "warning" : "");
   const next = nextEpochTime(snapshot);
   const hint = nextMetric.querySelector("p");
@@ -633,11 +627,15 @@ function renderProblems(board, snapshot, sourceKind) {
   }
   summary.replaceChildren(
     metric(
-      overdue ? "Tasks shown" : "Open tasks",
-      String(snapshot.task_count ?? tasks.length),
-      overdue ? "Last published task set" : `K=${new Intl.NumberFormat().format(snapshot.active_K ?? snapshot.task_count ?? tasks.length)} live tasks this epoch`,
+      "Live Snapshot",
+      `${new Intl.NumberFormat().format(taskCount)} ${taskCopy} open right now.`,
+      overdue ? "Last published task set." : "",
     ),
-    metric("Frontier depth", frontierReference(snapshot), frontierHint(snapshot)),
+    metric(
+      "Difficulty",
+      difficultyReference(snapshot),
+      "Difficulty is the current challenge setting for open tasks. Higher means harder tasks.",
+    ),
     metric("Task set", currentEpochLabel(snapshot), currentSetHint(snapshot)),
     nextMetric,
   );
