@@ -9,13 +9,13 @@
   "base_task_cost_s": 0.0,
   "cost_budget_s": 0.0,
   "depth_cost_multiplier": 2.0,
-  "epoch_start_block": 7229880,
-  "epoch_started_at": "2026-05-29T19:13:00Z",
-  "estimated_next_epoch_starts_at": "2026-05-29T20:25:00Z",
+  "epoch_start_block": 7230600,
+  "epoch_started_at": "2026-05-29T21:37:00Z",
+  "estimated_next_epoch_starts_at": "2026-05-29T22:49:00Z",
   "frontier_depth": 17,
-  "generated_at": "2026-05-29T19:54:39Z",
-  "next_epoch_start_block": 7230240,
-  "registry_sha256": "a9f4850225f8b6332fe2badb65bd2281161aa5ce19524557f95accdeed15047f",
+  "generated_at": "2026-05-29T21:51:32Z",
+  "next_epoch_start_block": 7230960,
+  "registry_sha256": "b9aec1fc14ad24fe77f777fab2ed5de10d3c2b11fff647d163c666cf8ae8345c",
   "registry_task_count": 6,
   "schema_version": 1,
   "task_count": 6,
@@ -32,17 +32,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20083-seq-7",
-        "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
+        "name": "tempo-20085-seq-13",
+        "path": "Mathlib/Data/Int/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_ordCompl_pow_mul_of_not_dvd_e8997676b962 : \u2200 (k : \u2115) {p : \u2115} (hp : p.Prime) (hm : \u00acp \u2223 (2 : \u2115)), (2 : \u2115) = ordCompl[p] (p ^ k * (2 : \u2115)) := by\n  sorry",
-      "target_sha256": "68f32eea2b4b959dc4fad925c73e233cbb8dbe8dfd555004c6aceb9f9b7134c8",
-      "task_id": "lemma.procedural.e8997676b962b0aa",
+      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_left_mod_ac16257a8270 : \u2200 (b c : \u2124), (1 % (b * c) % c, 1 % (b * c) % c) = (1 % c, 1 % c) := by\n  sorry",
+      "target_sha256": "7b60c51bc66e894e2b2aeb15c85092c8c001983cf6d99075dda909962fce1300",
+      "task_id": "lemma.procedural.ac16257a8270795c",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_ordCompl_pow_mul_of_not_dvd_e8997676b962",
-      "title": "Nat.ordCompl_pow_mul_of_not_dvd",
-      "type_expr": "\u2200 (k : \u2115) {p : \u2115} (hp : p.Prime) (hm : \u00acp \u2223 (2 : \u2115)), (2 : \u2115) = ordCompl[p] (p ^ k * (2 : \u2115))"
+      "theorem_name": "procedural_Int_mod_mul_left_mod_ac16257a8270",
+      "title": "Int.mod_mul_left_mod",
+      "type_expr": "\u2200 (b c : \u2124), (1 % (b * c) % c, 1 % (b * c) % c) = (1 % c, 1 % c)"
     },
     {
       "difficulty_band": "easy",
@@ -56,17 +56,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20083-seq-40",
-        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
+        "name": "tempo-20085-seq-37",
+        "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Equiv_embeddingFinSucc_snd_a4b7a101d87d : \u2200 {\u03b9 : Type*} (e : Fin ((2 : \u2115) + 1) \u21aa \u03b9), e 0 = ((Equiv.embeddingFinSucc (2 : \u2115) \u03b9 e).2 : \u03b9) := by\n  sorry",
-      "target_sha256": "fd484bc663445a7a0e7b36dcef0362beca6c203a2a22d501fbbc9860f571bca9",
-      "task_id": "lemma.procedural.a4b7a101d87dea25",
+      "statement": "open Nat\n\ntheorem procedural_Nat_mod_sub_of_le_97662f820ea6 : \u2200 {b n : \u2115} (h : b \u2264 3 % n), (3 % n - b, 3 % n - b) = ((3 - b) % n, (3 - b) % n) := by\n  sorry",
+      "target_sha256": "3686cee2397397a10db54d79bb2ceba9a59122973c81757a5179a6011338ddf2",
+      "task_id": "lemma.procedural.97662f820ea6d9c2",
       "task_version": 1,
-      "theorem_name": "procedural_Equiv_embeddingFinSucc_snd_a4b7a101d87d",
-      "title": "Equiv.embeddingFinSucc_snd",
-      "type_expr": "\u2200 {\u03b9 : Type*} (e : Fin ((2 : \u2115) + 1) \u21aa \u03b9), e 0 = ((Equiv.embeddingFinSucc (2 : \u2115) \u03b9 e).2 : \u03b9)"
+      "theorem_name": "procedural_Nat_mod_sub_of_le_97662f820ea6",
+      "title": "Nat.mod_sub_of_le",
+      "type_expr": "\u2200 {b n : \u2115} (h : b \u2264 3 % n), (3 % n - b, 3 % n - b) = ((3 - b) % n, (3 - b) % n)"
     },
     {
       "difficulty_band": "easy",
@@ -80,17 +80,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20083-seq-16",
-        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
+        "name": "tempo-20085-seq-5",
+        "path": "Mathlib/Data/Int/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Equiv_embeddingFinSucc_fst_5b70ded37269 : \u2200 {\u03b9 : Type*} (e : Fin ((3 : \u2115) + 1) \u21aa \u03b9), e \u2218 Fin.succ = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9 e).1 : Fin (3 : \u2115) \u2192 \u03b9) := by\n  sorry",
-      "target_sha256": "4e25e58dcb0efc6174527ee41c5d334537c3ce977e0eb7d961687044df247807",
-      "task_id": "lemma.procedural.5b70ded37269cdc5",
+      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_right_mod_67ff9b111432 : \u2200 (b c : \u2124), (1 % (b * c) % b, 1 % (b * c) % b) = (1 % b, 1 % b) := by\n  sorry",
+      "target_sha256": "fa22cfe17eaa06dbe265114fcc1eb54b42b70c6bb8dac172971793b78c9f261c",
+      "task_id": "lemma.procedural.67ff9b111432d2f8",
       "task_version": 1,
-      "theorem_name": "procedural_Equiv_embeddingFinSucc_fst_5b70ded37269",
-      "title": "Equiv.embeddingFinSucc_fst",
-      "type_expr": "\u2200 {\u03b9 : Type*} (e : Fin ((3 : \u2115) + 1) \u21aa \u03b9), e \u2218 Fin.succ = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9 e).1 : Fin (3 : \u2115) \u2192 \u03b9)"
+      "theorem_name": "procedural_Int_mod_mul_right_mod_67ff9b111432",
+      "title": "Int.mod_mul_right_mod",
+      "type_expr": "\u2200 (b c : \u2124), (1 % (b * c) % b, 1 % (b * c) % b) = (1 % b, 1 % b)"
     },
     {
       "difficulty_band": "easy",
@@ -98,23 +98,23 @@
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "policy": "restricted_helpers",
-      "queue_depth": 1,
+      "queue_depth": 0,
       "queue_position": 3,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20083-seq-12",
-        "path": "Mathlib/Data/Fin/SuccPred.lean"
+        "name": "tempo-20085-seq-36",
+        "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Fin_succAbove_succAbove_succAbove_predAbove_92d6d08585ba : \u2200 (i : Fin ((7 : \u2115) + 2)) (j : Fin ((7 : \u2115) + 1)) (k : Fin (7 : \u2115)), i.succAbove (j.succAbove k) = (i.succAbove j).succAbove ((j.predAbove i).succAbove k) := by\n  sorry",
-      "target_sha256": "79fba59485bdbfc257a4892bee4c54fbf417a3c429e1a04783450f3c96d1c693",
-      "task_id": "lemma.procedural.92d6d08585bac2a4",
+      "statement": "open Nat\n\ntheorem procedural_Nat_add_mod_of_add_mod_lt_6dc1c1ae7ff7 : \u2200 {b c : \u2115} (hc : 3 % c + b % c < c), ((3 + b) % c, (3 + b) % c) = (3 % c + b % c, 3 % c + b % c) := by\n  sorry",
+      "target_sha256": "4178c8baa4ed1abcbcd291fe11341cb139b80bdc17c62cad97282e8523812d68",
+      "task_id": "lemma.procedural.6dc1c1ae7ff7bfef",
       "task_version": 1,
-      "theorem_name": "procedural_Fin_succAbove_succAbove_succAbove_predAbove_92d6d08585ba",
-      "title": "Fin.succAbove_succAbove_succAbove_predAbove",
-      "type_expr": "\u2200 (i : Fin ((7 : \u2115) + 2)) (j : Fin ((7 : \u2115) + 1)) (k : Fin (7 : \u2115)), i.succAbove (j.succAbove k) = (i.succAbove j).succAbove ((j.predAbove i).succAbove k)"
+      "theorem_name": "procedural_Nat_add_mod_of_add_mod_lt_6dc1c1ae7ff7",
+      "title": "Nat.add_mod_of_add_mod_lt",
+      "type_expr": "\u2200 {b c : \u2115} (hc : 3 % c + b % c < c), ((3 + b) % c, (3 + b) % c) = (3 % c + b % c, 3 % c + b % c)"
     },
     {
       "difficulty_band": "easy",
@@ -122,49 +122,49 @@
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "policy": "restricted_helpers",
-      "queue_depth": 1,
+      "queue_depth": 0,
       "queue_position": 4,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20083-seq-4",
-        "path": "Mathlib/Logic/Equiv/Fin/Basic.lean"
+        "name": "tempo-20085-seq-38",
+        "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Equiv_coe_embeddingFinSucc_symm_313f1920dc3b : \u2200 {\u03b9 : Type*} (f : \u03a3 (e : Fin (3 : \u2115) \u21aa \u03b9), {i // i \u2209 Set.range e}), Fin.cons f.2.1 f.1 = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9).symm f : Fin ((3 : \u2115) + 1) \u2192 \u03b9) := by\n  sorry",
-      "target_sha256": "1a671dabe05f2c1c886101e6297e675201906bb56acbb68ee947a943cde64daa",
-      "task_id": "lemma.procedural.313f1920dc3ba6d1",
+      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_eq_of_le_mod_add_mod_be87e74f8579 : \u2200 {b c : \u2115} (hc : c \u2264 11 % c + b % c) (hc0 : 0 < c), ((11 + b) / c, (11 + b) / c) = (11 / c + b / c + 1, 11 / c + b / c + 1) := by\n  sorry",
+      "target_sha256": "0027359f8a5ef0b0161bcc1899526d579f20e96cf92df927b382544d70731731",
+      "task_id": "lemma.procedural.be87e74f8579555a",
       "task_version": 1,
-      "theorem_name": "procedural_Equiv_coe_embeddingFinSucc_symm_313f1920dc3b",
-      "title": "Equiv.coe_embeddingFinSucc_symm",
-      "type_expr": "\u2200 {\u03b9 : Type*} (f : \u03a3 (e : Fin (3 : \u2115) \u21aa \u03b9), {i // i \u2209 Set.range e}), Fin.cons f.2.1 f.1 = ((Equiv.embeddingFinSucc (3 : \u2115) \u03b9).symm f : Fin ((3 : \u2115) + 1) \u2192 \u03b9)"
+      "theorem_name": "procedural_Nat_add_div_eq_of_le_mod_add_mod_be87e74f8579",
+      "title": "Nat.add_div_eq_of_le_mod_add_mod",
+      "type_expr": "\u2200 {b c : \u2115} (hc : c \u2264 11 % c + b % c) (hc0 : 0 < c), ((11 + b) / c, (11 + b) / c) = (11 / c + b / c + 1, 11 / c + b / c + 1)"
     },
     {
-      "difficulty_band": "medium",
+      "difficulty_band": "easy",
       "frontier_depth": 17,
       "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
       "mathlib_rev": "5450b53e5ddc",
       "policy": "restricted_helpers",
-      "queue_depth": 2,
+      "queue_depth": 0,
       "queue_position": 5,
       "source_license": "Apache-2.0",
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20083-seq-13",
-        "path": "Mathlib/Data/Nat/Factorization/Basic.lean"
+        "name": "tempo-20085-seq-10",
+        "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Nat_eq_iff_prime_padicValNat_eq_9e4beef8b3f2 : \u2200 (b : \u2115) (ha : (11 : \u2115) \u2260 0) (hb : b \u2260 0), (11 : \u2115) = b \u2194 \u2200 p : \u2115, p.Prime \u2192 padicValNat p b = padicValNat p (11 : \u2115) := by\n  sorry",
-      "target_sha256": "6761ae96f8133771a4d2f6accf95ace19c77d1e2415bb4749b89fb67e0e0243d",
-      "task_id": "lemma.procedural.9e4beef8b3f219e7",
+      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_of_dvd_right_f59e4a53768f : \u2200 {b c : \u2115} (hca : c \u2223 3), ((3 + b) / c, (3 + b) / c) = (3 / c + b / c, 3 / c + b / c) := by\n  sorry",
+      "target_sha256": "befae1205ea9da784ca684373fb1e6f6f988282ba11db03a01b75abf3e06eb29",
+      "task_id": "lemma.procedural.f59e4a53768f72d2",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_eq_iff_prime_padicValNat_eq_9e4beef8b3f2",
-      "title": "Nat.eq_iff_prime_padicValNat_eq",
-      "type_expr": "\u2200 (b : \u2115) (ha : (11 : \u2115) \u2260 0) (hb : b \u2260 0), (11 : \u2115) = b \u2194 \u2200 p : \u2115, p.Prime \u2192 padicValNat p b = padicValNat p (11 : \u2115)"
+      "theorem_name": "procedural_Nat_add_div_of_dvd_right_f59e4a53768f",
+      "title": "Nat.add_div_of_dvd_right",
+      "type_expr": "\u2200 {b c : \u2115} (hca : c \u2223 3), ((3 + b) / c, (3 + b) / c) = (3 / c + b / c, 3 / c + b / c)"
     }
   ],
-  "tempo": 20083,
+  "tempo": 20085,
   "validator_capacity": 6
 }
