@@ -9,13 +9,13 @@
   "base_task_cost_s": 0.0,
   "cost_budget_s": 0.0,
   "depth_cost_multiplier": 2.0,
-  "epoch_start_block": 7233840,
-  "epoch_started_at": "2026-05-30T08:25:00Z",
-  "estimated_next_epoch_starts_at": "2026-05-30T09:37:00Z",
+  "epoch_start_block": 7234560,
+  "epoch_started_at": "2026-05-30T10:49:00Z",
+  "estimated_next_epoch_starts_at": "2026-05-30T12:01:00Z",
   "frontier_depth": 17,
-  "generated_at": "2026-05-30T09:31:05Z",
-  "next_epoch_start_block": 7234200,
-  "registry_sha256": "137e7e822d5a73b63cb0475646f1184f21e1ca1053764dde30a77e906db35662",
+  "generated_at": "2026-05-30T11:04:31Z",
+  "next_epoch_start_block": 7234920,
+  "registry_sha256": "e56c8f3df969f68bcf5c9902ecacb0309a54861e76c44533ed24aebbc8e944ea",
   "registry_task_count": 6,
   "schema_version": 1,
   "task_count": 6,
@@ -32,17 +32,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20094-seq-29",
+        "name": "tempo-20096-seq-42",
         "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Nat\n\ntheorem procedural_Nat_add_mod_add_ite_8f9219c7f4c9 : \u2200 (b c : \u2115), (((7 + b) % c + if c \u2264 7 % c + b % c then c else 0), ((7 + b) % c + if c \u2264 7 % c + b % c then c else 0)) = (7 % c + b % c, 7 % c + b % c) := by\n  sorry",
-      "target_sha256": "b66d8f1ba3aeff9032bbf1b7032417653cfbcdb06ef474fde8d47f9e919d5212",
-      "task_id": "lemma.procedural.8f9219c7f4c92d0a",
+      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_eq_of_add_mod_lt_4cbd1cac82ce : \u2200 {b c : \u2115} (hc : 3 % c + b % c < c), ((3 + b) / c, (3 + b) / c) = (3 / c + b / c, 3 / c + b / c) := by\n  sorry",
+      "target_sha256": "c563f95bd4fe4ad29209f142f40c0770092b172b65477c7bdf51124157ed46ea",
+      "task_id": "lemma.procedural.4cbd1cac82ce683d",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_add_mod_add_ite_8f9219c7f4c9",
-      "title": "Nat.add_mod_add_ite",
-      "type_expr": "\u2200 (b c : \u2115), (((7 + b) % c + if c \u2264 7 % c + b % c then c else 0), ((7 + b) % c + if c \u2264 7 % c + b % c then c else 0)) = (7 % c + b % c, 7 % c + b % c)"
+      "theorem_name": "procedural_Nat_add_div_eq_of_add_mod_lt_4cbd1cac82ce",
+      "title": "Nat.add_div_eq_of_add_mod_lt",
+      "type_expr": "\u2200 {b c : \u2115} (hc : 3 % c + b % c < c), ((3 + b) / c, (3 + b) / c) = (3 / c + b / c, 3 / c + b / c)"
     },
     {
       "difficulty_band": "easy",
@@ -56,17 +56,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20094-seq-4",
+        "name": "tempo-20096-seq-13",
         "path": "Mathlib/Data/Int/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_right_mod_4834a2690f67 : \u2200 (b c : \u2124), (1 % (b * c) % b, 1 % (b * c) % b) = (1 % b, 1 % b) := by\n  sorry",
-      "target_sha256": "783101ebced113863656534552e6fdee14eb5f6059f66e96c6d23717fc021d35",
-      "task_id": "lemma.procedural.4834a2690f67686e",
+      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_left_mod_34c8a6070fdb : \u2200 (b c : \u2124), (-1 % (b * c) % c, -1 % (b * c) % c) = (-1 % c, -1 % c) := by\n  sorry",
+      "target_sha256": "bbeed3dc712eaed703738e4ad78161ce02267066d1aa16533d3d36d06272ee44",
+      "task_id": "lemma.procedural.34c8a6070fdbab04",
       "task_version": 1,
-      "theorem_name": "procedural_Int_mod_mul_right_mod_4834a2690f67",
-      "title": "Int.mod_mul_right_mod",
-      "type_expr": "\u2200 (b c : \u2124), (1 % (b * c) % b, 1 % (b * c) % b) = (1 % b, 1 % b)"
+      "theorem_name": "procedural_Int_mod_mul_left_mod_34c8a6070fdb",
+      "title": "Int.mod_mul_left_mod",
+      "type_expr": "\u2200 (b c : \u2124), (-1 % (b * c) % c, -1 % (b * c) % c) = (-1 % c, -1 % c)"
     },
     {
       "difficulty_band": "easy",
@@ -80,17 +80,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20094-seq-25",
+        "name": "tempo-20096-seq-38",
         "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_of_dvd_left_f2805362205b : \u2200 {b c : \u2115} (hca : c \u2223 b), ((3 + b) / c, (3 + b) / c) = (3 / c + b / c, 3 / c + b / c) := by\n  sorry",
-      "target_sha256": "d7111db1a75067c10b33e158830f3e494df0678d07ab46286b855f45c7d849ac",
-      "task_id": "lemma.procedural.f2805362205b2071",
+      "statement": "open Nat\n\ntheorem procedural_Nat_mod_sub_of_le_3f536be8b945 : \u2200 {b n : \u2115} (h : b \u2264 2 % n), (2 % n - b, 2 % n - b) = ((2 - b) % n, (2 - b) % n) := by\n  sorry",
+      "target_sha256": "f540b000e309f5e3d999471fe8102147f743446caaf1941eafdfd39162e97f9a",
+      "task_id": "lemma.procedural.3f536be8b9450983",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_add_div_of_dvd_left_f2805362205b",
-      "title": "Nat.add_div_of_dvd_left",
-      "type_expr": "\u2200 {b c : \u2115} (hca : c \u2223 b), ((3 + b) / c, (3 + b) / c) = (3 / c + b / c, 3 / c + b / c)"
+      "theorem_name": "procedural_Nat_mod_sub_of_le_3f536be8b945",
+      "title": "Nat.mod_sub_of_le",
+      "type_expr": "\u2200 {b n : \u2115} (h : b \u2264 2 % n), (2 % n - b, 2 % n - b) = ((2 - b) % n, (2 - b) % n)"
     },
     {
       "difficulty_band": "easy",
@@ -104,17 +104,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20094-seq-17",
+        "name": "tempo-20096-seq-18",
         "path": "Mathlib/Data/Int/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_left_mod_b5a5d269a0eb : \u2200 (b c : \u2124), (-1 % (b * c) % c, -1 % (b * c) % c) = (-1 % c, -1 % c) := by\n  sorry",
-      "target_sha256": "49944197868217e6eb5fd737e9c09dafd679f98ee35ffe8ef6c48882a6df650c",
-      "task_id": "lemma.procedural.b5a5d269a0eb375a",
+      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_right_mod_3c19ec47d929 : \u2200 (b c : \u2124), (1 % (b * c) % b, 1 % (b * c) % b) = (1 % b, 1 % b) := by\n  sorry",
+      "target_sha256": "f49dc89856c98151e0639d3805187e30afc4432ad7a4189d99ac0e8b5512b04f",
+      "task_id": "lemma.procedural.3c19ec47d929b615",
       "task_version": 1,
-      "theorem_name": "procedural_Int_mod_mul_left_mod_b5a5d269a0eb",
-      "title": "Int.mod_mul_left_mod",
-      "type_expr": "\u2200 (b c : \u2124), (-1 % (b * c) % c, -1 % (b * c) % c) = (-1 % c, -1 % c)"
+      "theorem_name": "procedural_Int_mod_mul_right_mod_3c19ec47d929",
+      "title": "Int.mod_mul_right_mod",
+      "type_expr": "\u2200 (b c : \u2124), (1 % (b * c) % b, 1 % (b * c) % b) = (1 % b, 1 % b)"
     },
     {
       "difficulty_band": "easy",
@@ -128,17 +128,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20094-seq-16",
+        "name": "tempo-20096-seq-20",
         "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_of_dvd_right_82b3bd0e1c36 : \u2200 {b c : \u2115} (hca : c \u2223 5), ((5 + b) / c, (5 + b) / c) = (5 / c + b / c, 5 / c + b / c) := by\n  sorry",
-      "target_sha256": "3b7fd41ebd959d0fa5b847a14566131c4196fe588f00c427bc1607475ad476a6",
-      "task_id": "lemma.procedural.82b3bd0e1c36fee3",
+      "statement": "open Nat\n\ntheorem procedural_Nat_add_mod_add_of_le_add_mod_a7934ab8ae35 : \u2200 {b c : \u2115} (hc : c \u2264 3 % c + b % c), ((3 + b) % c + c, (3 + b) % c + c) = (3 % c + b % c, 3 % c + b % c) := by\n  sorry",
+      "target_sha256": "ed043ffe099b8ba8478712e97839b7b30852af03c026774cbea6ab09051dec9e",
+      "task_id": "lemma.procedural.a7934ab8ae351261",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_add_div_of_dvd_right_82b3bd0e1c36",
-      "title": "Nat.add_div_of_dvd_right",
-      "type_expr": "\u2200 {b c : \u2115} (hca : c \u2223 5), ((5 + b) / c, (5 + b) / c) = (5 / c + b / c, 5 / c + b / c)"
+      "theorem_name": "procedural_Nat_add_mod_add_of_le_add_mod_a7934ab8ae35",
+      "title": "Nat.add_mod_add_of_le_add_mod",
+      "type_expr": "\u2200 {b c : \u2115} (hc : c \u2264 3 % c + b % c), ((3 + b) % c + c, (3 + b) % c + c) = (3 % c + b % c, 3 % c + b % c)"
     },
     {
       "difficulty_band": "easy",
@@ -152,19 +152,19 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20094-seq-21",
+        "name": "tempo-20096-seq-44",
         "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Nat\n\ntheorem procedural_Nat_mod_sub_of_le_b9c71e4d897e : \u2200 {b n : \u2115} (h : b \u2264 5 % n), (5 % n - b, 5 % n - b) = ((5 - b) % n, (5 - b) % n) := by\n  sorry",
-      "target_sha256": "2f3e1da049463487d4a3c067f5b4f37d95df21f8ddd9d3be24955aee026a87d7",
-      "task_id": "lemma.procedural.b9c71e4d897ed5ad",
+      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_of_dvd_right_16035644242e : \u2200 {b c : \u2115} (hca : c \u2223 11), ((11 + b) / c, (11 + b) / c) = (11 / c + b / c, 11 / c + b / c) := by\n  sorry",
+      "target_sha256": "ac5092dc0cab81848d4b97e6ebfa1783f82db5d089f6817324e95456e1c736a2",
+      "task_id": "lemma.procedural.16035644242e7067",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_mod_sub_of_le_b9c71e4d897e",
-      "title": "Nat.mod_sub_of_le",
-      "type_expr": "\u2200 {b n : \u2115} (h : b \u2264 5 % n), (5 % n - b, 5 % n - b) = ((5 - b) % n, (5 - b) % n)"
+      "theorem_name": "procedural_Nat_add_div_of_dvd_right_16035644242e",
+      "title": "Nat.add_div_of_dvd_right",
+      "type_expr": "\u2200 {b c : \u2115} (hca : c \u2223 11), ((11 + b) / c, (11 + b) / c) = (11 / c + b / c, 11 / c + b / c)"
     }
   ],
-  "tempo": 20094,
+  "tempo": 20096,
   "validator_capacity": 6
 }
