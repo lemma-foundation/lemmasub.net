@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Current Lemma proof tasks open to miners.">
+  <meta name="description" content="Current Lemma proof tasks open to miners. Validators verify accepted Lean proofs and add them to public proof data.">
   <meta name="theme-color" content="#f6f3ec">
   <meta property="og:title" content="Lemma dashboard - Current proof tasks">
   <meta property="og:description" content="Active Lean proof tasks in the Lemma network.">
@@ -27,7 +27,7 @@
     <nav aria-label="Primary navigation">
       <a href="./" aria-current="page">Dashboard</a>
       <a href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
-      <a href="https://github.com/lemma-foundation/lemma-corpus" rel="noopener noreferrer" target="_blank">Corpus</a>
+      <a href="https://github.com/lemma-foundation/lemma-proof-atlas" rel="noopener noreferrer" target="_blank">Data</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
         <span class="theme-toggle-track" aria-hidden="true">
           <span class="theme-toggle-sun"></span>
@@ -43,7 +43,7 @@
       <div class="wrap dashboard-intro">
         <p class="eyebrow">Current proof tasks</p>
         <h1>Proof tasks open to miners right now.</h1>
-        <p class="lede">A public snapshot of the Lean statements currently waiting for proofs.</p>
+        <p class="lede">A public snapshot of the Lean statements currently waiting for miner proofs.</p>
       </div>
     </section>
 
@@ -71,7 +71,7 @@
           <p class="eyebrow">Task guide</p>
         </div>
         <h2 id="problem-guide-title">How to read the active set</h2>
-        <p class="guide-intro">The dashboard shows the Lean statements currently open to miners. Each one is a theorem with a missing proof.</p>
+        <p class="guide-intro">The dashboard shows the Lean statements currently open to miners. Each one is a theorem with a missing proof; accepted proofs become public proof data.</p>
         <a class="button guide-doc-link" href="https://github.com/lemma-foundation/lemma/blob/main/docs/tasks.md" rel="noopener noreferrer" target="_blank">Task generation docs</a>
 
         <div class="guide-layout">
@@ -99,6 +99,10 @@
                 <p>The validator checks the submitted proof with Lean, not with a subjective judge.</p>
               </div>
               <div>
+                <span class="guide-tag">Publish it</span>
+                <p>Accepted proofs become public examples for future theorem-proving models.</p>
+              </div>
+              <div>
                 <span class="guide-tag">Adjust slowly</span>
                 <p>If miners solve too little, future sets can get easier, smaller, or longer. If they solve enough, future sets can become more ambitious.</p>
               </div>
@@ -118,7 +122,7 @@
       <a class="brand" href="../" aria-label="Lemma home">
         <span>Lemma</span>
       </a>
-      <p>Lemma is an open competition for verified Lean proof work.</p>
+      <p>Lemma turns verified Lean proofs into public training data.</p>
     </div>
   </footer>
 </body>
