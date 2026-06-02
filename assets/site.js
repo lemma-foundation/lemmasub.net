@@ -376,45 +376,6 @@ function snapshotHasTasks(snapshot) {
   return Array.isArray(snapshot?.tasks) && snapshot.tasks.length > 0;
 }
 
-function taskNameSeed(task) {
-  return (task.title || task.theorem_name || "")
-    .replace(/^Procedural\s+/i, "")
-    .replace(/^procedural_/i, "")
-    .replace(/_[a-f0-9]{12,}$/i, "");
-}
-
-function compactTaskName(task) {
-  const seed = taskNameSeed(task);
-  const patterns = [
-    [/isDomain.*cancelMulZero/i, "Domain cancellation"],
-    [/noZeroDivisors/i, "Zero divisors"],
-    [/isCancelMulZero/i, "Cancel-zero condition"],
-    [/AddMonoidHom.*map_mul/i, "Map multiplication"],
-    [/Pi.*RingHom.*injective/i, "Ring hom injectivity"],
-    [/invOf.*add/i, "Inverse addition"],
-    [/Finset.*disjoint_filter/i, "Filtered sets"],
-    [/Set.*centralizer/i, "Centralizer addition"],
-    [/associator.*cocycle/i, "Associator cocycle"],
-    [/IsIdempotentElem.*sub/i, "Idempotent subtraction"],
-  ];
-  const matched = patterns.find(([pattern]) => pattern.test(seed));
-  if (matched) {
-    return matched[1];
-  }
-  const words = seed
-    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
-    .replace(/[._]+/g, " ")
-    .trim()
-    .split(/\s+/)
-    .filter((word) => !/^(iff|tfae|eq|of|and|or|is)$/i.test(word))
-    .slice(0, 3);
-  if (!words.length) {
-    return "Lean proof task";
-  }
-  const label = words.join(" ").toLowerCase();
-  return `${label.slice(0, 1).toUpperCase()}${label.slice(1)}`;
-}
-
 function metric(label, value, hint, variant) {
   const item = node("div", variant ? `metric ${variant}` : "metric");
   item.append(node("dt", "", label), node("dd", "", value));
@@ -524,11 +485,11 @@ function renderProblem(task, index) {
   const indicator = node("span", "statement-indicator", "+");
   const statementId = `statement-${task.task_id.replace(/[^a-z0-9]+/gi, "-")}`;
   const topic = problemTopic(task);
-  const name = compactTaskName(task);
+  const label = `Task ${index + 1}`;
   const meta = node("p", "problem-meta");
 
   header.type = "button";
-  header.setAttribute("aria-label", `Show statement for ${name}`);
+  header.setAttribute("aria-label", `Show statement for ${label}`);
   header.setAttribute("aria-controls", statementId);
   header.setAttribute("aria-expanded", "false");
 
@@ -541,17 +502,16 @@ function renderProblem(task, index) {
     const isOpen = header.getAttribute("aria-expanded") === "true";
     const nextOpen = !isOpen;
     header.setAttribute("aria-expanded", String(nextOpen));
-    header.setAttribute("aria-label", `${nextOpen ? "Hide" : "Show"} statement for ${name}`);
+    header.setAttribute("aria-label", `${nextOpen ? "Hide" : "Show"} statement for ${label}`);
     article.classList.toggle("is-open", nextOpen);
     indicator.textContent = nextOpen ? "-" : "+";
     statement.hidden = !nextOpen;
   });
   meta.append(
-    node("span", "problem-meta-index", `Task ${index + 1}`),
     node("span", "problem-chip level", taskLevel(task)),
     node("span", "problem-chip", topic),
   );
-  title.append(meta, node("h3", "", name));
+  title.append(node("h3", "", label), meta);
   header.append(title, indicator);
 
   article.append(header, statement);

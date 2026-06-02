@@ -951,15 +951,11 @@ button.button {
   flex-wrap: wrap;
   align-items: center;
   gap: .35rem;
-  margin: 0 0 .45rem;
+  margin: .35rem 0 0;
   color: var(--muted);
   font-size: .72rem;
   font-weight: 800;
   text-transform: uppercase;
-}
-
-.problem-meta-index {
-  color: var(--green);
 }
 
 .problem-chip {
