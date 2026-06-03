@@ -9,13 +9,13 @@
   "base_task_cost_s": 0.0,
   "cost_budget_s": 0.0,
   "depth_cost_multiplier": 2.0,
-  "epoch_start_block": 7266600,
-  "epoch_started_at": "2026-06-03T21:37:00Z",
-  "estimated_next_epoch_starts_at": "2026-06-03T22:49:00Z",
+  "epoch_start_block": 7266960,
+  "epoch_started_at": "2026-06-03T22:49:00Z",
+  "estimated_next_epoch_starts_at": "2026-06-04T00:01:00Z",
   "frontier_depth": 17,
-  "generated_at": "2026-06-03T22:03:34Z",
-  "next_epoch_start_block": 7266960,
-  "registry_sha256": "ec7db663b71291212cf076a18e84cda3d3a6b3dc32687ce2162766b37b7c6ce4",
+  "generated_at": "2026-06-03T23:57:53Z",
+  "next_epoch_start_block": 7267320,
+  "registry_sha256": "20d4db421b5357400e4857a9e8c13809fe9f21b07c2cd16a72746b70f4ccf5fc",
   "registry_task_count": 6,
   "schema_version": 1,
   "task_count": 6,
@@ -32,17 +32,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20185-seq-33",
+        "name": "tempo-20186-seq-21",
         "path": "Mathlib/Tactic/Zify.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_lt_34052bbae16c : \u2200 (b : Nat), (5 : Int) < (b : Int) \u2194 5 < b := by\n  sorry",
-      "target_sha256": "424832c89965c7b067a0849d3174c6199a2f4c331a4728c5e5340c0fcb6721ea",
-      "task_id": "lemma.procedural.34052bbae16cf8fa",
+      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_ne_5d399b024498 : \u2200 (b : Nat), (7 : Int) \u2260 (b : Int) \u2194 7 \u2260 b := by\n  sorry",
+      "target_sha256": "9aeb05f17743759a14a6b408887c00e5f7398a1efcb2457659098aaf1401bc71",
+      "task_id": "lemma.procedural.5d399b024498e132",
       "task_version": 1,
-      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_lt_34052bbae16c",
-      "title": "Mathlib.Tactic.Zify.natCast_lt",
-      "type_expr": "\u2200 (b : Nat), (5 : Int) < (b : Int) \u2194 5 < b"
+      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_ne_5d399b024498",
+      "title": "Mathlib.Tactic.Zify.natCast_ne",
+      "type_expr": "\u2200 (b : Nat), (7 : Int) \u2260 (b : Int) \u2194 7 \u2260 b"
     },
     {
       "difficulty_band": "easy",
@@ -56,17 +56,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20185-seq-32",
+        "name": "tempo-20186-seq-17",
         "path": "Mathlib/Data/Int/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_right_mod_88f54173868a : \u2200 (b c : \u2124), -1 % b = -1 % (b * c) % b := by\n  sorry",
-      "target_sha256": "68c505ca4f0ad248098c92dedc274154a5075192bc128a51f8e27dce0468063a",
-      "task_id": "lemma.procedural.88f54173868ae88b",
+      "statement": "open Int\n\ntheorem procedural_Int_mod_mul_left_mod_cfe5ec772cb2 : \u2200 (b c : \u2124), 1 % c = 1 % (b * c) % c := by\n  sorry",
+      "target_sha256": "00297706ba3ad60791847f9e779486400894743c28c38178f187502cc957fe8d",
+      "task_id": "lemma.procedural.cfe5ec772cb25385",
       "task_version": 1,
-      "theorem_name": "procedural_Int_mod_mul_right_mod_88f54173868a",
-      "title": "Int.mod_mul_right_mod",
-      "type_expr": "\u2200 (b c : \u2124), -1 % b = -1 % (b * c) % b"
+      "theorem_name": "procedural_Int_mod_mul_left_mod_cfe5ec772cb2",
+      "title": "Int.mod_mul_left_mod",
+      "type_expr": "\u2200 (b c : \u2124), 1 % c = 1 % (b * c) % c"
     },
     {
       "difficulty_band": "easy",
@@ -80,17 +80,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20185-seq-22",
+        "name": "tempo-20186-seq-34",
         "path": "Mathlib/Data/Nat/ModEq.lean"
       },
       "source_stream": "procedural",
-      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_of_dvd_left_ca2c2ceca016 : \u2200 {b c : \u2115} (hca : c \u2223 b), 2 / c + b / c = (2 + b) / c := by\n  sorry",
-      "target_sha256": "7b0f828b149d7f9edcd8baf73f6deeff1d1d379fc23e78614983a5f05ea8a613",
-      "task_id": "lemma.procedural.ca2c2ceca0163569",
+      "statement": "open Nat\n\ntheorem procedural_Nat_add_div_eq_of_le_mod_add_mod_560925444aad : \u2200 {b c : \u2115} (hc : c \u2264 7 % c + b % c) (hc0 : 0 < c), 7 / c + b / c + 1 = (7 + b) / c := by\n  sorry",
+      "target_sha256": "43b17eb7b4cbf8c8f9b0b16358ed3bf9b03fbd774797069d5befef170425c9da",
+      "task_id": "lemma.procedural.560925444aaddb1a",
       "task_version": 1,
-      "theorem_name": "procedural_Nat_add_div_of_dvd_left_ca2c2ceca016",
-      "title": "Nat.add_div_of_dvd_left",
-      "type_expr": "\u2200 {b c : \u2115} (hca : c \u2223 b), 2 / c + b / c = (2 + b) / c"
+      "theorem_name": "procedural_Nat_add_div_eq_of_le_mod_add_mod_560925444aad",
+      "title": "Nat.add_div_eq_of_le_mod_add_mod",
+      "type_expr": "\u2200 {b c : \u2115} (hc : c \u2264 7 % c + b % c) (hc0 : 0 < c), 7 / c + b / c + 1 = (7 + b) / c"
     },
     {
       "difficulty_band": "easy",
@@ -104,17 +104,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20185-seq-27",
+        "name": "tempo-20186-seq-8",
         "path": "Mathlib/Tactic/Zify.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_eq_33bcbc9ba051 : \u2200 (b : Nat), (5 : Int) = (b : Int) \u2194 5 = b := by\n  sorry",
-      "target_sha256": "edad3694bc64442c7f6f74912a97d968b45a1740fc88bff811dfbc95297e9271",
-      "task_id": "lemma.procedural.33bcbc9ba05160ea",
+      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_le_1e2cb417ff48 : \u2200 (b : Nat), (5 : Int) \u2264 (b : Int) \u2194 5 \u2264 b := by\n  sorry",
+      "target_sha256": "5bf92b3913138a9fb2cfb064445a8528c6df70bee124f43023c26a3dbdac2c86",
+      "task_id": "lemma.procedural.1e2cb417ff48e7ec",
       "task_version": 1,
-      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_eq_33bcbc9ba051",
-      "title": "Mathlib.Tactic.Zify.natCast_eq",
-      "type_expr": "\u2200 (b : Nat), (5 : Int) = (b : Int) \u2194 5 = b"
+      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_le_1e2cb417ff48",
+      "title": "Mathlib.Tactic.Zify.natCast_le",
+      "type_expr": "\u2200 (b : Nat), (5 : Int) \u2264 (b : Int) \u2194 5 \u2264 b"
     },
     {
       "difficulty_band": "easy",
@@ -128,17 +128,17 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20185-seq-21",
+        "name": "tempo-20186-seq-33",
         "path": "Mathlib/Tactic/Zify.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_le_de996f2aa589 : \u2200 (b : Nat), (3 : Int) \u2264 (b : Int) \u2194 3 \u2264 b := by\n  sorry",
-      "target_sha256": "05e167aa2f5823acd1d65410225e4dc70fd0cfdd5bb7f94c029dd3e9f8312484",
-      "task_id": "lemma.procedural.de996f2aa589ab7c",
+      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_lt_b1c589ec9f29 : \u2200 (b : Nat), (7 : Int) < (b : Int) \u2194 7 < b := by\n  sorry",
+      "target_sha256": "09e655d741e34d91b37a3397a1ccd9ccc194f3ddd88323136a318692c33fa210",
+      "task_id": "lemma.procedural.b1c589ec9f29da1a",
       "task_version": 1,
-      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_le_de996f2aa589",
-      "title": "Mathlib.Tactic.Zify.natCast_le",
-      "type_expr": "\u2200 (b : Nat), (3 : Int) \u2264 (b : Int) \u2194 3 \u2264 b"
+      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_lt_b1c589ec9f29",
+      "title": "Mathlib.Tactic.Zify.natCast_lt",
+      "type_expr": "\u2200 (b : Nat), (7 : Int) < (b : Int) \u2194 7 < b"
     },
     {
       "difficulty_band": "easy",
@@ -152,19 +152,19 @@
       "source_ref": {
         "commit": "5450b53e5ddc",
         "kind": "procedural",
-        "name": "tempo-20185-seq-15",
+        "name": "tempo-20186-seq-15",
         "path": "Mathlib/Tactic/Zify.lean"
       },
       "source_stream": "procedural",
-      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_ne_5f11062bc40f : \u2200 (b : Nat), (3 : Int) \u2260 (b : Int) \u2194 3 \u2260 b := by\n  sorry",
-      "target_sha256": "fb9247fed09c36a7599c51e187baffbb68b506be94b59a082bf6f0c63539b6fd",
-      "task_id": "lemma.procedural.5f11062bc40f7d96",
+      "statement": "theorem procedural_Mathlib_Tactic_Zify_natCast_eq_d640d5cc25e5 : \u2200 (b : Nat), (7 : Int) = (b : Int) \u2194 7 = b := by\n  sorry",
+      "target_sha256": "8eb8cb69ddac918c1efb73e10791becd8dbcc8300b62f61678cbdca3cd819391",
+      "task_id": "lemma.procedural.d640d5cc25e5ed09",
       "task_version": 1,
-      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_ne_5f11062bc40f",
-      "title": "Mathlib.Tactic.Zify.natCast_ne",
-      "type_expr": "\u2200 (b : Nat), (3 : Int) \u2260 (b : Int) \u2194 3 \u2260 b"
+      "theorem_name": "procedural_Mathlib_Tactic_Zify_natCast_eq_d640d5cc25e5",
+      "title": "Mathlib.Tactic.Zify.natCast_eq",
+      "type_expr": "\u2200 (b : Nat), (7 : Int) = (b : Int) \u2194 7 = b"
     }
   ],
-  "tempo": 20185,
+  "tempo": 20186,
   "validator_capacity": 6
 }
