@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Miners earn subnet rewards by filling real Lean missing-proof gaps under deterministic public validation.">
+  <title>Lemma - solved proof explorer</title>
+  <style>
+:root {
+  color-scheme: light dark;
+  --bg: #f7faf8; --paper: #ffffff; --ink: #1f2622; --muted: #58665f;
+  --line: #d7e2dc; --soft: #e8f1ec; --green: #18745f; --blue: #325e9d;
+  --gold: #a96727; --code: #171b18; --code-ink: #eef7f1; --radius: 8px; --max: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121714; --paper: #19201b; --ink: #eef3ef; --muted: #9fb0a6;
+    --line: #2b352e; --soft: #1f2822; --green: #5fd0b0; --blue: #8fb4ee; --gold: #e0a868;
+    --code: #0d100e; --code-ink: #eef7f1;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+a { color: var(--blue); }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+.site-header {
+  border-bottom: 1px solid var(--line); background: var(--paper);
+  position: sticky; top: 0; z-index: 5;
+}
+.site-header .wrap { display: flex; align-items: center; gap: 18px; height: 60px; }
+.brand { font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
+.site-nav { margin-left: auto; display: flex; gap: 16px; }
+.site-nav a { text-decoration: none; color: var(--muted); font-weight: 600; }
+.site-nav a[aria-current="page"] { color: var(--green); }
+h1 { font-size: 28px; margin: 28px 0 6px; }
+h2 { font-size: 20px; margin: 28px 0 10px; }
+.lede { color: var(--muted); max-width: 70ch; }
+.eyebrow {
+  text-transform: uppercase; letter-spacing: .08em; font-size: 12px;
+  font-weight: 700; color: var(--green); margin: 24px 0 0;
+}
+.cards { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); margin: 18px 0 40px; }
+.card {
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper);
+  padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 8px;
+}
+.card h3 { margin: 0; font-size: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+  background: var(--soft); color: var(--green); border: 1px solid var(--line);
+}
+.tag.open { color: var(--gold); }
+.tag.solved { color: var(--green); }
+.meta { font-size: 13px; color: var(--muted); margin: 0; }
+.meta b { color: var(--ink); font-weight: 600; }
+.links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; font-weight: 600; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+pre.cmd {
+  background: var(--code); color: var(--code-ink); border-radius: 6px;
+  padding: 10px 12px; overflow-x: auto; font-size: 13px; margin: 4px 0 0;
+}
+.apply { background: var(--soft); border-radius: 6px; padding: 10px 12px; font-size: 14px; margin: 0; }
+.empty {
+  color: var(--muted); border: 1px dashed var(--line);
+  border-radius: var(--radius); padding: 24px; text-align: center;
+}
+.site-footer { border-top: 1px solid var(--line); background: var(--paper); margin-top: 40px; }
+.site-footer .wrap { padding: 20px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Lemma</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="board.html">Board</a>
+        <a href="solved.html" aria-current="page">Solved</a>
+        <a href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
+        <a href="https://github.com/lemma-foundation/lemma-proof-atlas/blob/main" rel="noopener noreferrer" target="_blank">Data</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <p class="eyebrow">Verified, reusable proofs</p>
+    <h1>Solved proof explorer</h1>
+    <p class="empty">No accepted proofs are published yet.</p>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">Miners earn subnet rewards by filling real Lean missing-proof gaps under deterministic public validation.</div>
+  </footer>
+</body>
+</html>
