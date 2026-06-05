@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Miners earn subnet rewards by filling real Lean missing-proof gaps under deterministic public validation.">
+  <meta name="theme-color" content="#f7faf8">
   <title>Lemma - task board</title>
   <style>
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --bg: #f7faf8; --paper: #ffffff; --ink: #1f2622; --muted: #58665f;
   --line: #d7e2dc; --soft: #e8f1ec; --green: #18745f; --blue: #325e9d;
   --gold: #a96727; --code: #171b18; --code-ink: #eef7f1; --radius: 8px; --max: 1120px;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121714; --paper: #19201b; --ink: #eef3ef; --muted: #9fb0a6;
-    --line: #2b352e; --soft: #1f2822; --green: #5fd0b0; --blue: #8fb4ee; --gold: #e0a868;
-    --code: #0d100e; --code-ink: #eef7f1;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121714; --paper: #19201b; --ink: #eef3ef; --muted: #9fb0a6;
+  --line: #2b352e; --soft: #1f2822; --green: #5fd0b0; --blue: #8fb4ee; --gold: #e0a868;
+  --code: #0d100e; --code-ink: #eef7f1;
 }
 * { box-sizing: border-box; }
 body {
@@ -32,7 +32,7 @@ a { color: var(--blue); }
 }
 .site-header .wrap { display: flex; align-items: center; gap: 18px; height: 60px; }
 .brand { font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
-.site-nav { margin-left: auto; display: flex; gap: 16px; }
+.site-nav { margin-left: auto; display: flex; align-items: center; gap: 16px; }
 .site-nav a { text-decoration: none; color: var(--muted); font-weight: 600; }
 .site-nav a[aria-current="page"] { color: var(--green); }
 h1 { font-size: 28px; margin: 28px 0 6px; }
@@ -72,7 +72,44 @@ pre.cmd {
 }
 .site-footer { border-top: 1px solid var(--line); background: var(--paper); margin-top: 40px; }
 .site-footer .wrap { padding: 20px; color: var(--muted); font-size: 14px; }
+.theme-toggle {
+  display: inline-flex; width: 3.45rem; height: 1.9rem; flex: 0 0 auto;
+  align-items: center; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--paper); padding: .18rem; cursor: pointer;
+}
+.theme-toggle-track {
+  position: relative; display: block; width: 100%; height: 100%;
+  overflow: hidden; border-radius: inherit;
+  background: linear-gradient(135deg, #b7d8ff, #f8d58b); transition: background .24s ease;
+}
+.theme-toggle-thumb {
+  position: absolute; top: .18rem; left: .2rem; width: 1.16rem; height: 1.16rem;
+  border-radius: 50%; background: #fff8c7;
+  box-shadow: 0 0 0 .22rem rgba(255, 248, 199, .25), 0 .15rem .4rem rgba(31, 38, 34, .2);
+  transition: transform .24s ease, background .24s ease, box-shadow .24s ease;
+}
+.theme-toggle-sun, .theme-toggle-moon {
+  position: absolute; inset: 0; transition: opacity .24s ease, transform .24s ease;
+}
+.theme-toggle-sun::before, .theme-toggle-moon::before { position: absolute; content: ""; }
+.theme-toggle-sun::before {
+  top: .38rem; right: .55rem; width: .28rem; height: .28rem; border-radius: 50%; background: #fff6ad;
+  box-shadow: -.5rem .18rem 0 -.08rem rgba(255, 246, 173, .75), -.18rem .58rem 0 -.1rem rgba(255, 246, 173, .65);
+}
+.theme-toggle-moon { opacity: 0; transform: translateX(.35rem); }
+.theme-toggle-moon::before {
+  top: .38rem; left: .52rem; width: .54rem; height: .54rem; border-radius: 50%;
+  background: #dce9ff; box-shadow: .22rem -.05rem 0 0 #23344b;
+}
+:root[data-theme="dark"] .theme-toggle-track { background: linear-gradient(135deg, #12233d, #213a31); }
+:root[data-theme="dark"] .theme-toggle-thumb {
+  background: #dce9ff; transform: translateX(1.54rem);
+  box-shadow: 0 0 0 .2rem rgba(157, 186, 255, .16), 0 .15rem .4rem rgba(0, 0, 0, .35);
+}
+:root[data-theme="dark"] .theme-toggle-sun { opacity: 0; transform: translateX(-.35rem); }
+:root[data-theme="dark"] .theme-toggle-moon { opacity: 1; transform: translateX(0); }
 </style>
+  <script>(function(){try{document.documentElement.dataset.theme=localStorage.getItem("lemma-theme")||"light";}catch(e){}})();</script>
 </head>
 <body>
   <header class="site-header">
@@ -81,8 +118,9 @@ pre.cmd {
       <nav class="site-nav" aria-label="Primary">
         <a href="board.html" aria-current="page">Board</a>
         <a href="solved.html">Solved</a>
-        <a href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
-        <a href="https://github.com/lemma-foundation/lemma-proof-atlas/blob/main" rel="noopener noreferrer" target="_blank">Data</a>
+        <a href="https://github.com/lemma-foundation/lemma" rel="noopener noreferrer" target="_blank">Docs</a>
+        <a href="https://github.com/lemma-foundation/lemma-proof-atlas" rel="noopener noreferrer" target="_blank">Data</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-sun"></span><span class="theme-toggle-moon"></span><span class="theme-toggle-thumb"></span></span></button>
       </nav>
     </div>
   </header>
@@ -95,5 +133,29 @@ pre.cmd {
   <footer class="site-footer">
     <div class="wrap">Miners earn subnet rewards by filling real Lean missing-proof gaps under deterministic public validation.</div>
   </footer>
+  <script>
+(function () {
+  var storageKey = "lemma-theme";
+  var root = document.documentElement;
+  var toggle = document.querySelector("[data-theme-toggle]");
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function chosenTheme() { return localStorage.getItem(storageKey) || "light"; }
+  function setTheme(theme) {
+    root.dataset.theme = theme;
+    try { localStorage.setItem(storageKey, theme); } catch (e) {}
+    if (themeMeta) { themeMeta.setAttribute("content", theme === "dark" ? "#101712" : "#f7faf8"); }
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(theme === "dark"));
+      toggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+    }
+  }
+  setTheme(chosenTheme());
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+    });
+  }
+})();
+</script>
 </body>
 </html>
