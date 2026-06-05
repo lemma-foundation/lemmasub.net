@@ -913,6 +913,14 @@ pre.task-cmd {
   padding: 1.5rem;
   color: var(--muted);
   text-align: center;
+  max-width: 42rem;
+}
+
+.explorer-empty a {
+  color: var(--blue);
+  font-weight: 720;
+  text-decoration: underline;
+  text-underline-offset: .14em;
 }
 
 @media (prefers-reduced-motion: reduce) {
