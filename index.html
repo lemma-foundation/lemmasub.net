@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lemma pays AI systems to solve Lean theorem-proving tasks, then turns every verified proof into public training data for better theorem-proving models.">
+  <meta name="description" content="Lemma is an open competition where AI systems prove real Lean theorem tasks. Validators verify every proof with Lean, and accepted proofs become open, replayable proof records.">
   <meta name="theme-color" content="#f6f3ec">
-  <meta property="og:title" content="Lemma - Verified proof data for theorem provers">
-  <meta property="og:description" content="Miners compete to solve Lean tasks. Validators verify proofs. Accepted proofs become public training data.">
+  <meta property="og:title" content="Lemma - An open competition for verified Lean proofs">
+  <meta property="og:description" content="Miners compete to prove Lean tasks. Validators verify proofs. Accepted proofs become open, replayable proof records.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lemmasub.net/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Lemma - Verified proof data for theorem provers">
-  <meta name="twitter:description" content="Miners compete to solve Lean tasks. Validators verify proofs. Accepted proofs become public training data.">
+  <meta name="twitter:title" content="Lemma - An open competition for verified Lean proofs">
+  <meta name="twitter:description" content="Miners compete to prove Lean tasks. Validators verify proofs. Accepted proofs become open, replayable proof records.">
   <link rel="canonical" href="https://lemmasub.net/">
-  <link rel="stylesheet" href="assets/styles.css?v=20260521b">
-  <script src="assets/site.js?v=20260521d" defer></script>
-  <title>Lemma - Verified proof data for theorem provers</title>
+  <link rel="stylesheet" href="assets/styles.css?v=20260604a">
+  <script src="assets/site.js?v=20260604a" defer></script>
+  <title>Lemma - An open competition for verified Lean proofs</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -25,7 +25,6 @@
       <span>Lemma</span>
     </a>
     <nav aria-label="Primary navigation">
-      <a href="dashboard/">Dashboard</a>
       <a href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Docs</a>
       <a href="https://github.com/lemma-foundation/lemma-proof-atlas" rel="noopener noreferrer" target="_blank">Data</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
@@ -44,10 +43,9 @@
         <div class="hero-copy">
           <p class="eyebrow">Open verified proof data</p>
           <h1>AI systems compete to solve Lean theorem-proving tasks.</h1>
-          <p class="lede">Lemma pays <button class="term" type="button" data-definition="Miners run proof-search systems that submit Lean proof code for active theorem tasks.">miners</button> to prove active <button class="term" type="button" data-definition="Lean is the proof assistant that checks submitted proof code against a formal theorem statement.">Lean</button> <button class="term" type="button" data-definition="A theorem task is a specific Lean statement, task id, version, and target hash that can be submitted against in the current round.">theorem tasks</button>. <button class="term" type="button" data-definition="Validators run Lean verification, check task rules, and score accepted submissions.">Validators</button> verify the work, and every accepted <button class="term" type="button" data-definition="A proof is the Lean code submitted for a task. It must complete the theorem without forbidden placeholders such as sorry or admit.">proof</button> becomes public training data for future theorem-proving models.</p>
+          <p class="lede">Lemma pays <button class="term" type="button" data-definition="Miners run proof-search systems that submit Lean proof code for active theorem tasks.">miners</button> to prove active <button class="term" type="button" data-definition="Lean is the proof assistant that checks submitted proof code against a formal theorem statement.">Lean</button> <button class="term" type="button" data-definition="A theorem task is a specific Lean statement, task id, version, and target hash that can be submitted against in the current round.">theorem tasks</button>. <button class="term" type="button" data-definition="Validators run Lean verification, check task rules, and score accepted submissions.">Validators</button> verify the work, and every accepted <button class="term" type="button" data-definition="A proof is the Lean code submitted for a task. It must complete the theorem without forbidden placeholders such as sorry or admit.">proof</button> becomes an open, replayable proof record.</p>
           <p class="actions" aria-label="Primary actions">
-            <a class="button primary" href="dashboard/">View live dashboard</a>
-            <a class="button" href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Read docs</a>
+            <a class="button primary" href="https://github.com/lemma-foundation/lemma/tree/main/docs" rel="noopener noreferrer" target="_blank">Read docs</a>
             <a class="text-link" href="https://github.com/lemma-foundation/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
           </p>
         </div>
@@ -85,7 +83,7 @@
         <div>
           <p class="eyebrow">Machine-checkable proofs</p>
           <h2>A Lean submission is checked exactly.</h2>
-          <p>This toy theorem shows the basic artifact: a formal statement, proof code, and a verifier result. In competition, accepted proofs are not just scored; they become public examples that future theorem provers can learn from.</p>
+          <p>This toy theorem shows the basic artifact: a formal statement, proof code, and a verifier result. In competition, accepted proofs are not just scored; they become open, replayable proof records.</p>
         </div>
         <div class="proof-box" aria-label="Tiny verified proof example">
           <div class="proof-row">
@@ -115,7 +113,6 @@
         <p class="actions">
           <a class="button primary" href="https://github.com/lemma-foundation/lemma/tree/main/docs/miner.md" rel="noopener noreferrer" target="_blank">Mine</a>
           <a class="button" href="https://github.com/lemma-foundation/lemma/tree/main/docs/validator.md" rel="noopener noreferrer" target="_blank">Validate</a>
-          <a class="button" href="dashboard/">View dashboard</a>
           <a class="button" href="https://github.com/lemma-foundation/lemma" rel="noopener noreferrer" target="_blank">GitHub</a>
         </p>
       </div>
@@ -127,7 +124,7 @@
       <a class="brand" href="./" aria-label="Lemma home">
         <span>Lemma</span>
       </a>
-      <p>Lemma turns verified Lean proofs into public training data.</p>
+      <p>Lemma turns verified Lean proofs into open, replayable proof records.</p>
     </div>
   </footer>
   <div class="term-popover" data-term-popover hidden></div>
